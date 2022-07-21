@@ -1,0 +1,36 @@
+# Cloud Computing Basics
+
+We all need to start somewhere when we work with cloud computing. 
+
+This chapter is meant to act as a refresher for how cloud computing works on the DNAnexus platform. 
+
+## Learning Objectives
+
+- **Define** key players in both local computing and cloud computing
+- **Articulate** key differences between local computing and cloud computing
+- **Describe** the sequence of events in launching jobs in the cloud
+- **Differentiate** local storage from cloud-based project storage
+- **Describe** instance types and how to use them
+
+## Key Players
+
+### Local Computing
+
+- Our Machine
+- Software Environment
+- Our Disk
+
+### Cloud Computing
+
+- Our Machine
+- DNAnexus Platform
+- DNAnexus Worker
+
+## Key Differences
+
+1. We don't own the worker machine, we only have temporary access to it.
+2. We have to be explicit 
+
+
+## Sequence of Events of Running a Job
+

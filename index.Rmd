@@ -1,0 +1,63 @@
+--- 
+title: "Shell Skills for Bioinformatics in the Cloud"
+author: "Ted Laderas"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  This is an introduction to how to apply shell scripting for bioinformaticists. 
+  It is focused on common applications (with a focus on cloud computing) as well 
+  as performing these applications reproducibly.
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+---
+
+# About
+
+This is a book that is meant to bring you (a budding bioinformaticist) beyond the foundational shell scripting skills learned from Carpentries. Specifically, it shows you a path to get started with reproducible cloud computing, specifically on the DNAnexus platform. 
+
+Our goal is to showcase the "glue" skills that help you do bioinformatics reproducibly. That includes:
+
+- **Articulate** basic Cloud Computing concepts
+- **Leverage** bash scripting and the dx-toolkit to execute jobs on the DNAnexus platform
+- **Build** and **Execute** applets on the DNAnexus platform by specifying the JSON files
+- **Implement** Portable Workflows using Workflow Description Language (WDL) to do the following:
+    - Run on a single file
+    - Batch process multiple files
+    - Utilize multiple steps in a workflow
+- **Utilize** `sed` and `awk` and other command line utilities to process files using regular expressions
+- **Manage** software dependencies reproducibly using container-based technologies such as Docker
+- **Utilize** Environment Variables in a reproducible way
+- **Monitor**, **profile**, and **retry** jobs to optimize costs
+
+# What is not covered
+
+- Running and monitoring jobs on a HPC Cluster
+- Running a workflow using Cromwell/MiniWDL
+
+# Notes
+
+This is a very opinionated journey through shell scripting, workflow languages, and reproduciblity. It is designed to build on each of the concepts in a gradual manner. 
+
+At each step, you'll be able to do useful things with your data. We will focus on skills and programming patterns that are useful. 
+
+# Prerequisites
+
+Before you tackle this book, you should be able to accomplish the following:
+
+- **Utilize** and **navigate** File Paths (both absolute and relative) in a Unix system
+- **Use** basic Loops in a Shell Script
+- **Utilize** pipes and filters
+- **Make** a basic shell script that does the following:
+    - Takes a file argument
+    - Executes a binary on your system on this file
+    - Directs the output to standard output
+    
+We recommend reviewing a course such as the [Software Carpentry course for Shell Scripting](https://swcarpentry.github.io/shell-novice/) before getting started with the course.
+
+Specifically, you should be able to answer the following:
+
+

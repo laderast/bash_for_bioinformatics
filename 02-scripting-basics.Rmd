@@ -1,0 +1,24 @@
+# Shell Scripting Basics
+
+## Learning Objectives
+
+1. **Articulate** the three streams of a command line utility
+2. **Wrap** executables and scripts in R/Python into a bash script.
+3. **Utilize** *placeholder variables* and *arguments* to generalize our scripts
+4. **Iterate** a script over a set of files using `xargs` or `for` loops
+
+## Review of Bash scripting
+
+We are going to cover Bash scripting, because it is the main shell that is available to us on DNAnexus machines, which are Ubuntu-based.
+
+We will be using Bash scripts as "glue" for multiple applications in cloud computing, including:
+
+1. **Wrapping scripts** in other languages so we can run them using `dx run` on a app such as Swiss Army Knife
+2. **Specifying inputs and outputs** to executables in Applets/Workflows
+3. Specifying inputs and outputs in a workflow built by Workflow Description Langugae (WDL).
+
+As you can see, knowing Bash is extremely helpful when running jobs on the cloud.
+
+## STDIN, STDOUT, STDERR
+
+Every script has three streams available to it: Standard In (STDIN), Standard Out (STDOUT), and Standard Error (STDERR).
