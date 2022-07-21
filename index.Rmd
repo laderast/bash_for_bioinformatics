@@ -10,7 +10,7 @@ bibliography: [book.bib, packages.bib]
 description: |
   This is an introduction to how to apply shell scripting for bioinformaticists. 
   It is focused on common applications (with a focus on cloud computing) as well 
-  as performing these applications reproducibly.
+  as performing these applications reproducibly on the DNAnexus platform.
 link-citations: yes
 github-repo: rstudio/bookdown-demo
 ---
@@ -49,7 +49,6 @@ At each step, you'll be able to do useful things with your data. We will focus o
 Before you tackle this book, you should be able to accomplish the following:
 
 - **Utilize** and **navigate** File Paths (both absolute and relative) in a Unix system
-- **Use** basic Loops in a Shell Script
 - **Utilize** pipes and filters
 - **Make** a basic shell script that does the following:
     - Takes a file argument

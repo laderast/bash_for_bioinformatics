@@ -7,6 +7,10 @@
 3. **Utilize** *placeholder variables* and *arguments* to generalize our scripts
 4. **Iterate** a script over a set of files using `xargs` or `for` loops
 
+## Setup for this section
+
+We'll be running all of these scripts on our own machine. 
+
 ## Review of Bash scripting
 
 We are going to cover Bash scripting, because it is the main shell that is available to us on DNAnexus machines, which are Ubuntu-based.
@@ -19,6 +23,59 @@ We will be using Bash scripts as "glue" for multiple applications in cloud compu
 
 As you can see, knowing Bash is extremely helpful when running jobs on the cloud.
 
+## Our first script
+
+Say we have [`samtools`](http://www.htslib.org/doc/samtools-stats.html) installed on our own machine. Let's start with a basic script and build from there. We'll call it  `sam_run.sh`. With `nano`, a text editor, we'll start a very basic bash script and build its capabilities out.
+
+
+```
+#!/bin/bash/
+
+samtools stats $1 > $2
+```
+
+Let's take a look at the command that we're running first. We're going to run `samtools stat`, which will give us statistics on an incoming `bam` or `sam` file and save it in a file. We want to be able to run our script like this:
+
+```
+./sam_run my_file.bam out_stats.txt
+```
+
+When we run it like that, `sam_run.sh` will run `samtools stat` like this:
+
+```
+samtools stats my_file.bam > out_stats.txt
+```
+
+So what's going on here is that there is some substitution using common arguments. Let's look at these.
+
+## Arguments such as `$1`
+
+How did the script know where to substitute each of our arguments? It has to do with the argument variables. Arguments (terms that follow our command) are indexed starting with the number 1. We can access the value at the first position using the special variable `$1`. 
+
+Note that this works even in quotes.
+
+So, to unpack our script, we are 
+
+
+### Test yourself
+
+How would we rewrite `sam_run.sh` if we wanted to specify the output file as the first argument and the bam file as the second argument?
+
+```
+#!/bin/bash/
+
+samtools stats $1 > $2
+```
+
+## Named Arguments
+
+
+
+
 ## STDIN, STDOUT, STDERR
 
-Every script has three streams available to it: Standard In (STDIN), Standard Out (STDOUT), and Standard Error (STDERR).
+Every script has three streams available to it: Standard In (STDIN), Standard Out (STDOUT), and Standard Error (STDERR). 
+
+STDIN contains information that is directed to the input of a script
+
+Why do these matter? To work in a pipeline, a script must be able to utilize STDIN, and generate STDOUT, and STDERR.
