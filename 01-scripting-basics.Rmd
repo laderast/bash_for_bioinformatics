@@ -5,6 +5,7 @@
 1. **Utilize** *placeholder variables* and *arguments* to generalize our scripts
 1. **Articulate** the three streams of a command line utility
 1. **Wrap** executables and scripts in R/Python into a bash script.
+1. **Define** variables and environment variables for use in a bash script.  
 1. **Iterate** a script over a set of files using `xargs` or `for` loops
 
 ## Review of Bash scripting
@@ -106,18 +107,33 @@ STDIN contains information that is directed to the input of a script (usually te
 
 Why do these matter? To work in a Unix pipeline, a script must be able to utilize STDIN, and generate STDOUT, and STDERR.
 
+## Iterating using `for` loops
+
+
+
+```
+
+```
+
+## Iterating using `xargs`
+
+```
+
+```
+
+
+
+## Variables
+
+We'll use variables 
 
 ## Environment Variables
 
-### $PATH
+### `$PATH`
 
-The `$PATH` variable is one of the most important environment variables we'll set. It specifies the directories where executables and binaries can be found. This is important when you install dx-toolkit to interact with the DNAnexus platform. 
+The `$PATH` variable is one of the most important environment variables we'll set on your local machine. It specifies the directories where executables and binaries can be found. This is important when you install dx-toolkit to interact with the DNAnexus platform. 
 
 In general, you want to append paths to the `$PATH` variable, rather than overwriting to it. This is because other processes may add to the `$PATH` variable as well, so you don't want to interfere with those processes. Adding to our `$PATH` variable depends on the different operating systems.
-
-### Windows
-
-System Settings >> Environment Variables
 
 ### Mac/Linux
 
@@ -127,4 +143,14 @@ The fastest way to add a directory to your path is to use the `export` command i
 export PATH=$PATH:/opt/homebrew/bin/
 ```
 
-Note that spacing matters in Bash scripting. 
+Note that spacing matters in Bash scripting, especially in assigning variable names. 
+
+### Other Environment Variables
+
+We'll see that `dx-toolkit` defines a certain number of environmental variables and we can view them using `dx env`. These include:
+
+- Current Project
+- Current User
+- Current Directory in Project
+- API token used to access the platform
+- etc. 

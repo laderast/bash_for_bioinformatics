@@ -1,5 +1,5 @@
 --- 
-title: "Shell Skills for Bioinformatics in the Cloud"
+title: "Bash for Cloud Bioinformatics"
 author: "Ted Laderas"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site

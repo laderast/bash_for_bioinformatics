@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Shell Skills for Bioinformatics in the Cloud</title>
+  <title>Page not found | Bash for Cloud Bioinformatics</title>
   <meta name="description" content="<p>This is an introduction to how to apply shell scripting for bioinformaticists.
 It is focused on common applications (with a focus on cloud computing) as well
 as performing these applications reproducibly on the DNAnexus platform.</p>" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Shell Skills for Bioinformatics in the Cloud" />
+  <meta property="og:title" content="Page not found | Bash for Cloud Bioinformatics" />
   <meta property="og:type" content="book" />
   
   
@@ -20,7 +20,7 @@ as performing these applications reproducibly on the DNAnexus platform.</p>" />
   <meta name="github-repo" content="laderast/shell_for_bioinformatics" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Shell Skills for Bioinformatics in the Cloud" />
+  <meta name="twitter:title" content="Page not found | Bash for Cloud Bioinformatics" />
   
   <meta name="twitter:description" content="<p>This is an introduction to how to apply shell scripting for bioinformaticists.
 It is focused on common applications (with a focus on cloud computing) as well
@@ -80,7 +80,7 @@ as performing these applications reproducibly on the DNAnexus platform.</p>" />
 <li><a href="./">Bash for Cloud Bioinformatics</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like <span>https://bookdown.org/yihui/bookdown</span><span></span></a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Learning Objectives for this Book<span></span></a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#what-is-not-covered"><i class="fa fa-check"></i><b>1.1</b> What is not covered<span></span></a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#notes"><i class="fa fa-check"></i><b>1.2</b> Notes<span></span></a></li>
@@ -102,11 +102,14 @@ as performing these applications reproducibly on the DNAnexus platform.</p>" />
 <li class="chapter" data-level="2.5.2" data-path="shell-scripting-basics.html"><a href="shell-scripting-basics.html#for-more-info"><i class="fa fa-check"></i><b>2.5.2</b> For more info<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="shell-scripting-basics.html"><a href="shell-scripting-basics.html#stdin-stdout-stderr"><i class="fa fa-check"></i><b>2.6</b> STDIN, STDOUT, STDERR<span></span></a></li>
-<li class="chapter" data-level="2.7" data-path="shell-scripting-basics.html"><a href="shell-scripting-basics.html#environment-variables"><i class="fa fa-check"></i><b>2.7</b> Environment Variables<span></span></a>
+<li class="chapter" data-level="2.7" data-path="shell-scripting-basics.html"><a href="shell-scripting-basics.html#iterating-using-for-loops"><i class="fa fa-check"></i><b>2.7</b> Iterating using <code>for</code> loops<span></span></a></li>
+<li class="chapter" data-level="2.8" data-path="shell-scripting-basics.html"><a href="shell-scripting-basics.html#iterating-using-xargs"><i class="fa fa-check"></i><b>2.8</b> Iterating using <code>xargs</code><span></span></a></li>
+<li class="chapter" data-level="2.9" data-path="shell-scripting-basics.html"><a href="shell-scripting-basics.html#variables"><i class="fa fa-check"></i><b>2.9</b> Variables<span></span></a></li>
+<li class="chapter" data-level="2.10" data-path="shell-scripting-basics.html"><a href="shell-scripting-basics.html#environment-variables"><i class="fa fa-check"></i><b>2.10</b> Environment Variables<span></span></a>
 <ul>
-<li class="chapter" data-level="2.7.1" data-path="shell-scripting-basics.html"><a href="shell-scripting-basics.html#path"><i class="fa fa-check"></i><b>2.7.1</b> $PATH<span></span></a></li>
-<li class="chapter" data-level="2.7.2" data-path="shell-scripting-basics.html"><a href="shell-scripting-basics.html#windows"><i class="fa fa-check"></i><b>2.7.2</b> Windows<span></span></a></li>
-<li class="chapter" data-level="2.7.3" data-path="shell-scripting-basics.html"><a href="shell-scripting-basics.html#maclinux"><i class="fa fa-check"></i><b>2.7.3</b> Mac/Linux<span></span></a></li>
+<li class="chapter" data-level="2.10.1" data-path="shell-scripting-basics.html"><a href="shell-scripting-basics.html#path"><i class="fa fa-check"></i><b>2.10.1</b> <code>$PATH</code><span></span></a></li>
+<li class="chapter" data-level="2.10.2" data-path="shell-scripting-basics.html"><a href="shell-scripting-basics.html#maclinux"><i class="fa fa-check"></i><b>2.10.2</b> Mac/Linux<span></span></a></li>
+<li class="chapter" data-level="2.10.3" data-path="shell-scripting-basics.html"><a href="shell-scripting-basics.html#other-environment-variables"><i class="fa fa-check"></i><b>2.10.3</b> Other Environment Variables<span></span></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="cloud-computing-basics.html"><a href="cloud-computing-basics.html"><i class="fa fa-check"></i><b>3</b> Cloud Computing Basics<span></span></a>
@@ -124,10 +127,17 @@ as performing these applications reproducibly on the DNAnexus platform.</p>" />
 <ul>
 <li class="chapter" data-level="4.1" data-path="lets-go-on-the-cloud.html"><a href="lets-go-on-the-cloud.html#section"><i class="fa fa-check"></i><b>4.1</b> </a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="shell-scripting-for-dnanexus-applets.html"><a href="shell-scripting-for-dnanexus-applets.html"><i class="fa fa-check"></i><b>5</b> Shell Scripting for DNAnexus Applets<span></span></a></li>
+<li class="chapter" data-level="5" data-path="shell-scripting-for-dnanexus-applets.html"><a href="shell-scripting-for-dnanexus-applets.html"><i class="fa fa-check"></i><b>5</b> Shell Scripting for DNAnexus Applets<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="shell-scripting-for-dnanexus-applets.html"><a href="shell-scripting-for-dnanexus-applets.html#learning-objectives-2"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives<span></span></a></li>
+<li class="chapter" data-level="5.2" data-path="shell-scripting-for-dnanexus-applets.html"><a href="shell-scripting-for-dnanexus-applets.html#wrapping-a-script-in-other-languges-r-etc."><i class="fa fa-check"></i><b>5.2</b> Wrapping a Script in other languges (R, etc.)<span></span></a></li>
+<li class="chapter" data-level="5.3" data-path="shell-scripting-for-dnanexus-applets.html"><a href="shell-scripting-for-dnanexus-applets.html#section-1"><i class="fa fa-check"></i><b>5.3</b> </a></li>
+<li class="chapter" data-level="5.4" data-path="shell-scripting-for-dnanexus-applets.html"><a href="shell-scripting-for-dnanexus-applets.html#job-based-object-references-jbors"><i class="fa fa-check"></i><b>5.4</b> Job Based Object References (JBORs)<span></span></a></li>
+<li class="chapter" data-level="5.5" data-path="shell-scripting-for-dnanexus-applets.html"><a href="shell-scripting-for-dnanexus-applets.html#advanced-entry-points"><i class="fa fa-check"></i><b>5.5</b> Advanced: Entry Points<span></span></a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="containers-and-reproducibility.html"><a href="containers-and-reproducibility.html"><i class="fa fa-check"></i><b>6</b> Containers and Reproducibility<span></span></a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="containers-and-reproducibility.html"><a href="containers-and-reproducibility.html#learning-objectives-2"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives<span></span></a></li>
+<li class="chapter" data-level="6.1" data-path="containers-and-reproducibility.html"><a href="containers-and-reproducibility.html#learning-objectives-3"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives<span></span></a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -141,7 +151,7 @@ as performing these applications reproducibly on the DNAnexus platform.</p>" />
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Shell Skills for Bioinformatics in the Cloud</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Bash for Cloud Bioinformatics</a>
           </h1>
         </div>
 

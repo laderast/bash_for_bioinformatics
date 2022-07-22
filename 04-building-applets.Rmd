@@ -1,2 +1,17 @@
 # Shell Scripting for DNAnexus Applets
 
+## Learning Objectives
+
+
+
+## Wrapping a Script in other languges (R, etc.)
+
+
+## 
+
+## Job Based Object References (JBORs) 
+
+
+## Advanced: Entry Points
+
+

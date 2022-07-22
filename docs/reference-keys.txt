@@ -31,3 +31,12 @@ learning-objectives-2
 learning-objectives-for-this-book
 our-first-script-with-positional-arguments
 for-more-info
+iterating-using-for-loops
+iterating-using-xargs
+variables
+other-environment-variables
+wrapping-a-script-in-other-languges-r-etc.
+section-1
+job-based-object-references-jbors
+advanced-entry-points
+learning-objectives-3
