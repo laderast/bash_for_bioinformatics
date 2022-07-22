@@ -2,10 +2,10 @@
 
 ## Learning Objectives
 
+1. **Utilize** *placeholder variables* and *arguments* to generalize our scripts
 1. **Articulate** the three streams of a command line utility
-2. **Wrap** executables and scripts in R/Python into a bash script.
-3. **Utilize** *placeholder variables* and *arguments* to generalize our scripts
-4. **Iterate** a script over a set of files using `xargs` or `for` loops
+1. **Wrap** executables and scripts in R/Python into a bash script.
+1. **Iterate** a script over a set of files using `xargs` or `for` loops
 
 ## Setup for this section
 
@@ -13,7 +13,7 @@ We'll be running all of these scripts on our own machine.
 
 ## Review of Bash scripting
 
-We are going to cover Bash scripting, because it is the main shell that is available to us on DNAnexus machines, which are Ubuntu-based.
+We are going to cover Bash scripting because it is the main shell that is available to us on DNAnexus machines, which are Ubuntu-based.
 
 We will be using Bash scripts as "glue" for multiple applications in cloud computing, including:
 
@@ -54,7 +54,7 @@ How did the script know where to substitute each of our arguments? It has to do 
 
 Note that this works even in quotes.
 
-So, to unpack our script, we are 
+So, to unpack our script, we are substituting our first argument for the `$1`, and our second argument for the `$2` in our script. 
 
 
 ### Test yourself
@@ -81,4 +81,24 @@ STDIN contains information that is directed to the input of a script
 Why do these matter? To work in a pipeline, a script must be able to utilize STDIN, and generate STDOUT, and STDERR.
 
 
-## 
+## Environment Variables
+
+### $PATH
+
+The `$PATH` variable is one of the most important environment variables we'll set. It specifies the directories where executables and binaries can be found. This is important when you install dx-toolkit to interact with the DNAnexus platform. 
+
+In general, you want to append paths to the `$PATH` variable, rather than overwriting to it. This is because other processes may add to the `$PATH` variable as well, so you don't want to interfere with those processes. Adding to our `$PATH` variable depends on the different operating systems.
+
+### Windows
+
+System Settings >> Environment Variables
+
+### Mac/Linux
+
+The fastest way to add a directory to your path is to use the `export` command in your `.bash_profile`, or `.bashrc` file. For example, if the directory you want to add is `/opt/homebrew/bin/`, you'd edit your `.bash_profile` file and add the following line:
+
+```
+export PATH=$PATH:/opt/homebrew/bin/
+```
+
+Note that spacing matters in Bash scripting. 
