@@ -12,12 +12,13 @@ description: |
   It is focused on common applications (with a focus on cloud computing) as well 
   as performing these applications reproducibly on the DNAnexus platform.
 link-citations: yes
-github-repo: rstudio/bookdown-demo
+github-repo: laderast/shell_for_bioinformatics
 ---
+
 
 # About
 
-This is a book that is meant to bring you (a budding bioinformaticist) beyond the foundational shell scripting skills learned from Carpentries. Specifically, it shows you a path to get started with reproducible cloud computing, specifically on the DNAnexus platform. 
+This is a book that is meant to bring you (a budding bioinformaticist) beyond the foundational shell scripting skills learned from a shell scripting course such as [the one from the Carpentries](https://swcarpentry.github.io/shell-novice/). Specifically, it shows you a path to get started with reproducible cloud computing on the DNAnexus platform. 
 
 Our goal is to showcase the "glue" skills that help you do bioinformatics reproducibly. That includes:
 
@@ -55,6 +56,5 @@ Before you tackle this book, you should be able to accomplish the following:
     
 We recommend reviewing a course such as the [Software Carpentry course for Shell Scripting](https://swcarpentry.github.io/shell-novice/) before getting started with the course.
 
-Specifically, you should be able to answer the following:
 
 

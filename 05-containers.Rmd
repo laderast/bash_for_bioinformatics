@@ -1,0 +1,9 @@
+# Containers and Reproducibility
+
+## Learning Objectives
+
+1. **Articulate** the strengths of reproducible containers in Cloud Computing
+1. **Utilize** a container (VCFtools) with a file on our system
+1. **Utilize** version tags for reproducible research
+1. **Utilize** and **build** on existing Docker files for making our own containers
+
