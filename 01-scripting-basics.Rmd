@@ -45,7 +45,7 @@ samtools stats my_file.bam > out_stats.txt
 
 So what's going on here is that there is some substitution using common arguments. Let's look at these.
 
-## Arguments such as `$1`
+## Positional Arguments such as `$1`
 
 How did the script know where to substitute each of our arguments? It has to do with the argument variables. Arguments (terms that follow our command) are indexed starting with the number 1. We can access the value at the first position using the special variable `$1`. 
 
@@ -109,7 +109,7 @@ Why do these matter? To work in a Unix pipeline, a script must be able to utiliz
 
 ## Iterating using `for` loops
 
-
+A very common pattern we'll use is to iterate over an array of file names. 
 
 ```
 
@@ -117,10 +117,12 @@ Why do these matter? To work in a Unix pipeline, a script must be able to utiliz
 
 ## Iterating using `xargs`
 
-```
 
 ```
 
+```
+
+https://www.baeldung.com/linux/xargs-multiple-arguments
 
 
 ## Variables

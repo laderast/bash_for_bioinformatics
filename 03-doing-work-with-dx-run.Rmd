@@ -1,4 +1,8 @@
 # Let's go on the cloud
 
-## 
+## Learning Objectives
 
+1. **Utilize** an all purpose app (`swiss-army-knife`) to run bioinformatics jobs using `dx run` on files in a DNAnexus project
+1. **Contrast** local computing processes with cloud computing processes
+1. **Wrap** R and Python scripts using a bash script to run it on the cloud
+1. **Specify** additional software dependencies using Docker Images/URLs.
