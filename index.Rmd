@@ -23,7 +23,7 @@ Our goal is to showcase the "glue" skills that help you do bioinformatics reprod
 
 - **Articulate** basic Cloud Computing concepts
 - **Leverage** bash scripting and the dx-toolkit to execute jobs on the DNAnexus platform
-- **Build** and **Execute** applets on the DNAnexus platform by specifying the JSON files
+- **Build** and **Execute** applets on the DNAnexus platform by specifying JSON files
 - **Implement** Portable Workflows using Workflow Description Language (WDL) to do the following:
     - Run on a single file
     - Batch process multiple files
@@ -38,6 +38,8 @@ Our goal is to showcase the "glue" skills that help you do bioinformatics reprod
 - Running and monitoring jobs on a HPC Cluster
 - Running a workflow using Cromwell/MiniWDL
 
+This book is not meant to be a substitute for excellent books such as [Data Science on the Command Line](). It focuses on the essential shell skills (notably Bash) that will help you on the DNAnexus platform.
+
 # Notes
 
 This is a very opinionated journey through shell scripting, workflow languages, and reproduciblity. It is designed to build on each of the concepts in a gradual manner. 
@@ -50,10 +52,6 @@ Before you tackle this book, you should be able to accomplish the following:
 
 - **Utilize** and **navigate** File Paths (both absolute and relative) in a Unix system
 - **Utilize** pipes and filters
-- **Make** a basic shell script that does the following:
-    - Takes a file argument
-    - Executes a binary on your system on this file
-    - Directs the output to standard output
     
 We recommend reviewing a course such as the [Software Carpentry course for Shell Scripting](https://swcarpentry.github.io/shell-novice/) before getting started with the course.
 

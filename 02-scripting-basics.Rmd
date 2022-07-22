@@ -79,3 +79,6 @@ Every script has three streams available to it: Standard In (STDIN), Standard Ou
 STDIN contains information that is directed to the input of a script
 
 Why do these matter? To work in a pipeline, a script must be able to utilize STDIN, and generate STDOUT, and STDERR.
+
+
+## 
