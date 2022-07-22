@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Shell Skills for Bioinformatics in the Cloud</title>
+  <title>Chapter 2 Shell Scripting Basics | Shell Skills for Bioinformatics in the Cloud</title>
   <meta name="description" content="<p>This is an introduction to how to apply shell scripting for bioinformaticists.
 It is focused on common applications (with a focus on cloud computing) as well
 as performing these applications reproducibly on the DNAnexus platform.</p>" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Shell Skills for Bioinformatics in the Cloud" />
+  <meta property="og:title" content="Chapter 2 Shell Scripting Basics | Shell Skills for Bioinformatics in the Cloud" />
   <meta property="og:type" content="book" />
   
   
@@ -20,7 +20,7 @@ as performing these applications reproducibly on the DNAnexus platform.</p>" />
   <meta name="github-repo" content="laderast/shell_for_bioinformatics" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Shell Skills for Bioinformatics in the Cloud" />
+  <meta name="twitter:title" content="Chapter 2 Shell Scripting Basics | Shell Skills for Bioinformatics in the Cloud" />
   
   <meta name="twitter:description" content="<p>This is an introduction to how to apply shell scripting for bioinformaticists.
 It is focused on common applications (with a focus on cloud computing) as well
@@ -37,8 +37,8 @@ as performing these applications reproducibly on the DNAnexus platform.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="shell-scripting-basics.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="cloud-computing-basics.html"/>
 <script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -77,10 +77,10 @@ as performing these applications reproducibly on the DNAnexus platform.</p>" />
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">Bash for Cloud Bioinformatics</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Learning Objectives for this Book<span></span></a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like <span>https://bookdown.org/yihui/bookdown</span><span></span></a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#what-is-not-covered"><i class="fa fa-check"></i><b>1.1</b> What is not covered<span></span></a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#notes"><i class="fa fa-check"></i><b>1.2</b> Notes<span></span></a></li>
@@ -148,52 +148,94 @@ as performing these applications reproducibly on the DNAnexus platform.</p>" />
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Shell Skills for Bioinformatics in the Cloud</h1>
-<p class="author"><em>Ted Laderas</em></p>
-<p class="date"><em>2022-07-22</em></p>
+<div id="shell-scripting-basics" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Shell Scripting Basics<a href="shell-scripting-basics.html#shell-scripting-basics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="learning-objectives" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Learning Objectives<a href="shell-scripting-basics.html#learning-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><strong>Utilize</strong> <em>placeholder variables</em> and <em>arguments</em> to generalize our scripts</li>
+<li><strong>Articulate</strong> the three streams of a command line utility</li>
+<li><strong>Wrap</strong> executables and scripts in R/Python into a bash script.</li>
+<li><strong>Iterate</strong> a script over a set of files using <code>xargs</code> or <code>for</code> loops</li>
+</ol>
 </div>
-<div id="learning-objectives-for-this-book" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Learning Objectives for this Book<a href="index.html#learning-objectives-for-this-book" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This is a book that is meant to bring you (a budding bioinformaticist) beyond the foundational shell scripting skills learned from a shell scripting course such as <a href="https://swcarpentry.github.io/shell-novice/">the one from the Carpentries</a>. Specifically, it shows you a path to get started with reproducible cloud computing on the DNAnexus platform.</p>
-<p>Our goal is to showcase the “glue” skills that help you do bioinformatics reproducibly. That includes:</p>
-<ul>
-<li><strong>Articulate</strong> basic Cloud Computing concepts</li>
-<li><strong>Leverage</strong> bash scripting and the dx-toolkit to execute jobs on the DNAnexus platform</li>
-<li><strong>Build</strong> and <strong>Execute</strong> applets on the DNAnexus platform by specifying JSON files</li>
-<li><strong>Implement</strong> Portable Workflows using Workflow Description Language (WDL) to do the following:
-<ul>
-<li>Run on a single file</li>
-<li>Batch process multiple files</li>
-<li>Utilize multiple steps in a workflow</li>
-</ul></li>
-<li><strong>Utilize</strong> <code>sed</code> and <code>awk</code> and other command line utilities to process files using regular expressions</li>
-<li><strong>Manage</strong> software dependencies reproducibly using container-based technologies such as Docker</li>
-<li><strong>Utilize</strong> Environment Variables in a reproducible way</li>
-<li><strong>Monitor</strong>, <strong>profile</strong>, and <strong>retry</strong> jobs to optimize costs</li>
-</ul>
-<div id="what-is-not-covered" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> What is not covered<a href="index.html#what-is-not-covered" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>Running and monitoring jobs on a HPC Cluster</li>
-<li>Running a workflow using Cromwell/MiniWDL</li>
-</ul>
-<p>This book is not meant to be a substitute for excellent books such as <a href="">Data Science on the Command Line</a>. This book focuses on the essential shell skills (notably Bash) that will help you on the DNAnexus platform.</p>
+<div id="setup-for-this-section" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Setup for this section<a href="shell-scripting-basics.html#setup-for-this-section" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We’ll be running all of these scripts on our own machine.</p>
 </div>
-<div id="notes" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Notes<a href="index.html#notes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This is a very opinionated journey through shell scripting, workflow languages, and reproduciblity. It is designed to build on each of the concepts in a gradual manner.</p>
-<p>At each step, you’ll be able to do useful things with your data. We will focus on skills and programming patterns that are useful.</p>
+<div id="review-of-bash-scripting" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Review of Bash scripting<a href="shell-scripting-basics.html#review-of-bash-scripting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We are going to cover Bash scripting because it is the main shell that is available to us on DNAnexus machines, which are Ubuntu-based.</p>
+<p>We will be using Bash scripts as “glue” for multiple applications in cloud computing, including:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Wrapping scripts</strong> in other languages so we can run them using <code>dx run</code> on a app such as Swiss Army Knife</li>
+<li><strong>Specifying inputs and outputs</strong> to executables in Applets/Workflows</li>
+<li>Specifying inputs and outputs in a workflow built by Workflow Description Langugae (WDL).</li>
+</ol>
+<p>As you can see, knowing Bash is extremely helpful when running jobs on the cloud.</p>
 </div>
-<div id="prerequisites" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Prerequisites<a href="index.html#prerequisites" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Before you tackle this book, you should be able to accomplish the following:</p>
-<ul>
-<li><strong>Utilize</strong> and <strong>navigate</strong> File Paths (both absolute and relative) in a Unix system</li>
-<li><strong>Utilize</strong> pipes and filters</li>
-</ul>
-<p>We recommend reviewing a course such as the <a href="https://swcarpentry.github.io/shell-novice/">Software Carpentry course for Shell Scripting</a> before getting started with the course.</p>
+<div id="our-first-script-with-arguments" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Our first script with arguments<a href="shell-scripting-basics.html#our-first-script-with-arguments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Say we have <a href="http://www.htslib.org/doc/samtools-stats.html"><code>samtools</code></a> installed on our own machine. Let’s start with a basic script and build from there. We’ll call it <code>sam_run.sh</code>. With <code>nano</code>, a text editor, we’ll start a very basic bash script and build its capabilities out.</p>
+<pre><code>#!/bin/bash/
 
+samtools stats $1 &gt; $2</code></pre>
+<p>Let’s take a look at the command that we’re running first. We’re going to run <code>samtools stat</code>, which will give us statistics on an incoming <code>bam</code> or <code>sam</code> file and save it in a file. We want to be able to run our script like this:</p>
+<pre><code>./sam_run my_file.bam out_stats.txt</code></pre>
+<p>When we run it like that, <code>sam_run.sh</code> will run <code>samtools stat</code> like this:</p>
+<pre><code>samtools stats my_file.bam &gt; out_stats.txt</code></pre>
+<p>So what’s going on here is that there is some substitution using common arguments. Let’s look at these.</p>
+</div>
+<div id="arguments-such-as-1" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Arguments such as <code>$1</code><a href="shell-scripting-basics.html#arguments-such-as-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>How did the script know where to substitute each of our arguments? It has to do with the argument variables. Arguments (terms that follow our command) are indexed starting with the number 1. We can access the value at the first position using the special variable <code>$1</code>.</p>
+<p>Note that this works even in quotes.</p>
+<p>So, to unpack our script, we are substituting our first argument for the <code>$1</code>, and our second argument for the <code>$2</code> in our script.</p>
+<div id="test-yourself" class="section level3 hasAnchor" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Test yourself<a href="shell-scripting-basics.html#test-yourself" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>How would we rewrite <code>sam_run.sh</code> if we wanted to specify the output file as the first argument and the bam file as the second argument?</p>
+<pre><code>#!/bin/bash/
+
+samtools stats $1 &gt; $2</code></pre>
+</div>
+</div>
+<div id="named-arguments" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Named Arguments<a href="shell-scripting-basics.html#named-arguments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In general, ordered arguments can be difficult to remember, and sometimes you have way too many parameters.</p>
+<p>What about named arguments? Let’s modify <code>sam_run.sh</code> to use named arguments:</p>
+<pre><code>#!/bin/bash
+
+samtools ${input_file} &gt; ${output_file}</code></pre>
+<div id="test-yourself-1" class="section level3 hasAnchor" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> Test Yourself<a href="shell-scripting-basics.html#test-yourself-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>How would we modify the following script to use named arguments?</p>
+<pre><code></code></pre>
+</div>
+</div>
+<div id="stdin-stdout-stderr" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> STDIN, STDOUT, STDERR<a href="shell-scripting-basics.html#stdin-stdout-stderr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Every script has three streams available to it: Standard In (STDIN), Standard Out (STDOUT), and Standard Error (STDERR).</p>
+<p>STDIN contains information that is directed to the input of a script (usually text output via STDOUT from another script).</p>
+<p>Why do these matter? To work in a Unix pipeline, a script must be able to utilize STDIN, and generate STDOUT, and STDERR.</p>
+</div>
+<div id="environment-variables" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> Environment Variables<a href="shell-scripting-basics.html#environment-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="path" class="section level3 hasAnchor" number="2.8.1">
+<h3><span class="header-section-number">2.8.1</span> $PATH<a href="shell-scripting-basics.html#path" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>$PATH</code> variable is one of the most important environment variables we’ll set. It specifies the directories where executables and binaries can be found. This is important when you install dx-toolkit to interact with the DNAnexus platform.</p>
+<p>In general, you want to append paths to the <code>$PATH</code> variable, rather than overwriting to it. This is because other processes may add to the <code>$PATH</code> variable as well, so you don’t want to interfere with those processes. Adding to our <code>$PATH</code> variable depends on the different operating systems.</p>
+</div>
+<div id="windows" class="section level3 hasAnchor" number="2.8.2">
+<h3><span class="header-section-number">2.8.2</span> Windows<a href="shell-scripting-basics.html#windows" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>System Settings &gt;&gt; Environment Variables</p>
+</div>
+<div id="maclinux" class="section level3 hasAnchor" number="2.8.3">
+<h3><span class="header-section-number">2.8.3</span> Mac/Linux<a href="shell-scripting-basics.html#maclinux" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The fastest way to add a directory to your path is to use the <code>export</code> command in your <code>.bash_profile</code>, or <code>.bashrc</code> file. For example, if the directory you want to add is <code>/opt/homebrew/bin/</code>, you’d edit your <code>.bash_profile</code> file and add the following line:</p>
+<pre><code>export PATH=$PATH:/opt/homebrew/bin/</code></pre>
+<p>Note that spacing matters in Bash scripting.</p>
+
+</div>
 </div>
 </div>
             </section>
@@ -201,8 +243,8 @@ as performing these applications reproducibly on the DNAnexus platform.</p>" />
           </div>
         </div>
       </div>
-
-<a href="shell-scripting-basics.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cloud-computing-basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -233,7 +275,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-scripting-basics.Rmd",
 "text": "Edit"
 },
 "history": {
