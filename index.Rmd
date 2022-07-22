@@ -38,7 +38,7 @@ Our goal is to showcase the "glue" skills that help you do bioinformatics reprod
 - Running and monitoring jobs on a HPC Cluster
 - Running a workflow using Cromwell/MiniWDL
 
-This book is not meant to be a substitute for excellent books such as [Data Science on the Command Line](). It focuses on the essential shell skills (notably Bash) that will help you on the DNAnexus platform.
+This book is not meant to be a substitute for excellent books such as [Data Science on the Command Line](). This book focuses on the essential shell skills (notably Bash) that will help you on the DNAnexus platform.
 
 # Notes
 
