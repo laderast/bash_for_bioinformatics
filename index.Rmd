@@ -4,7 +4,7 @@ author: "Ted Laderas"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
-bibliography: [book.bib, packages.bib]
+#bibliography: [book.bib, packages.bib]
 # url: your book url like https://bookdown.org/yihui/bookdown
 # cover-image: path to the social sharing image like images/cover.jpg
 description: |
@@ -16,7 +16,7 @@ github-repo: laderast/shell_for_bioinformatics
 ---
 
 
-# About
+# Learning Objectives for this Book
 
 This is a book that is meant to bring you (a budding bioinformaticist) beyond the foundational shell scripting skills learned from a shell scripting course such as [the one from the Carpentries](https://swcarpentry.github.io/shell-novice/). Specifically, it shows you a path to get started with reproducible cloud computing on the DNAnexus platform. 
 
@@ -34,20 +34,20 @@ Our goal is to showcase the "glue" skills that help you do bioinformatics reprod
 - **Utilize** Environment Variables in a reproducible way
 - **Monitor**, **profile**, and **retry** jobs to optimize costs
 
-# What is not covered
+## What is not covered
 
 - Running and monitoring jobs on a HPC Cluster
 - Running a workflow using Cromwell/MiniWDL
 
 This book is not meant to be a substitute for excellent books such as [Data Science on the Command Line](). This book focuses on the essential shell skills (notably Bash) that will help you on the DNAnexus platform.
 
-# Notes
+## Notes
 
 This is a very opinionated journey through shell scripting, workflow languages, and reproduciblity. It is designed to build on each of the concepts in a gradual manner. 
 
 At each step, you'll be able to do useful things with your data. We will focus on skills and programming patterns that are useful. 
 
-# Prerequisites
+## Prerequisites
 
 Before you tackle this book, you should be able to accomplish the following:
 
