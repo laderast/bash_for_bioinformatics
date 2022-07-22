@@ -28,3 +28,4 @@ section
 shell-scripting-for-dnanexus-applets
 containers-and-reproducibility
 learning-objectives-2
+learning-objectives-for-this-book
