@@ -57,4 +57,18 @@ Before you tackle this book, you should be able to accomplish the following:
 We recommend reviewing a course such as the [Software Carpentry course for Shell Scripting](https://swcarpentry.github.io/shell-novice/) before getting started with the course.
 
 
+## Setup for this section
 
+We'll be running all of these scripts on our own machine. We'll be using the command-line for most of these.
+
+If you are on Linux/Mac, you'll be working with the terminal. 
+
+If you are on Windows, I recommend you install Windows Subsystem for Linux, and specifically Ubuntu. That will give you a command-line shell that you can use to interact with the DNAnexus platform.
+
+```
+sudo apt-get install python3
+sudo apt-get install pip3
+pip3 install dxpy
+```
+
+That last command will install the dx-toolkit to your machine, which are the command line tools you'll need to work on the DNAnexus cloud.

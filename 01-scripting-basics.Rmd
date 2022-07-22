@@ -7,10 +7,6 @@
 1. **Wrap** executables and scripts in R/Python into a bash script.
 1. **Iterate** a script over a set of files using `xargs` or `for` loops
 
-## Setup for this section
-
-We'll be running all of these scripts on our own machine. 
-
 ## Review of Bash scripting
 
 We are going to cover Bash scripting because it is the main shell that is available to us on DNAnexus machines, which are Ubuntu-based.
@@ -23,7 +19,7 @@ We will be using Bash scripts as "glue" for multiple applications in cloud compu
 
 As you can see, knowing Bash is extremely helpful when running jobs on the cloud.
 
-## Our first script with arguments
+## Our first script with positional arguments
 
 Say we have [`samtools`](http://www.htslib.org/doc/samtools-stats.html) installed on our own machine. Let's start with a basic script and build from there. We'll call it  `sam_run.sh`. With `nano`, a text editor, we'll start a very basic bash script and build its capabilities out.
 
@@ -77,6 +73,15 @@ What about named arguments? Let's modify `sam_run.sh` to use named arguments:
 ```
 #!/bin/bash
 
+while [ $# -gt 0 ]; do
+    if [[ $1 == "--"* ]]; then
+        v="${1/--/}"
+        declare "$v"="$2"
+        shift
+    fi
+    shift
+done
+
 samtools ${input_file} > ${output_file}
 ```
 
@@ -89,6 +94,9 @@ How would we modify the following script to use named arguments?
 
 ```
 
+### For more info
+
+https://keestalkstech.com/2022/03/named-arguments-in-a-bash-script/
 
 ## STDIN, STDOUT, STDERR
 
