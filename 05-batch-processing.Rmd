@@ -1,0 +1,8 @@
+# Batch Processing on the Cloud
+
+## Learning Objectives
+
+1. **Build** and **iterate** over files to process them in a DNAnexus project.
+1. **Utilize** `dx generate-batch-inputs`/`dx run --batch-tsv` to batch process files
+1. **Utilize** Python to batch process multiple files per worker. 
+
