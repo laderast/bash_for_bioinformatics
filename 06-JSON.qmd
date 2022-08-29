@@ -1,0 +1,26 @@
+# Working with JSON on the Platform
+
+## Learning Objectives
+
+By the end of this chapter, you should be able to:
+
+- **Define** and **Explain** what JSON is and structures
+- **Explain** how JSON is used on the DNAnexus platform
+- **Explain** the basic structure of a JSON file
+- **Generate** JSON output from `dx find data` and `dx find jobs`
+- **Execute** simple `jq` commands to extract information from a JSON file
+
+## How is JSON used on the DNAnexus Platform?
+
+JSON is used in multiple ways on the DNAnexus Platform, including:
+
+- Submitting Jobs with complex parameters/inputs
+- Specifying parameters of an app or workflow (`dxapp.json` and `dxworkflow.json`)
+- Output of commands such as `dx find data` or `dx find jobs` with the `--json` flag
+- Extracting environment variables from `dx env`
+
+Underneath it all, all interactions with the DNAnexus API server are JSON submissions.
+
+You can see that JSON is used in many places on the DNAnexus platforms, and for many purposes. So having basic knowledge of JSON can be really helpful.
+
+## 

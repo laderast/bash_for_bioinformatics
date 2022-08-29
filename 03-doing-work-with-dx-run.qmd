@@ -1,0 +1,50 @@
+# Let's go on the cloud
+
+## Learning Objectives
+
+1. **Utilize** an all purpose app (`swiss-army-knife`) to run bioinformatics jobs using `dx run` on files in a DNAnexus project
+1. **Contrast** local computing processes with cloud computing processes
+1. **Wrap** R and Python scripts using a bash script to run it on the cloud
+1. **Specify** additional software dependencies using Docker Images/URLs.
+
+## Bioinformatics Tricks with Swiss Army Knife (SAK)
+
+In the next chapter, you'll learn about making your own executables on the platform. 
+
+To make things easier, we'll be using Swiss Army Knife, which is an app on the platform that contains a number of commonly used bioinformatics utilities, including:
+
+- samtools
+- vcftools
+- PLINK
+- regenie
+
+## Running Jobs on the DNAnexus platform using `dx run`
+
+Our main command for running jobs is `dx run`. `dx run` lets us submit jobs to be run on the platform. These jobs can be to process files (such as aligning FASTQ files to a genome), or they can be for web apps, such as LocusZoom (for visualizing)
+
+If you have used SLURM on an on-premise HPC system, the equivalent command would be `srun`, and if you have used PBS, the equivalent command would be `sbatch`.
+
+## Try out your first job
+
+In the sample project, you will see a `.bam` file with no index. Let's create an index for this file with `Sambamba`.
+
+```
+dx run app-swiss-army-knife \
+  -iin="data/chr1.bam"\ 
+  -icmd= "sambamba index *"
+```
+
+Let's take this code apart. We start our command with `dx run` and the name of the app on the platform we want to use: `app-swiss-army-knife`. 
+
+The second line contains the file input we want to process, which is a file in our current project. Note that the input is specified as `-iin`, not `--in` or `--iin`. Using a single hyphen `-` here instead of a double hyphen `--` for our inputs is different than we might expect for other linux/unix parameters.
+
+The third line is the actual command we want to run in Swiss Army Knife. 
+
+## `dx find data`
+
+
+
+## Using `xargs` to Batch Multiple Files
+
+
+## Two Ways of Working

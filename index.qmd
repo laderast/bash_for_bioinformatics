@@ -1,21 +1,3 @@
---- 
-title: "Bash for Cloud Bioinformatics"
-author: "Ted Laderas"
-date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
-documentclass: book
-#bibliography: [book.bib, packages.bib]
-# url: your book url like https://bookdown.org/yihui/bookdown
-# cover-image: path to the social sharing image like images/cover.jpg
-description: |
-  This is an introduction to how to apply shell scripting for bioinformaticists. 
-  It is focused on common applications (with a focus on cloud computing) as well 
-  as performing these applications reproducibly on the DNAnexus platform.
-link-citations: yes
-github-repo: laderast/shell_for_bioinformatics
----
-
-
 # Learning Objectives for this Book
 
 This is a book that is meant to bring you (a budding bioinformaticist) beyond the foundational shell scripting skills learned from a shell scripting course such as [the one from the Carpentries](https://swcarpentry.github.io/shell-novice/). Specifically, it shows you a path to get started with reproducible cloud computing on the DNAnexus platform. 
@@ -23,7 +5,8 @@ This is a book that is meant to bring you (a budding bioinformaticist) beyond th
 Our goal is to showcase the "glue" skills that help you do bioinformatics reproducibly. That includes:
 
 - **Articulate** basic Cloud Computing concepts
-- **Leverage** bash scripting and the dx-toolkit to **execute** jobs on the DNAnexus platform
+- **Leverage** bash scripting and the dx-toolkit to execute jobs on the DNAnexus platform
+- **Execute** batch processing of multiple files in a project on the DNAnexus platform
 - **Build** and **Execute** applets on the DNAnexus platform by specifying JSON files
 - **Implement** Portable Workflows using Workflow Description Language (WDL) to do the following:
     - Run on a single file
@@ -39,9 +22,7 @@ Our goal is to showcase the "glue" skills that help you do bioinformatics reprod
 - Running and monitoring jobs on a HPC Cluster
 - Running a workflow using Cromwell/MiniWDL
 
-This book is not meant to be a substitute for excellent books such as [Data Science at the Command Line](https://datascienceatthecommandline.com/) or [Genomics in the Cloud](https://www.oreilly.com/library/view/genomics-in-the/9781491975183/), which focuses on the Terra platform.  
-
-In contrast, this book focuses on the essential shell skills (notably Bash) that will help you on the DNAnexus platform.
+This book is not meant to be a substitute for excellent books such as [Data Science on the Command Line](). This book focuses on the essential shell skills (notably Bash) that will help you on the DNAnexus platform.
 
 ## Notes
 
@@ -54,10 +35,9 @@ At each step, you'll be able to do useful things with your data. We will focus o
 Before you tackle this book, you should be able to accomplish the following:
 
 - **Utilize** and **navigate** File Paths (both absolute and relative) in a Unix system
-- **Utilize** pipes and filters
-    
-We recommend reviewing a course such as the [Software Carpentry course for Shell Scripting](https://swcarpentry.github.io/shell-novice/) before getting started with the course.
+- **Articulate** the value of environment variables in shell scripting
 
+We recommend reviewing a course such as the [Software Carpentry course for Shell Scripting](https://swcarpentry.github.io/shell-novice/) before getting started with the course.
 
 ## Setup for this section
 
