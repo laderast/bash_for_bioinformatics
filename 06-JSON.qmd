@@ -4,11 +4,17 @@
 
 By the end of this chapter, you should be able to:
 
-- **Define** and **Explain** what JSON is and structures
+- **Define** and **Explain** what JSON is and its elements and structures
 - **Explain** how JSON is used on the DNAnexus platform
 - **Explain** the basic structure of a JSON file
 - **Generate** JSON output from `dx find data` and `dx find jobs`
 - **Execute** simple `jq` commands to extract information from a JSON file
+
+## What is JSON?
+
+JSON is short for **J**ava**S**cript**O**bject**N**otation. It is a format used to 
+
+## Elements of a JSON file
 
 ## How is JSON used on the DNAnexus Platform?
 

@@ -31,6 +31,7 @@ Our goal is to showcase the "glue" skills that help you do bioinformatics reprod
     - Utilize multiple steps in a workflow
 - **Utilize** `sed` and `awk` and other command line utilities to process files using regular expressions
 - **Manage** software dependencies reproducibly using container-based technologies such as Docker
+- **Batch Process** multiple files in a project
 - **Utilize** Environment Variables in a reproducible way
 - **Monitor**, **profile**, and **retry** jobs to optimize costs
 
@@ -74,3 +75,4 @@ pip3 install dxpy
 ```
 
 That last command will install the dx-toolkit to your machine, which are the command line tools you'll need to work on the DNAnexus cloud.
+

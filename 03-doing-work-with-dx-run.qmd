@@ -1,10 +1,11 @@
-# Let's go on the cloud
+# Working with files using `dx run`
 
 ## Learning Objectives
 
 1. **Utilize** an all purpose app (`swiss-army-knife`) to run bioinformatics jobs using `dx run` on files in a DNAnexus project
-1. **Contrast** local computing processes with cloud computing processes
-1. **Wrap** R and Python scripts using a bash script to run it on the cloud
+1. **Wrap** R and Python scripts using a bash script to run it on the cloud using `dx run`
+1. **Tag** output files on the platform for downstream use.
+1. **Utilize** `dx find data` to find data files on the platform to batch process files
 1. **Specify** additional software dependencies using Docker Images/URLs.
 
 ## Bioinformatics Tricks with Swiss Army Knife (SAK)
@@ -13,10 +14,10 @@ In the next chapter, you'll learn about making your own executables on the platf
 
 To make things easier, we'll be using Swiss Army Knife, which is an app on the platform that contains a number of commonly used bioinformatics utilities, including:
 
-- samtools
-- vcftools
-- PLINK
-- regenie
+- `samtools`
+- `bcftools`
+- `plink`
+- `regenie`
 
 ## Running Jobs on the DNAnexus platform using `dx run`
 
@@ -38,13 +39,53 @@ Let's take this code apart. We start our command with `dx run` and the name of t
 
 The second line contains the file input we want to process, which is a file in our current project. Note that the input is specified as `-iin`, not `--in` or `--iin`. Using a single hyphen `-` here instead of a double hyphen `--` for our inputs is different than we might expect for other linux/unix parameters.
 
-The third line is the actual command we want to run in Swiss Army Knife. 
+The third line is the actual command we want to run in Swiss Army Knife. We want to run `sambamba index` on our input file.
 
-## `dx find data`
+## Finding files using `dx find data`
 
+`dx find data` is a command that is extremely helpful on the DNAnexus platform.
 
+`dx find data` lets you search on the following types of metadata:
+
+- tags `--tag`
+- properties `--property`
+- name `--name`
+- type `--type`
+- 
+
+It can output in a number of different formats. Including:
+
+- `--brief` - return only the file-ids
+- `--json` - return file information in JSON format
+- `--verbose` -
+- `--delimited` -
+
+## Helpful `dx find data` examples
+
+### Find all files with a field id
+
+Notes: be careful with this one, especially if you are working on UK Biobank RAP. You don't want to return 500,000 file ids. I would concentrate on the field ids that are aggregated, such as the pVCF files.
+
+```
+dx find data --property field_id=23148 --brief
+```
+### Find all files that are of type record
+
+Search for all files in your project that have a `record` type.
+
+```
+dx find data --type record --brief
+```
+
+### Find all files that are of 
 
 ## Using `xargs` to Batch Multiple Files
 
+Ok, now we have a list of files that meet our criteria. How can we process them one by one? 
 
-## Two Ways of Working
+## Two Ways of Batching
+
+We actually have two ways of batching jobs using Swiss Army Knife: 
+
+1. Submit an array of files as an input to Swiss Army Knife. Then process each file using the `icmd` input
+2. 

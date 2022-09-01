@@ -6,11 +6,11 @@ This chapter is meant to act as a refresher for how cloud computing works on the
 
 ## Learning Objectives
 
-- **Define** key players in both local computing and cloud computing
-- **Articulate** key differences between local computing and cloud computing
-- **Describe** the sequence of events in launching jobs in the cloud
-- **Differentiate** local storage from cloud-based project storage
-- **Describe** instance types and how to use them
+1. **Define** key players in both local computing and cloud computing
+1. **Articulate** key differences between local computing and cloud computing
+1. **Describe** the sequence of events in launching jobs in the cloud
+1. **Differentiate** local storage from cloud-based project storage
+1. **Describe** instance types and how to use them
 
 ## Key Players
 
