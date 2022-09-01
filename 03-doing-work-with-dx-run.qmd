@@ -41,51 +41,7 @@ The second line contains the file input we want to process, which is a file in o
 
 The third line is the actual command we want to run in Swiss Army Knife. We want to run `sambamba index` on our input file.
 
-## Finding files using `dx find data`
 
-`dx find data` is a command that is extremely helpful on the DNAnexus platform.
 
-`dx find data` lets you search on the following types of metadata:
+## Using a Docker Image
 
-- tags `--tag`
-- properties `--property`
-- name `--name`
-- type `--type`
-- 
-
-It can output in a number of different formats. Including:
-
-- `--brief` - return only the file-ids
-- `--json` - return file information in JSON format
-- `--verbose` -
-- `--delimited` -
-
-## Helpful `dx find data` examples
-
-### Find all files with a field id
-
-Notes: be careful with this one, especially if you are working on UK Biobank RAP. You don't want to return 500,000 file ids. I would concentrate on the field ids that are aggregated, such as the pVCF files.
-
-```
-dx find data --property field_id=23148 --brief
-```
-### Find all files that are of type record
-
-Search for all files in your project that have a `record` type.
-
-```
-dx find data --type record --brief
-```
-
-### Find all files that are of 
-
-## Using `xargs` to Batch Multiple Files
-
-Ok, now we have a list of files that meet our criteria. How can we process them one by one? 
-
-## Two Ways of Batching
-
-We actually have two ways of batching jobs using Swiss Army Knife: 
-
-1. Submit an array of files as an input to Swiss Army Knife. Then process each file using the `icmd` input
-2. 

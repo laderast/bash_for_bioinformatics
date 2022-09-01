@@ -2,7 +2,68 @@
 
 ## Learning Objectives
 
-1. **Build** and **iterate** over files to process them in a DNAnexus project.
+1. **Find** and **iterate** over files on the platform to process them within a DNAnexus project.
 1. **Utilize** `dx generate-batch-inputs`/`dx run --batch-tsv` to batch process files
 1. **Utilize** Python to batch process multiple files per worker. 
 
+## Finding files using `dx find data`
+
+`dx find data` is a command that is extremely helpful on the DNAnexus platform.
+
+`dx find data` lets you search on the following types of metadata:
+
+- tags `--tag`
+- properties `--property`
+- name `--name`
+- type `--type`
+- 
+
+It can output in a number of different formats. Including:
+
+- `--brief` - return only the file-ids
+- `--json` - return file information in JSON format
+- `--verbose` -
+- `--delimited` -
+
+## Helpful `dx find data` examples
+
+### Find all files with a field id
+
+Notes: be careful with this one, especially if you are working on UK Biobank RAP. You don't want to return 500,000 file ids. I would concentrate on the field ids that are aggregated on the population level, such as the pVCF files.
+
+```
+dx find data --property field_id=23148 --brief
+```
+### Find all files that are of class `record`
+
+Search for all files in your project that have a `record` type. This includes `cohort`s.  
+
+```
+dx find data --class record --json
+```
+
+## Using `xargs` to Batch Multiple Files
+
+Ok, now we have a list of files that meet our criteria. How can we process them one by one? 
+
+Enter the `xargs` command.
+
+A really useful pattern for `xargs` is using it for command substitution.
+
+```
+dx ls *.vcf.gz | xargs -I % sh -c 'dx run app-swiss-army-knife -iin="%" -icmd="bcftools index %"' 
+```
+The key piece of code we're doing the command substitution in is
+
+`sh -c 'dx run app-swiss-army-knife -iin="%" -icmd="bcftools index %"'`
+
+We're using `sh` to run a script. 
+
+## Two Ways of Batching
+
+We actually have two methods of batching jobs using Swiss Army Knife: 
+
+1. Submit an array of files as an input to Swiss Army Knife. Then process each file using the `icmd` input
+1. Use `xargs` on our home system to run `dx run` statements for each file.
+
+Both of these methods can potentially be useful. 
