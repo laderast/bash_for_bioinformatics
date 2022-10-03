@@ -1,4 +1,4 @@
-# Working with JSON on the Platform
+# Working with JSON on the DNAnexus Platform
 
 ## Learning Objectives
 
@@ -12,9 +12,15 @@ By the end of this chapter, you should be able to:
 
 ## What is JSON?
 
-JSON is short for **J**ava**S**cript**O**bject**N**otation. It is a format used to 
+JSON is short for **J**ava**S**cript**O**bject**N**otation. It is a format used a lot on the web and for interacting with APIs.  
 
 ## Elements of a JSON file
+
+Here are the main elements of a JSON file
+
+- Key:Value Pair
+- Object `{}` - 
+- List `[]`
 
 ## How is JSON used on the DNAnexus Platform?
 
@@ -28,5 +34,63 @@ JSON is used in multiple ways on the DNAnexus Platform, including:
 Underneath it all, all interactions with the DNAnexus API server are JSON submissions.
 
 You can see that JSON is used in many places on the DNAnexus platforms, and for many purposes. So having basic knowledge of JSON can be really helpful.
+
+## Writing and modifying JSON
+
+I highly recommend
+
+## Learning `jq` gradually
+
+`jq` is a utility that is made to process JSON. All `jq` commands have this format:
+
+```
+jq '<filter>' <JSON file>
+```
+
+Filters are the heart of processing data using `jq`. They let you extract JSON values or keys and process them with conditionals to filter data down. For example, you can do something like the following:
+
+1. Select all elements where the job status is failed
+2. For each of these elements, output the job-status id
+
+You can see how `jq` can be extremely powerful.
+
+You can also pipe JSON from standard output into `jq`. This will be really helpful for us when we start using pipes of datafiles from `dx find data`. 
+
+## Our simplest filter: `.`
+
+One of the biggest uses for `jq` is for more readable formatting. Oftentimes, the JSON spit out of an API is really hard to read. It lacks indents, and it is really hard to see the actual structure of the JSON response. 
+
+If we run `jq .` on a JSON file, we'll see that it makes it much more readable.
+
+```{bash}
+source ~/.bashrc
+jq '.' data/example.json
+```
+
+## Getting the keys 
+
+```{bash}
+source ~/.bashrc
+jq 'keys' data/example.json
+```
+
+## Extracting a value from a container: `jq .report_html`
+
+So, say we want to extract the value from the `report_html` key in the above. 
+
+We can specify the key that we're interested in to extract the value from that key.
+
+```{bash}
+source ~/.bashrc
+jq '.report_html' data/example.json
+```
+
+
+## `dx find data`
+
+
+## `dx find jobs`
+
+
 
 ## 

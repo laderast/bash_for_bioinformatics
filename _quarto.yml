@@ -10,9 +10,11 @@ book:
     - "01-scripting-basics.qmd"
     - "02-cloud-computing-basics.qmd"
     - "03-doing-work-with-dx-run.qmd"
-    - "05-batch-processing.qmd"
-    - "04-building-applets.qmd"
+    - "04-batch-processing.qmd"
+    - "05-building-applets.qmd"
     - "06-containers.qmd"
+    - "06-JSON.qmd"
+    - "appendix.qmd"
     - summary.qmd
     - references.qmd
 
@@ -21,8 +23,3 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
-  pdf:
-    documentclass: scrreprt
-
-
-

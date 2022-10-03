@@ -2,35 +2,59 @@
 
 We all need to start somewhere when we work with cloud computing. 
 
-This chapter is meant to act as a refresher for how cloud computing works on the DNAnexus platform. 
+This chapter is meant to act as a refresher for how cloud computing works on the DNAnexus platform. If you haven't used cloud computing before, no worries! 
+
+Also, if you are coming from using an on-premise high performance computing (HPC) cluster, you can skip ahead. 
 
 ## Learning Objectives
 
 1. **Define** key players in both local computing and cloud computing
 1. **Articulate** key differences between local computing and cloud computing
-1. **Describe** the sequence of events in launching jobs in the cloud
+1. **Describe** the sequence of events in launching jobs in the DNAnexus cloud
 1. **Differentiate** local storage from cloud-based project storage
 1. **Describe** instance types and how to use them
 
-## Key Players
+## Important Terminology
 
-### Local Computing
+- **DNAnexus Project** - contains files, executables (apps/applets), and logs associated with analysis. 
+- **Software Environment** - everything needed to run a piece of software on a brand new computer. For example, this would include installing R, but also all of its dependencies as well. 
+- **App/Applet** - Executable on the DNAnexus platform. 
+
+## Understanding the key players
+
+In order to understand what's going on with Cloud Computing, we will have to change our mental model of computing. 
+
+Let's contrast the key players in local computing with the key players in cloud computing.
+
+### Key Players in Local Computing
 
 - Our Machine
-- Software Environment
-- Our Disk
 
-### Cloud Computing
+When we run an analysis or process files on our computer, we are in control of all aspects of our computer. We are able to install a software environment, such as R or Python, and then execute scripts/notebooks that reside on our computer on data that's on our computer. 
+
+### Key Players in High Performance Computing
+
+![Key Players in HPC](images/hpc_players.png)
 
 - Our Machine
-- DNAnexus Platform
-- DNAnexus Worker
+- Head Node
+- HPC Worker
+- Shared Storage
+
+### Key Players in Cloud Computing
+
+![Key Players in DNAnexus Storage](images/dnanexus_players.png)
+
+- Our Machine - We interact with the platform via the dx-toolkit installed on our machine.
+- DNAnexus Platform - Although there are many parts, we can treat the DNAnexus platform as a single entity that we interact with. It takes our requests, requests worker machines, and then gives us responses. Also contains project storage.
+- DNAnexus Worker - A temporary machine that comes from a pool of available machines.
 
 ## Key Differences
 
 1. We don't own the worker machine, we only have temporary access to it.
-2. We have to be explicit 
+2. We have to be explicit what kind of machine we want
 
 
 ## Sequence of Events of Running a Job
+
 

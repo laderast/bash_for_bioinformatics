@@ -7,3 +7,8 @@
 1. **Utilize** version tags for reproducible research
 1. **Utilize** and **build** on existing Docker files for making our own containers
 
+## Terminology
+
+Registry - collection of repositories that you pull docker images from
+
+Docker Image - what you download from a registry
