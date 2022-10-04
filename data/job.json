@@ -1,0 +1,139 @@
+{
+    "id": "job-G4x7G5j0B3K2FKzgP654ZqpK",
+    "region": "aws:us-east-1",
+    "name": "FastQC Reads Quality Control",
+    "tags": [],
+    "properties": {},
+    "executable": "app-G4YyQ9044b90F1vG8y9YkKk3",
+    "executableName": "fastqc",
+    "class": "job",
+    "created": 1631221270964,
+    "modified": 1631221333074,
+    "project": "project-G3jBxY00B3K8YB1pG0PBX4Gj",
+    "billTo": "org-xvantage_training",
+    "costLimit": null,
+    "invoiceMetadata": null,
+    "folder": "/results",
+    "parentJob": null,
+    "originJob": "job-G4x7G5j0B3K2FKzgP654ZqpK",
+    "parentAnalysis": null,
+    "analysis": null,
+    "stage": null,
+    "rootExecution": "job-G4x7G5j0B3K2FKzgP654ZqpK",
+    "state": "done",
+    "function": "main",
+    "workspace": "container-G4x7G6Q0VBzx2zgX7Gf68zQq",
+    "launchedBy": "user-tladeras",
+    "detachedFrom": null,
+    "priority": "normal",
+    "workerReuseDeadlineRunTime": {
+        "state": "reuse-off",
+        "waitTime": -1,
+        "at": -1
+    },
+    "dependsOn": [],
+    "failureCounts": {},
+    "stateTransitions": [
+        {
+            "newState": "runnable",
+            "setAt": 1631221274363
+        },
+        {
+            "newState": "running",
+            "setAt": 1631221277052
+        },
+        {
+            "newState": "done",
+            "setAt": 1631221329798
+        }
+    ],
+    "singleContext": false,
+    "ignoreReuse": false,
+    "httpsApp": {
+        "enabled": false
+    },
+    "details": {},
+    "systemRequirements": {
+        "*": {
+            "instanceType": "mem1_ssd1_v2_x4"
+        }
+    },
+    "executionPolicy": {
+        "maxSpotTries": 1,
+        "restartOn": {
+            "UnresponsiveWorker": 2,
+            "JMInternalError": 1,
+            "ExecutionError": 1
+        }
+    },
+    "instanceType": "mem1_ssd1_v2_x4",
+    "trueInstanceType": "dx_s_c5d.xlarge_v2",
+    "finalPriority": "normal",
+    "networkAccess": [],
+    "runInput": {
+        "reads": {
+            "$dnanexus_link": {
+                "project": "project-G3jBxY00B3K8YB1pG0PBX4Gj",
+                "id": "file-BQbXKk80fPFj4Jbfpxb6Ffv2"
+            }
+        }
+    },
+    "originalInput": {
+        "reads": {
+            "$dnanexus_link": {
+                "project": "project-G3jBxY00B3K8YB1pG0PBX4Gj",
+                "id": "file-BQbXKk80fPFj4Jbfpxb6Ffv2"
+            }
+        },
+        "format": "auto",
+        "kmer_size": 7,
+        "nogroup": true
+    },
+    "input": {
+        "reads": {
+            "$dnanexus_link": "file-BQbXKk80fPFj4Jbfpxb6Ffv2"
+        },
+        "format": "auto",
+        "kmer_size": 7,
+        "nogroup": true
+    },
+    "output": {
+        "report_html": {
+            "$dnanexus_link": "file-G4x7GX80VBzQy64k4jzgjqgY"
+        },
+        "stats_txt": {
+            "$dnanexus_link": "file-G4x7GXQ0VBzZxFxz4fqV120B"
+        }
+    },
+    "sshHostKey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFCZw/EojTL553+iYiT/ri61WDb62w7uSXM9PQyYyRgE722aqz4awT5Nm9yK/y5UuSSY7LxnMwG5qDCP6slhn3KXx/EyOdvxMXrgeJFWstkQQpp2VBV1bO4xgZNNgazgbVmDURx6Ofe+Hb2Q6YRFRdKwUcHeJy9icuT3UVHq5tv0Kjyvof5ndu1FDa6IerXlGcP+7iRfUVhhXPrDltjutYZKLWMZcpfjvHfOp1RtB4zXgiG2whJtP40SmmUDUQKuQOgYtOb27VgRx06slX9sVtVkdE/+q0jmj8pCKGkfzT9O1uISLK22Rk0f/2IflNur6rptOewO276NC8HDRBqnBT",
+    "debug": {},
+    "app": "app-G4YyQ9044b90F1vG8y9YkKk3",
+    "resources": "container-G4YyQ9002770F1vG8y9YkKkV",
+    "projectCache": "container-G4x7G5j0B3K2FKzgP654ZqpP",
+    "startedRunning": 1631221277052,
+    "stoppedRunning": 1631221326520,
+    "delayWorkspaceDestruction": false,
+    "isFree": false,
+    "totalPrice": 0.007859915555555557,
+    "totalEgress": {
+        "regionLocalEgress": 0,
+        "internetEgress": 0,
+        "interRegionEgress": 0
+    },
+    "egressComputedAt": 1631221333037,
+    "priceComputedAt": 1631221333037,
+    "currency": {
+        "dxCode": 0,
+        "code": "USD",
+        "symbol": "$",
+        "symbolPosition": "left",
+        "decimalSymbol": ".",
+        "groupingSymbol": ","
+    },
+    "egressReport": {
+        "regionLocalEgress": 0,
+        "internetEgress": 0,
+        "interRegionEgress": 0
+    },
+    "timeout": 86400000
+}

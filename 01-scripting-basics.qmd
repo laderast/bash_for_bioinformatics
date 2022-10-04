@@ -2,30 +2,33 @@
 
 ## Learning Objectives
 
-1. **Utilize** *placeholder variables* and *arguments* to generalize our scripts
+1. **Utilize** named and positional *arguments* to generalize our scripts
 1. **Articulate** the three streams of a command line utility
 1. **Wrap** executables and scripts in R/Python into a bash script.
-1. **Define** variables and environment variables for use in a bash script.  
+1. **Define** variables for use in a bash script.  
 1. **Iterate** a script over a set of files using `xargs` or `for` loops
 
 ## Review of Bash scripting
+
+Bash scripting is often referred to as a useful "glue language" on the internet. Although a lot of functionality can be covered by both JavaScript and Python, bash scripting is still very helpful to know. We'll see that JSON (JavaScript Object Notation) is at the heart of interacting with the DNAnexus platform in a future chapter.
 
 We are going to cover Bash scripting because it is the main shell that is available to us on DNAnexus machines, which are Ubuntu-based.
 
 We will be using Bash scripts as "glue" for multiple applications in cloud computing, including:
 
-1. **Wrapping scripts** in other languages so we can run them using `dx run` on a app such as Swiss Army Knife
+1. **Wrapping scripts** from other languages such as R or Python so we can run them using `dx run` on a app such as Swiss Army Knife
 2. **Specifying inputs and outputs** to executables in Applets/Workflows
 3. **Specifying inputs and outputs** in a workflow built by Workflow Description Langugae (WDL).
 
 As you can see, knowing Bash is extremely helpful when running jobs on the cloud.
 
-## Our first script with positional arguments
+## Our first script with positional arguments {#sec-positional}
 
 Say we have [`samtools`](http://www.htslib.org/doc/samtools-stats.html) installed on our own machine. Let's start with a basic script and build from there. We'll call it  `sam_run.sh`. With `nano`, a text editor, we'll start a very basic bash script and build its capabilities out.
 
 
-```
+```{bash}
+#| eval: false 
 #!/bin/bash/
 
 samtools stats $1 > $2
@@ -33,19 +36,21 @@ samtools stats $1 > $2
 
 Let's take a look at the command that we're running first. We're going to run `samtools stat`, which will give us statistics on an incoming `bam` or `sam` file and save it in a file. We want to be able to run our script like this:
 
-```
+```{bash}
+#| eval: false
 ./sam_run my_file.bam out_stats.txt
 ```
 
 When we run it like that, `sam_run.sh` will run `samtools stat` like this:
 
-```
+```{bash}
+#| eval: false
 samtools stats my_file.bam > out_stats.txt
 ```
 
 So what's going on here is that there is some substitution using common arguments. Let's look at these.
 
-## Positional Arguments such as `$1`
+### Positional Arguments such as `$1`
 
 How did the script know where to substitute each of our arguments? It has to do with the argument variables. Arguments (terms that follow our command) are indexed starting with the number 1. We can access the value at the first position using the special variable `$1`. 
 
@@ -53,25 +58,42 @@ Note that this works even in quotes.
 
 So, to unpack our script, we are substituting our first argument for the `$1`, and our second argument for the `$2` in our script. 
 
-
-### Test yourself
+:::{.callout-note}
+## Test yourself
 
 How would we rewrite `sam_run.sh` if we wanted to specify the output file as the first argument and the bam file as the second argument?
 
-```
+```{bash}
+#| eval: false
 #!/bin/bash/
 
 samtools stats $1 > $2
 ```
+:::
 
-## Named Arguments
+:::{.callout-note collapse="true"}
+## Answer
+
+For this script, we would switch the positions of `$1` and `$2`.
+
+```{bash}
+#| eval: false
+
+#!/bin/bash/
+
+samtools stats $2 > $1
+```
+:::
+
+## Named Arguments {#sec-named}
 
 In general, ordered arguments can be difficult to remember, and sometimes you have way too many parameters.
 
-What about named arguments? Let's modify `sam_run.sh` to use named arguments:
+What about named arguments? Let's modify `sam_run.sh` to use named arguments. 
 
-
-```
+```{bash}
+#| filename: "sam_run_named.sh"
+#| eval: false
 #!/bin/bash
 
 while [ $# -gt 0 ]; do
@@ -86,7 +108,21 @@ done
 samtools ${input_file} > ${output_file}
 ```
 
-### Test Yourself
+The magic of setting up the positional arguments happens in the `while` block above. It looks for any string arguments that follow our script name that begin with `--` - then it puts the value of that into the named variables.
+
+In this case, our script is expecting an `--input-file` and an `--output_file` arguments.
+
+### Running our script with named arguments
+
+```{bash}
+#| eval: false
+
+./sam_run_named.sh --input_file "" --output_file ""
+```
+
+
+:::{.callout-note}
+## Test Yourself
 
 How would we modify the following script to use named arguments?
 
@@ -94,12 +130,72 @@ How would we modify the following script to use named arguments?
 ```
 
 ```
+:::
+
+:::{.callout-note collapse="true"}
+## Answer
+
+:::
 
 ### For more info
 
-https://keestalkstech.com/2022/03/named-arguments-in-a-bash-script/
+<https://keestalkstech.com/2022/03/named-arguments-in-a-bash-script/>
+
+## Running a R script on the command line
+
+Say you have an R Script you need to run on the command line. In our bash script, we can do the following:
+
+```{bash}
+#| filename: "my_bash_script.sh"
+#| eval: false
+#!/bin/bash
+Rscript my_script.R CSVFILE="${1}"
+```
+
+This calls `Rscript`, which is the command line executable to run our R script. Note that we have a named argument called `CSVFILE` and it is done differently than in Bash - how do we use this in our R Script?
+
+### Using Named Arguments in an R script
+
+We can pass arguments from our bash script to our R script by using `commandArgs()` - this will populate a list of named arguments (such as `CSVFILE`) that are passed into the R Script. We assign the output of `commandArgs()` into the `args` object.
+
+We refer to our `CSVFILE` argument as `args$CSVFILE` in our script.
+
+```{r}
+#| eval: false
+#| filename: "my_r_script.R"
+library(tidyverse)
+
+args <- commandArgs()
+# Use arg$CSVFILE in read.csv
+csv_file <- read.csv(file=args$CSVFILE)
+
+# Do some work with csv_file
+csv_filtered <- csv_file |> dplyr::filter()
+
+# Write output
+write.csv(csv_filtered, file = paste0(args$CSVFILE, "_filtered.csv"))
+```
+
+### Running our R Script
+
+Now that we've set it up, we can run the R script from the command line as follows:
+
+```{bash}
+#| eval: false
+./my_bash_script.sh my_csvfile.csv 
+```
+
+In our bash script, `my_bash_script.sh`, we're using positional argument (for simplicity) to specify our csvfile, and then passing the positional argument to named ones (`CSVFILE`) for `my_r_script.R`.
+
+:::{.callout-note}
+## Why this is important on the platform
+
+We'll see when we build apps that our executable scripts need to be written as bash scripts. This means that if we want to run R code, we need to wrap it in a bash script.
+:::
 
 ## STDIN, STDOUT, STDERR
+
+
 
 Every script has three streams available to it: Standard In (STDIN), Standard Out (STDOUT), and Standard Error (STDERR).
 
@@ -107,25 +203,125 @@ STDIN contains information that is directed to the input of a script (usually te
 
 Why do these matter? To work in a Unix pipeline, a script must be able to utilize STDIN, and generate STDOUT, and STDERR.
 
-## Iterating using `for` loops
+We will mostly use STDOUT in our bash scripts, but STDERR can be really helpful in debugging what's going wrong. 
 
-A very common pattern we'll use is to iterate over an array of file names. 
+## Batch Processing Basics: Iterating using `xargs`
 
+A really common pattern is taking a delimited list of files and doing something with them. We can do some useful things such as seeing the first few lines of a set of files, or doing some sort of processing with the set of jobs.
+
+Let's start out with a list of files:
+
+```{bash}
+ls *.qmd
 ```
 
+Now we have a list of files, let's look at the first few lines of each of them, and print a separator `---` for each.
+
+```{bash}
+#| eval: false
+
+ls *.qmd | xargs -I% sh -c 'head %; echo "---\n"'
 ```
 
-## Iterating using `xargs`
+Let's take this apart piece by piece.
 
+`xargs` takes an `-I` argument that specifies a placeholder. In our case, we are using `%` as our placeholder in this statement. 
 
+We're passing on each filename from `ls` into the following code:
+
+```{bash}
+#| eval: false
+sh -c 'head %; echo "---\n"'
 ```
 
+The `sh -c` opens a subshell so that we can execute our command for each of the files in our list. We're using `sh -c` to run:
+
+```{bash}
+#| eval: false
+'head %; echo "---\n"'
 ```
 
-https://www.baeldung.com/linux/xargs-multiple-arguments
+So for our first file, `01-scripting-basics.qmd`, we are substituting that for `%` in our command:
+
+```{bash}
+#| eval: false
+'head 01-scripting-basics.qmd; echo "---\n"'
+```
+
+For our second file, `02-cloud-computing-basics.qmd`, we would substitute that for the `%`:
+
+```{bash}
+#| eval: false
+'head 02-cloud-computing-basics.qmd; echo "---\n"'
+```
+
+Until we cycle through all of the files in our list.
+
+### The Basic `xargs` pattern
+
+As you cycle through lists of files, keep in mind this basic pattern:
+
+```
+ls <wildcard> | xargs -I% sh -c "<command to run> %"
+```
+
+:::{.callout-note}
+## Why this is important on the platform
+
+We'll use this to execute batch jobs using `dx run`. This especially becomes powerful on the platform when we use `dx find files` to list files in our DNAnexus project.  
+:::
+
+### For more information
+
+<https://www.baeldung.com/linux/xargs-multiple-arguments>
 
 
 ## Variables
 
-We'll use variables 
+We've already encountered a placeholder variable, `%` that we used in running `xargs`. Let's talk about declaring variables in bash scripts and using them using variable expansion. 
 
+In bash, we can declare a variable by using `<variable_name>=<value>`. Note there are no spaces between the variable.
+
+```{bash}
+my_variable="ggplot2"
+
+echo "My favorite R package is ${my_variable}"
+```
+
+Take a look at line 3 above. We expand the variable (that is, we substitute the actual variable) by using `${my_variable}` in our `echo` statement.
+
+In general, when expanding a variable in a quoted string, it is better to use `${my_variable}` (the variable name in curly brackets). This is especially important when using the variable name as part of a string:
+
+```{bash}
+my_var="chr1"
+echo "${my_var}.vcf.gz"
+```
+
+If we didn't use the braces, bash would interpret the string as `$my_var.vcf.gz`, which isn't what we want. 
+
+
+::: {.callout-note}
+### Why this is important on the platform
+
+On the DNAnexus platform, there are special helper variables that are available to us, such as `$input_prefix`, which will give us the prefix of the file name input. This is essential when running commands within an app, as it allows us to generalize inputs and outputs in our app.
+
+Here's a practical example:
+
+```{bash}
+#| eval: false
+my_cmd="papermill notebook.ipynb output_notebook.ipynb"
+dx run dxjupyterlab -icmd="${my_cmd}" -iin="notebook.ipynb"
+```
+
+We're storing the command we want to run in the `$my_cmd` variable. Here we're mostly using it to break up the `dx run` statement on the next line. 
+:::
+
+## What you've learned in this chapter
+
+Whew, this was a whirlwind tour. Keep this chapter in mind when you're working with the platform - the bash programming patterns will serve you well. 
+
+- Setting up bash scripts with positional arguments
+- Setting up bash scripts with named arguments
+- Iterating over a list of files using `xargs`
+- Wrapping an R Script in a bash script
+- How to use bash variables and variable expansions

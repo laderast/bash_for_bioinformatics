@@ -1,0 +1,107 @@
+# Setup for the Course / dx-toolkit basics
+
+In this chapter, we'll setup our DNAnexus account, start a project, get files into it, and run a job with those files.
+
+This is meant to be a whirlwind tour - we'll expand on more information about each of these steps in further chapters.
+
+## Setup DNAnexus Account
+
+First, create an account at <https://platform.dnanexus.com>. You'll need your login and password to interact with the platform.
+
+DNAnexus gives you 40 dollars of compute and storage for free. This amount will be plenty to run all of the exercises.
+
+## Terminal setup / dx-toolkit setup
+
+We'll be running all of these scripts on our own machine. We'll be using the command-line for most of these.
+
+If you are on Linux/Mac, you'll be working with the terminal. 
+If you are on Windows, I recommend you install [Windows Subsystem for Linux](), and specifically Ubuntu. That will give you a command-line shell that you can use to interact with the DNAnexus platform.
+
+On your machine, I recommend using a text editor to edit the scripts in your terminal. Good ones include [VS Code](), or built in ones such as `nano`.
+
+Now that we have a terminal and code editor, we can install the dx-toolkit onto our machine. In your terminal, you'll first need to make sure that python 3 is installed, and the `pip` installer is installed as well. 
+
+```
+sudo apt-get install python3
+sudo apt-get install pip3
+```
+
+Once you have access to Python 3 and `pip3`, you can install the dx-toolkit using the following:
+
+```
+pip3 install dxpy
+```
+
+That last command will install the `dx-toolkit` to your machine, which are the command line tools you'll need to work on the DNAnexus cloud.
+
+## Alternative Setup: binder.org
+
+If you aren't able to install the dx-toolkit to your machine, you can use this Binder link to try out the commands. Binder opens a preinstalled image with a shell that has `dxpy` preinstalled on one of the <https://mybinder.org> servers. 
+
+<https://mybinder.org/v2/gh/laderast/minimal_dxpy/HEAD?urlpath=lab>
+
+Just keep in mind that this shell is ephemeral - it will disappear. So make sure that any files you create that you want to save are either uploaded back to your project with `dx upload` or you've downloaded them using the file explorer.
+
+This shell includes the following utilities:
+
+- git (needed to download course materials)
+- nano (needed to edit files)
+- python/pip (needed to install dx-toolkit)
+- jq (needed to work with JSON files)
+
+## Clone the files and scripts using git
+
+```{bash}
+#| eval: false
+
+git clone https://
+```
+
+## Try logging in
+
+Now that you have an account and a way to run the `dx-toolkit`, try logging in with `dx login`:
+
+```{bash}
+#| eval: false
+dx login
+```
+
+The platform will then ask you for your username and password. Enter them. 
+
+If you are successful, you will see either the select screen or, if you only have one project, that project will be selected for you.
+
+## Super Quick Intro to dx-toolkit
+
+The dx-toolkit is our main tool for interacting with the DNAnexus platform on the command-line. It handles the following:
+
+- Creating a project and managing membership (`dx new project`/`dx invite`/`dx uninvite`).
+- File transfer to and from project storage (`dx upload`/`dx download`)
+- Starting up computational jobs on the platform with apps and workflows (`dx run`)
+- Monitoring/Terminating jobs on the platform (`dx watch`/`dx describe`/`dx terminate`)
+- Building Apps, which are executables on the platform (`dx-app-wizard`, `dx build`)
+- Building Workflows, which string together apps on the platform (`dx build`)
+
+How do you know a command belongs to the dx-toolkit? They all begin with `dx`. For example, to list the contents of your current project, you'll use something like `ls`:
+
+```{bash}
+#| eval: false
+dx ls
+```
+
+## Create Project for Course
+
+Let's create a project on the platform, and then we will get files into it to prepare for the online work with the platform. 
+
+The first command we'll run is `dx new project` in order to create our project. 
+
+```
+dx new project -y my_project 
+```
+
+## Transferring files from our shell to Project Storage
+
+Let's transfer our files from our shell into our DNAnexus project.
+
+```
+dx upload
+```

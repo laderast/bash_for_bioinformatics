@@ -1,0 +1,2299 @@
+[
+    {
+        "id": "job-G6jzYj8JPXfBbf694G3Fj8fZ",
+        "region": "aws:eu-west-2",
+        "name": "Swiss Army Knife",
+        "tags": [],
+        "properties": {},
+        "executable": "app-G5YZzQj9fKZYJQgP7Vqf68Bz",
+        "executableName": "swiss-army-knife",
+        "class": "job",
+        "created": 1639053793416,
+        "modified": 1639054444001,
+        "project": "project-G3j2KBjJPXf1yqk43K0Xbgg9",
+        "billTo": "org-ukb_wallet_eddfdaa3d9e",
+        "costLimit": null,
+        "invoiceMetadata": null,
+        "folder": "/",
+        "parentJob": null,
+        "originJob": "job-G6jzYj8JPXfBbf694G3Fj8fZ",
+        "parentAnalysis": null,
+        "analysis": null,
+        "stage": null,
+        "rootExecution": "job-G6jzYj8JPXfBbf694G3Fj8fZ",
+        "state": "done",
+        "function": "main",
+        "workspace": "container-G6jzYk0Jp6xk3qX87ZB59X6j",
+        "launchedBy": "user-anastazie_sedlakova",
+        "detachedFrom": null,
+        "priority": "normal",
+        "workerReuseDeadlineRunTime": {
+            "state": "reuse-off",
+            "waitTime": -1,
+            "at": -1
+        },
+        "dependsOn": [],
+        "failureCounts": {},
+        "stateTransitions": [
+            {
+                "newState": "runnable",
+                "setAt": 1639053796886
+            },
+            {
+                "newState": "running",
+                "setAt": 1639053902515
+            },
+            {
+                "newState": "done",
+                "setAt": 1639054440399
+            }
+        ],
+        "singleContext": false,
+        "ignoreReuse": false,
+        "httpsApp": {
+            "enabled": false
+        },
+        "rank": 0,
+        "details": {},
+        "systemRequirements": {
+            "*": {
+                "instanceType": "mem1_ssd2_v2_x4"
+            }
+        },
+        "executionPolicy": {
+            "maxSpotTries": 1,
+            "restartOn": {
+                "UnresponsiveWorker": 2,
+                "JMInternalError": 1,
+                "ExecutionError": 1
+            }
+        },
+        "instanceType": "mem1_ssd2_v2_x4",
+        "trueInstanceType": "dx_s_c5.xlarge_v2",
+        "finalPriority": "normal",
+        "networkAccess": [
+            "*"
+        ],
+        "debug": {},
+        "app": "app-G5YZzQj9fKZYJQgP7Vqf68Bz",
+        "resources": "container-G5YZzV0J2QK3JQgP7Vqf68Jq",
+        "projectCache": "container-G6KXbYQJPXf5v2B41GJxxjj9",
+        "startedRunning": 1639053902515,
+        "stoppedRunning": 1639054437076,
+        "delayWorkspaceDestruction": false,
+        "isFree": false,
+        "totalPrice": 0.009919076333333334,
+        "totalEgress": {
+            "regionLocalEgress": 0,
+            "internetEgress": 723107,
+            "interRegionEgress": 2009
+        },
+        "egressComputedAt": 1639054443960,
+        "priceComputedAt": 1639054443960,
+        "currency": {
+            "dxCode": 1,
+            "code": "GBP",
+            "symbol": "\u00a3",
+            "symbolPosition": "left",
+            "decimalSymbol": ".",
+            "groupingSymbol": ","
+        },
+        "egressReport": {
+            "regionLocalEgress": 0,
+            "internetEgress": 723107,
+            "interRegionEgress": 2009
+        },
+        "timeout": 604800000
+    },
+    {
+        "id": "job-G6jzV9QJPXfG42094KG5K4zf",
+        "region": "aws:eu-west-2",
+        "name": "Swiss Army Knife",
+        "tags": [],
+        "properties": {},
+        "executable": "app-G5YZzQj9fKZYJQgP7Vqf68Bz",
+        "executableName": "swiss-army-knife",
+        "class": "job",
+        "created": 1639053478476,
+        "modified": 1639053485088,
+        "project": "project-G3j2KBjJPXf1yqk43K0Xbgg9",
+        "billTo": "org-ukb_wallet_eddfdaa3d9e",
+        "costLimit": null,
+        "invoiceMetadata": null,
+        "folder": "/",
+        "parentJob": null,
+        "originJob": "job-G6jzV9QJPXfG42094KG5K4zf",
+        "parentAnalysis": null,
+        "analysis": null,
+        "stage": null,
+        "rootExecution": "job-G6jzV9QJPXfG42094KG5K4zf",
+        "state": "done",
+        "function": "main",
+        "launchedBy": "user-anastazie_sedlakova",
+        "detachedFrom": null,
+        "priority": "normal",
+        "outputReusedFrom": "job-G6Y00p0JPXf21KFzBB3yzF5p",
+        "workerReuseDeadlineRunTime": {
+            "state": "reuse-off",
+            "waitTime": -1,
+            "at": -1
+        },
+        "dependsOn": [],
+        "failureCounts": {},
+        "stateTransitions": [
+            {
+                "newState": "runnable",
+                "setAt": 1639053481838
+            },
+            {
+                "newState": "running",
+                "setAt": 1639053481838
+            },
+            {
+                "newState": "done",
+                "setAt": 1639053481838
+            }
+        ],
+        "singleContext": false,
+        "ignoreReuse": false,
+        "httpsApp": {
+            "enabled": false
+        },
+        "rank": 0,
+        "details": {},
+        "systemRequirements": {
+            "*": {
+                "instanceType": "mem1_ssd2_v2_x4"
+            }
+        },
+        "executionPolicy": {
+            "maxSpotTries": 1,
+            "restartOn": {
+                "UnresponsiveWorker": 2,
+                "JMInternalError": 1,
+                "ExecutionError": 1
+            }
+        },
+        "instanceType": "mem1_ssd2_v2_x4",
+        "trueInstanceType": "dx_s_c5.xlarge_v2",
+        "finalPriority": "normal",
+        "networkAccess": [
+            "*"
+        ],
+        "debug": {},
+        "app": "app-G5YZzQj9fKZYJQgP7Vqf68Bz",
+        "resources": "container-G5YZzV0J2QK3JQgP7Vqf68Jq",
+        "projectCache": "container-G6KXbYQJPXf5v2B41GJxxjj9",
+        "startedRunning": 1639053481838,
+        "stoppedRunning": 1639053481838,
+        "delayWorkspaceDestruction": false,
+        "isFree": true,
+        "totalPrice": 0,
+        "totalEgress": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "egressComputedAt": 1639053485042,
+        "priceComputedAt": 1639053485042,
+        "currency": {
+            "dxCode": 1,
+            "code": "GBP",
+            "symbol": "\u00a3",
+            "symbolPosition": "left",
+            "decimalSymbol": ".",
+            "groupingSymbol": ","
+        },
+        "timeout": 604800000
+    },
+    {
+        "id": "job-G6jzP58JPXf10vqJ4K287fGK",
+        "region": "aws:eu-west-2",
+        "name": "Swiss Army Knife",
+        "tags": [],
+        "properties": {},
+        "executable": "app-G5YZzQj9fKZYJQgP7Vqf68Bz",
+        "executableName": "swiss-army-knife",
+        "class": "job",
+        "created": 1639053205381,
+        "modified": 1639053212231,
+        "project": "project-G3j2KBjJPXf1yqk43K0Xbgg9",
+        "billTo": "org-ukb_wallet_eddfdaa3d9e",
+        "costLimit": null,
+        "invoiceMetadata": null,
+        "folder": "/",
+        "parentJob": null,
+        "originJob": "job-G6jzP58JPXf10vqJ4K287fGK",
+        "parentAnalysis": null,
+        "analysis": null,
+        "stage": null,
+        "rootExecution": "job-G6jzP58JPXf10vqJ4K287fGK",
+        "state": "done",
+        "function": "main",
+        "launchedBy": "user-anastazie_sedlakova",
+        "detachedFrom": null,
+        "priority": "normal",
+        "outputReusedFrom": "job-G6Y00p0JPXf21KFzBB3yzF5p",
+        "workerReuseDeadlineRunTime": {
+            "state": "reuse-off",
+            "waitTime": -1,
+            "at": -1
+        },
+        "dependsOn": [],
+        "failureCounts": {},
+        "stateTransitions": [
+            {
+                "newState": "runnable",
+                "setAt": 1639053208964
+            },
+            {
+                "newState": "running",
+                "setAt": 1639053208964
+            },
+            {
+                "newState": "done",
+                "setAt": 1639053208964
+            }
+        ],
+        "singleContext": false,
+        "ignoreReuse": false,
+        "httpsApp": {
+            "enabled": false
+        },
+        "rank": 0,
+        "details": {},
+        "systemRequirements": {
+            "*": {
+                "instanceType": "mem1_ssd2_v2_x4"
+            }
+        },
+        "executionPolicy": {
+            "maxSpotTries": 1,
+            "restartOn": {
+                "UnresponsiveWorker": 2,
+                "JMInternalError": 1,
+                "ExecutionError": 1
+            }
+        },
+        "instanceType": "mem1_ssd2_v2_x4",
+        "trueInstanceType": "dx_s_c5.xlarge_v2",
+        "finalPriority": "normal",
+        "networkAccess": [
+            "*"
+        ],
+        "debug": {},
+        "app": "app-G5YZzQj9fKZYJQgP7Vqf68Bz",
+        "resources": "container-G5YZzV0J2QK3JQgP7Vqf68Jq",
+        "projectCache": "container-G6KXbYQJPXf5v2B41GJxxjj9",
+        "startedRunning": 1639053208964,
+        "stoppedRunning": 1639053208964,
+        "delayWorkspaceDestruction": false,
+        "isFree": true,
+        "totalPrice": 0,
+        "totalEgress": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "egressComputedAt": 1639053212194,
+        "priceComputedAt": 1639053212194,
+        "currency": {
+            "dxCode": 1,
+            "code": "GBP",
+            "symbol": "\u00a3",
+            "symbolPosition": "left",
+            "decimalSymbol": ".",
+            "groupingSymbol": ","
+        },
+        "timeout": 604800000
+    },
+    {
+        "id": "job-G6jjFF0JPXf1fz9g4PfJ1K8Y",
+        "region": "aws:eu-west-2",
+        "name": "Samtools from Docker Image",
+        "tags": [],
+        "properties": {},
+        "executable": "applet-G6jjF9QJPXf5zvqV4Jv4JKF0",
+        "executableName": "samtools_docker",
+        "class": "job",
+        "created": 1639024044044,
+        "modified": 1639027652140,
+        "project": "project-G3j2KBjJPXf1yqk43K0Xbgg9",
+        "billTo": "org-ukb_wallet_eddfdaa3d9e",
+        "costLimit": null,
+        "invoiceMetadata": null,
+        "folder": "/",
+        "parentJob": null,
+        "originJob": "job-G6jjFF0JPXf1fz9g4PfJ1K8Y",
+        "parentAnalysis": null,
+        "analysis": null,
+        "stage": null,
+        "rootExecution": "job-G6jjFF0JPXf1fz9g4PfJ1K8Y",
+        "state": "terminated",
+        "function": "main",
+        "workspace": "container-G6jjFFjJk8V6kF2Q8Bf4PXxP",
+        "launchedBy": "user-tladeras",
+        "detachedFrom": null,
+        "priority": "normal",
+        "workerReuseDeadlineRunTime": {
+            "state": "reuse-off",
+            "waitTime": -1,
+            "at": -1
+        },
+        "dependsOn": [],
+        "failureCounts": {},
+        "failureReason": "Terminated",
+        "failureMessage": "Terminated by tladeras",
+        "failureFrom": {
+            "id": "job-G6jjFF0JPXf1fz9g4PfJ1K8Y",
+            "name": "Samtools from Docker Image",
+            "function": "main",
+            "stage": null,
+            "analysis": null,
+            "executable": "applet-G6jjF9QJPXf5zvqV4Jv4JKF0",
+            "executableName": "samtools_docker",
+            "failureReason": "Terminated",
+            "failureMessage": "Terminated by tladeras"
+        },
+        "stateTransitions": [
+            {
+                "newState": "runnable",
+                "setAt": 1639024047471
+            },
+            {
+                "newState": "running",
+                "setAt": 1639024057839
+            },
+            {
+                "newState": "terminating",
+                "setAt": 1639027633882
+            },
+            {
+                "newState": "terminated",
+                "setAt": 1639027648634
+            }
+        ],
+        "applet": "applet-G6jjF9QJPXf5zvqV4Jv4JKF0",
+        "singleContext": false,
+        "ignoreReuse": false,
+        "httpsApp": {
+            "enabled": false
+        },
+        "rank": 0,
+        "details": {},
+        "systemRequirements": {
+            "*": {
+                "instanceType": "mem1_ssd1_v2_x4"
+            }
+        },
+        "executionPolicy": {
+            "maxSpotTries": 1,
+            "restartOn": {
+                "UnresponsiveWorker": 2,
+                "JMInternalError": 1,
+                "ExecutionError": 1
+            }
+        },
+        "instanceType": "mem1_ssd1_v2_x4",
+        "trueInstanceType": "dx_s_c5d.xlarge_v2",
+        "finalPriority": "normal",
+        "networkAccess": [
+            "*"
+        ],
+        "debug": {},
+        "startedRunning": 1639024057839,
+        "stoppedRunning": 1639027645555,
+        "delayWorkspaceDestruction": false,
+        "isFree": false,
+        "totalPrice": 0.026309917333333332,
+        "totalEgress": {
+            "regionLocalEgress": 0,
+            "internetEgress": 1774535,
+            "interRegionEgress": 2061
+        },
+        "egressComputedAt": 1639027652092,
+        "priceComputedAt": 1639027652092,
+        "currency": {
+            "dxCode": 1,
+            "code": "GBP",
+            "symbol": "\u00a3",
+            "symbolPosition": "left",
+            "decimalSymbol": ".",
+            "groupingSymbol": ","
+        },
+        "egressReport": {
+            "regionLocalEgress": 0,
+            "internetEgress": 1774535,
+            "interRegionEgress": 2061
+        },
+        "timeout": 172800000
+    },
+    {
+        "id": "job-G6jj9k8JPXfG42094KG5JFX4",
+        "region": "aws:eu-west-2",
+        "name": "Samtools from Docker Image",
+        "tags": [],
+        "properties": {},
+        "executable": "applet-G6jj9b0JPXf5Q6ZF4G85K156",
+        "executableName": "samtools_docker",
+        "class": "job",
+        "created": 1639023845218,
+        "modified": 1639023913417,
+        "project": "project-G3j2KBjJPXf1yqk43K0Xbgg9",
+        "billTo": "org-ukb_wallet_eddfdaa3d9e",
+        "costLimit": null,
+        "invoiceMetadata": null,
+        "folder": "/",
+        "parentJob": null,
+        "originJob": "job-G6jj9k8JPXfG42094KG5JFX4",
+        "parentAnalysis": null,
+        "analysis": null,
+        "stage": null,
+        "rootExecution": "job-G6jj9k8JPXfG42094KG5JFX4",
+        "state": "failed",
+        "function": "main",
+        "workspace": "container-G6jj9p0Jg2qxq0jz8BY1B2vX",
+        "launchedBy": "user-tladeras",
+        "detachedFrom": null,
+        "priority": "normal",
+        "workerReuseDeadlineRunTime": {
+            "state": "reuse-off",
+            "waitTime": -1,
+            "at": -1
+        },
+        "dependsOn": [],
+        "failureCounts": {},
+        "failureReason": "AppInternalError",
+        "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json",
+        "failureFrom": {
+            "id": "job-G6jj9k8JPXfG42094KG5JFX4",
+            "name": "Samtools from Docker Image",
+            "function": "main",
+            "stage": null,
+            "analysis": null,
+            "executable": "applet-G6jj9b0JPXf5Q6ZF4G85K156",
+            "executableName": "samtools_docker",
+            "failureReason": "AppInternalError",
+            "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json"
+        },
+        "stateTransitions": [
+            {
+                "newState": "runnable",
+                "setAt": 1639023848703
+            },
+            {
+                "newState": "running",
+                "setAt": 1639023876548
+            },
+            {
+                "newState": "failed",
+                "setAt": 1639023909957
+            }
+        ],
+        "applet": "applet-G6jj9b0JPXf5Q6ZF4G85K156",
+        "singleContext": false,
+        "ignoreReuse": false,
+        "httpsApp": {
+            "enabled": false
+        },
+        "rank": 0,
+        "details": {},
+        "systemRequirements": {
+            "*": {
+                "instanceType": "mem1_ssd1_v2_x4"
+            }
+        },
+        "executionPolicy": {
+            "maxSpotTries": 1,
+            "restartOn": {
+                "UnresponsiveWorker": 2,
+                "JMInternalError": 1,
+                "ExecutionError": 1
+            }
+        },
+        "instanceType": "mem1_ssd1_v2_x4",
+        "trueInstanceType": "dx_s_c5d.xlarge_v2",
+        "finalPriority": "normal",
+        "networkAccess": [
+            "*"
+        ],
+        "debug": {},
+        "startedRunning": 1639023876548,
+        "stoppedRunning": 1639023906846,
+        "delayWorkspaceDestruction": false,
+        "isFree": false,
+        "totalPrice": 0.00022218533333333328,
+        "totalEgress": {
+            "regionLocalEgress": 0,
+            "internetEgress": 30729,
+            "interRegionEgress": 2009
+        },
+        "egressComputedAt": 1639023913387,
+        "priceComputedAt": 1639023913387,
+        "currency": {
+            "dxCode": 1,
+            "code": "GBP",
+            "symbol": "\u00a3",
+            "symbolPosition": "left",
+            "decimalSymbol": ".",
+            "groupingSymbol": ","
+        },
+        "egressReport": {
+            "regionLocalEgress": 0,
+            "internetEgress": 30729,
+            "interRegionEgress": 2009
+        },
+        "timeout": 172800000
+    },
+    {
+        "id": "job-G6jj1zQJPXf34z8v4KqjZKP1",
+        "region": "aws:eu-west-2",
+        "name": "Samtools from Docker Image",
+        "tags": [],
+        "properties": {},
+        "executable": "applet-G6jg9p8JPXf4Q9Pb4GgPK8Vp",
+        "executableName": "samtools_docker",
+        "class": "job",
+        "created": 1639022846733,
+        "modified": 1639022972532,
+        "project": "project-G3j2KBjJPXf1yqk43K0Xbgg9",
+        "billTo": "org-ukb_wallet_eddfdaa3d9e",
+        "costLimit": null,
+        "invoiceMetadata": null,
+        "folder": "/",
+        "parentJob": null,
+        "originJob": "job-G6jj1zQJPXf34z8v4KqjZKP1",
+        "parentAnalysis": null,
+        "analysis": null,
+        "stage": null,
+        "rootExecution": "job-G6jj1zQJPXf34z8v4KqjZKP1",
+        "state": "failed",
+        "function": "main",
+        "workspace": "container-G6jj20QJ764f2Qqf8BfxbKXG",
+        "launchedBy": "user-tladeras",
+        "detachedFrom": null,
+        "priority": "normal",
+        "workerReuseDeadlineRunTime": {
+            "state": "reuse-off",
+            "waitTime": -1,
+            "at": -1
+        },
+        "dependsOn": [],
+        "failureCounts": {},
+        "failureReason": "AppInternalError",
+        "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json",
+        "failureFrom": {
+            "id": "job-G6jj1zQJPXf34z8v4KqjZKP1",
+            "name": "Samtools from Docker Image",
+            "function": "main",
+            "stage": null,
+            "analysis": null,
+            "executable": "applet-G6jg9p8JPXf4Q9Pb4GgPK8Vp",
+            "executableName": "samtools_docker",
+            "failureReason": "AppInternalError",
+            "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json"
+        },
+        "stateTransitions": [
+            {
+                "newState": "runnable",
+                "setAt": 1639022850238
+            },
+            {
+                "newState": "running",
+                "setAt": 1639022870200
+            },
+            {
+                "newState": "failed",
+                "setAt": 1639022968936
+            }
+        ],
+        "applet": "applet-G6jg9p8JPXf4Q9Pb4GgPK8Vp",
+        "singleContext": false,
+        "ignoreReuse": false,
+        "httpsApp": {
+            "enabled": false
+        },
+        "rank": 0,
+        "details": {},
+        "systemRequirements": {
+            "*": {
+                "instanceType": "mem1_ssd1_v2_x4"
+            }
+        },
+        "executionPolicy": {
+            "maxSpotTries": 1,
+            "restartOn": {
+                "UnresponsiveWorker": 2,
+                "JMInternalError": 1,
+                "ExecutionError": 1
+            }
+        },
+        "instanceType": "mem1_ssd1_v2_x4",
+        "trueInstanceType": "dx_s_c5d.xlarge_v2",
+        "finalPriority": "normal",
+        "networkAccess": [
+            "*"
+        ],
+        "debug": {},
+        "startedRunning": 1639022870200,
+        "stoppedRunning": 1639022965841,
+        "delayWorkspaceDestruction": false,
+        "isFree": false,
+        "totalPrice": 0.0007013673333333333,
+        "totalEgress": {
+            "regionLocalEgress": 0,
+            "internetEgress": 31940,
+            "interRegionEgress": 2009
+        },
+        "egressComputedAt": 1639022972432,
+        "priceComputedAt": 1639022972432,
+        "currency": {
+            "dxCode": 1,
+            "code": "GBP",
+            "symbol": "\u00a3",
+            "symbolPosition": "left",
+            "decimalSymbol": ".",
+            "groupingSymbol": ","
+        },
+        "egressReport": {
+            "regionLocalEgress": 0,
+            "internetEgress": 31940,
+            "interRegionEgress": 2009
+        },
+        "timeout": 172800000
+    },
+    {
+        "id": "job-G6jg9vQJPXfGbJb54GFkJ33Y",
+        "region": "aws:eu-west-2",
+        "name": "Samtools from Docker Image",
+        "tags": [],
+        "properties": {},
+        "executable": "applet-G6jg9p8JPXf4Q9Pb4GgPK8Vp",
+        "executableName": "samtools_docker",
+        "class": "job",
+        "created": 1639019762072,
+        "modified": 1639019872951,
+        "project": "project-G3j2KBjJPXf1yqk43K0Xbgg9",
+        "billTo": "org-ukb_wallet_eddfdaa3d9e",
+        "costLimit": null,
+        "invoiceMetadata": null,
+        "folder": "/",
+        "parentJob": null,
+        "originJob": "job-G6jg9vQJPXfGbJb54GFkJ33Y",
+        "parentAnalysis": null,
+        "analysis": null,
+        "stage": null,
+        "rootExecution": "job-G6jg9vQJPXfGbJb54GFkJ33Y",
+        "state": "failed",
+        "function": "main",
+        "workspace": "container-G6jg9x8JKGg1X3bF2Y6bFb4G",
+        "launchedBy": "user-tladeras",
+        "detachedFrom": null,
+        "priority": "normal",
+        "workerReuseDeadlineRunTime": {
+            "state": "reuse-off",
+            "waitTime": -1,
+            "at": -1
+        },
+        "dependsOn": [],
+        "failureCounts": {},
+        "failureReason": "AppInternalError",
+        "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json",
+        "failureFrom": {
+            "id": "job-G6jg9vQJPXfGbJb54GFkJ33Y",
+            "name": "Samtools from Docker Image",
+            "function": "main",
+            "stage": null,
+            "analysis": null,
+            "executable": "applet-G6jg9p8JPXf4Q9Pb4GgPK8Vp",
+            "executableName": "samtools_docker",
+            "failureReason": "AppInternalError",
+            "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json"
+        },
+        "stateTransitions": [
+            {
+                "newState": "runnable",
+                "setAt": 1639019765573
+            },
+            {
+                "newState": "running",
+                "setAt": 1639019776261
+            },
+            {
+                "newState": "failed",
+                "setAt": 1639019869464
+            }
+        ],
+        "applet": "applet-G6jg9p8JPXf4Q9Pb4GgPK8Vp",
+        "singleContext": false,
+        "ignoreReuse": false,
+        "httpsApp": {
+            "enabled": false
+        },
+        "rank": 0,
+        "details": {},
+        "systemRequirements": {
+            "*": {
+                "instanceType": "mem1_ssd1_v2_x4"
+            }
+        },
+        "executionPolicy": {
+            "maxSpotTries": 1,
+            "restartOn": {
+                "UnresponsiveWorker": 2,
+                "JMInternalError": 1,
+                "ExecutionError": 1
+            }
+        },
+        "instanceType": "mem1_ssd1_v2_x4",
+        "trueInstanceType": "dx_s_c5d.xlarge_v2",
+        "finalPriority": "normal",
+        "networkAccess": [
+            "*"
+        ],
+        "debug": {},
+        "startedRunning": 1639019776261,
+        "stoppedRunning": 1639019866380,
+        "delayWorkspaceDestruction": false,
+        "isFree": false,
+        "totalPrice": 0.0006608726666666667,
+        "totalEgress": {
+            "regionLocalEgress": 0,
+            "internetEgress": 30901,
+            "interRegionEgress": 2009
+        },
+        "egressComputedAt": 1639019872907,
+        "priceComputedAt": 1639019872907,
+        "currency": {
+            "dxCode": 1,
+            "code": "GBP",
+            "symbol": "\u00a3",
+            "symbolPosition": "left",
+            "decimalSymbol": ".",
+            "groupingSymbol": ","
+        },
+        "egressReport": {
+            "regionLocalEgress": 0,
+            "internetEgress": 30901,
+            "interRegionEgress": 2009
+        },
+        "timeout": 172800000
+    },
+    {
+        "id": "job-G6jg7Y0JPXfG6q53G12vQZK8",
+        "region": "aws:eu-west-2",
+        "name": "Samtools from Docker Image",
+        "tags": [],
+        "properties": {},
+        "executable": "applet-G6jg6pQJPXf7ypXq33B75Qq1",
+        "executableName": "samtools_docker",
+        "class": "job",
+        "created": 1639019468568,
+        "modified": 1639019579142,
+        "project": "project-G3j2KBjJPXf1yqk43K0Xbgg9",
+        "billTo": "org-ukb_wallet_eddfdaa3d9e",
+        "costLimit": null,
+        "invoiceMetadata": null,
+        "folder": "/",
+        "parentJob": null,
+        "originJob": "job-G6jg7Y0JPXfG6q53G12vQZK8",
+        "parentAnalysis": null,
+        "analysis": null,
+        "stage": null,
+        "rootExecution": "job-G6jg7Y0JPXfG6q53G12vQZK8",
+        "state": "failed",
+        "function": "main",
+        "workspace": "container-G6jg7YjJqg6744kV2Y2BgpGk",
+        "launchedBy": "user-tladeras",
+        "detachedFrom": null,
+        "priority": "normal",
+        "workerReuseDeadlineRunTime": {
+            "state": "reuse-off",
+            "waitTime": -1,
+            "at": -1
+        },
+        "dependsOn": [],
+        "failureCounts": {},
+        "failureReason": "AppInternalError",
+        "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json",
+        "failureFrom": {
+            "id": "job-G6jg7Y0JPXfG6q53G12vQZK8",
+            "name": "Samtools from Docker Image",
+            "function": "main",
+            "stage": null,
+            "analysis": null,
+            "executable": "applet-G6jg6pQJPXf7ypXq33B75Qq1",
+            "executableName": "samtools_docker",
+            "failureReason": "AppInternalError",
+            "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json"
+        },
+        "stateTransitions": [
+            {
+                "newState": "runnable",
+                "setAt": 1639019472143
+            },
+            {
+                "newState": "running",
+                "setAt": 1639019483058
+            },
+            {
+                "newState": "failed",
+                "setAt": 1639019575703
+            }
+        ],
+        "applet": "applet-G6jg6pQJPXf7ypXq33B75Qq1",
+        "singleContext": false,
+        "ignoreReuse": false,
+        "httpsApp": {
+            "enabled": false
+        },
+        "rank": 0,
+        "details": {},
+        "systemRequirements": {
+            "*": {
+                "instanceType": "mem1_ssd1_v2_x4"
+            }
+        },
+        "executionPolicy": {
+            "maxSpotTries": 1,
+            "restartOn": {
+                "UnresponsiveWorker": 2,
+                "JMInternalError": 1,
+                "ExecutionError": 1
+            }
+        },
+        "instanceType": "mem1_ssd1_v2_x4",
+        "trueInstanceType": "dx_s_c5d.xlarge_v2",
+        "finalPriority": "normal",
+        "networkAccess": [
+            "*"
+        ],
+        "debug": {},
+        "startedRunning": 1639019483058,
+        "stoppedRunning": 1639019572613,
+        "delayWorkspaceDestruction": false,
+        "isFree": false,
+        "totalPrice": 0.0006567366666666666,
+        "totalEgress": {
+            "regionLocalEgress": 0,
+            "internetEgress": 50452,
+            "interRegionEgress": 2009
+        },
+        "egressComputedAt": 1639019579123,
+        "priceComputedAt": 1639019579123,
+        "currency": {
+            "dxCode": 1,
+            "code": "GBP",
+            "symbol": "\u00a3",
+            "symbolPosition": "left",
+            "decimalSymbol": ".",
+            "groupingSymbol": ","
+        },
+        "egressReport": {
+            "regionLocalEgress": 0,
+            "internetEgress": 50452,
+            "interRegionEgress": 2009
+        },
+        "timeout": 172800000
+    },
+    {
+        "id": "job-G6jg57QJPXf90Jjv4K8pgkG7",
+        "region": "aws:eu-west-2",
+        "name": "Samtools from Docker Image",
+        "tags": [],
+        "properties": {},
+        "executable": "applet-G6jfg90JPXfGZkVb7PPxjpPY",
+        "executableName": "samtools_docker",
+        "class": "job",
+        "created": 1639019166605,
+        "modified": 1639019292358,
+        "project": "project-G3j2KBjJPXf1yqk43K0Xbgg9",
+        "billTo": "org-ukb_wallet_eddfdaa3d9e",
+        "costLimit": null,
+        "invoiceMetadata": null,
+        "folder": "/",
+        "parentJob": null,
+        "originJob": "job-G6jg57QJPXf90Jjv4K8pgkG7",
+        "parentAnalysis": null,
+        "analysis": null,
+        "stage": null,
+        "rootExecution": "job-G6jg57QJPXf90Jjv4K8pgkG7",
+        "state": "failed",
+        "function": "main",
+        "workspace": "container-G6jg588J7901X3bF2Y6bFZxJ",
+        "launchedBy": "user-tladeras",
+        "detachedFrom": null,
+        "priority": "normal",
+        "workerReuseDeadlineRunTime": {
+            "state": "reuse-off",
+            "waitTime": -1,
+            "at": -1
+        },
+        "dependsOn": [],
+        "failureCounts": {},
+        "failureReason": "AppInternalError",
+        "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json",
+        "failureFrom": {
+            "id": "job-G6jg57QJPXf90Jjv4K8pgkG7",
+            "name": "Samtools from Docker Image",
+            "function": "main",
+            "stage": null,
+            "analysis": null,
+            "executable": "applet-G6jfg90JPXfGZkVb7PPxjpPY",
+            "executableName": "samtools_docker",
+            "failureReason": "AppInternalError",
+            "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json"
+        },
+        "stateTransitions": [
+            {
+                "newState": "runnable",
+                "setAt": 1639019170251
+            },
+            {
+                "newState": "running",
+                "setAt": 1639019181439
+            },
+            {
+                "newState": "failed",
+                "setAt": 1639019288929
+            }
+        ],
+        "applet": "applet-G6jfg90JPXfGZkVb7PPxjpPY",
+        "singleContext": false,
+        "ignoreReuse": false,
+        "httpsApp": {
+            "enabled": false
+        },
+        "rank": 0,
+        "details": {},
+        "systemRequirements": {
+            "*": {
+                "instanceType": "mem1_ssd1_v2_x4"
+            }
+        },
+        "executionPolicy": {
+            "maxSpotTries": 1,
+            "restartOn": {
+                "UnresponsiveWorker": 2,
+                "JMInternalError": 1,
+                "ExecutionError": 1
+            }
+        },
+        "instanceType": "mem1_ssd1_v2_x4",
+        "trueInstanceType": "dx_s_c5d.xlarge_v2",
+        "finalPriority": "normal",
+        "networkAccess": [
+            "*"
+        ],
+        "debug": {},
+        "startedRunning": 1639019181439,
+        "stoppedRunning": 1639019285842,
+        "delayWorkspaceDestruction": false,
+        "isFree": false,
+        "totalPrice": 0.0007656219999999999,
+        "totalEgress": {
+            "regionLocalEgress": 0,
+            "internetEgress": 198048,
+            "interRegionEgress": 27028
+        },
+        "egressComputedAt": 1639019292322,
+        "priceComputedAt": 1639019292322,
+        "currency": {
+            "dxCode": 1,
+            "code": "GBP",
+            "symbol": "\u00a3",
+            "symbolPosition": "left",
+            "decimalSymbol": ".",
+            "groupingSymbol": ","
+        },
+        "egressReport": {
+            "regionLocalEgress": 0,
+            "internetEgress": 198048,
+            "interRegionEgress": 27028
+        },
+        "timeout": 172800000
+    },
+    {
+        "id": "job-G6jfZQ0JPXf38k5V4KVxx4P6",
+        "region": "aws:eu-west-2",
+        "name": "ttyd",
+        "tags": [],
+        "properties": {},
+        "executable": "app-G562VZ80pJQz6pK74g18kQZq",
+        "executableName": "ttyd",
+        "class": "job",
+        "created": 1639017024192,
+        "modified": 1639024841604,
+        "project": "project-G3j2KBjJPXf1yqk43K0Xbgg9",
+        "billTo": "org-ukb_wallet_eddfdaa3d9e",
+        "costLimit": null,
+        "invoiceMetadata": null,
+        "folder": "/",
+        "parentJob": null,
+        "originJob": "job-G6jfZQ0JPXf38k5V4KVxx4P6",
+        "parentAnalysis": null,
+        "analysis": null,
+        "stage": null,
+        "rootExecution": "job-G6jfZQ0JPXf38k5V4KVxx4P6",
+        "state": "terminated",
+        "function": "main",
+        "workspace": "container-G6jfZQjJgF2FgQxf41Gx5qZ7",
+        "launchedBy": "user-tladeras",
+        "detachedFrom": null,
+        "priority": "normal",
+        "workerReuseDeadlineRunTime": {
+            "state": "reuse-off",
+            "waitTime": -1,
+            "at": -1
+        },
+        "dependsOn": [],
+        "failureCounts": {},
+        "failureReason": "Terminated",
+        "failureMessage": "Terminated by tladeras",
+        "failureFrom": {
+            "id": "job-G6jfZQ0JPXf38k5V4KVxx4P6",
+            "name": "ttyd",
+            "function": "main",
+            "stage": null,
+            "analysis": null,
+            "executable": "app-G562VZ80pJQz6pK74g18kQZq",
+            "executableName": "ttyd",
+            "failureReason": "Terminated",
+            "failureMessage": "Terminated by tladeras"
+        },
+        "stateTransitions": [
+            {
+                "newState": "runnable",
+                "setAt": 1639017027535
+            },
+            {
+                "newState": "running",
+                "setAt": 1639017042908
+            },
+            {
+                "newState": "terminating",
+                "setAt": 1639024823294
+            },
+            {
+                "newState": "terminated",
+                "setAt": 1639024838141
+            }
+        ],
+        "singleContext": false,
+        "ignoreReuse": true,
+        "httpsApp": {
+            "ports": [
+                443,
+                8080,
+                8081
+            ],
+            "shared_access": "NONE",
+            "dns": {
+                "url": "https://job-G6jfZQ0JPXf38k5V4KVxx4P6.dnanexus.cloud"
+            },
+            "enabled": true,
+            "loginURL": "https://ukbiobank.dnanexus.com/login"
+        },
+        "rank": 0,
+        "details": {},
+        "systemRequirements": {
+            "*": {
+                "instanceType": "mem1_ssd1_v2_x4"
+            }
+        },
+        "executionPolicy": {
+            "maxSpotTries": 1,
+            "restartOn": {
+                "UnresponsiveWorker": 2,
+                "JMInternalError": 1,
+                "ExecutionError": 1
+            }
+        },
+        "instanceType": "mem1_ssd1_v2_x4",
+        "trueInstanceType": "dx_s_c5d.xlarge_v2",
+        "finalPriority": "normal",
+        "networkAccess": [
+            "*"
+        ],
+        "host": "ec2-18-130-253-22.eu-west-2.compute.amazonaws.com",
+        "debug": {},
+        "app": "app-G562VZ80pJQz6pK74g18kQZq",
+        "resources": "container-G562VZ8JFK5z6pK74g18kQb8",
+        "projectCache": "container-G6K0z20JPXf2GvfB6G6b5YZx",
+        "startedRunning": 1639017042908,
+        "stoppedRunning": 1639024835059,
+        "delayWorkspaceDestruction": false,
+        "isFree": false,
+        "totalPrice": 0.057142440666666655,
+        "totalEgress": {
+            "regionLocalEgress": 0,
+            "internetEgress": 8106618,
+            "interRegionEgress": 93862
+        },
+        "egressComputedAt": 1639024841577,
+        "priceComputedAt": 1639024841577,
+        "currency": {
+            "dxCode": 1,
+            "code": "GBP",
+            "symbol": "\u00a3",
+            "symbolPosition": "left",
+            "decimalSymbol": ".",
+            "groupingSymbol": ","
+        },
+        "egressReport": {
+            "regionLocalEgress": 0,
+            "internetEgress": 8106618,
+            "interRegionEgress": 93862
+        }
+    },
+    {
+        "id": "job-G6jZk6jJPXf1q1Py5VKX6gJK",
+        "region": "aws:eu-west-2",
+        "name": "Samtools from Docker Image",
+        "tags": [],
+        "properties": {},
+        "executable": "applet-G6jZjG0JPXf7ZxZP4G5v0X1k",
+        "executableName": "samtools_docker",
+        "class": "job",
+        "created": 1639009435055,
+        "modified": 1639009584123,
+        "project": "project-G3j2KBjJPXf1yqk43K0Xbgg9",
+        "billTo": "org-ukb_wallet_eddfdaa3d9e",
+        "costLimit": null,
+        "invoiceMetadata": null,
+        "folder": "/",
+        "parentJob": null,
+        "originJob": "job-G6jZk6jJPXf1q1Py5VKX6gJK",
+        "parentAnalysis": null,
+        "analysis": null,
+        "stage": null,
+        "rootExecution": "job-G6jZk6jJPXf1q1Py5VKX6gJK",
+        "state": "failed",
+        "function": "main",
+        "workspace": "container-G6jZk7QJ90fQ6byX2GyXbz91",
+        "launchedBy": "user-tladeras",
+        "detachedFrom": null,
+        "priority": "normal",
+        "workerReuseDeadlineRunTime": {
+            "state": "reuse-off",
+            "waitTime": -1,
+            "at": -1
+        },
+        "dependsOn": [],
+        "failureCounts": {},
+        "failureReason": "AppInternalError",
+        "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json",
+        "failureFrom": {
+            "id": "job-G6jZk6jJPXf1q1Py5VKX6gJK",
+            "name": "Samtools from Docker Image",
+            "function": "main",
+            "stage": null,
+            "analysis": null,
+            "executable": "applet-G6jZjG0JPXf7ZxZP4G5v0X1k",
+            "executableName": "samtools_docker",
+            "failureReason": "AppInternalError",
+            "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json"
+        },
+        "stateTransitions": [
+            {
+                "newState": "runnable",
+                "setAt": 1639009438574
+            },
+            {
+                "newState": "running",
+                "setAt": 1639009499367
+            },
+            {
+                "newState": "failed",
+                "setAt": 1639009580829
+            }
+        ],
+        "applet": "applet-G6jZjG0JPXf7ZxZP4G5v0X1k",
+        "singleContext": false,
+        "ignoreReuse": false,
+        "httpsApp": {
+            "enabled": false
+        },
+        "rank": 0,
+        "details": {},
+        "systemRequirements": {
+            "*": {
+                "instanceType": "mem1_ssd1_v2_x4"
+            }
+        },
+        "executionPolicy": {
+            "maxSpotTries": 1,
+            "restartOn": {
+                "UnresponsiveWorker": 2,
+                "JMInternalError": 1,
+                "ExecutionError": 1
+            }
+        },
+        "instanceType": "mem1_ssd1_v2_x4",
+        "trueInstanceType": "dx_s_c5d.xlarge_v2",
+        "finalPriority": "normal",
+        "networkAccess": [],
+        "debug": {},
+        "startedRunning": 1639009499367,
+        "stoppedRunning": 1639009577725,
+        "delayWorkspaceDestruction": false,
+        "isFree": false,
+        "totalPrice": 0.0005746253333333333,
+        "totalEgress": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "egressComputedAt": 1639009584092,
+        "priceComputedAt": 1639009584092,
+        "currency": {
+            "dxCode": 1,
+            "code": "GBP",
+            "symbol": "\u00a3",
+            "symbolPosition": "left",
+            "decimalSymbol": ".",
+            "groupingSymbol": ","
+        },
+        "egressReport": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "timeout": 172800000
+    },
+    {
+        "id": "job-G6jYY28JPXfFvFXY4GXB6jG2",
+        "region": "aws:eu-west-2",
+        "name": "Samtools from Docker Image",
+        "tags": [],
+        "properties": {},
+        "executable": "applet-G6jYXq0JPXf5Q6ZF4G85JVgG",
+        "executableName": "samtools_docker",
+        "class": "job",
+        "created": 1639004553027,
+        "modified": 1639004612228,
+        "project": "project-G3j2KBjJPXf1yqk43K0Xbgg9",
+        "billTo": "org-ukb_wallet_eddfdaa3d9e",
+        "costLimit": null,
+        "invoiceMetadata": null,
+        "folder": "/",
+        "parentJob": null,
+        "originJob": "job-G6jYY28JPXfFvFXY4GXB6jG2",
+        "parentAnalysis": null,
+        "analysis": null,
+        "stage": null,
+        "rootExecution": "job-G6jYY28JPXfFvFXY4GXB6jG2",
+        "state": "failed",
+        "function": "main",
+        "workspace": "container-G6jYY30J2bZ06byX2GyXbv25",
+        "launchedBy": "user-tladeras",
+        "detachedFrom": null,
+        "priority": "normal",
+        "workerReuseDeadlineRunTime": {
+            "state": "reuse-off",
+            "waitTime": -1,
+            "at": -1
+        },
+        "dependsOn": [],
+        "failureCounts": {},
+        "failureReason": "AppInternalError",
+        "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json",
+        "failureFrom": {
+            "id": "job-G6jYY28JPXfFvFXY4GXB6jG2",
+            "name": "Samtools from Docker Image",
+            "function": "main",
+            "stage": null,
+            "analysis": null,
+            "executable": "applet-G6jYXq0JPXf5Q6ZF4G85JVgG",
+            "executableName": "samtools_docker",
+            "failureReason": "AppInternalError",
+            "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json"
+        },
+        "stateTransitions": [
+            {
+                "newState": "runnable",
+                "setAt": 1639004556623
+            },
+            {
+                "newState": "running",
+                "setAt": 1639004568737
+            },
+            {
+                "newState": "failed",
+                "setAt": 1639004608943
+            }
+        ],
+        "applet": "applet-G6jYXq0JPXf5Q6ZF4G85JVgG",
+        "singleContext": false,
+        "ignoreReuse": false,
+        "httpsApp": {
+            "enabled": false
+        },
+        "rank": 0,
+        "details": {},
+        "systemRequirements": {
+            "*": {
+                "instanceType": "mem1_ssd1_v2_x4"
+            }
+        },
+        "executionPolicy": {
+            "maxSpotTries": 1,
+            "restartOn": {
+                "UnresponsiveWorker": 2,
+                "JMInternalError": 1,
+                "ExecutionError": 1
+            }
+        },
+        "instanceType": "mem1_ssd1_v2_x4",
+        "trueInstanceType": "dx_s_c5d.xlarge_v2",
+        "finalPriority": "normal",
+        "networkAccess": [],
+        "debug": {},
+        "startedRunning": 1639004568737,
+        "stoppedRunning": 1639004605794,
+        "delayWorkspaceDestruction": false,
+        "isFree": false,
+        "totalPrice": 0.0002717513333333333,
+        "totalEgress": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "egressComputedAt": 1639004612195,
+        "priceComputedAt": 1639004612195,
+        "currency": {
+            "dxCode": 1,
+            "code": "GBP",
+            "symbol": "\u00a3",
+            "symbolPosition": "left",
+            "decimalSymbol": ".",
+            "groupingSymbol": ","
+        },
+        "egressReport": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "timeout": 172800000
+    },
+    {
+        "id": "job-G6jY9FQJPXf3pj894GFJ02jy",
+        "region": "aws:eu-west-2",
+        "name": "Samtools from Docker Image",
+        "tags": [],
+        "properties": {},
+        "executable": "applet-G6jY7zQJPXfG42094KG5Gkyy",
+        "executableName": "samtools_docker",
+        "class": "job",
+        "created": 1639003310328,
+        "modified": 1639003373661,
+        "project": "project-G3j2KBjJPXf1yqk43K0Xbgg9",
+        "billTo": "org-ukb_wallet_eddfdaa3d9e",
+        "costLimit": null,
+        "invoiceMetadata": null,
+        "folder": "/",
+        "parentJob": null,
+        "originJob": "job-G6jY9FQJPXf3pj894GFJ02jy",
+        "parentAnalysis": null,
+        "analysis": null,
+        "stage": null,
+        "rootExecution": "job-G6jY9FQJPXf3pj894GFJ02jy",
+        "state": "failed",
+        "function": "main",
+        "workspace": "container-G6jY9G8J9ZffkF2Q8Bf4P9fb",
+        "launchedBy": "user-tladeras",
+        "detachedFrom": null,
+        "priority": "normal",
+        "workerReuseDeadlineRunTime": {
+            "state": "reuse-off",
+            "waitTime": -1,
+            "at": -1
+        },
+        "dependsOn": [],
+        "failureCounts": {},
+        "failureReason": "AppInternalError",
+        "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json",
+        "failureFrom": {
+            "id": "job-G6jY9FQJPXf3pj894GFJ02jy",
+            "name": "Samtools from Docker Image",
+            "function": "main",
+            "stage": null,
+            "analysis": null,
+            "executable": "applet-G6jY7zQJPXfG42094KG5Gkyy",
+            "executableName": "samtools_docker",
+            "failureReason": "AppInternalError",
+            "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json"
+        },
+        "stateTransitions": [
+            {
+                "newState": "runnable",
+                "setAt": 1639003313778
+            },
+            {
+                "newState": "running",
+                "setAt": 1639003330699
+            },
+            {
+                "newState": "failed",
+                "setAt": 1639003370426
+            }
+        ],
+        "applet": "applet-G6jY7zQJPXfG42094KG5Gkyy",
+        "singleContext": false,
+        "ignoreReuse": false,
+        "httpsApp": {
+            "enabled": false
+        },
+        "rank": 0,
+        "details": {},
+        "systemRequirements": {
+            "*": {
+                "instanceType": "mem1_ssd1_v2_x4"
+            }
+        },
+        "executionPolicy": {
+            "maxSpotTries": 1,
+            "restartOn": {
+                "UnresponsiveWorker": 2,
+                "JMInternalError": 1,
+                "ExecutionError": 1
+            }
+        },
+        "instanceType": "mem1_ssd1_v2_x4",
+        "trueInstanceType": "dx_s_c5d.xlarge_v2",
+        "finalPriority": "normal",
+        "networkAccess": [],
+        "debug": {},
+        "startedRunning": 1639003330699,
+        "stoppedRunning": 1639003367316,
+        "delayWorkspaceDestruction": false,
+        "isFree": false,
+        "totalPrice": 0.0002685246666666667,
+        "totalEgress": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "egressComputedAt": 1639003373620,
+        "priceComputedAt": 1639003373620,
+        "currency": {
+            "dxCode": 1,
+            "code": "GBP",
+            "symbol": "\u00a3",
+            "symbolPosition": "left",
+            "decimalSymbol": ".",
+            "groupingSymbol": ","
+        },
+        "egressReport": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "timeout": 172800000
+    },
+    {
+        "id": "job-G6jY858JPXfBKX1X0j434BY5",
+        "region": "aws:eu-west-2",
+        "name": "Samtools from Docker Image",
+        "tags": [],
+        "properties": {},
+        "executable": "applet-G6jY7zQJPXfG42094KG5Gkyy",
+        "executableName": "samtools_docker",
+        "class": "job",
+        "created": 1639003157107,
+        "modified": 1639003231019,
+        "project": "project-G3j2KBjJPXf1yqk43K0Xbgg9",
+        "billTo": "org-ukb_wallet_eddfdaa3d9e",
+        "costLimit": null,
+        "invoiceMetadata": null,
+        "folder": "/",
+        "parentJob": null,
+        "originJob": "job-G6jY858JPXfBKX1X0j434BY5",
+        "parentAnalysis": null,
+        "analysis": null,
+        "stage": null,
+        "rootExecution": "job-G6jY858JPXfBKX1X0j434BY5",
+        "state": "failed",
+        "function": "main",
+        "workspace": "container-G6jY860Jvv7yQ65J2Y0YyK50",
+        "launchedBy": "user-tladeras",
+        "detachedFrom": null,
+        "priority": "normal",
+        "workerReuseDeadlineRunTime": {
+            "state": "reuse-off",
+            "waitTime": -1,
+            "at": -1
+        },
+        "dependsOn": [],
+        "failureCounts": {},
+        "failureReason": "AppInternalError",
+        "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json",
+        "failureFrom": {
+            "id": "job-G6jY858JPXfBKX1X0j434BY5",
+            "name": "Samtools from Docker Image",
+            "function": "main",
+            "stage": null,
+            "analysis": null,
+            "executable": "applet-G6jY7zQJPXfG42094KG5Gkyy",
+            "executableName": "samtools_docker",
+            "failureReason": "AppInternalError",
+            "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json"
+        },
+        "stateTransitions": [
+            {
+                "newState": "runnable",
+                "setAt": 1639003160864
+            },
+            {
+                "newState": "running",
+                "setAt": 1639003183725
+            },
+            {
+                "newState": "failed",
+                "setAt": 1639003227786
+            }
+        ],
+        "applet": "applet-G6jY7zQJPXfG42094KG5Gkyy",
+        "singleContext": false,
+        "ignoreReuse": false,
+        "httpsApp": {
+            "enabled": false
+        },
+        "rank": 0,
+        "details": {},
+        "systemRequirements": {
+            "*": {
+                "instanceType": "mem1_ssd1_v2_x4"
+            }
+        },
+        "executionPolicy": {
+            "maxSpotTries": 1,
+            "restartOn": {
+                "UnresponsiveWorker": 2,
+                "JMInternalError": 1,
+                "ExecutionError": 1
+            }
+        },
+        "instanceType": "mem1_ssd1_v2_x4",
+        "trueInstanceType": "dx_s_c5d.xlarge_v2",
+        "finalPriority": "normal",
+        "networkAccess": [],
+        "debug": {},
+        "startedRunning": 1639003183724,
+        "stoppedRunning": 1639003224380,
+        "delayWorkspaceDestruction": false,
+        "isFree": false,
+        "totalPrice": 0.000298144,
+        "totalEgress": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "egressComputedAt": 1639003230983,
+        "priceComputedAt": 1639003230983,
+        "currency": {
+            "dxCode": 1,
+            "code": "GBP",
+            "symbol": "\u00a3",
+            "symbolPosition": "left",
+            "decimalSymbol": ".",
+            "groupingSymbol": ","
+        },
+        "egressReport": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "timeout": 172800000
+    },
+    {
+        "id": "job-G6jY740JPXf7V2vJ4G2Gkfj7",
+        "region": "aws:eu-west-2",
+        "name": "Samtools from Docker Image",
+        "tags": [],
+        "properties": {},
+        "executable": "applet-G6jY6zQJPXf81J984K6kfB3V",
+        "executableName": "samtools_docker",
+        "class": "job",
+        "created": 1639003024430,
+        "modified": 1639003097960,
+        "project": "project-G3j2KBjJPXf1yqk43K0Xbgg9",
+        "billTo": "org-ukb_wallet_eddfdaa3d9e",
+        "costLimit": null,
+        "invoiceMetadata": null,
+        "folder": "/",
+        "parentJob": null,
+        "originJob": "job-G6jY740JPXf7V2vJ4G2Gkfj7",
+        "parentAnalysis": null,
+        "analysis": null,
+        "stage": null,
+        "rootExecution": "job-G6jY740JPXf7V2vJ4G2Gkfj7",
+        "state": "failed",
+        "function": "main",
+        "workspace": "container-G6jY74jJ57xFgQxf41Gx5b0b",
+        "launchedBy": "user-tladeras",
+        "detachedFrom": null,
+        "priority": "normal",
+        "workerReuseDeadlineRunTime": {
+            "state": "reuse-off",
+            "waitTime": -1,
+            "at": -1
+        },
+        "dependsOn": [],
+        "failureCounts": {},
+        "failureReason": "AppInternalError",
+        "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json",
+        "failureFrom": {
+            "id": "job-G6jY740JPXf7V2vJ4G2Gkfj7",
+            "name": "Samtools from Docker Image",
+            "function": "main",
+            "stage": null,
+            "analysis": null,
+            "executable": "applet-G6jY6zQJPXf81J984K6kfB3V",
+            "executableName": "samtools_docker",
+            "failureReason": "AppInternalError",
+            "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json"
+        },
+        "stateTransitions": [
+            {
+                "newState": "runnable",
+                "setAt": 1639003028471
+            },
+            {
+                "newState": "running",
+                "setAt": 1639003050069
+            },
+            {
+                "newState": "failed",
+                "setAt": 1639003094672
+            }
+        ],
+        "applet": "applet-G6jY6zQJPXf81J984K6kfB3V",
+        "singleContext": false,
+        "ignoreReuse": false,
+        "httpsApp": {
+            "enabled": false
+        },
+        "rank": 0,
+        "details": {},
+        "systemRequirements": {
+            "*": {
+                "instanceType": "mem1_ssd1_v2_x4"
+            }
+        },
+        "executionPolicy": {
+            "maxSpotTries": 1,
+            "restartOn": {
+                "UnresponsiveWorker": 2,
+                "JMInternalError": 1,
+                "ExecutionError": 1
+            }
+        },
+        "instanceType": "mem1_ssd1_v2_x4",
+        "trueInstanceType": "dx_s_c5d.xlarge_v2",
+        "finalPriority": "normal",
+        "networkAccess": [],
+        "debug": {},
+        "startedRunning": 1639003050069,
+        "stoppedRunning": 1639003091525,
+        "delayWorkspaceDestruction": false,
+        "isFree": false,
+        "totalPrice": 0.00030401066666666665,
+        "totalEgress": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "egressComputedAt": 1639003097923,
+        "priceComputedAt": 1639003097923,
+        "currency": {
+            "dxCode": 1,
+            "code": "GBP",
+            "symbol": "\u00a3",
+            "symbolPosition": "left",
+            "decimalSymbol": ".",
+            "groupingSymbol": ","
+        },
+        "egressReport": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "timeout": 172800000
+    },
+    {
+        "id": "job-G6jY5v8JPXfPGQq15k77zPJ9",
+        "region": "aws:eu-west-2",
+        "name": "Samtools from Docker Image",
+        "tags": [],
+        "properties": {},
+        "executable": "applet-G6jY5jjJPXf6Ffqg4GqF4KPg",
+        "executableName": "samtools_docker",
+        "class": "job",
+        "created": 1639002865678,
+        "modified": 1639002947624,
+        "project": "project-G3j2KBjJPXf1yqk43K0Xbgg9",
+        "billTo": "org-ukb_wallet_eddfdaa3d9e",
+        "costLimit": null,
+        "invoiceMetadata": null,
+        "folder": "/",
+        "parentJob": null,
+        "originJob": "job-G6jY5v8JPXfPGQq15k77zPJ9",
+        "parentAnalysis": null,
+        "analysis": null,
+        "stage": null,
+        "rootExecution": "job-G6jY5v8JPXfPGQq15k77zPJ9",
+        "state": "failed",
+        "function": "main",
+        "workspace": "container-G6jY5x8JVxKKQ65J2Y0YyJyf",
+        "launchedBy": "user-tladeras",
+        "detachedFrom": null,
+        "priority": "normal",
+        "workerReuseDeadlineRunTime": {
+            "state": "reuse-off",
+            "waitTime": -1,
+            "at": -1
+        },
+        "dependsOn": [],
+        "failureCounts": {},
+        "failureReason": "AppInternalError",
+        "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json",
+        "failureFrom": {
+            "id": "job-G6jY5v8JPXfPGQq15k77zPJ9",
+            "name": "Samtools from Docker Image",
+            "function": "main",
+            "stage": null,
+            "analysis": null,
+            "executable": "applet-G6jY5jjJPXf6Ffqg4GqF4KPg",
+            "executableName": "samtools_docker",
+            "failureReason": "AppInternalError",
+            "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json"
+        },
+        "stateTransitions": [
+            {
+                "newState": "runnable",
+                "setAt": 1639002869259
+            },
+            {
+                "newState": "running",
+                "setAt": 1639002885584
+            },
+            {
+                "newState": "failed",
+                "setAt": 1639002944393
+            }
+        ],
+        "applet": "applet-G6jY5jjJPXf6Ffqg4GqF4KPg",
+        "singleContext": false,
+        "ignoreReuse": false,
+        "httpsApp": {
+            "enabled": false
+        },
+        "rank": 0,
+        "details": {},
+        "systemRequirements": {
+            "*": {
+                "instanceType": "mem1_ssd1_v2_x4"
+            }
+        },
+        "executionPolicy": {
+            "maxSpotTries": 1,
+            "restartOn": {
+                "UnresponsiveWorker": 2,
+                "JMInternalError": 1,
+                "ExecutionError": 1
+            }
+        },
+        "instanceType": "mem1_ssd1_v2_x4",
+        "trueInstanceType": "dx_s_c5d.xlarge_v2",
+        "finalPriority": "normal",
+        "networkAccess": [],
+        "debug": {},
+        "startedRunning": 1639002885584,
+        "stoppedRunning": 1639002941297,
+        "delayWorkspaceDestruction": false,
+        "isFree": false,
+        "totalPrice": 0.00040856199999999996,
+        "totalEgress": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "egressComputedAt": 1639002947580,
+        "priceComputedAt": 1639002947580,
+        "currency": {
+            "dxCode": 1,
+            "code": "GBP",
+            "symbol": "\u00a3",
+            "symbolPosition": "left",
+            "decimalSymbol": ".",
+            "groupingSymbol": ","
+        },
+        "egressReport": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "timeout": 172800000
+    },
+    {
+        "id": "job-G6jY4k0JPXfPGQq15k77zP9Q",
+        "region": "aws:eu-west-2",
+        "name": "Samtools from Docker Image",
+        "tags": [],
+        "properties": {},
+        "executable": "applet-G6jY39jJPXfG42094KG5GkV9",
+        "executableName": "samtools_docker",
+        "class": "job",
+        "created": 1639002724374,
+        "modified": 1639002777742,
+        "project": "project-G3j2KBjJPXf1yqk43K0Xbgg9",
+        "billTo": "org-ukb_wallet_eddfdaa3d9e",
+        "costLimit": null,
+        "invoiceMetadata": null,
+        "folder": "/",
+        "parentJob": null,
+        "originJob": "job-G6jY4k0JPXfPGQq15k77zP9Q",
+        "parentAnalysis": null,
+        "analysis": null,
+        "stage": null,
+        "rootExecution": "job-G6jY4k0JPXfPGQq15k77zP9Q",
+        "state": "failed",
+        "function": "main",
+        "workspace": "container-G6jY4kjJPbk6kF2Q8Bf4P9Bp",
+        "launchedBy": "user-tladeras",
+        "detachedFrom": null,
+        "priority": "normal",
+        "workerReuseDeadlineRunTime": {
+            "state": "reuse-off",
+            "waitTime": -1,
+            "at": -1
+        },
+        "dependsOn": [],
+        "failureCounts": {},
+        "failureReason": "AppInternalError",
+        "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json",
+        "failureFrom": {
+            "id": "job-G6jY4k0JPXfPGQq15k77zP9Q",
+            "name": "Samtools from Docker Image",
+            "function": "main",
+            "stage": null,
+            "analysis": null,
+            "executable": "applet-G6jY39jJPXfG42094KG5GkV9",
+            "executableName": "samtools_docker",
+            "failureReason": "AppInternalError",
+            "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json"
+        },
+        "stateTransitions": [
+            {
+                "newState": "runnable",
+                "setAt": 1639002727936
+            },
+            {
+                "newState": "running",
+                "setAt": 1639002738701
+            },
+            {
+                "newState": "failed",
+                "setAt": 1639002774445
+            }
+        ],
+        "applet": "applet-G6jY39jJPXfG42094KG5GkV9",
+        "singleContext": false,
+        "ignoreReuse": false,
+        "httpsApp": {
+            "enabled": false
+        },
+        "rank": 0,
+        "details": {},
+        "systemRequirements": {
+            "*": {
+                "instanceType": "mem1_ssd1_v2_x4"
+            }
+        },
+        "executionPolicy": {
+            "maxSpotTries": 1,
+            "restartOn": {
+                "UnresponsiveWorker": 2,
+                "JMInternalError": 1,
+                "ExecutionError": 1
+            }
+        },
+        "instanceType": "mem1_ssd1_v2_x4",
+        "trueInstanceType": "dx_s_c5d.xlarge_v2",
+        "finalPriority": "normal",
+        "networkAccess": [],
+        "debug": {},
+        "startedRunning": 1639002738701,
+        "stoppedRunning": 1639002771233,
+        "delayWorkspaceDestruction": false,
+        "isFree": false,
+        "totalPrice": 0.000238568,
+        "totalEgress": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "egressComputedAt": 1639002777718,
+        "priceComputedAt": 1639002777718,
+        "currency": {
+            "dxCode": 1,
+            "code": "GBP",
+            "symbol": "\u00a3",
+            "symbolPosition": "left",
+            "decimalSymbol": ".",
+            "groupingSymbol": ","
+        },
+        "egressReport": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "timeout": 172800000
+    },
+    {
+        "id": "job-G6jXPJQJPXfBbf694G3Fg07K",
+        "region": "aws:eu-west-2",
+        "name": "Samtools from Docker Image",
+        "tags": [],
+        "properties": {},
+        "executable": "applet-G6jXJJjJPXf7V2vJ4G2GkFbF",
+        "executableName": "samtools_docker",
+        "class": "job",
+        "created": 1638999990079,
+        "modified": 1639000046190,
+        "project": "project-G3j2KBjJPXf1yqk43K0Xbgg9",
+        "billTo": "org-ukb_wallet_eddfdaa3d9e",
+        "costLimit": null,
+        "invoiceMetadata": null,
+        "folder": "/",
+        "parentJob": null,
+        "originJob": "job-G6jXPJQJPXfBbf694G3Fg07K",
+        "parentAnalysis": null,
+        "analysis": null,
+        "stage": null,
+        "rootExecution": "job-G6jXPJQJPXfBbf694G3Fg07K",
+        "state": "failed",
+        "function": "main",
+        "workspace": "container-G6jXPK8J98106byX2GyXbkbY",
+        "launchedBy": "user-tladeras",
+        "detachedFrom": null,
+        "priority": "normal",
+        "workerReuseDeadlineRunTime": {
+            "state": "reuse-off",
+            "waitTime": -1,
+            "at": -1
+        },
+        "dependsOn": [],
+        "failureCounts": {},
+        "failureReason": "AppInternalError",
+        "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json",
+        "failureFrom": {
+            "id": "job-G6jXPJQJPXfBbf694G3Fg07K",
+            "name": "Samtools from Docker Image",
+            "function": "main",
+            "stage": null,
+            "analysis": null,
+            "executable": "applet-G6jXJJjJPXf7V2vJ4G2GkFbF",
+            "executableName": "samtools_docker",
+            "failureReason": "AppInternalError",
+            "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json"
+        },
+        "stateTransitions": [
+            {
+                "newState": "runnable",
+                "setAt": 1638999993600
+            },
+            {
+                "newState": "running",
+                "setAt": 1639000007387
+            },
+            {
+                "newState": "failed",
+                "setAt": 1639000042950
+            }
+        ],
+        "applet": "applet-G6jXJJjJPXf7V2vJ4G2GkFbF",
+        "singleContext": false,
+        "ignoreReuse": false,
+        "httpsApp": {
+            "enabled": false
+        },
+        "rank": 0,
+        "details": {},
+        "systemRequirements": {
+            "*": {
+                "instanceType": "mem1_ssd1_v2_x4"
+            }
+        },
+        "executionPolicy": {
+            "maxSpotTries": 1,
+            "restartOn": {
+                "UnresponsiveWorker": 2,
+                "JMInternalError": 1,
+                "ExecutionError": 1
+            }
+        },
+        "instanceType": "mem1_ssd1_v2_x4",
+        "trueInstanceType": "dx_s_c5d.xlarge_v2",
+        "finalPriority": "normal",
+        "networkAccess": [],
+        "debug": {},
+        "startedRunning": 1639000007387,
+        "stoppedRunning": 1639000039850,
+        "delayWorkspaceDestruction": false,
+        "isFree": false,
+        "totalPrice": 0.00023806199999999996,
+        "totalEgress": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "egressComputedAt": 1639000046134,
+        "priceComputedAt": 1639000046134,
+        "currency": {
+            "dxCode": 1,
+            "code": "GBP",
+            "symbol": "\u00a3",
+            "symbolPosition": "left",
+            "decimalSymbol": ".",
+            "groupingSymbol": ","
+        },
+        "egressReport": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "timeout": 172800000
+    },
+    {
+        "id": "job-G6jX7yQJPXfFjzffKJzpqfj7",
+        "region": "aws:eu-west-2",
+        "name": "Samtools from Docker Image",
+        "tags": [],
+        "properties": {},
+        "executable": "applet-G6jX7JQJPXf3V99x4Gx7K09X",
+        "executableName": "samtools_docker",
+        "class": "job",
+        "created": 1638999034143,
+        "modified": 1638999085085,
+        "project": "project-G3j2KBjJPXf1yqk43K0Xbgg9",
+        "billTo": "org-ukb_wallet_eddfdaa3d9e",
+        "costLimit": null,
+        "invoiceMetadata": null,
+        "folder": "/",
+        "parentJob": null,
+        "originJob": "job-G6jX7yQJPXfFjzffKJzpqfj7",
+        "parentAnalysis": null,
+        "analysis": null,
+        "stage": null,
+        "rootExecution": "job-G6jX7yQJPXfFjzffKJzpqfj7",
+        "state": "failed",
+        "function": "main",
+        "workspace": "container-G6jX7z8Jkvq6kF2Q8Bf4P7QB",
+        "launchedBy": "user-tladeras",
+        "detachedFrom": null,
+        "priority": "normal",
+        "workerReuseDeadlineRunTime": {
+            "state": "reuse-off",
+            "waitTime": -1,
+            "at": -1
+        },
+        "dependsOn": [],
+        "failureCounts": {},
+        "failureReason": "AppInternalError",
+        "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json",
+        "failureFrom": {
+            "id": "job-G6jX7yQJPXfFjzffKJzpqfj7",
+            "name": "Samtools from Docker Image",
+            "function": "main",
+            "stage": null,
+            "analysis": null,
+            "executable": "applet-G6jX7JQJPXf3V99x4Gx7K09X",
+            "executableName": "samtools_docker",
+            "failureReason": "AppInternalError",
+            "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json"
+        },
+        "stateTransitions": [
+            {
+                "newState": "runnable",
+                "setAt": 1638999037769
+            },
+            {
+                "newState": "running",
+                "setAt": 1638999043580
+            },
+            {
+                "newState": "failed",
+                "setAt": 1638999081837
+            }
+        ],
+        "applet": "applet-G6jX7JQJPXf3V99x4Gx7K09X",
+        "singleContext": false,
+        "ignoreReuse": false,
+        "httpsApp": {
+            "enabled": false
+        },
+        "rank": 0,
+        "details": {},
+        "systemRequirements": {
+            "*": {
+                "instanceType": "mem1_ssd1_v2_x4"
+            }
+        },
+        "executionPolicy": {
+            "maxSpotTries": 1,
+            "restartOn": {
+                "UnresponsiveWorker": 2,
+                "JMInternalError": 1,
+                "ExecutionError": 1
+            }
+        },
+        "instanceType": "mem1_ssd1_v2_x4",
+        "trueInstanceType": "dx_s_c5d.xlarge_v2",
+        "finalPriority": "normal",
+        "networkAccess": [],
+        "debug": {},
+        "startedRunning": 1638999043580,
+        "stoppedRunning": 1638999078748,
+        "delayWorkspaceDestruction": false,
+        "isFree": false,
+        "totalPrice": 0.00025789866666666664,
+        "totalEgress": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "egressComputedAt": 1638999085054,
+        "priceComputedAt": 1638999085054,
+        "currency": {
+            "dxCode": 1,
+            "code": "GBP",
+            "symbol": "\u00a3",
+            "symbolPosition": "left",
+            "decimalSymbol": ".",
+            "groupingSymbol": ","
+        },
+        "egressReport": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "timeout": 172800000
+    },
+    {
+        "id": "job-G6jVzJ0JPXf5Q6ZF4G85JG09",
+        "region": "aws:eu-west-2",
+        "name": "Samtools from Docker Image",
+        "tags": [],
+        "properties": {},
+        "executable": "applet-G6jVxQQJPXfGZ0BF33KZfX5Y",
+        "executableName": "samtools_docker",
+        "class": "job",
+        "created": 1638997940194,
+        "modified": 1638997996368,
+        "project": "project-G3j2KBjJPXf1yqk43K0Xbgg9",
+        "billTo": "org-ukb_wallet_eddfdaa3d9e",
+        "costLimit": null,
+        "invoiceMetadata": null,
+        "folder": "/",
+        "parentJob": null,
+        "originJob": "job-G6jVzJ0JPXf5Q6ZF4G85JG09",
+        "parentAnalysis": null,
+        "analysis": null,
+        "stage": null,
+        "rootExecution": "job-G6jVzJ0JPXf5Q6ZF4G85JG09",
+        "state": "failed",
+        "function": "main",
+        "workspace": "container-G6jVzJjJpp9VX3bF2Y6bFBb4",
+        "launchedBy": "user-tladeras",
+        "detachedFrom": null,
+        "priority": "normal",
+        "workerReuseDeadlineRunTime": {
+            "state": "reuse-off",
+            "waitTime": -1,
+            "at": -1
+        },
+        "dependsOn": [],
+        "failureCounts": {},
+        "failureReason": "AppInternalError",
+        "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json",
+        "failureFrom": {
+            "id": "job-G6jVzJ0JPXf5Q6ZF4G85JG09",
+            "name": "Samtools from Docker Image",
+            "function": "main",
+            "stage": null,
+            "analysis": null,
+            "executable": "applet-G6jVxQQJPXfGZ0BF33KZfX5Y",
+            "executableName": "samtools_docker",
+            "failureReason": "AppInternalError",
+            "failureMessage": "Please consult the job log; the job's reported error could not be parsed from the file job_error.json"
+        },
+        "stateTransitions": [
+            {
+                "newState": "runnable",
+                "setAt": 1638997943661
+            },
+            {
+                "newState": "running",
+                "setAt": 1638997949262
+            },
+            {
+                "newState": "failed",
+                "setAt": 1638997993159
+            }
+        ],
+        "applet": "applet-G6jVxQQJPXfGZ0BF33KZfX5Y",
+        "singleContext": false,
+        "ignoreReuse": false,
+        "httpsApp": {
+            "enabled": false
+        },
+        "rank": 0,
+        "details": {},
+        "systemRequirements": {
+            "*": {
+                "instanceType": "mem1_ssd1_v2_x4"
+            }
+        },
+        "executionPolicy": {
+            "maxSpotTries": 1,
+            "restartOn": {
+                "UnresponsiveWorker": 2,
+                "JMInternalError": 1,
+                "ExecutionError": 1
+            }
+        },
+        "instanceType": "mem1_ssd1_v2_x4",
+        "trueInstanceType": "dx_s_c5d.xlarge_v2",
+        "finalPriority": "normal",
+        "networkAccess": [],
+        "debug": {},
+        "startedRunning": 1638997949262,
+        "stoppedRunning": 1638997990048,
+        "delayWorkspaceDestruction": false,
+        "isFree": false,
+        "totalPrice": 0.00029909733333333333,
+        "totalEgress": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "egressComputedAt": 1638997996340,
+        "priceComputedAt": 1638997996340,
+        "currency": {
+            "dxCode": 1,
+            "code": "GBP",
+            "symbol": "\u00a3",
+            "symbolPosition": "left",
+            "decimalSymbol": ".",
+            "groupingSymbol": ","
+        },
+        "egressReport": {
+            "regionLocalEgress": 0,
+            "internetEgress": 0,
+            "interRegionEgress": 0
+        },
+        "timeout": 172800000
+    }
+]

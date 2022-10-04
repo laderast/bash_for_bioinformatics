@@ -9,6 +9,5 @@
 
 ## Terminology
 
-Registry - collection of repositories that you pull docker images from
-
-Docker Image - what you download from a registry
+- **Registry** - collection of repositories that you pull docker images from
+- **Docker Image** - what you download from a registry
