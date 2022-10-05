@@ -23,10 +23,12 @@ Let's establish the terminology we need to talk about cloud computing.
 - **App/Applet** - Executable on the DNAnexus platform. 
 - **Project Storage** - Part of the platform that stores our files and other objects. We'll see that these other objects include applets, databases, and other object types.
 
-:::{callout-note}
+:::{.callout-note}
 ## How is Project Storage Related to S3?
 
+DNAnexus project storage is based on an S3 bucket for regions that are built on AWS. There is an internal file transfer protocol called `dnax://` that handles transfers between S3 buckets and Amazon Elastic Comput (EC) instances.
 
+There is an equivalent system for regions based on Azure.
 :::
 
 ## Understanding the key players
@@ -66,10 +68,11 @@ Let's contrast our view of local computing with the key players in the DNAnexus 
 
 ## Sequence of Events of Running a Job
 
-Let's run through the order of operations of running a job on the platform in @fig-order-operations. Let's focus on running an aligner (BWA-MEM) on a FASTQ file. Our output will be a .BAM (aligned reads) file.
+Let's run through the order of operations of running a job on the platform. Let's focus on running an aligner (BWA-MEM) on a FASTQ file. Our output will be a .BAM (aligned reads) file.
 
-![Order of operations of a job](images/order_operations.png){#fig-order-operations}
-Let's go over the order of operations needed to execute our job on the DNAnexus platform.
+Let's go over the order of operations needed to execute our job on the DNAnexus platform (@fig-dnanexus).
+
+![Order of Operations](images/order_operations.png){#fig-dnanexus} 
 
 1. **Start a job using `dx run` to send a request to the platform.** In order to start a job, we will need two things: an app (`app-bwa-mem`), and a file to process on the platform (not shown). We specify this information using `dx run`. When we use `dx run`, a request is sent to the platform.
 2. **Platform requests for a worker from available workers; worker made available on platform.** In this step, the DNAnexus platform looks for a worker instance that can meet our needs. The platform handles installing the app and its software environment to the worker as well. We'll see that apps have a default instance type that are suggested by the authors.
@@ -79,6 +82,16 @@ Let's go over the order of operations needed to execute our job on the DNAnexus 
 6. **Response from DNAnexus platform to User.** If our job was successful, we will receive a response from the platform. This can be an email, or the output from `dx find jobs`. If our job was unable to run, we will recieve a "failed" response.
 
 When you are working on the platform, especially with batch jobs, keep in mind this order of execution. Being familiar with how the key players interact on the platform is key to running efficient jobs. 
+
+### A Common Pattern: Scripts on your computer, scripts on the worker
+
+A very common pattern we'll use is having two sets of scripts (@fig-scripts). The batch script that generates the separate jobs run on separate workers (`batch_RUN.sh`), and a script that is run on each worker (`plink_script.sh`).
+
+The batch script will specify file inputs as paths from project storage. For example, a project storage path might be `data/chr1.vcf.gz`.
+
+The trick with the worker script is being able to visualize the location of the files on the worker after they're transferred. In most cases, the files will be transferred to the working directory of the worker.
+
+![Two kinds of scripts.](images/two_scripts.png){#fig-scripts} 
 
 ## Key Differences with local computing
 

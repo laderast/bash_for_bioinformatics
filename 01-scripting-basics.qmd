@@ -266,6 +266,29 @@ ls <wildcard> | xargs -I% sh -c "<command to run> %"
 ```
 
 :::{.callout-note}
+## Test Yourself
+
+How would we modify the below code to do the following?
+
+- List only `.json` files in our `data/` folder using `ls`
+- Use `tail` instead of `head`
+
+```{bash}
+#| eval: false
+ls *.txt | xargs -I% sh -c "head %; echo '---\n'"
+```
+:::
+
+:::{.callout-note collapse="true"}
+## Answer
+
+```{bash}
+#| eval: false
+ls data/*.json | xargs -I% sh -c "tail %; echo '---\n'"
+```
+:::
+
+:::{.callout-note}
 ## Why this is important on the platform
 
 We'll use this to execute batch jobs using `dx run`. This especially becomes powerful on the platform when we use `dx find files` to list files in our DNAnexus project.  
@@ -280,7 +303,7 @@ We'll use this to execute batch jobs using `dx run`. This especially becomes pow
 
 We've already encountered a placeholder variable, `%` that we used in running `xargs`. Let's talk about declaring variables in bash scripts and using them using variable expansion. 
 
-In bash, we can declare a variable by using `<variable_name>=<value>`. Note there are no spaces between the variable.
+In Bash, we can declare a variable by using `<variable_name>=<value>`. Note there are no spaces between the variable.
 
 ```{bash}
 my_variable="ggplot2"

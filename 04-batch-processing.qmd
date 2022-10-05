@@ -3,12 +3,13 @@
 ## Learning Objectives
 
 1. **Find** and **iterate** over files on the platform to process them within a DNAnexus project.
+1. **Utilize** `dx find data` to find data files on the platform to batch process.
 1. **Utilize** `dx generate-batch-inputs`/`dx run --batch-tsv` to batch process files
 1. **Utilize** Python to batch process multiple files per worker. 
 
 ## Finding files using `dx find data`
 
-`dx find data` is a command that is extremely helpful on the DNAnexus platform.
+`dx find data` is a command that is extremely helpful on the DNAnexus platform. Based on metadata and folder paths, `dx find data` will return a list of files that meet the criteria. 
 
 `dx find data` lets you search on the following types of metadata:
 
@@ -46,7 +47,7 @@ dx find data --class record --json
 
 Ok, now we have a list of files that meet our criteria. How can we process them one by one? 
 
-Enter the `xargs` command.
+Remember our discussion of `xargs`?
 
 A really useful pattern for `xargs` is using it for command substitution.
 

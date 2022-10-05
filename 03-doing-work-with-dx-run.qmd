@@ -5,7 +5,6 @@
 1. **Utilize** an all purpose app (`swiss-army-knife`) to run bioinformatics jobs using `dx run` on files in a DNAnexus project
 1. **Wrap** R and Python scripts using a bash script to run it on the cloud using `dx run`
 1. **Tag** output files on the platform for downstream use.
-1. **Utilize** `dx find data` to find data files on the platform to batch process files
 1. **Specify** additional software dependencies using Docker Images/URLs.
 
 ## Bioinformatics Tricks with Swiss Army Knife (SAK)
