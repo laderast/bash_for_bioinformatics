@@ -15,40 +15,6 @@ By the end of this chapter, you should be able to:
 
 JSON is short for **J**ava**S**cript **O**bject **N**otation. It is a format used for storing information on the web and for interacting with APIs.  
 
-## Elements of a JSON file
-
-Here are the main elements of a JSON file:
-
-- Key:Value Pair. Example: `"name": "Ted Laderas"`. In this example, our key is "name" and our value is "Ted Laderas"
-- List `[]` - a collection of values. All values have to be the same data type. Example: `["mom", "dad"]`
-- Object `{}` - A collection of key/value pairs, enclosed with curly brackets (`{}`)
-
-:::{.callout-note}
-## Check Yourself
-
-What does the `names` value contain in the following JSON? Is it a list, object or key:value pair?
-
-```
-{
-  "names": ["Ted", "Lisa", "George"]
-}
-```
-:::
-
-:::{.callout-note collapse="true"}
-## Answer
-
-What does the `names` key contain? Is it a list, object or key:value pair?
-
-It is a list. We know this because the value contains a `[]`.
-
-```
-{
-  "names": ["Ted", "Lisa", "George"]
-}
-```
-:::
-
 ## How is JSON used on the DNAnexus Platform?
 
 JSON is used in multiple ways on the DNAnexus Platform, including:
@@ -66,7 +32,63 @@ You can see that JSON is used in many places on the DNAnexus platforms, and for 
 
 I know that JSON is supposed to be human readable. However, there are a lot of little quibbles that don't make it easily human writable. 
 
-I highly recommend using an editor such as VS Code, with the appropriate JSON plugin. Using the plugin will help write well formed JSON, and point out any issues you might have. 
+I highly recommend using an editor such as [VS Code](https://code.visualstudio.com/), with the appropriate [JSON plugin](https://code.visualstudio.com/docs/languages/json). 
+
+Using the plugin and this tutorial will help you write well formed JSON, and point out any issues you might have. It's easy to misplace a comma, or a bracket, and this tool helps you write well-formed JSON.
+
+## Elements of a JSON file
+
+Here are the main elements of a JSON file:
+
+- **Key:Value Pair**. Example: `"name": "Ted Laderas"`. In this example, our key is "name" and our value is "Ted Laderas"
+- **List `[]`** - a collection of values. All values have to be the same data type. Example: `["mom", "dad"]`
+- **Object** `{}` - A collection of key/value pairs, enclosed with curly brackets (`{}`)
+
+Here's the example we're going to use:
+
+```{bash}
+#| eval: false
+#| filename: "data/example.json"
+
+{
+  "report_html": {
+    "dnanexus_link": "file-G4x7GX80VBzQy64k4jzgjqgY"
+  },
+  "stats_txt": {
+    "dnanexus_link": "file-G4x7GXQ0VBzZxFxz4fqV120B"
+  },
+  "users": ["laderast", "ted", "tladeras"]
+}
+
+```
+
+:::{.callout-note}
+## Check Yourself
+
+What does the `names` value contain in the following JSON? Is it a list, object or key:value pair?
+
+```
+{
+  "names": ["Ted", "Lisa", "George"]
+}
+```
+:::
+
+:::{.callout-note collapse="true"}
+## Answer
+
+It is a list. We know this because the value contains a `[]`.
+
+```
+{
+  "names": ["Ted", "Lisa", "George"]
+}
+```
+:::
+
+##
+
+
 
 ## Learning `jq` gradually
 
@@ -119,10 +141,64 @@ source ~/.bashrc
 jq '.report_html' data/example.json
 ```
 
+:::{.callout-note}
+## Try it out
+
+This is the JSON file we're going to be working with, in `data/example.json`.
+
+```{bash}
+#| eval: false
+#| filename: "data/example.json"
+
+{
+  "report_html": {
+    "dnanexus_link": "file-G4x7GX80VBzQy64k4jzgjqgY"
+  },
+  "stats_txt": {
+    "dnanexus_link": "file-G4x7GXQ0VBzZxFxz4fqV120B"
+  }
+}
+
+```
+
+In your terminal, try out:
+
+```
+jq '.stats_txt' data/example.json
+```
+
+What do you return?
+:::
+
+:::{.callout-note collapse="true"}
+```{bash}
+source ~/.bashrc
+jq '.stats_txt' data/example.json
+```
+
+:::
+
+### Going one level deeper
+
+We can extract the actual value associated with the `dnanexus_link` key within `report_html` by chaining onto our filter:
+
+```{bash}
+source ~/.bashrc
+jq '.report_html.dnanexus_link' data/example.json
+```
 
 ## `dx find data`
 
+We already encountered the `dx find data` command, which we used in the batch processing chapter.
 
+If we use the `--json` option, then the file information will be outputted in json format. This command will return a list of JSON file objects.
+
+For example:
+
+```{bash}
+source ~/.bashrc
+dx find data --path ted_demo:data/ --json
+```
 
 ## `dx find jobs`
 

@@ -15,9 +15,9 @@ DNAnexus gives you 40 dollars of compute and storage for free. This amount will 
 We'll be running all of these scripts on our own machine. We'll be using the command-line for most of these.
 
 If you are on Linux/Mac, you'll be working with the terminal. 
-If you are on Windows, I recommend you install [Windows Subsystem for Linux](), and specifically Ubuntu. That will give you a command-line shell that you can use to interact with the DNAnexus platform.
+If you are on Windows, I recommend you install [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install), and specifically the Ubuntu distribution. That will give you a command-line shell that you can use to interact with the DNAnexus platform.
 
-On your machine, I recommend using a text editor to edit the scripts in your terminal. Good ones include [VS Code](), or built in ones such as `nano`.
+On your machine, I recommend using a text editor to edit the scripts in your terminal. Good ones include [VS Code](https://code.visualstudio.com/), or built in ones such as `nano`.
 
 Now that we have a terminal and code editor, we can install the dx-toolkit onto our machine. In your terminal, you'll first need to make sure that python 3 is installed, and the `pip` installer is installed as well. 
 
@@ -104,4 +104,10 @@ Let's transfer our files from our shell into our DNAnexus project.
 
 ```
 dx upload
+```
+
+```{bash}
+#| eval: false
+dx cp -r "project-BQbJpBj0bvygyQxgQ1800Jkk:/Developer Quickstart" .
+dx mv "Developer Quickstart/" "data/"
 ```

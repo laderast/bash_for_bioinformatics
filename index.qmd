@@ -1,32 +1,31 @@
 # Learning Objectives for this Book
 
-This is a book that is meant to bring you (a budding bioinformaticist) beyond the foundational shell scripting skills learned from a shell scripting course such as [the one from the Carpentries](https://swcarpentry.github.io/shell-novice/). Specifically, it shows you a path to get started with reproducible cloud computing on the DNAnexus platform. 
+Bash scripting is an essential skill in bioinformatics that is often expected that bioinformaticians will just pickup in their careers. I think that this underestimates the difficulty of learning and applying Bash scripting. 
+
+This is a book that is meant to bring you (a budding bioinformaticist) beyond the foundational shell scripting skills learned from a shell scripting course such as [the Software Carpentries Shell Course](https://swcarpentry.github.io/shell-novice/). 
+
+Specifically, it shows you a path to get started with reproducible cloud computing on the DNAnexus platform. 
 
 Our goal is to showcase the "glue" skills that help you do bioinformatics reproducibly. That includes:
 
 - **Articulate** basic Cloud Computing concepts
 - **Leverage** bash scripting and the dx-toolkit to execute jobs on the DNAnexus platform
 - **Execute** batch processing of multiple files in a project on the DNAnexus platform
-- **Build** and **Execute** applets on the DNAnexus platform by specifying JSON files
-- **Implement** Portable Workflows using Workflow Description Language (WDL) to do the following:
-    - Run on a single file
-    - Batch process multiple files
-    - Utilize multiple steps in a workflow
-- **Utilize** `sed` and `awk` and other command line utilities to process files using regular expressions
-- **Manage** software dependencies reproducibly using container-based technologies such as Docker
-- **Utilize** Environment Variables in a reproducible way
 - **Monitor**, **profile**, and **retry** jobs to optimize costs
+- **Manage** software dependencies reproducibly using container-based technologies such as Docker
 
 ## What is not covered
 
+- Using Bash scripting in DNAnexus Apps and Workflows
+- Using Bash Scripting in Workflow Description Language (WDL)
 - Running and monitoring jobs on a HPC Cluster
 - Running a workflow using Cromwell/MiniWDL
 
-This book is not meant to be a substitute for excellent books such as [Data Science on the Command Line](). This book focuses on the essential shell skills (notably Bash) that will help you on the DNAnexus platform.
+This book is not meant to be a substitute for excellent books such as [Data Science on the Command Line](https://datascienceatthecommandline.com/2e/). This book focuses on the essential shell skills (notably Bash) that will help you on the DNAnexus platform.
 
 ## Notes
 
-This is a very opinionated journey through shell scripting, workflow languages, and reproduciblity. It is designed to build on each of the concepts in a gradual manner. 
+This is a very opinionated journey through Bash shell scripting, workflow languages, and reproduciblity. It is designed to build on each of the concepts in a gradual manner. 
 
 At each step, you'll be able to do useful things with your data. We will focus on skills and programming patterns that are useful. 
 

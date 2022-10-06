@@ -28,20 +28,34 @@ It can output in a number of different formats. Including:
 
 ## Helpful `dx find data` examples
 
+### Find all *.bam files in a project
+
+```{bash}
+#| eval: false
+source ~/.bashrc
+dx find data --name "*.bam" --brief
+```
+
 ### Find all files with a field id
 
 Notes: be careful with this one, especially if you are working on UK Biobank RAP. You don't want to return 500,000 file ids. I would concentrate on the field ids that are aggregated on the population level, such as the pVCF files.
 
-```
+```{bash}
+#| eval: false
+source ~/.bashrc
 dx find data --property field_id=23148 --brief
 ```
 ### Find all files that are of class `record`
 
 Search for all files in your project that have a `record` type. This includes `cohort`s.  
+```{bash}
+#| eval: false
 
+source ~/.bashrc
+dx find data --class file --brief
 ```
-dx find data --class record --json
-```
+
+
 
 ## Using `xargs` to Batch Multiple Files
 
@@ -51,12 +65,14 @@ Remember our discussion of `xargs`?
 
 A really useful pattern for `xargs` is using it for command substitution.
 
-```
-dx ls *.vcf.gz | xargs -I % sh -c 'dx run app-swiss-army-knife -iin="%" -icmd="bcftools index %"' 
+```{bash}
+#| eval: false
+source ~/.bashrc
+dx find data --name "*.bam" --brief | xargs -I % sh -c 'dx run app-swiss-army-knife -y -iin="%" -icmd="bcftools view -g het * > ${in_prefix}-filtered.vcf"' 
 ```
 The key piece of code we're doing the command substitution in is
 
-`sh -c 'dx run app-swiss-army-knife -iin="%" -icmd="bcftools index %"'`
+`sh -c 'dx run app-swiss-army-knife -iin="%" -icmd="bcftools view -g het * > ${in_prefix}-filtered.vcf"'`
 
 We're using `sh` to run a script. 
 
