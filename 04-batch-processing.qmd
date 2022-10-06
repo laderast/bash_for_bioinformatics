@@ -2,10 +2,40 @@
 
 ## Learning Objectives
 
-1. **Find** and **iterate** over files on the platform to process them within a DNAnexus project.
 1. **Utilize** `dx find data` to find data files on the platform to batch process.
+1. **Iterate** over files using Bash scripting on the platform to batch process them within a DNAnexus project.
+1. **Leverage** dxFUSE to simplify your bash scripts
 1. **Utilize** `dx generate-batch-inputs`/`dx run --batch-tsv` to batch process files
 1. **Utilize** Python to batch process multiple files per worker. 
+
+## Two Ways of Batching
+
+:::{#fig-batch1}
+```{mermaid}
+graph LR;
+  A[List files </br> using `dx data`] --> E[`xargs` sh -c]
+  E --> B[`dx run` </br> on file1];
+  E --> C[`dx run` </br> on file2];
+  E --> D[`dx run` </br> on file3];
+```
+Batch method 1
+:::
+
+:::{#fig-batch2}
+```{mermaid}
+graph LR;
+  A[Submit array </br> of files </br> in `dx run`] --> B[Loop over array </br> of files </br> in worker];
+```
+Batch method 2
+:::
+
+We actually have two methods of batching jobs using Swiss Army Knife: 
+
+1. Use `xargs` on our home system to run `dx run` statements for each file.
+1. Submit an array of files as an input to Swiss Army Knife. Then process each file using the `icmd` input
+
+Both of these methods can potentially be useful.
+
 
 ## Finding files using `dx find data`
 
@@ -17,18 +47,23 @@
 - properties `--property`
 - name `--name`
 - type `--type`
-- 
 
 It can output in a number of different formats. Including:
 
 - `--brief` - return only the file-ids
 - `--json` - return file information in JSON format
-- `--verbose` -
-- `--delimited` -
+- `--verbose` - this is the default setting
+- `--delimited` - return as a delimited text file
+
+Of all of these, `--brief` and `--json` are the most useful for automation. `--delimited` is also helpful, but there is also a utility called `dx generate-batch-inputs` that will let us specify multiple inputs to process line by line. 
 
 ## Helpful `dx find data` examples
 
+As we're starting off in our batch processing journey, I wanted to provide some helpful recipes for selecting files. 
+
 ### Find all *.bam files in a project
+
+You can use wildcard characters with the `--name` flag. Here, we're looking for anything with the suffix "*.bam".
 
 ```{bash}
 #| eval: false
@@ -36,18 +71,35 @@ source ~/.bashrc
 dx find data --name "*.bam" --brief
 ```
 
+### Searching within a folder
+
+You can add the `--path` command to search in a specific folder.
+
+```{bash}
+#| eval: false
+source ~/.bashrc
+dx find data --name "*bam" --path "data/"
+
+```
+
 ### Find all files with a field id
 
-Notes: be careful with this one, especially if you are working on UK Biobank RAP. You don't want to return 500,000 file ids. I would concentrate on the field ids that are aggregated on the population level, such as the pVCF files.
+Take advantage of metadata associated with files when you can. If you are on UKB RAP, one of the most helpful properties to search is `field_id`.
+
+Note: be careful with this one, especially if you are working on UK Biobank RAP. You don't want to return 500,000 file ids. I would concentrate on the field ids that are aggregated on the population level, such as the pVCF files.
 
 ```{bash}
 #| eval: false
 source ~/.bashrc
 dx find data --property field_id=23148 --brief
 ```
-### Find all files that are of class `record`
 
-Search for all files in your project that have a `record` type. This includes `cohort`s.  
+### Find all files that are of class `file`
+
+There are a number of different object classes on the platform, such as `file` or `applet`
+
+Search for all files in your project that have a `file` class.   
+
 ```{bash}
 #| eval: false
 
@@ -55,32 +107,55 @@ source ~/.bashrc
 dx find data --class file --brief
 ```
 
+### In General: Think about leveraging metadata
+
+In general, think about leveraging metadata that is attached to both your jobs and files.
+
+For example, for the UKB Research Analysis Platform, data files in the `Bulk/` folder in your project have multiple properties: `field_id` (the data field as specified by UK Biobank) and `eid`.
 
 
-## Using `xargs` to Batch Multiple Files
+
+### Using `xargs` to Batch Multiple Files
 
 Ok, now we have a list of files that meet our criteria. How can we process them one by one? 
 
-Remember our discussion of `xargs`?
+Remember our discussion of `xargs`? @sec-xargs This is where `xargs` shines, when you provide it a list of files.
 
 A really useful pattern for `xargs` is using it for command substitution.
 
 ```{bash}
 #| eval: false
 source ~/.bashrc
-dx find data --name "*.bam" --brief | xargs -I % sh -c 'dx run app-swiss-army-knife -y -iin="%" -icmd="bcftools view -g het * > ${in_prefix}-filtered.vcf"' 
+dx find data --name "*.bam" --brief | xargs -I % sh -c 'dx run app-swiss-army-knife -y -iin="%" -icmd="bcftools view -g het % > ${in_prefix}-filtered.vcf"' 
 ```
-The key piece of code we're doing the command substitution in is
+The key piece of code we're doing the command substitution in is here:
 
-`sh -c 'dx run app-swiss-army-knife -iin="%" -icmd="bcftools view -g het * > ${in_prefix}-filtered.vcf"'`
+```{bash}
+#| eval: false
+`sh -c 'dx run app-swiss-army-knife -iin="%"\ 
+-icmd="bcftools view -g het % > ${in_prefix}-filtered.vcf"'`
+```
+
 
 We're using `sh` to run a script. 
 
-## Two Ways of Batching
 
-We actually have two methods of batching jobs using Swiss Army Knife: 
+### Batching multiple inputs: `dx generate_batch_inputs` 
 
-1. Submit an array of files as an input to Swiss Army Knife. Then process each file using the `icmd` input
-1. Use `xargs` on our home system to run `dx run` statements for each file.
+What if you have multiple input files that you need to batch with? This is where the [`dx generate_batch_inputs`](https://documentation.dnanexus.com/user/running-apps-and-workflows/running-batch-jobs) comes in.
 
-Both of these methods can potentially be useful. 
+```{bash}
+# | eval: false
+
+dx generate_batch_inputs -ireads_fastqgzs='RP(.*)_R1_(.*).fastq.gz' -ireads2_fastqgzs='RP(.*)_R2_(.*).fastq.gz'
+```
+
+
+## dxFUSE: Simplify your Scripts with multiple inputs
+
+There is a general method for working in Swiss Army Knife and other apps that lets you bypass specifying file inputs: using the [dxFUSE file system](https://github.com/dnanexus/dxfuse).
+
+The main thing you need to know as a developer is that you can prepend a `/mnt/project/` to your file path to use in your `-icmd` input directly.
+
+
+

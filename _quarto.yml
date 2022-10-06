@@ -2,9 +2,9 @@ project:
   type: book
 
 book:
-  title: "Bash for DNAnexus"
+  title: "Bash for Bioinformatics"
   author: "Ted Laderas"
-  date: "8/4/2022"
+  date: "10/6/2022"
   chapters:
     - index.qmd
     - "01-setup-course.qmd"
@@ -13,15 +13,12 @@ book:
     - "03-doing-work-with-dx-run.qmd"
     - "04-batch-processing.qmd"
     - "06-JSON.qmd"
-    - "05-building-applets.qmd"
     - "06-containers.qmd"
-    - "09-WDL.qmd"
     - "appendix.qmd"
-    - summary.qmd
     - references.qmd
 
 bibliography: references.bib
 
 format:
   html:
-    code-copy: false
+    code-copy: true

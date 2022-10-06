@@ -196,6 +196,7 @@ If we use the `--json` option, then the file information will be outputted in js
 For example:
 
 ```{bash}
+#| eval: false
 source ~/.bashrc
 dx find data --path ted_demo:data/ --json
 ```

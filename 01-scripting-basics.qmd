@@ -26,7 +26,6 @@ As you can see, knowing Bash is extremely helpful when running jobs on the cloud
 
 Say we have [`samtools`](http://www.htslib.org/doc/samtools-stats.html) installed on our own machine. Let's start with a basic script and build from there. We'll call it  `sam_run.sh`. With `nano`, a text editor, we'll start a very basic bash script and build its capabilities out.
 
-
 ```{bash}
 #| eval: false 
 #!/bin/bash/
@@ -195,6 +194,15 @@ We'll see when we build apps that our executable scripts need to be written as b
 
 ## STDIN, STDOUT, STDERR
 
+:::{#fig-std}
+```{mermaid}
+graph LR;
+  A[STDIN] --> E[run_samtools.sh]
+  E --> B[STDOUT];
+  E --> C[STDERR];
+```
+Inputs/outputs to a script
+:::
 
 
 Every script has three streams available to it: Standard In (STDIN), Standard Out (STDOUT), and Standard Error (STDERR).
@@ -205,7 +213,17 @@ Why do these matter? To work in a Unix pipeline, a script must be able to utiliz
 
 We will mostly use STDOUT in our bash scripts, but STDERR can be really helpful in debugging what's going wrong. 
 
-## Batch Processing Basics: Iterating using `xargs`
+## Batch Processing Basics: Iterating using `xargs` {#sec-xargs}
+
+:::{#fig-xargs}
+```{mermaid}
+graph LR;
+  A["ls *.bam"] --> B["| </br> (pipe)"] 
+  B --> C["xargs -I % sh -c"] 
+  C --> D["command_to_run"]
+```
+Basics of using `xargs` to iterate on a list of files
+:::
 
 A really common pattern is taking a delimited list of files and doing something with them. We can do some useful things such as seeing the first few lines of a set of files, or doing some sort of processing with the set of jobs.
 

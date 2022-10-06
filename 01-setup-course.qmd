@@ -4,11 +4,13 @@ In this chapter, we'll setup our DNAnexus account, start a project, get files in
 
 This is meant to be a whirlwind tour - we'll expand on more information about each of these steps in further chapters.
 
-## Setup DNAnexus Account
+## Setup your DNAnexus Account
 
 First, create an account at <https://platform.dnanexus.com>. You'll need your login and password to interact with the platform.
 
-DNAnexus gives you 40 dollars of compute and storage for free. This amount will be plenty to run all of the exercises.
+If you are not a registered customer with DNAnexus, you will have to [set up your billing by adding a credit card](https://documentation.dnanexus.com/admin/billing-and-account-management). 
+
+I know that money is tight for everyone, but everything we'll do in this course should cost no more than $5-10 in compute time.
 
 ## Terminal setup / dx-toolkit setup
 
@@ -19,7 +21,7 @@ If you are on Windows, I recommend you install [Windows Subsystem for Linux](htt
 
 On your machine, I recommend using a text editor to edit the scripts in your terminal. Good ones include [VS Code](https://code.visualstudio.com/), or built in ones such as `nano`.
 
-Now that we have a terminal and code editor, we can install the dx-toolkit onto our machine. In your terminal, you'll first need to make sure that python 3 is installed, and the `pip` installer is installed as well. 
+Now that we have a terminal and code editor, we can install the [dx-toolkit](https://documentation.dnanexus.com/downloads) onto our machine. In your terminal, you'll first need to make sure that python 3 is installed, and the `pip` installer is installed as well. 
 
 ```
 sudo apt-get install python3
@@ -94,17 +96,23 @@ Let's create a project on the platform, and then we will get files into it to pr
 
 The first command we'll run is `dx new project` in order to create our project. 
 
-```
+```{bash}
+#| eval: false
 dx new project -y my_project 
 ```
 
 ## Transferring files from our shell to Project Storage
 
-Let's transfer our files from our shell into our DNAnexus project.
+Our scripts live in the the `bash_for_bioinformatics/` folder on our machine. We'll need to transfer these scripts, because some of them will be run directly on the DNAnexus workers. 
 
+From your machine, type the following to get the "scripts/" folder
+
+```{bash}
+#| eval: false
+dx upload -r "scripts/"
 ```
-dx upload
-```
+
+Let's copy our files from our shell into our DNAnexus project.
 
 ```{bash}
 #| eval: false
