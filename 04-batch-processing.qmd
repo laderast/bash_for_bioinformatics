@@ -31,8 +31,8 @@ Batch method 2
 
 We actually have two methods of batching jobs using Swiss Army Knife: 
 
-1. Use `xargs` on our home system to run `dx run` statements for each file.
-1. Submit an array of files as an input to Swiss Army Knife. Then process each file using the `icmd` input
+1. Use `xargs` on our home system to run `dx run` statements for each file (@fig-batch1).
+1. Submit an array of files as an input to Swiss Army Knife. Then process each file using the `icmd` input (@fig-batch2)
 
 Both of these methods can potentially be useful.
 

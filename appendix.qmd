@@ -1,6 +1,64 @@
 # Appendix
 
-## Environment Variables
+## Named Arguments {#sec-named}
+
+In general, ordered arguments can be difficult to remember, and sometimes you have way too many parameters.
+
+What about named arguments? Let's modify `sam_run.sh` to use named arguments. 
+
+```{bash}
+#| filename: "sam_run_named.sh"
+#| eval: false
+#!/bin/bash
+
+while [ $# -gt 0 ]; do
+    if [[ $1 == "--"* ]]; then
+        v="${1/--/}"
+        declare "$v"="$2"
+        shift
+    fi
+    shift
+done
+
+samtools ${input_file} > ${output_file}
+```
+
+The magic of setting up the positional arguments happens in the `while` block above. It looks for any string arguments that follow our script name that begin with `--` - then it puts the value of that into the named variables.
+
+In this case, our script is expecting an `--input-file` and an `--output_file` arguments.
+
+### Running our script with named arguments
+
+```{bash}
+#| eval: false
+
+./sam_run_named.sh --input_file "" --output_file ""
+```
+
+
+:::{.callout-note}
+## Test Yourself
+
+How would we modify the following script to use named arguments?
+
+
+```
+
+```
+:::
+
+:::{.callout-note collapse="true"}
+## Answer
+
+:::
+
+### For more info
+
+<https://keestalkstech.com/2022/03/named-arguments-in-a-bash-script/>
+
+
+
+## Environment Variables {#sec-environment}
 
 ### `$PATH`
 

@@ -2,7 +2,7 @@
 
 ## Learning Objectives
 
-1. **Utilize** named and positional *arguments* to generalize our scripts
+1. **Utilize** positional *arguments* to generalize our scripts
 1. **Articulate** the three streams of a command line utility
 1. **Wrap** executables and scripts in R/Python into a bash script.
 1. **Define** variables for use in a bash script.  
@@ -84,61 +84,9 @@ samtools stats $2 > $1
 ```
 :::
 
-## Named Arguments {#sec-named}
+### What about named arguments in my script?
 
-In general, ordered arguments can be difficult to remember, and sometimes you have way too many parameters.
-
-What about named arguments? Let's modify `sam_run.sh` to use named arguments. 
-
-```{bash}
-#| filename: "sam_run_named.sh"
-#| eval: false
-#!/bin/bash
-
-while [ $# -gt 0 ]; do
-    if [[ $1 == "--"* ]]; then
-        v="${1/--/}"
-        declare "$v"="$2"
-        shift
-    fi
-    shift
-done
-
-samtools ${input_file} > ${output_file}
-```
-
-The magic of setting up the positional arguments happens in the `while` block above. It looks for any string arguments that follow our script name that begin with `--` - then it puts the value of that into the named variables.
-
-In this case, our script is expecting an `--input-file` and an `--output_file` arguments.
-
-### Running our script with named arguments
-
-```{bash}
-#| eval: false
-
-./sam_run_named.sh --input_file "" --output_file ""
-```
-
-
-:::{.callout-note}
-## Test Yourself
-
-How would we modify the following script to use named arguments?
-
-
-```
-
-```
-:::
-
-:::{.callout-note collapse="true"}
-## Answer
-
-:::
-
-### For more info
-
-<https://keestalkstech.com/2022/03/named-arguments-in-a-bash-script/>
+See @sec-named for more info.
 
 ## Running a R script on the command line
 
@@ -204,8 +152,7 @@ graph LR;
 Inputs/outputs to a script
 :::
 
-
-Every script has three streams available to it: Standard In (STDIN), Standard Out (STDOUT), and Standard Error (STDERR).
+Every script has three streams available to it: Standard In (STDIN), Standard Out (STDOUT), and Standard Error (STDERR) (@fig-std).
 
 STDIN contains information that is directed to the input of a script (usually text output via STDOUT from another script).
 
@@ -213,17 +160,11 @@ Why do these matter? To work in a Unix pipeline, a script must be able to utiliz
 
 We will mostly use STDOUT in our bash scripts, but STDERR can be really helpful in debugging what's going wrong. 
 
-## Batch Processing Basics: Iterating using `xargs` {#sec-xargs}
+### For more info about pipes and pipelines
 
-:::{#fig-xargs}
-```{mermaid}
-graph LR;
-  A["ls *.bam"] --> B["| </br> (pipe)"] 
-  B --> C["xargs -I % sh -c"] 
-  C --> D["command_to_run"]
-```
-Basics of using `xargs` to iterate on a list of files
-:::
+<https://datascienceatthecommandline.com/2e/chapter-2-getting-started.html?q=stdin#combining-command-line-tools>
+
+## Batch Processing Basics: Iterating using `xargs` {#sec-xargs}
 
 A really common pattern is taking a delimited list of files and doing something with them. We can do some useful things such as seeing the first few lines of a set of files, or doing some sort of processing with the set of jobs.
 
@@ -277,11 +218,22 @@ Until we cycle through all of the files in our list.
 
 ### The Basic `xargs` pattern
 
-As you cycle through lists of files, keep in mind this basic pattern:
+:::{#fig-xargs}
+```{mermaid}
+graph LR;
+  A["ls *.bam"] --> B["|"] 
+  B --> C["xargs -I % sh -c"] 
+  C --> D["command_to_run %"]
+```
+Basics of using `xargs` to iterate on a list of files
+:::
+
+As you cycle through lists of files, keep in mind this basic pattern (@fig-xargs):
 
 ```
 ls <wildcard> | xargs -I% sh -c "<command to run> %"
 ```
+We will leverage this pattern when we get to batch processing (@sec-)
 
 :::{.callout-note}
 ## Test Yourself
@@ -317,7 +269,7 @@ We'll use this to execute batch jobs using `dx run`. This especially becomes pow
 <https://www.baeldung.com/linux/xargs-multiple-arguments>
 
 
-## Variables
+## Variables in Bash Scripts {#sec-bash-variables}
 
 We've already encountered a placeholder variable, `%` that we used in running `xargs`. Let's talk about declaring variables in bash scripts and using them using variable expansion. 
 
@@ -338,8 +290,7 @@ my_var="chr1"
 echo "${my_var}.vcf.gz"
 ```
 
-If we didn't use the braces, bash would interpret the string as `$my_var.vcf.gz`, which isn't what we want. 
-
+If we didn't use the braces, bash would interpret the string as `$my_var.vcf.gz`, which isn't what we want. So use the curly braces `{}` when you expand variables..
 
 ::: {.callout-note}
 ### Why this is important on the platform
@@ -357,12 +308,11 @@ dx run dxjupyterlab -icmd="${my_cmd}" -iin="notebook.ipynb"
 We're storing the command we want to run in the `$my_cmd` variable. Here we're mostly using it to break up the `dx run` statement on the next line. 
 :::
 
-## What you've learned in this chapter
+## What you learned in this chapter
 
-Whew, this was a whirlwind tour. Keep this chapter in mind when you're working with the platform - the bash programming patterns will serve you well. 
+Whew, this was a whirlwind tour. Keep this chapter in mind when you're working with the platform - the bash programming patterns will serve you well. We'll refer to these patterns a lot when we get to doing more bioinformatics tasks on the platform.
 
 - Setting up bash scripts with positional arguments
-- Setting up bash scripts with named arguments
-- Iterating over a list of files using `xargs`
 - Wrapping an R Script in a bash script
+- Iterating over a list of files using `xargs`
 - How to use bash variables and variable expansions

@@ -2,12 +2,59 @@
 
 ## Learning Objectives
 
-1. **Articulate** the strengths of reproducible containers in Cloud Computing
-1. **Utilize** a container (VCFtools) with a file on our system
-1. **Utilize** version tags for reproducible research
-1. **Utilize** and **build** on existing Docker files for making our own containers
+1. **Explain** the benefits of using containers on DNAnexus for reproducibility and for batch processing
+1. **Define** the terms *image*, *container*, and *snapshot* in the context of Docker
+1. **Create** snapshots on RAP using `docker pull` and `docker save` with the ttyd app
+1. **Utilize** containers to batch process files on RAP
+1. **Extend** a docker image by installing within interactive mode
 
 ## Terminology
 
-- **Registry** - collection of repositories that you pull docker images from
-- **Docker Image** - what you download from a registry
+In order to be unambiguous with our language, we'll use the following definitions:
+
+![Docker Terms 1](images/docker_terminology.png){#fig-docker1}
+
+- **Registry** - collection of repositories that you pull docker images from. Example repositories include DockerHub and Quay.io.
+- **Docker Image** - what you download from a registry - the "recipe" for building the software environment. Stored in a  registry. use `docker pull` to get image, `docker commit` to push changes to registry, can also generate image from a Dockerfile, 
+- **Docker Container** - The executable software environment installed on a machine. Runnable. Generate from `docker pull` from a repository.
+- **Snapshot File** - An single archive file (`.tar.gz`) that contains the Docker container.
+Generate using `docker save` on a container.  Also known as an *image file* on the platform.
+
+## Building Docker Snapshot Files on the the DNAnexus platform
+
+### The Golden Rule of Docker and Batch Analysis
+
+DockerHub has a pull limit of 200 pulls/day/user. You will face this limit a lot if you just use the image url. 
+
+So, if you are processing more than 200 files (or Jobs), you should save the docker image into platform storage as a snapshot file.
+
+Let's talk about the basic snapshot building process.
+
+### The Basic Snapshot Building Process
+
+::: {#fig-snapshot-building}
+
+
+
+:::
+
+### Building Snapshot Files in `ttyd`
+
+Up until now, we have been using our own machine or the binder shell for doing our work.
+
+We're going to pull up a web-enabled shell on a DNAnexus worker with the `ttyd` app. `ttyd` is useful because:
+
+1. `docker` is already installed, so we can `docker pull` our container and `docker save` our snapshot
+1. It's much faster to transfer our snapshot file back into project storage.
+
+
+
+## Using Docker with Swiss Army Knife
+
+Swiss army knife has two separate inputs associated with Docker:
+
+- `-iimage_file` - This is where you put the snapshot file (such as the `samtools.tar.gz`)
+- `-iimage` - This is where you'd put the Docker URL (such as `quay.io/ucsc_cgl/samtools`)
+
+## What you learned in this chapter
+
