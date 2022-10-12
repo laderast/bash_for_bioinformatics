@@ -1,16 +1,17 @@
-# Shell Scripting Basics
+# Shell Scripting Basics {sec-scripting}
 
 ## Learning Objectives
 
 1. **Utilize** positional *arguments* to generalize our scripts
-1. **Articulate** the three streams of a command line utility
-1. **Wrap** executables and scripts in R/Python into a bash script.
-1. **Define** variables for use in a bash script.  
+1. **Articulate** the *three streams* of a command line utility
+1. **Define** variables for use in a bash script  
 1. **Iterate** a script over a set of files using `xargs` or `for` loops
+1. **Wrap** executables and scripts in R/Python into a Bash script
+
 
 ## Review of Bash scripting
 
-Bash scripting is often referred to as a useful "glue language" on the internet. Although a lot of functionality can be covered by both JavaScript and Python, bash scripting is still very helpful to know. We'll see that JSON (JavaScript Object Notation) is at the heart of interacting with the DNAnexus platform in a future chapter.
+Bash scripting is often referred to as a useful "glue language" on the internet. Although a lot of functionality can be covered by both JavaScript and Python, bash scripting is still very helpful to know.
 
 We are going to cover Bash scripting because it is the main shell that is available to us on DNAnexus machines, which are Ubuntu-based.
 
@@ -28,6 +29,8 @@ Say we have [`samtools`](http://www.htslib.org/doc/samtools-stats.html) installe
 
 ```{bash}
 #| eval: false 
+#| filename: 02-scripting-basics/sam_run.sh
+
 #!/bin/bash/
 
 samtools stats $1 > $2
@@ -88,66 +91,19 @@ samtools stats $2 > $1
 
 See @sec-named for more info.
 
-## Running a R script on the command line
 
-Say you have an R Script you need to run on the command line. In our bash script, we can do the following:
+## Using pipes: STDIN, STDOUT, STDERR
 
-```{bash}
-#| filename: "my_bash_script.sh"
-#| eval: false
-#!/bin/bash
-Rscript my_script.R CSVFILE="${1}"
-```
+We will need to use pipes to chain our commands together. Specifically, we need to take a command that generates a list of files on the platform, and then spawns individual jobs to process each file. For this reason, understanding a little bit more about how pipes (`|`) work in Bash is helpful.
 
-This calls `Rscript`, which is the command line executable to run our R script. Note that we have a named argument called `CSVFILE` and it is done differently than in Bash - how do we use this in our R Script?
-
-### Using Named Arguments in an R script
-
-We can pass arguments from our bash script to our R script by using `commandArgs()` - this will populate a list of named arguments (such as `CSVFILE`) that are passed into the R Script. We assign the output of `commandArgs()` into the `args` object.
-
-We refer to our `CSVFILE` argument as `args$CSVFILE` in our script.
-
-```{r}
-#| eval: false
-#| filename: "my_r_script.R"
-library(tidyverse)
-
-args <- commandArgs()
-# Use arg$CSVFILE in read.csv
-csv_file <- read.csv(file=args$CSVFILE)
-
-# Do some work with csv_file
-csv_filtered <- csv_file |> dplyr::filter()
-
-# Write output
-write.csv(csv_filtered, file = paste0(args$CSVFILE, "_filtered.csv"))
-```
-
-### Running our R Script
-
-Now that we've set it up, we can run the R script from the command line as follows:
-
-```{bash}
-#| eval: false
-./my_bash_script.sh my_csvfile.csv 
-```
-
-In our bash script, `my_bash_script.sh`, we're using positional argument (for simplicity) to specify our csvfile, and then passing the positional argument to named ones (`CSVFILE`) for `my_r_script.R`.
-
-:::{.callout-note}
-## Why this is important on the platform
-
-We'll see when we build apps that our executable scripts need to be written as bash scripts. This means that if we want to run R code, we need to wrap it in a bash script.
-:::
-
-## STDIN, STDOUT, STDERR
+If we want to understand how to chain our scripts together into a pipeline, it is helpful to know about the different streams that are available to the utilities.
 
 :::{#fig-std}
 ```{mermaid}
-graph LR;
-  A[STDIN] --> E[run_samtools.sh]
-  E --> B[STDOUT];
-  E --> C[STDERR];
+graph LR
+  A(STDIN) --> E[run_samtools.sh]
+  E --> B(STDOUT)
+  E --> C(STDERR)
 ```
 Inputs/outputs to a script
 :::
@@ -158,10 +114,31 @@ STDIN contains information that is directed to the input of a script (usually te
 
 Why do these matter? To work in a Unix pipeline, a script must be able to utilize STDIN, and generate STDOUT, and STDERR.
 
+Specifically, in pipelines, STDOUT of a script (here it's `run_samtools`) is directed into STDIN of another command (here `wc`, or word count)
+
+:::{#fig-pipe}
+```{mermaid}
+graph LR
+  E[run_samtools.sh] --> B(STDOUT)
+  B --> F{"|"}
+  E --> C(STDERR)
+  F --> D("STDIN (wc)")
+  D --> G[wc]
+```
+Piping a script `run_samtools.sh` into another command (`wc`)
+:::
+
 We will mostly use STDOUT in our bash scripts, but STDERR can be really helpful in debugging what's going wrong. 
+
+:::{.callout-note}
+## Why this is important on the platform
+
+We'll use pipes and pipelines not only in starting a bunch of jobs using batch scripting on our home computer, but also when we are processing files within a job.
+:::
 
 ### For more info about pipes and pipelines
 
+<https://swcarpentry.github.io/shell-novice/04-pipefilter/index.html>
 <https://datascienceatthecommandline.com/2e/chapter-2-getting-started.html?q=stdin#combining-command-line-tools>
 
 ## Batch Processing Basics: Iterating using `xargs` {#sec-xargs}
@@ -171,15 +148,17 @@ A really common pattern is taking a delimited list of files and doing something 
 Let's start out with a list of files:
 
 ```{bash}
-ls *.qmd
+#| eval: false
+ls data/*.qmd
 ```
 
 Now we have a list of files, let's look at the first few lines of each of them, and print a separator `---` for each.
 
 ```{bash}
 #| eval: false
+#| filename: 02-scripting-basics/xargs_example.sh
 
-ls *.qmd | xargs -I% sh -c 'head %; echo "---\n"'
+ls data/*.qmd | xargs -I% sh -c 'head %; echo "---\n"'
 ```
 
 Let's take this apart piece by piece.
@@ -220,9 +199,9 @@ Until we cycle through all of the files in our list.
 
 :::{#fig-xargs}
 ```{mermaid}
-graph LR;
-  A["ls *.bam"] --> B["|"] 
-  B --> C["xargs -I % sh -c"] 
+graph LR
+  A["ls *.bam"] --> B{"|"} 
+  B --> C["xargs -I% sh -c"] 
   C --> D["command_to_run %"]
 ```
 Basics of using `xargs` to iterate on a list of files
@@ -230,10 +209,12 @@ Basics of using `xargs` to iterate on a list of files
 
 As you cycle through lists of files, keep in mind this basic pattern (@fig-xargs):
 
-```
+```{bash}
+#| eval: false
 ls <wildcard> | xargs -I% sh -c "<command to run> %"
 ```
-We will leverage this pattern when we get to batch processing (@sec-)
+We will leverage this pattern when we get to batch processing files (@sec-batch).
+
 
 :::{.callout-note}
 ## Test Yourself
@@ -271,7 +252,7 @@ We'll use this to execute batch jobs using `dx run`. This especially becomes pow
 
 ## Variables in Bash Scripts {#sec-bash-variables}
 
-We've already encountered a placeholder variable, `%` that we used in running `xargs`. Let's talk about declaring variables in bash scripts and using them using variable expansion. 
+We've already encountered a placeholder variable, `%`, that we used in running `xargs`. Let's talk about declaring variables in bash scripts and using them using variable expansion. 
 
 In Bash, we can declare a variable by using `<variable_name>=<value>`. Note there are no spaces between the variable.
 
@@ -295,7 +276,7 @@ If we didn't use the braces, bash would interpret the string as `$my_var.vcf.gz`
 ::: {.callout-note}
 ### Why this is important on the platform
 
-On the DNAnexus platform, there are special helper variables that are available to us, such as `$input_prefix`, which will give us the prefix of the file name input. This is essential when running commands within an app, as it allows us to generalize inputs and outputs in our app.
+On the DNAnexus platform, there are special helper variables that are available to us, such as `$in_prefix`, which will give us the prefix of a file name input. This is essential when running commands within an app, as it allows us to generalize inputs and outputs in our app.
 
 Here's a practical example:
 
@@ -305,14 +286,68 @@ my_cmd="papermill notebook.ipynb output_notebook.ipynb"
 dx run dxjupyterlab -icmd="${my_cmd}" -iin="notebook.ipynb"
 ```
 
-We're storing the command we want to run in the `$my_cmd` variable. Here we're mostly using it to break up the `dx run` statement on the next line. 
+We're storing the command we want to run in the `${my_cmd}` variable. Here we're mostly using it to break up the `dx run` statement on the next line. 
 :::
+
+## Running a R script on the command line
+
+Let's end this chapter with wrapping R scripts in a bash script. Say you have an R Script you need to run on the command line. In our bash script, we can do the following:
+
+```{bash}
+#| filename: "02-scripting-basics/wrap_r_script.sh"
+#| eval: false
+#!/bin/bash
+Rscript my_script.R CSVFILE="${1}"
+```
+
+This calls `Rscript`, which is the command line executable to run our R script. Note that we have a named argument called `CSVFILE` and it is done differently than in Bash - how do we use this in our R Script?
+
+### Using Named Arguments in an R script
+
+We can pass arguments from our bash script to our R script by using `commandArgs()` - this will populate a list of named arguments (such as `CSVFILE`) that are passed into the R Script. We assign the output of `commandArgs()` into the `args` object.
+
+We refer to our `CSVFILE` argument as `args$CSVFILE` in our script.
+
+```{r}
+#| eval: false
+#| filename: "02-scripting-basics/r_script.R"
+library(tidyverse)
+
+args <- commandArgs()
+# Use arg$CSVFILE in read.csv
+csv_file <- read.csv(file=args$CSVFILE)
+
+# Do some work with csv_file
+csv_filtered <- csv_file |> dplyr::filter()
+
+# Write output
+write.csv(csv_filtered, file = paste0(args$CSVFILE, "_filtered.csv"))
+```
+
+### Running our R Script
+
+Now that we've set it up, we can run the R script from the command line as follows:
+
+```{bash}
+#| eval: false
+./my_bash_script.sh my_csvfile.csv 
+```
+
+In our bash script, `my_bash_script.sh`, we're using positional argument (for simplicity) to specify our csvfile, and then passing the positional argument to named ones (`CSVFILE`) for `my_r_script.R`.
+
+:::{.callout-note}
+## Why this is important on the platform
+
+We'll see when we build apps that our executable scripts need to be written as bash scripts. This means that if we want to run R code, we need to wrap it in a bash script.
+:::
+
+
 
 ## What you learned in this chapter
 
 Whew, this was a whirlwind tour. Keep this chapter in mind when you're working with the platform - the bash programming patterns will serve you well. We'll refer to these patterns a lot when we get to doing more bioinformatics tasks on the platform.
 
 - Setting up bash scripts with positional arguments
-- Wrapping an R Script in a bash script
 - Iterating over a list of files using `xargs`
 - How to use bash variables and variable expansions
+- Wrapping an R Script in a bash script

@@ -1,5 +1,24 @@
 # Appendix
 
+The appendix contains multiple sections that I wanted to refer to, but there's not a really good place for them.
+
+## Starting ttyd
+
+
+:::{.callout-note}
+## Why not just use `ttyd` for the entire course?
+
+If `ttyd` is so great, why don't we use it for the entire course? 
+
+`ttyd` covers a number of use cases, not just for learning. The main difference with ttyd and using a shell on your computer is that ttyd starts with a project context - that is, you need to specify the project before you start up the `ttyd` app. 
+
+This context makes `ttyd` a little inflexible, especially when we are creating and administering new projects from the command-line.
+
+:::
+
+
+
+
 ## Named Arguments {#sec-named}
 
 In general, ordered arguments can be difficult to remember, and sometimes you have way too many parameters.
@@ -64,7 +83,7 @@ How would we modify the following script to use named arguments?
 
 The `$PATH` variable is one of the most important environment variables we'll set on your local machine. It specifies the directories where executables and binaries can be found. This is important when you install dx-toolkit to interact with the DNAnexus platform. 
 
-In general, you want to append paths to the `$PATH` variable, rather than overwriting to it. This is because other processes may add to the `$PATH` variable as well, so you don't want to interfere with those processes. Adding to our `$PATH` variable depends on the different operating systems.
+In general, you want to append paths to the `$PATH` variable, rather than overwriting it. This is because other processes may add to the `$PATH` variable as well, so you don't want to interfere with those processes. Adding to our `$PATH` variable depends on the different operating systems.
 
 ### Mac/Linux
 

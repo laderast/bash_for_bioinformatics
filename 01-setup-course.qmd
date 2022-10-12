@@ -103,13 +103,13 @@ dx new project -y my_project
 
 ## Transferring files from our shell to Project Storage
 
-Our scripts live in the the `bash_for_bioinformatics/` folder on our machine. We'll need to transfer these scripts, because some of them will be run directly on the DNAnexus workers. 
+Our worker scripts live in the the `bash_for_bioinformatics/` folder on our machine. We'll need to transfer these scripts, because some of them will be run directly on the DNAnexus workers. 
 
 From your machine, type the following to get the "scripts/" folder
 
 ```{bash}
 #| eval: false
-dx upload -r "scripts/"
+dx upload -r "worker_scripts/"
 ```
 
 Let's copy our files from our shell into our DNAnexus project.
@@ -118,4 +118,43 @@ Let's copy our files from our shell into our DNAnexus project.
 #| eval: false
 dx cp -r "project-BQbJpBj0bvygyQxgQ1800Jkk:/Developer Quickstart" .
 dx mv "Developer Quickstart/" "data/"
+```
+
+Confirm that the projects match the following output:
+
+```{bash}
+#| eval: false
+
+tree
+dx tree
+```
+
+## Full Script
+
+The full script for setting up is in the `01-setup-course/project_setup.sh`
+
+```{bash}
+#| eval: false
+#| filename: 01-setup-course/project_setup.sh
+
+## Login
+dx login
+
+## Create your new project
+dx new project -y my_project
+
+## Clone this repository onto your computer
+git clone https://github.com/laderast/bash_bioinfo_scripts
+
+## Upload the scripts into the scripts folder
+cd bash_bioinfo_scripts
+dx upload -r worker_scripts/
+
+## Copy the data over
+dx cp -r "project-BQbJpBj0bvygyQxgQ1800Jkk:/Developer Quickstart" .
+dx mv "Developer Quickstart/" "data/"
+
+## Confirm your project matches
+dx tree
+tree
 ```

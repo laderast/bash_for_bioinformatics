@@ -86,7 +86,73 @@ It is a list. We know this because the value contains a `[]`.
 ```
 :::
 
-##
+
+## Outputting JSON with `dx find` commands
+
+We already encountered the `dx find data` command, which we used in the batch processing chapter.
+
+If we use the `--json` option, then the file information will be outputted in json format. This command will return a list of JSON file objects.
+
+For example:
+
+```{bash}
+#| eval: false
+source ~/.bashrc
+dx find data --path ted_demo:data/ --json
+```
+The output will look like this: 
+
+```
+[
+    {
+        "project": "project-GGyyqvj0yp6B82ZZ9y23Zf6q",
+        "id": "file-FvQGZb00bvyQXzG3250XGbgz",
+        "describe": {
+            "id": "file-FvQGZb00bvyQXzG3250XGbgz",
+            "project": "project-GGyyqvj0yp6B82ZZ9y23Zf6q",
+            "class": "file",
+            "name": "small-celegans-sample.fastq",
+            "state": "closed",
+            "folder": "/data",
+            "modified": 1665003035646,
+            "size": 16801690
+        }
+    },
+    {
+        "project": "project-GGyyqvj0yp6B82ZZ9y23Zf6q",
+        "id": "file-B5Q8z8V5g3bX5qQ9y9YQ006k",
+        "describe": {
+            "id": "file-B5Q8z8V5g3bX5qQ9y9YQ006k",
+            "project": "project-GGyyqvj0yp6B82ZZ9y23Zf6q",
+            "class": "file",
+            "name": "NC_001422.fasta",
+            "state": "closed",
+            "folder": "/data",
+            "modified": 1665003035645,
+            "size": 5539
+        }
+    }
+]
+
+```
+:::{.callout-note}
+### Test your knowledge
+
+What is returned when we run this code? Is it a JSON object, or a list of JSON objects?
+
+```{bash}
+#| eval: false
+
+dx find jobs --json
+```
+:::
+
+:::{.callout-note collapse="true"}
+## Answer
+
+We are returning a list of JSON objects, each of which corresponds to a single job run within our project.
+:::
+
 
 
 
@@ -187,45 +253,24 @@ source ~/.bashrc
 jq '.report_html.dnanexus_link' data/example.json
 ```
 
-## `dx find data`
-
-We already encountered the `dx find data` command, which we used in the batch processing chapter.
-
-If we use the `--json` option, then the file information will be outputted in json format. This command will return a list of JSON file objects.
-
-For example:
-
-```{bash}
-#| eval: false
-source ~/.bashrc
-dx find data --path ted_demo:data/ --json
-```
-
-## `dx find jobs`
-
-
-
 :::{.callout-note}
-### Test your knowledge
+## Try It Out
 
-What is returned when we run this code? Is it a JSON object, or a list of JSON objects?
 
-```{bash}
-#| eval: false
-
-dx find jobs --json
-```
 :::
 
 :::{.callout-note collapse="true"}
 ## Answer
 
-We are returning a list of JSON objects, each of which corresponds to a single job run within our project.
 :::
 
 ## Conditional Filters using `jq`
 
-One natural use case for this is to rerun failed jobs. Failed jobs can occur when using normal priority, which focuses on using spot instances. So, if we ran a series of jobs, we would want to restart these failed jobs.
+One natural use case for this is to rerun failed jobs. 
+
+Failed jobs can occur when using normal priority, which focuses on using spot instances. So, if we ran a series of jobs, we would want to restart these failed jobs.
+
+This is a bit of code that would allow us to select those jobs that have failed.
 
 ```{bash}
 #| eval: false
@@ -235,4 +280,59 @@ xargs -I% sh -c "dx run --clone %"
 ```
 
 The second line contains the `jq` filter that does the magic. Remember, the filter is contained within the single quotes (`''`).
+
+The last line contains `"dx run --clone %"`. 
+
+Let's take apart the different parts of the `jq` filter (@fig-jq-filter):
+
+:::{#fig-jq-filter}
+```{mermaid}
+graph LR;
+  A[".[]"] --> B{"|"} 
+  B --> C["select (.state | contains('failed'))"] 
+  C --> D{"|"} 
+  D --> E[".id"]
+```
+Taking apart the `jq` filter.
+:::
+
+Note that the pipes in this filter apply only to the `jq` filter, so don't mix them up with the other pipes in our overall Bash statement.
+
+The first part of the filter, `.[]`, says that we want to process the list (remember, `dx find jobs` returns a list of objects).
+
+The second part of the filter, `select (.state | contains('failed'))` will let us select objects in the list that have a `state` of `failed`. This list of objects is then passed on the next part of the filter.
+
+The last part of the filter, `.id`, returns the the file ids for our failed jobs.
+
+This is a basic pattern for selecting objects that meet a criteria, and can be really helpful when you want more control of your batch processing. 
+
+:::{.callout-note}
+## Check Yourself
+
+How would you modify the code below to terminate all jobs that had `state` `running` using `dx terminate`?
+
+```{bash}
+#| eval: false
+dx find jobs --json |\ 
+jq '.[] | select (.state | contains("failed")) | .id' |\
+xargs -I% sh -c "dx run --clone %"
+```
+
+:::
+
+:::{.callout-note collapse="true"}
+## Answer
+
+```{bash}
+#| eval: false
+dx find jobs --json |\ 
+jq '.[] | select (.state | contains("running")) | .id' |\
+xargs -I% sh -c "dx terminate %"
+```
+
+:::
+
+## Using JSON as an Input
+
+Coming soon.
 

@@ -1,0 +1,269 @@
+# Batch Processing on the Cloud {#sec-batch}
+
+Now we're prepared for the big one: batch processing on the DNAnexus platform. All of the shell and DNAnexus skills will be leveraged in this chapter.
+
+## Learning Objectives
+
+1. **Utilize** `dx find data` to find data files on the platform to batch process.
+1. **Iterate** over files using Bash scripting on the platform to batch process them within a DNAnexus project.
+1. **Leverage** dxFUSE to simplify your bash scripts
+1. **Utilize** `dx generate-batch-inputs`/`dx run --batch-tsv` to batch process files
+1. **Utilize** Python to batch process multiple files per worker. 
+
+## Two Ways of Batching
+
+:::{#fig-batch1}
+```{mermaid}
+graph LR;
+  A[List files </br> using `dx data`] --> F{"|"}
+  F --> E[`xargs` sh -c]
+  E --> B[`dx run` </br> on file1];
+  E --> C[`dx run` </br> on file2];
+  E --> D[`dx run` </br> on file3];
+```
+Batch method 1
+:::
+
+:::{#fig-batch2}
+```{mermaid}
+graph LR;
+  A[Submit array </br> of files </br> in `dx run`] --> B[Loop over array </br> of files </br> in worker];
+```
+Batch method 2
+:::
+
+We actually have two methods of batching jobs using Swiss Army Knife: 
+
+1. Use `xargs` on our home system to run `dx run` statements for each file (@fig-batch1).
+1. Submit an array of files as an input to Swiss Army Knife. Then process each file using the `icmd` input (@fig-batch2)
+
+Both of these methods can potentially be useful.
+
+
+## Finding files using `dx find data`
+
+`dx find data` is a command that is extremely helpful on the DNAnexus platform. Based on metadata and folder paths, `dx find data` will return a list of files that meet the criteria. 
+
+`dx find data` lets you search on the following types of metadata:
+
+- tags `--tag`
+- properties `--property`
+- name `--name`
+- type `--type`
+
+It can output in a number of different formats. Including:
+
+- `--brief` - return only the file-ids
+- `--json` - return file information in JSON format
+- `--verbose` - this is the default setting
+- `--delimited` - return as a delimited text file
+
+Of all of these, `--brief` and `--json` are the most useful for automation. `--delimited` is also helpful, but there is also a utility called `dx generate-batch-inputs` that will let us specify multiple inputs to process line by line. 
+
+## Helpful `dx find data` examples
+
+As we're starting off in our batch processing journey, I wanted to provide some helpful recipes for selecting files. 
+
+### Find all *.bam files in a project
+
+You can use wildcard characters with the `--name` flag. Here, we're looking for anything with the suffix "*.bam".
+
+```{bash}
+#| eval: false
+source ~/.bashrc
+dx find data --name "*.bam" --brief
+```
+
+### Searching within a folder
+
+You can add the `--path` command to search in a specific folder.
+
+```{bash}
+#| eval: false
+source ~/.bashrc
+dx find data --name "*bam" --path "data/"
+
+```
+
+### Find all files with a field id
+
+Take advantage of metadata associated with files when you can. If you are on UKB RAP, one of the most helpful properties to search is `field_id`.
+
+Note: be careful with this one, especially if you are working on UK Biobank RAP. You don't want to return 500,000 file ids. I would concentrate on the field ids that are aggregated on the population level, such as the pVCF files.
+
+```{bash}
+#| eval: false
+source ~/.bashrc
+dx find data --property field_id=23148 --brief
+```
+
+### Find all files that are of class `file`
+
+There are a number of different object classes on the platform, such as `file` or `applet`
+
+Search for all files in your project that have a `file` class.   
+
+```{bash}
+#| eval: false
+
+source ~/.bashrc
+dx find data --class file --brief
+```
+
+### In General: Think about leveraging metadata
+
+In general, think about leveraging metadata that is attached to your files.
+
+For example, for the UKB Research Analysis Platform, data files in the `Bulk/` folder in your project have multiple properties: `field_id` (the data field as specified by UK Biobank) and `eid`.
+
+## Using `xargs` to Batch Multiple Files
+
+Ok, now we have a list of files from `dx find data` that meet our criteria. How can we process them one by one? 
+
+Remember our discussion of `xargs`? (@sec-xargs) This is where `xargs` shines, when you provide it a list of files.
+
+Remember, a really useful pattern for `xargs` is using it for variable expansion and starting a subshell to process individual files. 
+
+```{bash}
+#| eval: false
+source ~/.bashrc
+dx find data --name "*.bam" --brief | \
+  xargs -I % sh -c "dx run app-swiss-army-knife -y -iin="%" \
+  -icmd='samtools view -c \${in_name} > \${in_prefix-counts.txt}' \
+  --tag samjob --destination results/' 
+```
+
+The key piece of code we're doing the variable expansion in is here:
+
+```{bash}
+#| eval: false
+sh -c 'dx run app-swiss-army-knife -iin="%" \ 
+  -icmd="samtools view -c \${in_name}\ > \${in_prefix}-counts.txt" \
+  --tag samjob --destination results/'
+```
+
+We're using `sh -c` to run a script as a *subshell* to execute the `dx run` statement.
+
+Note that we're specifying the helper variables here with a `\`:
+
+`\${in_name}`
+
+This escaping (`\$`) of the dollar sign is to prevent the variable expansion from happening in the top-level shell - the helper variable names need to be passed in to the subshell which needs to pass it onto the worker. Figuring this out took time and made my brain hurt.
+
+This escaping is only necessary because we're using `xargs` and passing our `-icmd` input into the worker. For the most part, you won't need to escape the `$`.
+
+When we run this command, we get the following screen output:
+
+```
+Using input JSON:
+{
+    "cmd": "samtools view -c $in_name > $in_prefix-counts.txt",
+    "in": [
+        {
+            "$dnanexus_link": {
+                "project": "project-GGyyqvj0yp6B82ZZ9y23Zf6q",
+                "id": "file-BZ9YGpj0x05xKxZ42QPqZkJY"
+            }
+        }
+    ]
+}
+
+Calling app-GFxJgVj9Q0qQFykQ8X27768Y with output destination
+  project-GGyyqvj0yp6B82ZZ9y23Zf6q:/results
+
+Job ID: job-GJ2xVZ80yp62X5Z51qp191Y8
+
+[more job info]
+```
+
+if we do a `dx find jobs`, we'll see our jobs listed. Hopefully they are running:
+
+```
+dx find jobs --tag samjob
+* Swiss Army Knife (swiss-army-knife:main) (running) job-GJ2xVf00yp62kx9Z8VK10vpQ
+  tladeras 2022-10-11 13:57:59 (runtime 0:01:49)
+* Swiss Army Knife (swiss-army-knife:main) (running) job-GJ2xVb80yp6KjQpxFJJBzv5k
+  tladeras 2022-10-11 13:57:57 (runtime 0:00:52)
+* Swiss Army Knife (swiss-army-knife:main) (runnable) job-GJ2xVZj0yp6FFFXG11j6YJ9V
+  tladeras 2022-10-11 13:57:55 (runtime 0:01:15)
+* Swiss Army Knife (swiss-army-knife:main) (runnable) job-GJ2xVZ80yp62X5Z51qp191Y8
+  tladeras 2022-10-11 13:57:53 (runtime 0:00:56)
+```
+
+### When batching, tag your jobs
+
+It is critical that you tag your jobs in your `dx run` code with the `--tag` argument. 
+
+Why? You will at some point start up a bunch of batch jobs that might have some settings/parameters that were set wrong. That's when you need the tag.
+
+```{bash}
+#| eval: false
+
+dx find jobs --tag "samjob"
+```
+
+### If you screw up, use the tag to `dx terminate`
+
+`dx terminate <jobid>` will terminate a running job with that job id. It doesn't take a tag as input. 
+
+But again, `xargs` to the rescue. We can find our job ids with the tag `bcfjob` using `dx find jobs` and then pipe the `--brief` output into `xargs` to terminate each job id.
+
+```{bash}
+#| eval: false
+dx find jobs --tag samjob --brief | xargs -I% sh -c "dx terminate %"
+```
+
+## Batching multiple inputs: `dx generate_batch_inputs` 
+
+What if you have multiple input files that you need to batch with? This is where the [`dx generate_batch_inputs`](https://documentation.dnanexus.com/user/running-apps-and-workflows/running-batch-jobs) comes in.
+
+For each input for an app, we can specify it using wildcard characters.
+
+```{bash}
+# | eval: false
+
+dx generate_batch_inputs \
+  --path "data/"\
+  -in="(.*)\.bam$"
+```
+
+Here we're specifying a single input `in`, and we've supplied a wildcard search. It's going to look in `data/` for this particular pattern (we're looking for bam files).
+
+If we do this, we'll get the following response:
+
+```
+Found 4 valid batch IDs matching desired pattern.
+Created batch file dx_batch.0000.tsv
+```
+
+So, there is 1 `.tsv` file that was generated by `dx generate_batch_inputs` on our machine. 
+
+If we have many more input files, say 3000 files, it would generate 3 `.tsv` files. Each of these `.tsv` files contains about 1000 files per line. We can run these individual jobs with:
+
+```{bash}
+#| eval: false
+
+dx run swiss-army-knife --batch-tsv dx_batch.0000.tsv \
+   -icmd='samtools stats ${in_name} > ${in_prefix}.stats.txt ' \
+   --destination "/Results/" \
+   --detach --allow-ssh \
+   --tag bigjob
+```
+
+This will generate 4 jobs from the `dx_batch.0000` file to process the individual files. Each `tsv` file will generate up to 1000 jobs. 
+
+### Drawbacks to `dx generate_batch_inputs`/`dx run --batch-tsv`
+
+The largest drawback to using `dx generate_batch_inputs` is that each column must correspond to an individual input name - you can't submit an array of files to a job this way. 
+
+### For More Information
+
+The Batch Jobs documentation page has some good code examples for `dx generate_batch_inputs` here: <https://documentation.dnanexus.com/user/running-apps-and-workflows/running-batch-jobs/>
+
+## Programatically Submitting Arrays of Files for a job
+
+See <https://dnanexus.gitbook.io/uk-biobank-rap/science-corner/guide-to-analyzing-large-sample-sets>
+
+## What you learned in this chapter
+
+This was a big chapter, and built on everything you learned before. We put together the output of `dx find data --brief` with a pipe, and `xargs` to spawn jobs per set of files. We also learned of alternative approaches using `dx generate_batch_inputs`/`dx run --batch-tsv` and using Python to build the `dx run` statements.

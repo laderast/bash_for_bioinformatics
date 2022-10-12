@@ -1,4 +1,4 @@
-# Cloud Computing Basics
+# Cloud Computing Basics {sec-cloud}
 
 We all need to start somewhere when we work with cloud computing. 
 
@@ -12,7 +12,7 @@ Also, if you are coming from using an on-premise high performance computing (HPC
 1. **Articulate** key differences between local computing and cloud computing
 1. **Describe** the sequence of events in launching jobs in the DNAnexus cloud
 1. **Differentiate** local storage from cloud-based project storage
-1. **Describe** instance types and how to use them
+1. **Describe** instance types and how to use them.
 
 ## Important Terminology
 
@@ -22,14 +22,6 @@ Let's establish the terminology we need to talk about cloud computing.
 - **Software Environment** - everything needed to run a piece of software on a brand new computer. For example, this would include installing R, but also all of its dependencies as well. 
 - **App/Applet** - Executable on the DNAnexus platform. 
 - **Project Storage** - Part of the platform that stores our files and other objects. We'll see that these other objects include applets, databases, and other object types.
-
-:::{.callout-note}
-## How is Project Storage Related to S3?
-
-DNAnexus project storage is based on an S3 bucket for regions that are built on AWS. There is an internal file transfer protocol called `dnax://` that handles transfers between S3 buckets and Amazon Elastic Comput (EC) instances.
-
-There is an equivalent system for regions based on Azure.
-:::
 
 ## Understanding the key players
 
@@ -97,8 +89,8 @@ The trick with the worker script is being able to visualize the location of the 
 
 As you might have surmised, running a job on the DNAnexus platform is very different from computing on your local computer.
 
-1. We don't own the worker machine, we only have temporary access to it.
-2. We have to be explicit what kind of machine we want. 
+1. We don't own the worker machine, we only have temporary access to it. A lot of the complications of running cloud computations comes from this.
+2. We have to be explicit what kind of machine we want. We'll talk much more about this in terms of instance types (@sec-instance)
 3. We need to transfer files to and from our temporary worker.
 
 
@@ -106,8 +98,55 @@ As you might have surmised, running a job on the DNAnexus platform is very diffe
 
 ![Project Storage versus Worker storage](images/storage.png){#fig-storage}
 
-You might have noticed that the worker is a blank slate after we request it. So any files we need to process need to be transferred over to the temporary worker storage.
+You might have noticed that the worker is a blank slate after we request it. So any files we need to process need to be transferred over to the temporary worker storage. 
 
 Fortunately, when we use apps, the file transfer process is handled by the app. This also means that when you build your own apps on the platform, you will need to specify inputs (what files the app will process) and outputs (the resulting files from the app).
 
+### Running Scripts on a Worker is Indirect
+
+Because this file transfer occurs from project storage to the worker, when we run scripts on a worker, we have to think about the location of the files on the worker (@fig-indirect).
+
+![An indirect process](images/indirect.png){#fig-indirect}
+
+Let's look at an example of that nestedness. Say we have two bed files and we want to combine them on a worker using PLINK.
+
+1. Transfer data from project to the working directory on the worker. The first thing we need to do is transfer them from project storage to worker storage. Notice that even though in project storage they are in a data folder, they are in the base directory of the worker.
+2. Run the computation on the worker, and generate results file. The files we need to process are in the base directory of the worker, so we can refer to them without the folder path (`plink chr1.bed`). We generate a results file called `chr_combined.bed` (the combined `.bed` file).  
+3. Transfer results file back to the worker. 
+
+
+## Instance Types
+
+One of the major concerns when you're getting started on the platform is cost.
+
+What impacts cost? The number of workers and your priority for those workers matters. Most importantly, the instance type matters (@fig-instance). Let's review how to pick an instance type on the platform.
+
+First off, all apps (including Swiss Army Knife) have a default instance selected. 
+
+:::{#fig-instance}
+```{mermaid}
+graph LR
+  A["mem1_ <br> (Memory)"] --> C["ssd1_ <br> (Disk Size)"]
+  C --> E["v2_ <br> (Version)"]
+  E --> G["x4 <br> (Cores)"]
+```
+Anatomy of an instance type. 
+:::
+
+This is an example of an instance type. We can see that it has four sections: a memory class (`mem1`), a disk space class (`ssd1`), a version (`v2`), and the number of CPUs (`x4`). Together, this combination of classes forms an [instance type](https://documentation.dnanexus.com/developer/api/running-analyses/instance-types).
+
+![An Instance Type Checklist](images/instance_checklist.png){#fig-instances}
+
+Let's talk about what aspects to concentrate on when choosing your instance type.
+
+
+### When to Scale Up or Down?
+
+One question we often get is about when to scale up and down instance types in terms of resource usage. It's important when you're starting out to do profiling of the app on a data file or dataset that you know well. Start with the default instance type for an app on your test files at first.
+
+Once you have run an app as a job, you can look at the job log to understand how the compute resources were utilized. 
+
+In this case, our job under utilized the compute resources on our instance type, so we might want to scale to a lower instance type.
+
+If our job crashed due to a lack of resources, or is running slow, we may want to scale up our resource type.
 

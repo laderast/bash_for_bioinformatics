@@ -1,3 +1,5 @@
+freeze: true
+
 project:
   type: book
 
@@ -5,17 +7,23 @@ book:
   title: "Bash for Bioinformatics"
   author: "Ted Laderas"
   date: "10/6/2022"
+  link-external-icon: true
+  link-external-newwindow: true
   chapters:
     - index.qmd
     - "01-setup-course.qmd"
-    - "01-scripting-basics.qmd"
-    - "02-cloud-computing-basics.qmd"
-    - "03-doing-work-with-dx-run.qmd"
-    - "04-batch-processing.qmd"
+    - "02-scripting-basics.qmd"
+    - "03-cloud-computing-basics.qmd"
+    - "04-doing-work-with-dx-run.qmd"
+    - "05-batch-processing.qmd"
     - "06-JSON.qmd"
-    - "06-containers.qmd"
+    - "07-containers.qmd"
     - "appendix.qmd"
     - references.qmd
+  comments: 
+    hypothesis:
+      theme: clean
+      openSidebar: false
 
 bibliography: references.bib
 
