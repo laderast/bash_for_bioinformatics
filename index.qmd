@@ -70,6 +70,8 @@ No one writes a book alone. This book comes from a lot of conversations with eve
 -   Allison Regier
 -   Ben Busby
 -   Anastazie Sedlakova
+-   Scott Funkhouser
+-   Stanley Lan
 -   Ondrej Klempir
 -   Branislav Slavik
 -   David Stanek
