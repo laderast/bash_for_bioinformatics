@@ -39,14 +39,6 @@ When we run an analysis or process files on our computer, we are in control of a
 
 Our main point of access to either the HPC cluster or to the DNAnexus cloud is going to be our computer.
 
-### Key Players in High Performance Computing
-
-![Key Players in HPC](images/hpc_players.png){#fig-hpc-players}
-
-- Our Machine
-- Head Node
-- HPC Worker
-- Shared Storage
 
 ### Key Players in Cloud Computing
 

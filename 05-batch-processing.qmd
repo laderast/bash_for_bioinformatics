@@ -262,7 +262,9 @@ The Batch Jobs documentation page has some good code examples for `dx generate_b
 
 ## Programatically Submitting Arrays of Files for a job
 
-See <https://dnanexus.gitbook.io/uk-biobank-rap/science-corner/guide-to-analyzing-large-sample-sets>
+You can also use Python to build `dx run` statements, which is especially helpful when you want to submit arrays of 100+ files to a worker. 
+
+See <https://dnanexus.gitbook.io/uk-biobank-rap/science-corner/guide-to-analyzing-large-sample-sets> for more info. 
 
 ## What you learned in this chapter
 
