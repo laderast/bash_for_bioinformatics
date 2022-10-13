@@ -19,13 +19,13 @@
 |**Shared Storage**|Shared File System (Lustre, GPFS)|Project Storage|
 |**Worker I/O**|Handled by Shared File System|Transferred to/from Project Storage by Worker|
 
-## HPC/DNAnexus Commands
+## HPC vs. DNAnexus Commands
 
 |Task   |dx-toolkit |PBS   |SLURM    |
 |-------|-----------|------|---------|
-|Run Job |`dx run <app-id> <script>`|`qsub <script>`|`sbatch <script>|
-|Monitor Jobs |`dx find jobs`|`qstat`|`squeue`|
-|Kill Job|`dx terminate <jobid>`|`qdel <jobid>`|`scancel <jobid>|
+|**Run Job** |`dx run <app-id> <script>`|`qsub <script>`|`sbatch <script>`|
+|**Monitor Jobs** |`dx find jobs`|`qstat`|`squeue`|
+|**Kill Job**|`dx terminate <jobid>`|`qdel <jobid>`|`scancel <jobid>`|
 
 
 

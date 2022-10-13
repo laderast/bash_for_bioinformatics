@@ -58,7 +58,7 @@ dx run app-swiss-army-knife \
 
 Let's take this code apart. We start our command with `dx run` and the name of the app on the platform we want to use: `app-swiss-army-knife`. 
 
-The second line contains the file input we want to process, which is a file in our current project. Note that the input is specified as `-iin`, not `--in` or `--iin`. Using a single hyphen `-` here instead of a double hyphen `--` for our inputs is different than we might expect for other linux/unix parameters.
+The second line contains the file input we want to process, which is a file in our current project. Note that the input is specified as `-iin`, not `--in` or `--iin`. Using a single hyphen `-` here instead of a double hyphen `--` for our inputs is different than we might expect for other linux/UNIX parameters.
 
 The third line is the actual command we want to run in Swiss Army Knife. We want to run `sambamba index` on our input file.
 
@@ -230,7 +230,7 @@ One thing you'll notice is that some of them require multiple file inputs. How d
 
 ### Multiple file inputs to Swiss Army Knife
 
-One thing that may not be apparant to you is that you can specify multiple file inputs with multiple `-iin` options.
+One thing that may not be apparent to you is that you can specify multiple file inputs with multiple `-iin` options.
 
 The Swiss Army Knife Documentation notes that `-iin` is actually an *array* file input. That means that we can submit multiple files like this:
 
@@ -297,7 +297,7 @@ dx run app-swiss-army-knife \
   -icmd="plink --bfile /mnt/project/data/chr1 --geno 0.01 --make-bed --out chr1_qc"
 ```
 
-In our `-icmd` input, we are referring to the file location of the triplet by pre-prending a `/mnt/project/` to the project path of the triplet: `data/chr1`. 
+In our `-icmd` input, we are referring to the file location of the triplet by pre-pending a `/mnt/project/` to the project path of the triplet: `data/chr1`. 
 
 ### Advantages of dxFUSE
 
@@ -310,8 +310,8 @@ Most of my scripts leverage dxFUSE. Let's talk about the advantages of using `dx
 
 There are some disadvantages to using dxFUSE you should be aware of:
 
-  - **It obscures your audit trail.** Because we are not specifiying the files as inputs, it is less obvious as to which files were processed with each job.
-  - **It works best as read-only.** dxFUSE has limited write capabilities at this point, so it is best
+  - **It obscures your audit trail.** Because we are not specifying the files as inputs, it is less obvious as to which files were processed with each job.
+  - **It works best as read-only.** dxFUSE has limited write capabilities at this point, so it is best to treat it as a read-only file system.
   - **It works best with good file hygiene practices.** One of the confusing things is that you can create files with the same filename in the same folder. This can easily happen if you clone a job. Because these two files have unique identifiers, they are allowed to have identical file names on the platform. 
 
 ## Using a Docker Image with `dx run`/Swiss Army Knife
@@ -320,4 +320,4 @@ See the containers chapter (@sec-containers) for more information.
 
 ## What you learned in this chapter
 
-We built upon our shell scripting skills (@sec-scripting) and our knowledge of cloud-computing (@sec-cloud) to start running jobs effectively in the cloud. 
+We built upon our shell scripting skills (@sec-script) and our knowledge of cloud-computing (@sec-cloud) to start running jobs effectively in the cloud. 

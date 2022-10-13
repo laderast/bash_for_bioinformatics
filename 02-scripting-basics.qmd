@@ -1,4 +1,4 @@
-# Shell Scripting Basics {sec-scripting}
+# Shell Scripting Basics {#sec-script} 
 
 ## Learning Objectives
 
@@ -19,7 +19,7 @@ We will be using Bash scripts as "glue" for multiple applications in cloud compu
 
 1. **Wrapping scripts** from other languages such as R or Python so we can run them using `dx run` on a app such as Swiss Army Knife
 2. **Specifying inputs and outputs** to executables in Applets/Workflows
-3. **Specifying inputs and outputs** in a workflow built by Workflow Description Langugae (WDL).
+3. **Specifying inputs and outputs** in a workflow built by Workflow Description Language (WDL).
 
 As you can see, knowing Bash is extremely helpful when running jobs on the cloud.
 

@@ -1,4 +1,4 @@
-# Cloud Computing Basics {sec-cloud}
+# Cloud Computing Basics {#sec-cloud} 
 
 We all need to start somewhere when we work with cloud computing. 
 
