@@ -178,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#running-scripts-on-a-worker-is-indirect" id="toc-running-scripts-on-a-worker-is-indirect" class="nav-link" data-scroll-target="#running-scripts-on-a-worker-is-indirect"><span class="toc-section-number">4.6.1</span>  Running Scripts on a Worker is Indirect</a></li>
   </ul></li>
-  <li><a href="#instance-types" id="toc-instance-types" class="nav-link" data-scroll-target="#instance-types"><span class="toc-section-number">4.7</span>  Instance Types</a>
+  <li><a href="#sec-instance" id="toc-sec-instance" class="nav-link" data-scroll-target="#sec-instance"><span class="toc-section-number">4.7</span>  Instance Types</a>
   <ul class="collapse">
   <li><a href="#when-to-scale-up-or-down" id="toc-when-to-scale-up-or-down" class="nav-link" data-scroll-target="#when-to-scale-up-or-down"><span class="toc-section-number">4.7.1</span>  When to Scale Up or Down?</a></li>
   </ul></li>
@@ -298,7 +298,7 @@ ul.task-list li input[type="checkbox"] {
 <p>As you might have surmised, running a job on the DNAnexus platform is very different from computing on your local computer.</p>
 <ol type="1">
 <li>We don’t own the worker machine, we only have temporary access to it. A lot of the complications of running cloud computations comes from this.</li>
-<li>We have to be explicit what kind of machine we want. We’ll talk much more about this in terms of instance types (<span class="quarto-unresolved-ref">?sec-instance</span>)</li>
+<li>We have to be explicit what kind of machine we want. We’ll talk much more about this in terms of instance types (<a href="#sec-instance"><span>Section&nbsp;4.7</span></a>)</li>
 <li>We need to transfer files to and from our temporary worker.</li>
 </ol>
 </section>
@@ -330,8 +330,8 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 </section>
 </section>
-<section id="instance-types" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="instance-types"><span class="header-section-number">4.7</span> Instance Types</h2>
+<section id="sec-instance" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="sec-instance"><span class="header-section-number">4.7</span> Instance Types</h2>
 <p>One of the major concerns when you’re getting started on the platform is cost.</p>
 <p>What impacts cost? The number of workers and your priority for those workers matters. Most importantly, the instance type matters (<a href="#fig-instance">Figure&nbsp;<span>4.7</span></a>). Let’s review how to pick an instance type on the platform.</p>
 <p>First off, all apps (including Swiss Army Knife) have a default instance selected.</p>
@@ -364,6 +364,35 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <p>Let’s talk about what aspects to concentrate on when choosing your instance type.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Read the Swiss Army Knife documentation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When you run Swiss Army Knife from the command line, the default instance type is <code>mem1_ssd1_v2_x4</code> - how many cores are available in this instance?</p>
+</div>
+</div>
+<div class="callout callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>4 Cores (that’s what the <code>x4</code> suffix means.)</p>
+</div>
+</div>
+</div>
 <section id="when-to-scale-up-or-down" class="level3" data-number="4.7.1">
 <h3 data-number="4.7.1" class="anchored" data-anchor-id="when-to-scale-up-or-down"><span class="header-section-number">4.7.1</span> When to Scale Up or Down?</h3>
 <p>One question we often get is about when to scale up and down instance types in terms of resource usage. It’s important when you’re starting out to do profiling of the app on a data file or dataset that you know well. Start with the default instance type for an app on your test files at first.</p>
