@@ -156,7 +156,7 @@ A really common pattern is taking a delimited list of files and doing something 
 Let's start out with a list of files:
 
 ```{bash}
-#| eval: true
+#| eval: false
 source ~/.bashrc
 ls data/*.qmd
 ```
