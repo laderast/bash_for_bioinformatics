@@ -23,18 +23,39 @@ On your machine, I recommend using a text editor to edit the scripts in your ter
 
 Now that we have a terminal and code editor, we can install the [dx-toolkit](https://documentation.dnanexus.com/downloads) onto our machine. In your terminal, you'll first need to make sure that python 3 is installed, and the `pip` installer is installed as well. 
 
+## On Ubuntu
+
+You should have a python3 installation - check by typing in:
+
+`which python3`
+
+If you get a blank response, then you'll need to install it.
+
 ```
-sudo apt-get install python3
+sudo apt-get install python3 ## If python is not yet installed
 sudo apt-get install pip3
+sudo apt-get install jq
+```
+That last command will install the `dx-toolkit` to your machine, which are the command line tools you'll need to work on the DNAnexus cloud.
+
+## On Macs
+
+Install homebrew to your mac and install `python3` and `pip`:
+
+```
+brew install python3
+brew install pip3
+brew install jq
 ```
 
-Once you have access to Python 3 and `pip3`, you can install the dx-toolkit using the following:
+## For both machines
+
+Once you have access to Python 3 and `pip3`, you can install the dx-toolkit using the following command:
 
 ```
 pip3 install dxpy
 ```
 
-That last command will install the `dx-toolkit` to your machine, which are the command line tools you'll need to work on the DNAnexus cloud.
 
 ## Alternative Setup: binder.org
 
@@ -53,15 +74,23 @@ This shell includes the following utilities:
 
 ## Clone the files and scripts using git
 
+On your own computer, clone the repo (it will already be cloned if you're in the binder version).
+
 ```{bash}
 #| eval: false
 
-git clone https://
+git clone https://github.com/laderast/bash_info_scripts/
+```
+
+This will create a folder called `/bash_info_scripts/ in your current directory. Change to it:
+
+```
+cd bash_info_scripts
 ```
 
 ## Try logging in
 
-Now that you have an account and a way to run the `dx-toolkit`, try logging in with `dx login`:
+Now that you have an account and the `dx-toolkit` installed, try logging in with `dx login`:
 
 ```{bash}
 #| eval: false
@@ -101,23 +130,23 @@ The first command we'll run is `dx new project` in order to create our project.
 dx new project -y my_project 
 ```
 
+:::{.callout-note}
+## What's happening here?
+
+When you call `dx new project`, that creates a project on the platform with the name `my_project`. This project lives in the cloud, within the DNAnexus platform.
+
+The `-y` option switches you over into that new project.
+:::
+
 ## Transferring files from our shell to Project Storage
 
 Our worker scripts live in the the `bash_for_bioinformatics/` folder on our machine. We'll need to transfer these scripts, because some of them will be run directly on the DNAnexus workers. 
-
-From your machine, type the following to get the "scripts/" folder
-
-```{bash}
-#| eval: false
-dx upload -r "worker_scripts/"
-```
 
 Let's copy our files from our shell into our DNAnexus project.
 
 ```{bash}
 #| eval: false
-dx cp -r "project-BQbJpBj0bvygyQxgQ1800Jkk:/Developer Quickstart" .
-dx mv "Developer Quickstart/" "data/"
+dx cp -r "project-GJ496B00FZfxPV5VG36FybvY" .
 ```
 
 Confirm that the projects match the following output:

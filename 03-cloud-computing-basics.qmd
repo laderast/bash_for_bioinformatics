@@ -107,7 +107,7 @@ Let's look at an example of that nestedness. Say we have two bed files and we wa
 3. Transfer results file back to the worker. 
 
 
-## Instance Types
+## Instance Types {#sec-instance}
 
 One of the major concerns when you're getting started on the platform is cost.
 
@@ -131,6 +131,18 @@ This is an example of an instance type. We can see that it has four sections: a 
 
 Let's talk about what aspects to concentrate on when choosing your instance type.
 
+:::{.callout-note}
+## Read the Swiss Army Knife documentation
+
+When you run Swiss Army Knife from the command line, the default instance type is `mem1_ssd1_v2_x4` - how many cores are available in this instance?
+:::
+
+:::{.callout collapse="true"}
+## Answer
+
+4 Cores (that's what the `x4` suffix means.)
+
+:::
 
 ### When to Scale Up or Down?
 

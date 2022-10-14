@@ -1,5 +1,15 @@
 # Working with files using `dx run` {#sec-dxrun}
 
+:::{.callout-note}
+## Prep for Exercises
+
+In your shell, make sure you're in the `bash_bioinfo_scripts/04-doing-work-with-dx-run/` folder:
+
+```
+cd 04-doing-work-with-dx-run/
+```
+:::
+
 ## Learning Objectives
 
 1. **Utilize** an all purpose app (`swiss-army-knife`) to run bioinformatics jobs using `dx run` on files in a DNAnexus project
@@ -8,13 +18,6 @@
 1. **Wrap** R and Python scripts using a bash script to run it on the cloud using `dx run`
 1. **Tag** output files on the platform for downstream use.
 
-## Prep for Exercises
-
-In your shell, make sure you're in the `bash_bioinfo_scripts/04-doing-work-with-dx-run/` folder:
-
-```
-cd 04-doing-work-with-dx-run/
-```
 
 ## Doing Bioinformatics with the Swiss Army Knife (SAK) App
 
@@ -341,7 +344,7 @@ dx run app-swiss-army-knife \
 
 ```{bash}
 #| eval: false
-#| filename: 04-doing-work-with-dx-run/dx_run_instance.sh
+#| filename: 04-doing-work-with-dx-run/run_instance.sh
 dx run app-swiss-army-knife \
   -iin="data/chr1.bed" \
   -iin="data/chr1.bim" \
@@ -365,10 +368,14 @@ dx run app-swiss-army-knife \
   
 ### Clone an failed job
 
+If you have run a job on a lower priority, your job has a chance of getting bumped (stopped). If that's the case, your job will fail.
+
 ```{bash}
 #| eval: false
 dx run app-swiss-army-knife --clone <job-id>
 ```
+
+When we learn about JSON (#sec-json), we'll learn a recipe for restarting a list of these failed jobs.
 
 ## dxFUSE: Simplify your scripts with multiple inputs
 

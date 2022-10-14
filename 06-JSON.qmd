@@ -1,4 +1,20 @@
-# Working with JSON on the DNAnexus Platform
+# Working with JSON on the DNAnexus Platform {#sec-json}
+
+:::{.callout-note}
+## Preparing for this Chapter
+
+You'll want to `cd` into the `06-JSON` folder in your project.
+
+You'll also need to install `jq` if it's not yet on your system. You can check by typing 
+
+`which jq`
+
+
+If you're on a Mac, you can use homebrew and 
+
+`brew install jq`.
+
+:::
 
 ## Learning Objectives
 
