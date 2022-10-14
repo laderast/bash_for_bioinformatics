@@ -1,0 +1,506 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Bash for Bioinformatics",
+    "section": "",
+    "text": "Bash scripting is an essential skill in bioinformatics that is often expected that bioinformaticians will just pickup in their careers. I think that this underestimates the difficulty of learning and applying Bash scripting.\nThis is a book that is meant to bring you (a budding bioinformaticist) beyond the foundational shell scripting skills learned from a shell scripting course such as the Software Carpentries Shell Course.\nYou might also be savvy with an on-premise High Performance Computing (HPC) cluster and are wondering how to transition to working in the cloud. We have an abbreviated path for you that can get you to running jobs in the cloud as quickly as possible.\nSpecifically, this book shows you a path to get started with reproducible cloud computing on the DNAnexus platform.\nOur goal is to showcase the “glue” skills that help you do bioinformatics reproducibly in the cloud.\n\n\nAfter reading and doing the exercises in this book, you should be able to:\n\nApply bash scripting to your own work\nArticulate basic Cloud Computing concepts that apply to the DNAnexus platform\nLeverage bash scripting and the dx-toolkit to execute jobs on the DNAnexus platform\nExecute batch processing of multiple files in a project on the DNAnexus platform\nMonitor, profile, terminate and retry jobs to optimize costs\nManage software dependencies reproducibly using container-based technologies such as Docker\n\n\n\n\nOne way to approach learning DNAnexus is to think about the skills you need to process a number of files. Ben Busby has noted there are 4 main skill levels in processing files on the DNAnexus platform:\n\n\n\n\n\n\n\n\nLevel\n# of Files\nSkill\n\n\n\n\n1\n1\ndx run\n\n\n2\n1-50 Files\nSwiss Army Knife\n\n\n3\n50-1000 Files\nBuilding your own apps\n\n\n4\n1000+ Files, multiple steps\nUsing WDL (Workflow Description Language)\n\n\n\nWe’ll be covering Levels 1 and 2, but you will have the skills to move on to Level 3.\nThe key is to gradually build on your skills.\n\n\n\n\nUsing Bash scripting in DNAnexus Apps and Workflows\nUsing Bash Scripting in Workflow Description Language (WDL)\n\nAs mentioned, these are advanced level topics. However, this book will provide an excellent foundation to effectively building apps and workflows on the DNAnexus platform.\nThis book is not meant to be a substitute for excellent books such as Data Science on the Command Line. This book focuses on the essential Bash shell skills that will help you on the DNAnexus platform.\n\n\n\nThis is a very opinionated journey through Bash shell scripting, workflow languages, and reproduciblity. It is designed to build on each of the concepts in a gradual manner. Where possible, we link to the official DNAnexus documentation. It is not meant to be a replacement for the DNAnexus documentation.\nAt each step, you’ll be able to do useful things with your data. We will focus on skills and programming patterns that are useful.\n\n\n\nBefore you tackle this book, you should be able to accomplish the following:\n\nUtilize and navigate File Paths (both absolute and relative) in a Unix system\n\nWe recommend reviewing a course such as the Software Carpentry course for Shell Scripting before getting started with this book.\n\n\n\nBash for Bioinformatics by Ted Laderas is licensed under a Creative Commons Attribution 4.0 International License.Based on a work at https://github.com/laderast/bash_for_bioinformatics.\n\n\n\nNo one writes a book alone. This book comes from a lot of conversations with everyone at DNAnexus, including:\n\nAllison Regier\nBen Busby\nAnastazie Sedlakova\nScott Funkhouser\nStanley Lan\nOndrej Klempir\nBranislav Slavik\nDavid Stanek\nChai Fungtammasan"
+  },
+  {
+    "objectID": "01-setup-course.html",
+    "href": "01-setup-course.html",
+    "title": "2  Setup for the Course / dx-toolkit basics",
+    "section": "",
+    "text": "In this chapter, we’ll setup our DNAnexus account, start a project, get files into it, and run a job with those files.\nThis is meant to be a whirlwind tour - we’ll expand on more information about each of these steps in further chapters."
+  },
+  {
+    "objectID": "01-setup-course.html#setup-your-dnanexus-account",
+    "href": "01-setup-course.html#setup-your-dnanexus-account",
+    "title": "2  Setup for the Course / dx-toolkit basics",
+    "section": "2.1 Setup your DNAnexus Account",
+    "text": "2.1 Setup your DNAnexus Account\nFirst, create an account at https://platform.dnanexus.com. You’ll need your login and password to interact with the platform.\nIf you are not a registered customer with DNAnexus, you will have to set up your billing by adding a credit card.\nI know that money is tight for everyone, but everything we’ll do in this course should cost no more than $5-10 in compute time."
+  },
+  {
+    "objectID": "01-setup-course.html#terminal-setup-dx-toolkit-setup",
+    "href": "01-setup-course.html#terminal-setup-dx-toolkit-setup",
+    "title": "2  Setup for the Course / dx-toolkit basics",
+    "section": "2.2 Terminal setup / dx-toolkit setup",
+    "text": "2.2 Terminal setup / dx-toolkit setup\nWe’ll be running all of these scripts on our own machine. We’ll be using the command-line for most of these.\nIf you are on Linux/Mac, you’ll be working with the terminal. If you are on Windows, I recommend you install Windows Subsystem for Linux, and specifically the Ubuntu distribution. That will give you a command-line shell that you can use to interact with the DNAnexus platform.\nOn your machine, I recommend using a text editor to edit the scripts in your terminal. Good ones include VS Code, or built in ones such as nano.\nNow that we have a terminal and code editor, we can install the dx-toolkit onto our machine. In your terminal, you’ll first need to make sure that python 3 is installed, and the pip installer is installed as well.\nsudo apt-get install python3\nsudo apt-get install pip3\nOnce you have access to Python 3 and pip3, you can install the dx-toolkit using the following:\npip3 install dxpy\nThat last command will install the dx-toolkit to your machine, which are the command line tools you’ll need to work on the DNAnexus cloud."
+  },
+  {
+    "objectID": "01-setup-course.html#alternative-setup-binder.org",
+    "href": "01-setup-course.html#alternative-setup-binder.org",
+    "title": "2  Setup for the Course / dx-toolkit basics",
+    "section": "2.3 Alternative Setup: binder.org",
+    "text": "2.3 Alternative Setup: binder.org\nIf you aren’t able to install the dx-toolkit to your machine, you can use this Binder link to try out the commands. Binder opens a preinstalled image with a shell that has dxpy preinstalled on one of the https://mybinder.org servers.\nhttps://mybinder.org/v2/gh/laderast/minimal_dxpy/HEAD?urlpath=lab\nJust keep in mind that this shell is ephemeral - it will disappear. So make sure that any files you create that you want to save are either uploaded back to your project with dx upload or you’ve downloaded them using the file explorer.\nThis shell includes the following utilities:\n\ngit (needed to download course materials)\nnano (needed to edit files)\npython/pip (needed to install dx-toolkit)\njq (needed to work with JSON files)"
+  },
+  {
+    "objectID": "01-setup-course.html#clone-the-files-and-scripts-using-git",
+    "href": "01-setup-course.html#clone-the-files-and-scripts-using-git",
+    "title": "2  Setup for the Course / dx-toolkit basics",
+    "section": "2.4 Clone the files and scripts using git",
+    "text": "2.4 Clone the files and scripts using git\n\ngit clone https://"
+  },
+  {
+    "objectID": "01-setup-course.html#try-logging-in",
+    "href": "01-setup-course.html#try-logging-in",
+    "title": "2  Setup for the Course / dx-toolkit basics",
+    "section": "2.5 Try logging in",
+    "text": "2.5 Try logging in\nNow that you have an account and a way to run the dx-toolkit, try logging in with dx login:\n\ndx login\n\nThe platform will then ask you for your username and password. Enter them.\nIf you are successful, you will see either the select screen or, if you only have one project, that project will be selected for you."
+  },
+  {
+    "objectID": "01-setup-course.html#super-quick-intro-to-dx-toolkit",
+    "href": "01-setup-course.html#super-quick-intro-to-dx-toolkit",
+    "title": "2  Setup for the Course / dx-toolkit basics",
+    "section": "2.6 Super Quick Intro to dx-toolkit",
+    "text": "2.6 Super Quick Intro to dx-toolkit\nThe dx-toolkit is our main tool for interacting with the DNAnexus platform on the command-line. It handles the following:\n\nCreating a project and managing membership (dx new project/dx invite/dx uninvite).\nFile transfer to and from project storage (dx upload/dx download)\nStarting up computational jobs on the platform with apps and workflows (dx run)\nMonitoring/Terminating jobs on the platform (dx watch/dx describe/dx terminate)\nBuilding Apps, which are executables on the platform (dx-app-wizard, dx build)\nBuilding Workflows, which string together apps on the platform (dx build)\n\nHow do you know a command belongs to the dx-toolkit? They all begin with dx. For example, to list the contents of your current project, you’ll use something like ls:\n\ndx ls"
+  },
+  {
+    "objectID": "01-setup-course.html#create-project-for-course",
+    "href": "01-setup-course.html#create-project-for-course",
+    "title": "2  Setup for the Course / dx-toolkit basics",
+    "section": "2.7 Create Project for Course",
+    "text": "2.7 Create Project for Course\nLet’s create a project on the platform, and then we will get files into it to prepare for the online work with the platform.\nThe first command we’ll run is dx new project in order to create our project.\n\ndx new project -y my_project"
+  },
+  {
+    "objectID": "01-setup-course.html#transferring-files-from-our-shell-to-project-storage",
+    "href": "01-setup-course.html#transferring-files-from-our-shell-to-project-storage",
+    "title": "2  Setup for the Course / dx-toolkit basics",
+    "section": "2.8 Transferring files from our shell to Project Storage",
+    "text": "2.8 Transferring files from our shell to Project Storage\nOur worker scripts live in the the bash_for_bioinformatics/ folder on our machine. We’ll need to transfer these scripts, because some of them will be run directly on the DNAnexus workers.\nFrom your machine, type the following to get the “scripts/” folder\n\ndx upload -r \"worker_scripts/\"\n\nLet’s copy our files from our shell into our DNAnexus project.\n\ndx cp -r \"project-BQbJpBj0bvygyQxgQ1800Jkk:/Developer Quickstart\" .\ndx mv \"Developer Quickstart/\" \"data/\"\n\nConfirm that the projects match the following output:\n\ntree\ndx tree"
+  },
+  {
+    "objectID": "01-setup-course.html#full-script",
+    "href": "01-setup-course.html#full-script",
+    "title": "2  Setup for the Course / dx-toolkit basics",
+    "section": "2.9 Full Script",
+    "text": "2.9 Full Script\nThe full script for setting up is in the 01-setup-course/project_setup.sh\n\n\n\n01-setup-course/project_setup.sh\n\n## Login\ndx login\n\n## Create your new project\ndx new project -y my_project\n\n## Clone this repository onto your computer\ngit clone https://github.com/laderast/bash_bioinfo_scripts\n\n## Upload the scripts into the scripts folder\ncd bash_bioinfo_scripts\ndx upload -r worker_scripts/\n\n## Copy the data over\ndx cp -r \"project-BQbJpBj0bvygyQxgQ1800Jkk:/Developer Quickstart\" .\ndx mv \"Developer Quickstart/\" \"data/\"\n\n## Confirm your project matches\ndx tree\ntree"
+  },
+  {
+    "objectID": "02-scripting-basics.html",
+    "href": "02-scripting-basics.html",
+    "title": "3  Shell Scripting Basics",
+    "section": "",
+    "text": "Utilize positional arguments to generalize our scripts\nArticulate the three streams of a command line utility\nDefine variables for use in a bash script\n\nIterate a script over a set of files using xargs or for loops\nWrap executables and scripts in R/Python into a Bash script"
+  },
+  {
+    "objectID": "02-scripting-basics.html#review-of-bash-scripting",
+    "href": "02-scripting-basics.html#review-of-bash-scripting",
+    "title": "3  Shell Scripting Basics",
+    "section": "3.2 Review of Bash scripting",
+    "text": "3.2 Review of Bash scripting\nBash scripting is often referred to as a useful “glue language” on the internet. Although a lot of functionality can be covered by both JavaScript and Python, bash scripting is still very helpful to know.\nWe are going to cover Bash scripting because it is the main shell that is available to us on DNAnexus machines, which are Ubuntu-based.\nWe will be using Bash scripts as “glue” for multiple applications in cloud computing, including:\n\nWrapping scripts from other languages such as R or Python so we can run them using dx run on a app such as Swiss Army Knife\nSpecifying inputs and outputs to executables in Applets/Workflows\nSpecifying inputs and outputs in a workflow built by Workflow Description Language (WDL).\n\nAs you can see, knowing Bash is extremely helpful when running jobs on the cloud."
+  },
+  {
+    "objectID": "02-scripting-basics.html#sec-positional",
+    "href": "02-scripting-basics.html#sec-positional",
+    "title": "3  Shell Scripting Basics",
+    "section": "3.3 Our first script with positional arguments",
+    "text": "3.3 Our first script with positional arguments\nSay we have samtools installed on our own machine. Let’s start with a basic script and build from there. We’ll call it sam_run.sh. With nano, a text editor, we’ll start a very basic bash script and build its capabilities out.\n\n\n\n02-scripting-basics/sam_run.sh\n\n#!/bin/bash/\n\nsamtools stats $1 > $2\n\n\nLet’s take a look at the command that we’re running first. We’re going to run samtools stat, which will give us statistics on an incoming bam or sam file and save it in a file. We want to be able to run our script like this:\n\nbash sam_run my_file.bam out_stats.txt\n\nWhen we run it like that, sam_run.sh will run samtools stat like this:\n\nsamtools stats my_file.bam > out_stats.txt\n\nSo what’s going on here is that there is some substitution using common arguments. Let’s look at these.\n\n3.3.1 Positional Arguments such as $1\nHow did the script know where to substitute each of our arguments? It has to do with the argument variables. Arguments (terms that follow our command) are indexed starting with the number 1. We can access the value at the first position using the special variable $1.\nNote that this works even in quotes.\nSo, to unpack our script, we are substituting our first argument for the $1, and our second argument for the $2 in our script.\n\n\n\n\n\n\nTest yourself\n\n\n\nHow would we rewrite sam_run.sh if we wanted to specify the output file as the first argument and the bam file as the second argument?\n\n\n\n02-scripting-basics/sam_run.sh\n\n#!/bin/bash/\n\nsamtools stats $1 > $2\n\n\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nFor this script, we would switch the positions of $1 and $2.\n\n#!/bin/bash/\n\nsamtools stats $2 > $1\n\nAnd we would run sam_run.sh like this:\n\nbash sam_run.sh my_file.bam out_stats.txt\n\n\n\n\n\n\n3.3.2 What about named arguments in my script?\nSee Section 9.2 for more info."
+  },
+  {
+    "objectID": "02-scripting-basics.html#using-pipes-stdin-stdout-stderr",
+    "href": "02-scripting-basics.html#using-pipes-stdin-stdout-stderr",
+    "title": "3  Shell Scripting Basics",
+    "section": "3.4 Using pipes: STDIN, STDOUT, STDERR",
+    "text": "3.4 Using pipes: STDIN, STDOUT, STDERR\nWe will need to use pipes to chain our commands together. Specifically, we need to take a command that generates a list of files on the platform, and then spawns individual jobs to process each file. For this reason, understanding a little bit more about how pipes (|) work in Bash is helpful.\nIf we want to understand how to chain our scripts together into a pipeline, it is helpful to know about the different streams that are available to the utilities.\n\n\n\n\n\n\ngraph LR\n  A(STDIN) --> E[run_samtools.sh]\n  E --> B(STDOUT)\n  E --> C(STDERR)\n\n\n\n\n\n\n\n\nFigure 3.1: Inputs/outputs to a script\n\n\nEvery script has three streams available to it: Standard In (STDIN), Standard Out (STDOUT), and Standard Error (STDERR) (Figure 3.1).\nSTDIN contains information that is directed to the input of a script (usually text output via STDOUT from another script).\nWhy do these matter? To work in a Unix pipeline, a script must be able to utilize STDIN, and generate STDOUT, and STDERR.\nSpecifically, in pipelines, STDOUT of a script (here it’s run_samtools) is directed into STDIN of another command (here wc, or word count)\n\n\n\n\n\n\ngraph LR\n  E[run_samtools.sh] --> B(STDOUT)\n  B --> F{\"|\"}\n  E --> C(STDERR)\n  F --> D(\"STDIN (wc)\")\n  D --> G[wc]\n\n\n\n\n\n\n\n\nFigure 3.2: Piping a script run_samtools.sh into another command (wc)\n\n\nWe will mostly use STDOUT in our bash scripts, but STDERR can be really helpful in debugging what’s going wrong.\n\n\n\n\n\n\nWhy this is important on the platform\n\n\n\nWe’ll use pipes and pipelines not only in starting a bunch of jobs using batch scripting on our home computer, but also when we are processing files within a job.\n\n\n\n3.4.1 For more info about pipes and pipelines\nhttps://swcarpentry.github.io/shell-novice/04-pipefilter/index.html https://datascienceatthecommandline.com/2e/chapter-2-getting-started.html?q=stdin#combining-command-line-tools"
+  },
+  {
+    "objectID": "02-scripting-basics.html#sec-xargs",
+    "href": "02-scripting-basics.html#sec-xargs",
+    "title": "3  Shell Scripting Basics",
+    "section": "3.5 Batch Processing Basics: Iterating using xargs",
+    "text": "3.5 Batch Processing Basics: Iterating using xargs\nA really common pattern is taking a delimited list of files and doing something with them. We can do some useful things such as seeing the first few lines of a set of files, or doing some sort of processing with the set of jobs.\nLet’s start out with a list of files:\n\nsource ~/.bashrc\nls data/*.qmd\n\nNow we have a list of files, let’s look at the first few lines of each of them, and print a separator --- for each.\n\n\n\n02-scripting-basics/xargs_example.sh\n\nls data/*.qmd | xargs -I% sh -c 'head %; echo \"---\\n\"'\n\n\nLet’s take this apart piece by piece.\nxargs takes an -I argument that specifies a placeholder. In our case, we are using % as our placeholder in this statement.\nWe’re passing on each filename from ls into the following code:\n\nsh -c 'head %; echo \"---\\n\"'\n\nThe sh -c opens a subshell so that we can execute our command for each of the files in our list. We’re using sh -c to run:\n\n'head %; echo \"---\\n\"'\n\nSo for our first file, 01-scripting-basics.qmd, we are substituting that for % in our command:\n\n'head 01-scripting-basics.qmd; echo \"---\\n\"'\n\nFor our second file, 02-cloud-computing-basics.qmd, we would substitute that for the %:\n\n'head 02-cloud-computing-basics.qmd; echo \"---\\n\"'\n\nUntil we cycle through all of the files in our list.\n\n3.5.1 The Basic xargs pattern\n\n\n\n\n\n\ngraph LR\n  A[\"ls *.bam\"] --> B{\"|\"} \n  B --> C[\"xargs -I% sh -c\"] \n  C --> D[\"command_to_run %\"]\n\n\n\n\n\n\n\n\nFigure 3.3: Basics of using xargs to iterate on a list of files\n\n\nAs you cycle through lists of files, keep in mind this basic pattern (Figure 3.3):\n\nls <wildcard> | xargs -I% sh -c \"<command to run> %\"\n\nWe will leverage this pattern when we get to batch processing files (Chapter 6).\n\n\n\n\n\n\nTest Yourself\n\n\n\nHow would we modify the below code to do the following?\n\nList only .json files in our data/ folder using ls\nUse tail instead of head\n\n\nls *.txt | xargs -I% sh -c \"head %; echo '---\\n'\"\n\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nls data/*.json | xargs -I% sh -c \"tail %; echo '---\\n'\"\n\n\n\n\n\n\n\n\n\n\nWhy this is important on the platform\n\n\n\nWe’ll use this to execute batch jobs using dx run. This especially becomes powerful on the platform when we use dx find files to list files in our DNAnexus project.\n\n\n\n\n3.5.2 For more information\nhttps://www.baeldung.com/linux/xargs-multiple-arguments"
+  },
+  {
+    "objectID": "02-scripting-basics.html#sec-bash-variables",
+    "href": "02-scripting-basics.html#sec-bash-variables",
+    "title": "3  Shell Scripting Basics",
+    "section": "3.6 Variables in Bash Scripts",
+    "text": "3.6 Variables in Bash Scripts\nWe’ve already encountered a placeholder variable, %, that we used in running xargs. Let’s talk about declaring variables in bash scripts and using them using variable expansion.\nIn Bash, we can declare a variable by using <variable_name>=<value>. Note there are no spaces between the variable.\n\nmy_variable=\"ggplot2\"\n\necho \"My favorite R package is ${my_variable}\"\n\nMy favorite R package is ggplot2\n\n\nTake a look at line 3 above. We expand the variable (that is, we substitute the actual variable) by using ${my_variable} in our echo statement.\nIn general, when expanding a variable in a quoted string, it is better to use ${my_variable} (the variable name in curly brackets). This is especially important when using the variable name as part of a string:\n\nmy_var=\"chr1\"\necho \"${my_var}.vcf.gz\"\n\nchr1.vcf.gz\n\n\nIf we didn’t use the braces, bash would interpret the string as $my_var.vcf.gz, which isn’t what we want. So use the curly braces {} when you expand variables.\n\n\n\n\n\n\nWhy this is important on the platform\n\n\n\nOn the DNAnexus platform, there are special helper variables that are available to us, such as $in_prefix, which will give us the prefix of a file name input. This is essential when running commands within an app, as it allows us to generalize inputs and outputs in our app.\nHere’s a practical example:\n\nmy_cmd=\"papermill notebook.ipynb output_notebook.ipynb\"\ndx run dxjupyterlab -icmd=\"${my_cmd}\" -iin=\"notebook.ipynb\"\n\nWe’re storing the command we want to run in the ${my_cmd} variable. Here we’re mostly using it to break up the dx run statement on the next line."
+  },
+  {
+    "objectID": "02-scripting-basics.html#running-a-r-script-on-the-command-line",
+    "href": "02-scripting-basics.html#running-a-r-script-on-the-command-line",
+    "title": "3  Shell Scripting Basics",
+    "section": "3.7 Running a R script on the command line",
+    "text": "3.7 Running a R script on the command line\nLet’s end this chapter with wrapping R scripts in a bash script. Say you have an R Script you need to run on the command line. In our bash script, we can do the following:\n\n\n\n02-scripting-basics/wrap_r_script.sh\n\n#!/bin/bash\nRscript my_script.R CSVFILE=\"${1}\"\n\n\nThis calls Rscript, which is the command line executable to run our R script. Note that we have a named argument called CSVFILE and it is done differently than in Bash - how do we use this in our R Script?\n\n3.7.1 Using Named Arguments in an R script\nWe can pass arguments from our bash script to our R script by using commandArgs() - this will populate a list of named arguments (such as CSVFILE) that are passed into the R Script. We assign the output of commandArgs() into the args object.\nWe refer to our CSVFILE argument as args$CSVFILE in our script.\n\n\n\n02-scripting-basics/r_script.R\n\nlibrary(tidyverse)\n\nargs <- commandArgs()\n# Use arg$CSVFILE in read.csv\ncsv_file <- read.csv(file=args$CSVFILE)\n\n# Do some work with csv_file\ncsv_filtered <- csv_file |> dplyr::filter()\n\n# Write output\nwrite.csv(csv_filtered, file = paste0(args$CSVFILE, \"_filtered.csv\"))\n\n\n\n\n3.7.2 Running our R Script\nNow that we’ve set it up, we can run the R script from the command line as follows:\n\n./my_bash_script.sh my_csvfile.csv \n\nIn our bash script, my_bash_script.sh, we’re using positional argument (for simplicity) to specify our csvfile, and then passing the positional argument to named ones (CSVFILE) for my_r_script.R.\n\n\n\n\n\n\nWhy this is important on the platform\n\n\n\nWe’ll see when we build apps that our executable scripts need to be written as bash scripts. This means that if we want to run R code, we need to wrap it in a bash script."
+  },
+  {
+    "objectID": "02-scripting-basics.html#what-you-learned-in-this-chapter",
+    "href": "02-scripting-basics.html#what-you-learned-in-this-chapter",
+    "title": "3  Shell Scripting Basics",
+    "section": "3.8 What you learned in this chapter",
+    "text": "3.8 What you learned in this chapter\nWhew, this was a whirlwind tour. Keep this chapter in mind when you’re working with the platform - the bash programming patterns will serve you well. We’ll refer to these patterns a lot when we get to doing more bioinformatics tasks on the platform.\n\nSetting up bash scripts with positional arguments\nIterating over a list of files using xargs\nHow to use bash variables and variable expansions\nWrapping an R Script in a bash script"
+  },
+  {
+    "objectID": "03-cloud-computing-basics.html",
+    "href": "03-cloud-computing-basics.html",
+    "title": "4  Cloud Computing Basics",
+    "section": "",
+    "text": "We all need to start somewhere when we work with cloud computing.\nThis chapter is a review of how cloud computing works on the DNAnexus platform. If you haven’t used cloud computing before, no worries! This chapter will get you up to speed.\nAlso, if you are coming from using an on-premise high performance computing (HPC) cluster, you can skip ahead."
+  },
+  {
+    "objectID": "03-cloud-computing-basics.html#learning-objectives",
+    "href": "03-cloud-computing-basics.html#learning-objectives",
+    "title": "4  Cloud Computing Basics",
+    "section": "4.1 Learning Objectives",
+    "text": "4.1 Learning Objectives\n\nDefine key players in both local computing and cloud computing\nArticulate key differences between local computing and cloud computing\nDescribe the sequence of events in launching jobs in the DNAnexus cloud\nDifferentiate local storage from cloud-based project storage\nDescribe instance types and how to use them."
+  },
+  {
+    "objectID": "03-cloud-computing-basics.html#important-terminology",
+    "href": "03-cloud-computing-basics.html#important-terminology",
+    "title": "4  Cloud Computing Basics",
+    "section": "4.2 Important Terminology",
+    "text": "4.2 Important Terminology\nLet’s establish the terminology we need to talk about cloud computing.\n\nDNAnexus Project - contains files, executables (apps/applets), and logs associated with analysis.\nSoftware Environment - everything needed to run a piece of software on a brand new computer. For example, this would include installing R, but also all of its dependencies as well.\nApp/Applet - Executable on the DNAnexus platform.\nProject Storage - Part of the platform that stores our files and other objects. We’ll see that these other objects include applets, databases, and other object types."
+  },
+  {
+    "objectID": "03-cloud-computing-basics.html#understanding-the-key-players",
+    "href": "03-cloud-computing-basics.html#understanding-the-key-players",
+    "title": "4  Cloud Computing Basics",
+    "section": "4.3 Understanding the key players",
+    "text": "4.3 Understanding the key players\nIn order to understand what’s going on with Cloud Computing, we will have to change our mental model of computing.\nLet’s contrast the key players in local computing with the key players in cloud computing.\n\n4.3.1 Key Players in Local Computing\n\n\n\nFigure 4.1: Local Computing\n\n\n\nOur Machine\n\nWhen we run an analysis or process files on our computer, we are in control of all aspects of our computer. We are able to install a software environment, such as R or Python, and then execute scripts/notebooks that reside on our computer on data that’s on our computer.\nOur main point of access to either the HPC cluster or to the DNAnexus cloud is going to be our computer.\n\n\n4.3.2 Key Players in Cloud Computing\nLet’s contrast our view of local computing with the key players in the DNAnexus platform (Figure 4.2).\n\n\n\nFigure 4.2: Key Players in DNAnexus Storage\n\n\n\nOur Machine - We interact with the platform via the dx-toolkit installed on our machine. When we utilize cloud resources, we request them from our own computer using commands from the dx toolkit.\nDNAnexus Platform - Although there are many parts, we can treat the DNAnexus platform as a single entity that we interact with. Our request gets sent to the platform, and given availability, it will grant access to a temporary DNAnexus Worker. Also contains project storage.\nDNAnexus Worker - A temporary machine that comes from a pool of available machines. We’ll see that it starts out as a blank slate."
+  },
+  {
+    "objectID": "03-cloud-computing-basics.html#sequence-of-events-of-running-a-job",
+    "href": "03-cloud-computing-basics.html#sequence-of-events-of-running-a-job",
+    "title": "4  Cloud Computing Basics",
+    "section": "4.4 Sequence of Events of Running a Job",
+    "text": "4.4 Sequence of Events of Running a Job\nLet’s run through the order of operations of running a job on the platform. Let’s focus on running an aligner (BWA-MEM) on a FASTQ file. Our output will be a .BAM (aligned reads) file.\nLet’s go over the order of operations needed to execute our job on the DNAnexus platform (Figure 4.3).\n\n\n\nFigure 4.3: Order of Operations\n\n\n\nStart a job using dx run to send a request to the platform. In order to start a job, we will need two things: an app (app-bwa-mem), and a file to process on the platform (not shown). We specify this information using dx run. When we use dx run, a request is sent to the platform.\nPlatform requests for a worker from available workers; worker made available on platform. In this step, the DNAnexus platform looks for a worker instance that can meet our needs. The platform handles installing the app and its software environment to the worker as well. We’ll see that apps have a default instance type that are suggested by the authors.\nInput files transferred from project storage. We’re going to process a FASTQ file (53525342.fq.gz). This needs to be transferred from the project storage to the worker storage on the machine.\nComputations run on worker; output files are generated. Once our app is ready and our file is transferred, we can run the computation on the worker.\nOutput files transferred back to project storage. Any files that we generate during our computation (53525342.bam) must be transferred back into project storage.\nResponse from DNAnexus platform to User. If our job was successful, we will receive a response from the platform. This can be an email, or the output from dx find jobs. If our job was unable to run, we will recieve a “failed” response.\n\nWhen you are working on the platform, especially with batch jobs, keep in mind this order of execution. Being familiar with how the key players interact on the platform is key to running efficient jobs.\n\n4.4.1 A Common Pattern: Scripts on your computer, scripts on the worker\nA very common pattern we’ll use is having two sets of scripts (Figure 4.4). The batch script that generates the separate jobs run on separate workers (batch_RUN.sh), and a script that is run on each worker (plink_script.sh).\nThe batch script will specify file inputs as paths from project storage. For example, a project storage path might be data/chr1.vcf.gz.\nThe trick with the worker script is being able to visualize the location of the files on the worker after they’re transferred. In most cases, the files will be transferred to the working directory of the worker.\n\n\n\nFigure 4.4: Two kinds of scripts."
+  },
+  {
+    "objectID": "03-cloud-computing-basics.html#key-differences-with-local-computing",
+    "href": "03-cloud-computing-basics.html#key-differences-with-local-computing",
+    "title": "4  Cloud Computing Basics",
+    "section": "4.5 Key Differences with local computing",
+    "text": "4.5 Key Differences with local computing\nAs you might have surmised, running a job on the DNAnexus platform is very different from computing on your local computer.\n\nWe don’t own the worker machine, we only have temporary access to it. A lot of the complications of running cloud computations comes from this.\nWe have to be explicit what kind of machine we want. We’ll talk much more about this in terms of instance types (?sec-instance)\nWe need to transfer files to and from our temporary worker."
+  },
+  {
+    "objectID": "03-cloud-computing-basics.html#project-storage-vs-worker-storage",
+    "href": "03-cloud-computing-basics.html#project-storage-vs-worker-storage",
+    "title": "4  Cloud Computing Basics",
+    "section": "4.6 Project Storage vs Worker Storage",
+    "text": "4.6 Project Storage vs Worker Storage\n\n\n\nFigure 4.5: Project Storage versus Worker storage\n\n\nYou might have noticed that the worker is a blank slate after we request it. So any files we need to process need to be transferred over to the temporary worker storage.\nFortunately, when we use apps, the file transfer process is handled by the app. This also means that when you build your own apps on the platform, you will need to specify inputs (what files the app will process) and outputs (the resulting files from the app).\n\n4.6.1 Running Scripts on a Worker is Indirect\nBecause this file transfer occurs from project storage to the worker, when we run scripts on a worker, we have to think about the location of the files on the worker (Figure 4.6).\n\n\n\nFigure 4.6: An indirect process\n\n\nLet’s look at an example of that nestedness. Say we have two bed files and we want to combine them on a worker using PLINK.\n\nTransfer data from project to the working directory on the worker. The first thing we need to do is transfer them from project storage to worker storage. Notice that even though in project storage they are in a data folder, they are in the base directory of the worker.\nRun the computation on the worker, and generate results file. The files we need to process are in the base directory of the worker, so we can refer to them without the folder path (plink chr1.bed). We generate a results file called chr_combined.bed (the combined .bed file).\n\nTransfer results file back to the worker."
+  },
+  {
+    "objectID": "03-cloud-computing-basics.html#instance-types",
+    "href": "03-cloud-computing-basics.html#instance-types",
+    "title": "4  Cloud Computing Basics",
+    "section": "4.7 Instance Types",
+    "text": "4.7 Instance Types\nOne of the major concerns when you’re getting started on the platform is cost.\nWhat impacts cost? The number of workers and your priority for those workers matters. Most importantly, the instance type matters (Figure 4.7). Let’s review how to pick an instance type on the platform.\nFirst off, all apps (including Swiss Army Knife) have a default instance selected.\n\n\n\n\n\n\ngraph LR\n  A[\"mem1_ <br> (Memory)\"] --> C[\"ssd1_ <br> (Disk Size)\"]\n  C --> E[\"v2_ <br> (Version)\"]\n  E --> G[\"x4 <br> (Cores)\"]\n\n\n\n\n\n\n\n\nFigure 4.7: Anatomy of an instance type.\n\n\nThis is an example of an instance type. We can see that it has four sections: a memory class (mem1), a disk space class (ssd1), a version (v2), and the number of CPUs (x4). Together, this combination of classes forms an instance type.\n\n\n\nFigure 4.8: An Instance Type Checklist\n\n\nLet’s talk about what aspects to concentrate on when choosing your instance type.\n\n4.7.1 When to Scale Up or Down?\nOne question we often get is about when to scale up and down instance types in terms of resource usage. It’s important when you’re starting out to do profiling of the app on a data file or dataset that you know well. Start with the default instance type for an app on your test files at first.\nOnce you have run an app as a job, you can look at the job log to understand how the compute resources were utilized.\nIn this case, our job under utilized the compute resources on our instance type, so we might want to scale to a lower instance type.\nIf our job crashed due to a lack of resources, or is running slow, we may want to scale up our resource type."
+  },
+  {
+    "objectID": "04-doing-work-with-dx-run.html",
+    "href": "04-doing-work-with-dx-run.html",
+    "title": "5  Working with files using dx run",
+    "section": "",
+    "text": "Utilize an all purpose app (swiss-army-knife) to run bioinformatics jobs using dx run on files in a DNAnexus project\nUtilize multiple inputs in a Swiss Army Knife job.\nExplain and utilize multiple options in a Swiss Army Knife job.\nWrap R and Python scripts using a bash script to run it on the cloud using dx run\nTag output files on the platform for downstream use."
+  },
+  {
+    "objectID": "04-doing-work-with-dx-run.html#prep-for-exercises",
+    "href": "04-doing-work-with-dx-run.html#prep-for-exercises",
+    "title": "5  Working with files using dx run",
+    "section": "5.2 Prep for Exercises",
+    "text": "5.2 Prep for Exercises\nIn your shell, make sure you’re in the bash_bioinfo_scripts/04-doing-work-with-dx-run/ folder:\ncd 04-doing-work-with-dx-run/"
+  },
+  {
+    "objectID": "04-doing-work-with-dx-run.html#doing-bioinformatics-with-the-swiss-army-knife-sak-app",
+    "href": "04-doing-work-with-dx-run.html#doing-bioinformatics-with-the-swiss-army-knife-sak-app",
+    "title": "5  Working with files using dx run",
+    "section": "5.3 Doing Bioinformatics with the Swiss Army Knife (SAK) App",
+    "text": "5.3 Doing Bioinformatics with the Swiss Army Knife (SAK) App\nLet’s focus on key bioinformatics tasks we need to accomplish. To make things easier, we’ll be using Swiss Army Knife, which is an app on the platform that contains a number of commonly used bioinformatics utilities, including:\n\n\n\n\nbcftools\nbedtools\nBGEN\nbgzip\nBOLT-LMM\nPicard\nPlato\nplink\nplink2\nQCTool\nREGENIE\nsambamba\nsamtools\nseqtk\ntabix\nvcflib\nvcftools\n\n\n\n\nSwiss Army Knife also contains R and Python 3.\nEverything you’ll learn in this section will also be applicable to building apps on the platform as well. You’ll learn the foundations of running a script on the platform, which is halfway to building your own apps on the platform."
+  },
+  {
+    "objectID": "04-doing-work-with-dx-run.html#running-jobs-on-the-dnanexus-platform-using-dx-run",
+    "href": "04-doing-work-with-dx-run.html#running-jobs-on-the-dnanexus-platform-using-dx-run",
+    "title": "5  Working with files using dx run",
+    "section": "5.4 Running Jobs on the DNAnexus platform using dx run",
+    "text": "5.4 Running Jobs on the DNAnexus platform using dx run\nOur main command for running jobs is dx run. dx run lets us submit jobs to be run on the platform. These jobs can be to process files (such as aligning FASTQ files to a genome), or they can be for web apps, such as LocusZoom (for visualizing)\nIf you have used SLURM on an on-premise HPC system, the equivalent command would be srun, and if you have used PBS, the equivalent command would be sbatch."
+  },
+  {
+    "objectID": "04-doing-work-with-dx-run.html#try-out-your-first-job",
+    "href": "04-doing-work-with-dx-run.html#try-out-your-first-job",
+    "title": "5  Working with files using dx run",
+    "section": "5.5 Try out your first job",
+    "text": "5.5 Try out your first job\nIn the sample project, you will see a .bam file in data/ called NA12878.bam with no index. Let’s create an index for this file with sambamba by running it with dx run app-swiss-army-knife.\n\n\n\n04-doing-work-with-dx-run/run_sambamba.sh\n\n#! /bin/bash\ndx run app-swiss-army-knife \\\n  -iin=\"/data/NA12878.bam\" \\ \n  -icmd=\"sambamba index *\"\n\n\nLet’s take this code apart. We start our command with dx run and the name of the app on the platform we want to use: app-swiss-army-knife.\nThe second line contains the file input we want to process, which is a file in our current project. Note that the input is specified as -iin, not --in or --iin. Using a single hyphen - here instead of a double hyphen -- for our inputs is different than we might expect for other linux/UNIX parameters.\nThe third line is the actual command we want to run in Swiss Army Knife. We want to run sambamba index on our input file.\nWhen you run the above code, either by pasting it into your shell, or using bash run_sambamba.sh you’ll see the following response.\nUsing input JSON:\n{\n    \"cmd\": \"sambamba index *\",\n    \"in\": [\n        {\n            \"$dnanexus_link\": {\n                \"project\": \"project-GGyyqvj0yp6B82ZZ9y23Zf6q\",\n                \"id\": \"file-FpQKQk00FgkGV3Vb3jJ8xqGV\"\n            }\n        }\n    ]\n}\n\nConfirm running the executable with this input [Y/n]: Y\nCalling app-GFxJgVj9Q0qQFykQ8X27768Y with output destination\n  project-GGyyqvj0yp6B82ZZ9y23Zf6q:/\n\nJob ID: job-GJ0G58Q0yp65gzJzKjYv04bZ\nWatch launched job now? [Y/n] Y\nRespond with Y when it asks\nConfirm executable with this input [Y/n]:\nAnd when it asks you\nWatch launched job now? [Y/n]\n\n\n\n\n\n\nTry it out!\n\n\n\nRun the above code (also in 04-doing-work-with-dx-run/run_sambamba.sh) and look at the log that is generated. Take a look at it carefully, especially the output log.\nWhat file does it create? Where does it create that file?\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nIf you use dx tree to take a look at the project, you’ll see that there was a file NA12878.bam.bai that was created in the root of our project.\ndx tree\n\n── data\n│   ├── NA12878.bai\n│   ├── NA12878.bam\n│   ├── NC_000868.fasta\n│   ├── NC_001422.fasta\n│   ├── small-celegans-sample.fastq\n│   ├── SRR100022_chrom20_mapped_to_b37.bam\n│   ├── SRR100022_chrom21_mapped_to_b37.bam\n│   └── SRR100022_chrom22_mapped_to_b37.bam\n└── NA12878.bam.bai\nIf we wanted to control where our index file ended up, we can use the --destination option to specify our destination, such as\n--destination data/\n\n\n\n\n5.5.1 What about the outputs?\nOne of the nice things about Swiss Army Knife is that it automatically transfers files that we generate on the worker. In our above job, we generated the corresponding index file NA12878.bam.bai from our -icmd input. It was automatically transferred over from the worker to the root of our project.\nIf we wanted to change the output folder, we can use the --destination flag, like below:\n\ndx run app-swiss-army-knife \\\n  -iin=\"/data/NA12878.bam\" \\ \n  -icmd=\"sambamba index *\"\n  --destination \"data/\"\n\nAnother nice thing about dx run is that it will automatically create the folder we specify with --destination if it doesn’t exist in project storage.\n\n\n\n\n\n\nWhat if we run our statement multiple times?"
+  },
+  {
+    "objectID": "04-doing-work-with-dx-run.html#building-on-our-first-dx-run-job",
+    "href": "04-doing-work-with-dx-run.html#building-on-our-first-dx-run-job",
+    "title": "5  Working with files using dx run",
+    "section": "5.6 Building on our first dx run job",
+    "text": "5.6 Building on our first dx run job\nWe’ve seen how to specify file inputs to Swiss Army Knife. Let’s dive into some of the intricacies of using the -icmd input.\n\n5.6.1 Submitting a script to the worker\nThe -icmd input is helpful for small scripting jobs, but you often want to do a bunch of things in a Swiss Army Knife job.\nBash scripting to the rescue! Say we have a script called run-on-worker.sh that takes 1 positional input, which is a file path. We’ll run this script on the worker:\n\n\n\n04-doing-work-with-dx-run/run-on-worker.sh\n\nsambamba $1 > $1.bai\nsamtools stats $1 > $1.stats.txt\n\n\nWhen we set up a dx run app-swiss-army-knife, we’ll use this script as one of the inputs to dx run:\n\n\n\n04-doing-work-with-dx-run/dx_run_script.sh\n\ndx run app-swiss-army-knife \\\n  -iin=\"worker_scripts/run-on-worker.sh` \\\n  -iin=\"data/NA12878.bam\" \\\n  -icmd=\"bash run-on-worker.sh $in_path\"\n\n\nThe magic here is that we’re using bash in our cmd input to run the script run_on_worker.sh. Notice this script is already in our project in the worker_scripts/ folder, so we can submit it as a file input:\n-iin=\"worker_scripts/run-on-worker.sh\"\n\n\n\n\n\n\nWhy this is important on the platform\n\n\n\nThis is a common pattern that we’ll use when we need to do more complicated things with Swiss Army Knife. It doesn’t seem that helpful right now, but it will once we get to batch scripting.\n\n\nYou’ll notice that we are using a special helper variable here called ${in_path} - this gives the current path of the file on the worker. It is tremendously helpful in scripting. Let’s learn about these built-in helper variables next.\n\n\n5.6.2 Bash Helper Variables\nThere are some helper variables based on the file inputs specified in -iin.\nThese variables are really helpful in scripting in our -icmd input. Say we ran our command:\ndx run app-swiss-army-knife \\\n  -iin=\"/data/NA12878.bam\" \\ \n  -icmd=\"sambamba index ${in_path}\"\nYou’ll see that we are using a special variable called $in_path here to specify the file name. This is called a helper variable - they are available based on the different file inputs we submit to Swiss Army Knife.\nFor our one input -iin=\"data/NA12878.bam\", this is what these helper variables contain:\n\n\n\nBash Variable\nValue\nNotes\n\n\n\n\n$in\ndata/NA12878.bam\nLocation in project storage\n\n\n$in_path\n~/NA12878.bam\nLocation in worker storage\n\n\n$in_name\nNA12878.bam\nFile name (without folder path)\n\n\n$in_prefix\nNA12878\nFile name without the suffix\n\n\n\n$in_prefix is really helpful when you want to create files that have the same prefix as our file. Say we wanted to run samtools view -c on our file. We want a file called NA12878.count.txt that contains the read counts.\ndx run app-swiss-army-knife \\\n  -iin=\"data/NA12878.bam\" \\\n  -icmd=\"samtools view -c ${in_path} > ${in_prefix}.counts.txt\"\nWhat happens when the command is run on the worker is that the variables are expanded like this:\nsamtools view -c ~/NA12878.bam > NA12878.counts.txt\n\n\n\n\n\n\nWhat is the difference between $in and $in_path?\n\n\n\nYou may have looked at the above table and been slightly confused about these two variables.\n$in is the file location in project storage, while $in_path is the file location in the temporary worker storage.\nWhen writing scripts that run on the worker with the -icmd input, $in_path is much more useful.\n\n\n\n\n\n\n\n\nWhy are we learning about helper variables?\n\n\n\nWriting scripts that can be run on the worker is part of the app building process, which lets us specify our own executables.\nIf you can get a handle on working with helper variables in -icmd, then you are most of the way to building an app."
+  },
+  {
+    "objectID": "04-doing-work-with-dx-run.html#more-swiss-army-knife",
+    "href": "04-doing-work-with-dx-run.html#more-swiss-army-knife",
+    "title": "5  Working with files using dx run",
+    "section": "5.7 More Swiss Army Knife",
+    "text": "5.7 More Swiss Army Knife\nThere is a table in the Swiss Army Knife documentation that specifies the inputs and how to configure the -icmd parameter for each operation.\nOne thing you’ll notice is that some of them require multiple file inputs. How do you specify them?\n\n5.7.1 Multiple file inputs to Swiss Army Knife\nOne thing that may not be apparent to you is that you can specify multiple file inputs with multiple -iin options.\nThe Swiss Army Knife Documentation notes that -iin is actually an array file input. That means that we can submit multiple files like this:\n\n\n\n04-doing-work-with-dx-run/dx-run-multiple-inputs.sh\n\ndx run app-swiss-army-knife \\\n  -iin=\"data/SRR100022_chrom20_mapped_to_b37.bam\" \\\n  -iin=\"data/SRR100022_chrom21_mapped_to_b37.bam\" \\\n  -iin=\"data/SRR100022_chrom22_mapped_to_b37.bam\" \\\n  -icmd=\"ls *.bam | xargs -I% sh -c 'samtools view -c % > %.count.txt'\"\n\n\nIf we want to process each of these files, we’ll have to use xargs in our icmd statement:\n-icmd=\"ls *.bam | xargs -I% sh -c 'samtools view -c % > %.count.txt'\"\nWe’ll cover more of this in Chapter 6.\n\n\n5.7.2 Using PLINK triplets\nIf we’re working with a PLINK trio of files (.bed, .bim, and .fam files), we can use the file inputs as below. We’ll submit the trio of files separately, and use the --bfile option in plink to specify all three files.\n\ndx run app-swiss-army-knife \\\n  -iin=\"data/chr1.bed\" \\\n  -iin=\"data/chr1.bim\" \\\n  -iin=\"data/chr1.fam\" \\\n  -icmd=\"plink --bfile chr1 --geno 0.01 --make-bed --out chr1_qc\"\n\nWe will output the QC’ed and filtered files as chr1_qc.bed, chr1_qc.bim, and chr1_qc.fam. We do that by specifiying the --out option for plink."
+  },
+  {
+    "objectID": "04-doing-work-with-dx-run.html#dx-run-runs-deep",
+    "href": "04-doing-work-with-dx-run.html#dx-run-runs-deep",
+    "title": "5  Working with files using dx run",
+    "section": "5.8 dx run runs deep",
+    "text": "5.8 dx run runs deep\nIf you’ve looked at the dx run help page, you’ll notice it is quite long. There are a lot of options. Let’s look at a few of them that are really helpful when you’re getting started.\n\n--tag - please use these.\n--destination - destination folder in project. If the path doesn’t exist, it will be created.\n--instance-type - Instance types used in the job.\n--watch - run dx watch for the job id that is generated\n-y - non-interactive mode. Replies yes to the questions and starts up dx watch for that job id.\n--allow-ssh - very helpful in debugging jobs. Allows you to dx ssh into that worker and check out the status.\n--batch-tsv - works with the tab-delimited files that you generate using dx generate_batch_inputs.\n--detach - if a subjob of a job, it detaches the job. This is really important in batch operations where a top-level job is generating a subjob. Running the subjobs as detached means that the entire top-level job will not fail if a subjob fails.\n\nI’ll outline some examples where we leverage the options below.\n\n5.8.1 Save our output files into a different folder\nAs we mentioned above, by default our output files are generated in the root folder of the project. If we want to control this, we can use the --destination option.\nRemember, if the folder our --destination option doesn’t exist, dx run will create that folder and send the outputs into the newly created folder.\n\n\n\n04-doing-work-with-dx-run/run_destination.sh\n\ndx run app-swiss-army-knife \\\n  -iin=\"data/chr1.bed\" \\\n  -iin=\"data/chr1.bim\" \\\n  -iin=\"data/chr1.fam\" \\\n  -icmd=\"plink --bfile chr1 --geno 0.01 --make-bed --out chr1_qc\" \\\n  --destination \"results/\"\n\n\n\n\n5.8.2 Run our job on a different instance type\n\n\n\n04-doing-work-with-dx-run/dx_run_instance.sh\n\ndx run app-swiss-army-knife \\\n  -iin=\"data/chr1.bed\" \\\n  -iin=\"data/chr1.bim\" \\\n  -iin=\"data/chr1.fam\" \\\n  -icmd=\"plink --bfile chr1 --geno 0.01 --make-bed --out chr1_qc\" \\\n  --instance-type \"mem1_ssd1_v2_x8\"\n\n\n\n\n5.8.3 Tag and rename our job\n\n\n\n04-doing-work-with-dx-run/run_job_tag_name.sh\n\ndx run app-swiss-army-knife \\\n  -iin=\"data/chr1.bed\" \\\n  -iin=\"data/chr1.bim\" \\\n  -iin=\"data/chr1.fam\" \\\n  -icmd=\"plink --bfile chr1 --geno 0.01 --make-bed --out chr1_qc\" \\\n  --tag \"plink_job\" --name \"Run PLINK on fileset: $in_prefix\"\n\n\n\n\n5.8.4 Clone an failed job\n\ndx run app-swiss-army-knife --clone <job-id>"
+  },
+  {
+    "objectID": "04-doing-work-with-dx-run.html#dxfuse-simplify-your-scripts-with-multiple-inputs",
+    "href": "04-doing-work-with-dx-run.html#dxfuse-simplify-your-scripts-with-multiple-inputs",
+    "title": "5  Working with files using dx run",
+    "section": "5.9 dxFUSE: Simplify your scripts with multiple inputs",
+    "text": "5.9 dxFUSE: Simplify your scripts with multiple inputs\nOk, we learned about submitting files as inputs. Is there a way to run scripts with less typing?\nThere is a general method for working in Swiss Army Knife and other apps that lets you bypass specifying file inputs explicitly in your dx run statement: using the dxFUSE file system.\nThe main thing you need to know as a developer is that you can prepend a /mnt/project/ to your file path to use in your -icmd input directly. For the dx run statement in Section 5.7.2, we can rewrite it as the following:\n\n\n\n04-doing-work-with-dx-run/run_job_dxfuse.sh\n\ndx run app-swiss-army-knife \\\n  -icmd=\"plink --bfile /mnt/project/data/chr1 --geno 0.01 --make-bed --out chr1_qc\"\n\n\nIn our -icmd input, we are referring to the file location of the triplet by pre-pending a /mnt/project/ to the project path of the triplet: data/chr1.\n\n5.9.1 Advantages of dxFUSE\nMost of my scripts leverage dxFUSE. Let’s talk about the advantages of using dxFUSE.\n\nYou don’t have to specify files as inputs. This avoids a lot of typing in your scripts. This can be very helpful if there are a number of files you need as inputs per job.\nAllows you to stream files. dxFUSE is a file streaming method. That is, it will stream files bit by bit to the worker. This can make the overall job run somewhat faster, as it can stream files as needed, and not have to explicitly transfer each file to the worker.\n\n\n\n5.9.2 Disadvantages of dxFUSE\nThere are some disadvantages to using dxFUSE you should be aware of:\n\nIt obscures your audit trail. Because we are not specifying the files as inputs, it is less obvious as to which files were processed with each job.\nIt works best as read-only. dxFUSE has limited write capabilities at this point, so it is best to treat it as a read-only file system.\nIt works best with good file hygiene practices. One of the confusing things is that you can create files with the same filename in the same folder. This can easily happen if you clone a job. Because these two files have unique identifiers, they are allowed to have identical file names on the platform."
+  },
+  {
+    "objectID": "04-doing-work-with-dx-run.html#using-a-docker-image-with-dx-runswiss-army-knife",
+    "href": "04-doing-work-with-dx-run.html#using-a-docker-image-with-dx-runswiss-army-knife",
+    "title": "5  Working with files using dx run",
+    "section": "5.10 Using a Docker Image with dx run/Swiss Army Knife",
+    "text": "5.10 Using a Docker Image with dx run/Swiss Army Knife\nSee the containers chapter (Chapter 8) for more information."
+  },
+  {
+    "objectID": "04-doing-work-with-dx-run.html#what-you-learned-in-this-chapter",
+    "href": "04-doing-work-with-dx-run.html#what-you-learned-in-this-chapter",
+    "title": "5  Working with files using dx run",
+    "section": "5.11 What you learned in this chapter",
+    "text": "5.11 What you learned in this chapter\nKudos and congrats for reaching this far. We built upon our shell scripting skills (Chapter 3) and our knowledge of cloud-computing (Chapter 4) to start running jobs effectively in the cloud."
+  },
+  {
+    "objectID": "05-batch-processing.html",
+    "href": "05-batch-processing.html",
+    "title": "6  Batch Processing on the Cloud",
+    "section": "",
+    "text": "Now we’re prepared for the big one: batch processing on the DNAnexus platform. All of the shell and DNAnexus skills will be leveraged in this chapter."
+  },
+  {
+    "objectID": "05-batch-processing.html#learning-objectives",
+    "href": "05-batch-processing.html#learning-objectives",
+    "title": "6  Batch Processing on the Cloud",
+    "section": "6.1 Learning Objectives",
+    "text": "6.1 Learning Objectives\n\nUtilize dx find data to find data files on the platform to batch process.\nIterate over files using Bash scripting on the platform to batch process them within a DNAnexus project.\nLeverage dxFUSE to simplify your bash scripts\nUtilize dx generate-batch-inputs/dx run --batch-tsv to batch process files\nUtilize Python to batch process multiple files per worker."
+  },
+  {
+    "objectID": "05-batch-processing.html#two-ways-of-batching",
+    "href": "05-batch-processing.html#two-ways-of-batching",
+    "title": "6  Batch Processing on the Cloud",
+    "section": "6.2 Two Ways of Batching",
+    "text": "6.2 Two Ways of Batching\n\n\n\n\n\n\ngraph LR;\n  A[List files </br> using `dx data`] --> F{\"|\"}\n  F --> E[`xargs` sh -c]\n  E --> B[`dx run` </br> on file1];\n  E --> C[`dx run` </br> on file2];\n  E --> D[`dx run` </br> on file3];\n\n\n\n\n\n\n\n\nFigure 6.1: Batch method 1\n\n\n\n\n\n\n\n\ngraph LR;\n  A[Submit array </br> of files </br> in `dx run`] --> B[Loop over array </br> of files </br> in worker];\n\n\n\n\n\n\n\n\nFigure 6.2: Batch method 2\n\n\nWe actually have two methods of batching jobs using Swiss Army Knife:\n\nUse xargs on our home system to run dx run statements for each file (Figure 6.1).\nSubmit an array of files as an input to Swiss Army Knife. Then process each file using the icmd input (Figure 6.2)\n\nBoth of these methods can potentially be useful."
+  },
+  {
+    "objectID": "05-batch-processing.html#finding-files-using-dx-find-data",
+    "href": "05-batch-processing.html#finding-files-using-dx-find-data",
+    "title": "6  Batch Processing on the Cloud",
+    "section": "6.3 Finding files using dx find data",
+    "text": "6.3 Finding files using dx find data\ndx find data is a command that is extremely helpful on the DNAnexus platform. Based on metadata and folder paths, dx find data will return a list of files that meet the criteria.\ndx find data lets you search on the following types of metadata:\n\ntags --tag\nproperties --property\nname --name\ntype --type\n\nIt can output in a number of different formats. Including:\n\n--brief - return only the file-ids\n--json - return file information in JSON format\n--verbose - this is the default setting\n--delimited - return as a delimited text file\n\nOf all of these, --brief and --json are the most useful for automation. --delimited is also helpful, but there is also a utility called dx generate-batch-inputs that will let us specify multiple inputs to process line by line."
+  },
+  {
+    "objectID": "05-batch-processing.html#helpful-dx-find-data-examples",
+    "href": "05-batch-processing.html#helpful-dx-find-data-examples",
+    "title": "6  Batch Processing on the Cloud",
+    "section": "6.4 Helpful dx find data examples",
+    "text": "6.4 Helpful dx find data examples\nAs we’re starting off in our batch processing journey, I wanted to provide some helpful recipes for selecting files.\n\n6.4.1 Find all *.bam files in a project\nYou can use wildcard characters with the --name flag. Here, we’re looking for anything with the suffix “*.bam”.\n\n\n\n05-batch-processing/dx_find_path.sh\n\nsource ~/.bashrc\ndx find data --name \"*.bam\" --brief\n\n\n\n\n6.4.2 Searching within a folder\nYou can add the --path command to search in a specific folder.\n\n\n\n05-batch-processing/dx_find_path.sh\n\nsource ~/.bashrc\ndx find data --name \"*bam\" --path \"data/\"\n\n\n\n\n6.4.3 Find all files with a field id\nTake advantage of metadata associated with files when you can. If you are on UKB RAP, one of the most helpful properties to search is field_id.\nNote: be careful with this one, especially if you are working on UK Biobank RAP. You don’t want to return 500,000 file ids. I would concentrate on the field ids that are aggregated on the population level, such as the pVCF files.\n\n\n\n05-batch-processing/dx_find_data_field.sh\n\nsource ~/.bashrc\ndx find data --property field_id=23148 --brief\n\n\n\n\n6.4.4 Find all files that are of class file\nThere are a number of different object classes on the platform, such as file or applet\nSearch for all files in your project that have a file class.\n\n\n\n05-batch-processing/dx_find_data_class.sh\n\nsource ~/.bashrc\ndx find data --class file --brief\n\n\n\n\n6.4.5 In General: Think about leveraging metadata\nIn general, think about leveraging metadata that is attached to your files.\nFor example, for the UKB Research Analysis Platform, data files in the Bulk/ folder in your project have multiple properties: field_id (the data field as specified by UK Biobank) and eid."
+  },
+  {
+    "objectID": "05-batch-processing.html#using-xargs-to-batch-multiple-files",
+    "href": "05-batch-processing.html#using-xargs-to-batch-multiple-files",
+    "title": "6  Batch Processing on the Cloud",
+    "section": "6.5 Using xargs to Batch Multiple Files",
+    "text": "6.5 Using xargs to Batch Multiple Files\nOk, now we have a list of files from dx find data that meet our criteria. How can we process them one by one?\nRemember our discussion of xargs? (Section 3.5) This is where xargs shines, when you provide it a list of files.\nRemember, a really useful pattern for xargs is using it for variable expansion and starting a subshell to process individual files.\n\n\n\n05-batch-processing/dx_find_xargs.sh\n\ndx find data --name \"*.bam\" --brief | \\\n  xargs -I % sh -c \"dx run app-swiss-army-knife -y -iin=\"%\" \\\n  -icmd='samtools view -c \\${in_name} > \\${in_prefix-counts.txt}' \\\n  --tag samjob --destination results/' \n\n\nThe key piece of code we’re doing the variable expansion in is here:\n\nsh -c 'dx run app-swiss-army-knife -iin=\"%\" \\ \n  -icmd=\"samtools view -c \\${in_name}\\ > \\${in_prefix}-counts.txt\" \\\n  --tag samjob --destination results/'\n\nWe’re using sh -c to run a script as a subshell to execute the dx run statement.\nNote that we’re specifying the helper variables here with a \\:\n\\${in_name}\nThis escaping (\\$) of the dollar sign is to prevent the variable expansion from happening in the top-level shell - the helper variable names need to be passed in to the subshell which needs to pass it onto the worker. Figuring this out took time and made my brain hurt.\nThis escaping is only necessary because we’re using xargs and passing our -icmd input into the worker. For the most part, you won’t need to escape the $.\nWhen we run this command, we get the following screen output:\nUsing input JSON:\n{\n    \"cmd\": \"samtools view -c $in_name > $in_prefix-counts.txt\",\n    \"in\": [\n        {\n            \"$dnanexus_link\": {\n                \"project\": \"project-GGyyqvj0yp6B82ZZ9y23Zf6q\",\n                \"id\": \"file-BZ9YGpj0x05xKxZ42QPqZkJY\"\n            }\n        }\n    ]\n}\n\nCalling app-GFxJgVj9Q0qQFykQ8X27768Y with output destination\n  project-GGyyqvj0yp6B82ZZ9y23Zf6q:/results\n\nJob ID: job-GJ2xVZ80yp62X5Z51qp191Y8\n\n[more job info]\nif we do a dx find jobs, we’ll see our jobs listed. Hopefully they are running:\ndx find jobs --tag samjob\n* Swiss Army Knife (swiss-army-knife:main) (running) job-GJ2xVf00yp62kx9Z8VK10vpQ\n  tladeras 2022-10-11 13:57:59 (runtime 0:01:49)\n* Swiss Army Knife (swiss-army-knife:main) (running) job-GJ2xVb80yp6KjQpxFJJBzv5k\n  tladeras 2022-10-11 13:57:57 (runtime 0:00:52)\n* Swiss Army Knife (swiss-army-knife:main) (runnable) job-GJ2xVZj0yp6FFFXG11j6YJ9V\n  tladeras 2022-10-11 13:57:55 (runtime 0:01:15)\n* Swiss Army Knife (swiss-army-knife:main) (runnable) job-GJ2xVZ80yp62X5Z51qp191Y8\n  tladeras 2022-10-11 13:57:53 (runtime 0:00:56)\n\n6.5.1 When batching, tag your jobs\nIt is critical that you tag your jobs in your dx run code with the --tag argument.\nWhy? You will at some point start up a bunch of batch jobs that might have some settings/parameters that were set wrong. That’s when you need the tag.\n\ndx find jobs --tag \"samjob\"\n\n\n\n6.5.2 If you screw up, use the tag to dx terminate\ndx terminate <jobid> will terminate a running job with that job id. It doesn’t take a tag as input.\nBut again, xargs to the rescue. We can find our job ids with the tag bcfjob using dx find jobs and then pipe the --brief output into xargs to terminate each job id.\n\ndx find jobs --tag samjob --brief | xargs -I% sh -c \"dx terminate %\""
+  },
+  {
+    "objectID": "05-batch-processing.html#batching-multiple-inputs-dx-generate_batch_inputs",
+    "href": "05-batch-processing.html#batching-multiple-inputs-dx-generate_batch_inputs",
+    "title": "6  Batch Processing on the Cloud",
+    "section": "6.6 Batching multiple inputs: dx generate_batch_inputs",
+    "text": "6.6 Batching multiple inputs: dx generate_batch_inputs\nWhat if you have multiple input files that you need to batch with? This is where the dx generate_batch_inputs comes in.\nFor each input for an app, we can specify it using wildcard characters.\n\ndx generate_batch_inputs \\\n  --path \"data/\"\\\n  -in=\"(.*)\\.bam$\"\n\nHere we’re specifying a single input in, and we’ve supplied a wildcard search. It’s going to look in data/ for this particular pattern (we’re looking for bam files).\nIf we do this, we’ll get the following response:\nFound 4 valid batch IDs matching desired pattern.\nCreated batch file dx_batch.0000.tsv\nSo, there is 1 .tsv file that was generated by dx generate_batch_inputs on our machine.\nIf we have many more input files, say 3000 files, it would generate 3 .tsv files. Each of these .tsv files contains about 1000 files per line. We can run these individual jobs with:\n\ndx run swiss-army-knife --batch-tsv dx_batch.0000.tsv \\\n   -icmd='samtools stats ${in_name} > ${in_prefix}.stats.txt ' \\\n   --destination \"/Results/\" \\\n   --detach --allow-ssh \\\n   --tag bigjob\n\nThis will generate 4 jobs from the dx_batch.0000 file to process the individual files. Each tsv file will generate up to 1000 jobs.\n\n6.6.1 Drawbacks to dx generate_batch_inputs/dx run --batch-tsv\nThe largest drawback to using dx generate_batch_inputs is that each column must correspond to an individual input name - you can’t submit an array of files to a job this way.\n\n\n6.6.2 For More Information\nThe Batch Jobs documentation page has some good code examples for dx generate_batch_inputs here: https://documentation.dnanexus.com/user/running-apps-and-workflows/running-batch-jobs/"
+  },
+  {
+    "objectID": "05-batch-processing.html#programatically-submitting-arrays-of-files-for-a-job",
+    "href": "05-batch-processing.html#programatically-submitting-arrays-of-files-for-a-job",
+    "title": "6  Batch Processing on the Cloud",
+    "section": "6.7 Programatically Submitting Arrays of Files for a job",
+    "text": "6.7 Programatically Submitting Arrays of Files for a job\nYou can also use Python to build dx run statements, which is especially helpful when you want to submit arrays of 100+ files to a worker.\nSee https://dnanexus.gitbook.io/uk-biobank-rap/science-corner/guide-to-analyzing-large-sample-sets for more info."
+  },
+  {
+    "objectID": "05-batch-processing.html#what-you-learned-in-this-chapter",
+    "href": "05-batch-processing.html#what-you-learned-in-this-chapter",
+    "title": "6  Batch Processing on the Cloud",
+    "section": "6.8 What you learned in this chapter",
+    "text": "6.8 What you learned in this chapter\nThis was a big chapter, and built on everything you learned before. We put together the output of dx find data --brief with a pipe, and xargs to spawn jobs per set of files. We also learned of alternative approaches using dx generate_batch_inputs/dx run --batch-tsv and using Python to build the dx run statements."
+  },
+  {
+    "objectID": "06-JSON.html",
+    "href": "06-JSON.html",
+    "title": "7  Working with JSON on the DNAnexus Platform",
+    "section": "",
+    "text": "By the end of this chapter, you should be able to:\n\nDefine and Explain what JSON is and its elements and structures\nExplain how JSON is used on the DNAnexus platform\nExplain the basic structure of a JSON file\nGenerate JSON output from dx find data and dx find jobs\nExecute simple jq commands to extract information from a JSON file\nExecute advanced jq filters using conditionals to process output from dx find files or dx find jobs."
+  },
+  {
+    "objectID": "06-JSON.html#what-is-json",
+    "href": "06-JSON.html#what-is-json",
+    "title": "7  Working with JSON on the DNAnexus Platform",
+    "section": "7.2 What is JSON?",
+    "text": "7.2 What is JSON?\nJSON is short for JavaScript Object Notation. It is a format used for storing information on the web and for interacting with APIs."
+  },
+  {
+    "objectID": "06-JSON.html#how-is-json-used-on-the-dnanexus-platform",
+    "href": "06-JSON.html#how-is-json-used-on-the-dnanexus-platform",
+    "title": "7  Working with JSON on the DNAnexus Platform",
+    "section": "7.3 How is JSON used on the DNAnexus Platform?",
+    "text": "7.3 How is JSON used on the DNAnexus Platform?\nJSON is used in multiple ways on the DNAnexus Platform, including:\n\nSubmitting Jobs with complex parameters/inputs\nSpecifying parameters of an app or workflow (dxapp.json and dxworkflow.json)\nOutput of commands such as dx find data or dx find jobs with the --json flag\nExtracting environment variables from dx env\n\nUnderneath it all, all interactions with the DNAnexus API server are JSON submissions.\nYou can see that JSON is used in many places on the DNAnexus platforms, and for many purposes. So having basic knowledge of JSON can be really helpful."
+  },
+  {
+    "objectID": "06-JSON.html#writing-and-modifying-json",
+    "href": "06-JSON.html#writing-and-modifying-json",
+    "title": "7  Working with JSON on the DNAnexus Platform",
+    "section": "7.4 Writing and modifying JSON",
+    "text": "7.4 Writing and modifying JSON\nI know that JSON is supposed to be human readable. However, there are a lot of little quibbles that don’t make it easily human writable.\nI highly recommend using an editor such as VS Code, with the appropriate JSON plugin.\nUsing the plugin and this tutorial will help you write well formed JSON, and point out any issues you might have. It’s easy to misplace a comma, or a bracket, and this tool helps you write well-formed JSON."
+  },
+  {
+    "objectID": "06-JSON.html#elements-of-a-json-file",
+    "href": "06-JSON.html#elements-of-a-json-file",
+    "title": "7  Working with JSON on the DNAnexus Platform",
+    "section": "7.5 Elements of a JSON file",
+    "text": "7.5 Elements of a JSON file\nHere are the main elements of a JSON file:\n\nKey:Value Pair. Example: \"name\": \"Ted Laderas\". In this example, our key is “name” and our value is “Ted Laderas”\nList [] - a collection of values. All values have to be the same data type. Example: [\"mom\", \"dad\"]\nObject {} - A collection of key/value pairs, enclosed with curly brackets ({})\n\nHere’s the example we’re going to use:\n\n\n\ndata/example.json\n\n{\n  \"report_html\": {\n    \"dnanexus_link\": \"file-G4x7GX80VBzQy64k4jzgjqgY\"\n  },\n  \"stats_txt\": {\n    \"dnanexus_link\": \"file-G4x7GXQ0VBzZxFxz4fqV120B\"\n  },\n  \"users\": [\"laderast\", \"ted\", \"tladeras\"]\n}\n\n\n\n\n\n\n\n\nCheck Yourself\n\n\n\nWhat does the names value contain in the following JSON? Is it a list, object or key:value pair?\n{\n  \"names\": [\"Ted\", \"Lisa\", \"George\"]\n}\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nIt is a list. We know this because the value contains a [].\n{\n  \"names\": [\"Ted\", \"Lisa\", \"George\"]\n}"
+  },
+  {
+    "objectID": "06-JSON.html#outputting-json-with-dx-find-commands",
+    "href": "06-JSON.html#outputting-json-with-dx-find-commands",
+    "title": "7  Working with JSON on the DNAnexus Platform",
+    "section": "7.6 Outputting JSON with dx find commands",
+    "text": "7.6 Outputting JSON with dx find commands\nWe already encountered the dx find data command, which we used in the batch processing chapter.\nIf we use the --json option, then the file information will be outputted in json format. This command will return a list of JSON file objects.\nFor example:\n\ndx find data --path ted_demo:data/ --json\n\nThe output will look like this:\n[\n    {\n        \"project\": \"project-GGyyqvj0yp6B82ZZ9y23Zf6q\",\n        \"id\": \"file-FvQGZb00bvyQXzG3250XGbgz\",\n        \"describe\": {\n            \"id\": \"file-FvQGZb00bvyQXzG3250XGbgz\",\n            \"project\": \"project-GGyyqvj0yp6B82ZZ9y23Zf6q\",\n            \"class\": \"file\",\n            \"name\": \"small-celegans-sample.fastq\",\n            \"state\": \"closed\",\n            \"folder\": \"/data\",\n            \"modified\": 1665003035646,\n            \"size\": 16801690\n        }\n    },\n    {\n        \"project\": \"project-GGyyqvj0yp6B82ZZ9y23Zf6q\",\n        \"id\": \"file-B5Q8z8V5g3bX5qQ9y9YQ006k\",\n        \"describe\": {\n            \"id\": \"file-B5Q8z8V5g3bX5qQ9y9YQ006k\",\n            \"project\": \"project-GGyyqvj0yp6B82ZZ9y23Zf6q\",\n            \"class\": \"file\",\n            \"name\": \"NC_001422.fasta\",\n            \"state\": \"closed\",\n            \"folder\": \"/data\",\n            \"modified\": 1665003035645,\n            \"size\": 5539\n        }\n    }\n]\n\n\n\n\n\n\n\nTest your knowledge\n\n\n\nWhat is returned when we run this code? Is it a JSON object, or a list of JSON objects?\n\ndx find jobs --json\n\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nWe are returning a list of JSON objects, each of which corresponds to a single job run within our project."
+  },
+  {
+    "objectID": "06-JSON.html#learning-jq-gradually",
+    "href": "06-JSON.html#learning-jq-gradually",
+    "title": "7  Working with JSON on the DNAnexus Platform",
+    "section": "7.7 Learning jq gradually",
+    "text": "7.7 Learning jq gradually\njq is a utility that is made to process JSON. All jq commands have this format:\n\njq '<filter>' <JSON file>\n\nFilters are the heart of processing data using jq. They let you extract JSON values or keys and process them with conditionals to filter data down. For example, you can do something like the following:\n\nSelect all elements where the job status is failed\nFor each of these elements, output the job-status id\n\nYou can see how jq can be extremely powerful.\nYou can also pipe JSON from standard output into jq. This will be really helpful for us when we start using pipes of datafiles from dx find data."
+  },
+  {
+    "objectID": "06-JSON.html#our-simplest-filter-.",
+    "href": "06-JSON.html#our-simplest-filter-.",
+    "title": "7  Working with JSON on the DNAnexus Platform",
+    "section": "7.8 Our simplest filter: .",
+    "text": "7.8 Our simplest filter: .\nOne of the biggest uses for jq is for more readable formatting. Oftentimes, the JSON spit out of an API is really hard to read.\nIt lacks indents, and it is really hard to see the actual structure of the JSON response.\nIf we run jq . on a JSON file, we’ll see that it makes it much more readable.\n\njq '.' data/example.json"
+  },
+  {
+    "objectID": "06-JSON.html#getting-the-keys",
+    "href": "06-JSON.html#getting-the-keys",
+    "title": "7  Working with JSON on the DNAnexus Platform",
+    "section": "7.9 Getting the keys",
+    "text": "7.9 Getting the keys\nWe can extract the keys from the top level JSON by using 'keys' as our filter.\n\njq 'keys' data/example.json"
+  },
+  {
+    "objectID": "06-JSON.html#extracting-a-value-from-a-container-jq-.report_html",
+    "href": "06-JSON.html#extracting-a-value-from-a-container-jq-.report_html",
+    "title": "7  Working with JSON on the DNAnexus Platform",
+    "section": "7.10 Extracting a value from a container: jq .report_html",
+    "text": "7.10 Extracting a value from a container: jq .report_html\nSo, say we want to extract the value from the report_html key in the above.\nWe can specify the key that we’re interested in to extract the value from that key.\n\njq '.report_html' data/example.json\n\n\n\n\n\n\n\nTry it out\n\n\n\nThis is the JSON file we’re going to be working with, in data/example.json.\n\n\n\ndata/example.json\n\n{\n  \"report_html\": {\n    \"dnanexus_link\": \"file-G4x7GX80VBzQy64k4jzgjqgY\"\n  },\n  \"stats_txt\": {\n    \"dnanexus_link\": \"file-G4x7GXQ0VBzZxFxz4fqV120B\"\n  }\n}\n\n\nIn your terminal, try out:\njq '.stats_txt' data/example.json\nWhat do you return?\n\n\n\n\n\n\n\n\nNote\n\n\n\n\n\n\njq '.stats_txt' data/example.json\n\n\n\n\n\n7.10.1 Going one level deeper\nWe can extract the actual value associated with the dnanexus_link key within report_html by chaining onto our filter:\n\njq '.report_html.dnanexus_link' data/example.json\n\n\n\n\n\n\n\nTry It Out\n\n\n\n\n\n\n\n\n\n\n\n\nAnswer"
+  },
+  {
+    "objectID": "06-JSON.html#conditional-filters-using-jq",
+    "href": "06-JSON.html#conditional-filters-using-jq",
+    "title": "7  Working with JSON on the DNAnexus Platform",
+    "section": "7.11 Conditional Filters using jq",
+    "text": "7.11 Conditional Filters using jq\nOne natural use case for this is to rerun failed jobs.\nFailed jobs can occur when using normal priority, which focuses on using spot instances. So, if we ran a series of jobs, we would want to restart these failed jobs.\nThis is a bit of code that would allow us to select those jobs that have failed.\n\ndx find jobs --json |\\ \njq '.[] | select (.state | contains(\"failed\")) | .id' |\\\nxargs -I% sh -c \"dx run --clone %\"\n\nThe second line contains the jq filter that does the magic. Remember, the filter is contained within the single quotes ('').\nThe last line contains \"dx run --clone %\".\nLet’s take apart the different parts of the jq filter (Figure 7.1):\n\n\n\n\n\n\ngraph LR;\n  A[\".[]\"] --> B{\"|\"} \n  B --> C[\"select (.state | contains('failed'))\"] \n  C --> D{\"|\"} \n  D --> E[\".id\"]\n\n\n\n\n\n\n\n\nFigure 7.1: Taking apart the jq filter.\n\n\nNote that the pipes in this filter apply only to the jq filter, so don’t mix them up with the other pipes in our overall Bash statement.\nThe first part of the filter, .[], says that we want to process the list (remember, dx find jobs returns a list of objects).\nThe second part of the filter, select (.state | contains('failed')) will let us select objects in the list that have a state of failed. This list of objects is then passed on the next part of the filter.\nThe last part of the filter, .id, returns the the file ids for our failed jobs.\nThis is a basic pattern for selecting objects that meet a criteria, and can be really helpful when you want more control of your batch processing.\n\n\n\n\n\n\nCheck Yourself\n\n\n\nHow would you modify the code below to terminate all jobs that had state running using dx terminate?\n\ndx find jobs --json |\\ \njq '.[] | select (.state | contains(\"failed\")) | .id' |\\\nxargs -I% sh -c \"dx run --clone %\"\n\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\ndx find jobs --json |\\ \njq '.[] | select (.state | contains(\"running\")) | .id' |\\\nxargs -I% sh -c \"dx terminate %\""
+  },
+  {
+    "objectID": "06-JSON.html#using-json-as-an-input",
+    "href": "06-JSON.html#using-json-as-an-input",
+    "title": "7  Working with JSON on the DNAnexus Platform",
+    "section": "7.12 Using JSON as an Input",
+    "text": "7.12 Using JSON as an Input\nComing soon."
+  },
+  {
+    "objectID": "07-containers.html",
+    "href": "07-containers.html",
+    "title": "8  Containers and Reproducibility",
+    "section": "",
+    "text": "Explain the benefits of using containers on DNAnexus for reproducibility and for batch processing\nDefine the terms image, container, and snapshot in the context of Docker\nCreate snapshots on RAP using docker pull and docker save with the ttyd app\nUtilize containers to batch process files on RAP\nExtend a docker image by installing within interactive mode"
+  },
+  {
+    "objectID": "07-containers.html#why-containers",
+    "href": "07-containers.html#why-containers",
+    "title": "8  Containers and Reproducibility",
+    "section": "8.2 Why Containers?",
+    "text": "8.2 Why Containers?\nThere is a replication crisis out there. Even given a script and the raw data, it is often difficult to replicate the results generated by a study.\nWhy is this difficult? Many others have talked about this, but one simple reason is that the results are tied to software and database versions.\nThis is the motivation for using containers - they are a way of packaging software that ‘freezes’ the software versions. If you provide the container that you used to generate the results, other people should be able to replicate your results even if they’re on a different operating system."
+  },
+  {
+    "objectID": "07-containers.html#terminology",
+    "href": "07-containers.html#terminology",
+    "title": "8  Containers and Reproducibility",
+    "section": "8.3 Terminology",
+    "text": "8.3 Terminology\nIn order to be unambiguous with our language, we’ll use the following definitions:\n\n\n\nFigure 8.1: Docker Terms 1\n\n\n\nRegistry - collection of repositories that you pull docker images from. Example repositories include DockerHub and Quay.io.\nDocker Image - what you download from a registry - the “recipe” for building the software environment. Stored in a registry. use docker pull to get image, docker commit to push changes to registry, can also generate image from a Dockerfile,\nDocker Container - The executable software environment installed on a machine. Runnable. Generate from docker pull from a repository.\nSnapshot File - An single archive file (.tar.gz) that contains the Docker container. Generate using docker save on a container. Also known as an image file on the platform."
+  },
+  {
+    "objectID": "07-containers.html#building-docker-snapshot-files-on-the-the-dnanexus-platform",
+    "href": "07-containers.html#building-docker-snapshot-files-on-the-the-dnanexus-platform",
+    "title": "8  Containers and Reproducibility",
+    "section": "8.4 Building Docker Snapshot Files on the the DNAnexus platform",
+    "text": "8.4 Building Docker Snapshot Files on the the DNAnexus platform\n\n8.4.1 The Golden Rule of Docker and Batch Analysis\nDockerHub has a pull limit of 200 pulls/day/user. You will face this limit a lot if you just use the image url.\nSo, if you are processing more than 200 files (or Jobs), you should save the docker image into platform storage as a snapshot file.\nLet’s talk about the basic snapshot building process.\n\n\n8.4.2 Be Secure\nSecurity is always a concern when running Docker images. The docker group has elevated status on a system, so we need to be careful that when we’re running them, they aren’t introducing any system vulnerabilities.\nThese are mostly important when running containers that are web-servers or part of a web stack, but it is also important to think about when running jobs on the cloud.\nHere are some guidelines to think about when you are working with a container.\n\nUse vendor-specific Docker Images when possible.\nUse container scanners to spot potential vulnerabilities. DockerHub has a vulnerability scanner that scans your Docker images for potential vulnerabilities.\nAvoid kitchen-sink images. One issue is when an image is built on top of many other images. It makes it really difficult.\n\n\n\n8.4.3 The Basic Snapshot Building Process\n\n\n\n\n\n\nflowchart TD\n  A[start ttyd] --> B[docker pull <br> from registry]\n  B --> C[docker save to <br> snapshot file]\n  C --> D[dx upload <br> snapshot to <br> project storage]\n  D --> E[terminate ttyd]\n\n\n\n\n\n\n\n\nFigure 8.2: Building a docker snapshot on the DNAnexus platform.\n\n\n\n\n8.4.4 Building Snapshot Files in ttyd\nUp until now, we have been using our own machine or the binder shell for doing our work.\nWe’re going to pull up a web-enabled shell on a DNAnexus worker with the ttyd app. ttyd is useful because:\n\ndocker is already installed, so we can docker pull our container and docker save our snapshot to the ttyd instance.\nIt’s much faster to transfer our snapshot file back into project storage..\n\nTo open ttyd, open the Tool Library under Tools and select your project.\n\n\n\nOpening ttyd\n\n\n\n\n8.4.5 Pull your image from a registry\n\ndocker pull quay.io/biocontainers/samtools:1.15.1--h1170115_0\n\nOn your ttyd instance, do a docker pull to pull your image from the registry. Note that we’re pulling samtools from quay.io here, from the biocontainers user.\nWe’re also specifying a version tag - the 1.15.1--h1170115_0 to tie our samtools to a specific version. This is important - most docker pull operations will pull from the latest tag, which is not tied to a specific version. So make sure to tie your image to a specific version.\nWhen you’re done pulling the docker image, try out the docker images command.\ndocker images\n\n\n8.4.6 Save your docker image as a snapshot\n\ndocker save quay.io/biocontainers/samtools | gzip > samtools_image.tar.gz \n\nNow that we’ve pulled the container, we are now going to save it as a snapshot file using docker save. We pipe the output of docker save into gzip to save it as samtools_image.tar.gz\n\n\n8.4.7 Upload your snapshot\n\ndx mkdir images/\ndx upload samtools_image.tar.gz --destination images/\n\nNow we can get our image back into project storage. We’ll create a folder called images/ and then use dx upload to get our snapshot file.\n\n\n8.4.8 Important: make sure to terminate your ttyd instance!\nOne thing to remember is that there is no timeout associated with ttyd. You will get a reminder email after it’s been open after 24 hours, but you will get no warning after that.\nSo make sure to use dx terminate to terminate your ttyd job."
+  },
+  {
+    "objectID": "07-containers.html#sec-docker-sak",
+    "href": "07-containers.html#sec-docker-sak",
+    "title": "8  Containers and Reproducibility",
+    "section": "8.5 Using Docker with Swiss Army Knife",
+    "text": "8.5 Using Docker with Swiss Army Knife\nNow that we’ve built our Docker snapshot, let’s use it in Swiss Army Knife.\nSwiss Army Knife has two separate inputs associated with Docker:\n\n-iimage_file - This is where you put the snapshot file (such as the samtools.tar.gz)\n-iimage - This is where you’d put the Docker URL (such as quay.io/ucsc_cgl/samtools)\n\nSo, let’s run a samtools job using our Docker snapshot.\n\ndx run app-swiss-army-knife \\\n  -iimage_file=\"images/samtools.tar.gz\" \\\n  -iin=\"data/NA12878.bam\"\n  -icmd=\"docker run samtools stats * > ${in_prefix}.stats.txt\"\n\nThe main thing that has been changed here is that we’ve added an the -iimage_file input to our dx run statement."
+  },
+  {
+    "objectID": "07-containers.html#extending-a-docker-image",
+    "href": "07-containers.html#extending-a-docker-image",
+    "title": "8  Containers and Reproducibility",
+    "section": "8.6 Extending a Docker Image",
+    "text": "8.6 Extending a Docker Image\nOne thing that you might do is extend a Docker image by adding additional software. You can do this by opening up an interactive mode and installing within the container.\nWhat is interactive mode? When you pull a docker image in your ttyd session (Section 8.4.4), you can issue a docker run command with these options:\ndocker run -it ubuntu:18.04 /bin/bash\nIt will open up a bash shell in the container.\n\n8.6.1 Pulling a Base Image\nWe’ll start out with the official ubuntu 18.04 container in our ttyd session:\n\ndocker pull ubuntu:18.04\ndocker images\n\n\n\n8.6.2 Open up interactive mode\nIn ttyd, now enter an interactive session:\ndocker run -it ubuntu:18.04 /bin/bash\nIf it works, you will open up a bash prompt in the container.\nYou’ll know you’re in the container if you do an ls and your filesystem looks different.\n\n\n8.6.3 Install Software\nNow, let’s install EMBOSS (European Molecular Biology Open Software Suite), which is a suite of string utilities for working with genomic data. If you look at the EMBOSS link, you will see that you can install it via apt install, which is available by default in the ubuntu container.\n\napt update && apt upgrade\napt install emboss gzip -y\n\n\n\n8.6.4 Exit Container\nNow exit from your container’s interactive mode:\n\nexit\n\nYou’ll be back at the normal ttyd prompt.\n\n\n8.6.5 docker commit/docker save your new snapshot file\nWe created a new container when we installed everything. We’ll need to find it its ID in ttyd.\n\ndocker ps -a\n\nWe can see that our new container has the following id. We can use this id to save a new container with docker commit. Now we can save the snapshot file by using docker save:\n\ndocker commit <container_id> emboss:6.6.0\ndocker save emboss:6.6.0 | gzip > emboss.tar.gz\ndx upload emboss.tar.gz --destination images/"
+  },
+  {
+    "objectID": "07-containers.html#other-uses-of-interactive-mode",
+    "href": "07-containers.html#other-uses-of-interactive-mode",
+    "title": "8  Containers and Reproducibility",
+    "section": "8.7 Other uses of Interactive Mode",
+    "text": "8.7 Other uses of Interactive Mode\nDocker’s interactive mode is really helpful for testing out scripts and making sure they are reproducible.\nIf I have a one-off analysis, it may be faster for me to just open up ttyd and use docker run to open up interactive mode, and do work with a container."
+  },
+  {
+    "objectID": "07-containers.html#going-further-with-docker",
+    "href": "07-containers.html#going-further-with-docker",
+    "title": "8  Containers and Reproducibility",
+    "section": "8.8 Going Further with Docker",
+    "text": "8.8 Going Further with Docker\nNow that you know how to build a snapshot file, you’ve also learned another step in building apps: specifying software dependencies. You can use these snapshot files to specify executables in your app.\nYou can also use these snapshot files in your WDL workflow."
+  },
+  {
+    "objectID": "07-containers.html#what-you-learned-in-this-chapter",
+    "href": "07-containers.html#what-you-learned-in-this-chapter",
+    "title": "8  Containers and Reproducibility",
+    "section": "8.9 What you learned in this chapter",
+    "text": "8.9 What you learned in this chapter\n\nHow containers enable reproducibility\nDefined specific container terminology\nCreated snapshot files using ttyd\nUse these snapshot files with Swiss Army Knife\nHow to extend a docker image by installing new software"
+  },
+  {
+    "objectID": "appendix.html",
+    "href": "appendix.html",
+    "title": "9  Appendix",
+    "section": "",
+    "text": "The appendix contains multiple sections that I wanted to refer to, but there’s not a really good place for them."
+  },
+  {
+    "objectID": "appendix.html#starting-ttyd",
+    "href": "appendix.html#starting-ttyd",
+    "title": "9  Appendix",
+    "section": "9.1 Starting ttyd",
+    "text": "9.1 Starting ttyd\n\n\n\n\n\n\nWhy not just use ttyd for the entire course?\n\n\n\nIf ttyd is so great, why don’t we use it for the entire course?\nttyd covers a number of use cases, not just for learning. The main difference with ttyd and using a shell on your computer is that ttyd starts with a project context - that is, you need to specify the project before you start up the ttyd app.\nThis context makes ttyd a little inflexible, especially when we are creating and administering new projects from the command-line."
+  },
+  {
+    "objectID": "appendix.html#sec-named",
+    "href": "appendix.html#sec-named",
+    "title": "9  Appendix",
+    "section": "9.2 Named Arguments",
+    "text": "9.2 Named Arguments\nIn general, ordered arguments can be difficult to remember, and sometimes you have way too many parameters.\nWhat about named arguments? Let’s modify sam_run.sh to use named arguments.\n\n\n\nsam_run_named.sh\n\n#!/bin/bash\n\nwhile [ $# -gt 0 ]; do\n    if [[ $1 == \"--\"* ]]; then\n        v=\"${1/--/}\"\n        declare \"$v\"=\"$2\"\n        shift\n    fi\n    shift\ndone\n\nsamtools ${input_file} > ${output_file}\n\n\nThe magic of setting up the positional arguments happens in the while block above. It looks for any string arguments that follow our script name that begin with -- - then it puts the value of that into the named variables.\nIn this case, our script is expecting an --input-file and an --output_file arguments.\n\n9.2.1 Running our script with named arguments\n\n./sam_run_named.sh --input_file \"\" --output_file \"\"\n\n\n\n\n\n\n\nTest Yourself\n\n\n\nHow would we modify the following script to use named arguments?\n\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\n\n\n\n\n\n9.2.2 For more info\nhttps://keestalkstech.com/2022/03/named-arguments-in-a-bash-script/"
+  },
+  {
+    "objectID": "appendix.html#sec-environment",
+    "href": "appendix.html#sec-environment",
+    "title": "9  Appendix",
+    "section": "9.3 Environment Variables",
+    "text": "9.3 Environment Variables\n\n9.3.1 $PATH\nThe $PATH variable is one of the most important environment variables we’ll set on your local machine. It specifies the directories where executables and binaries can be found. This is important when you install dx-toolkit to interact with the DNAnexus platform.\nIn general, you want to append paths to the $PATH variable, rather than overwriting it. This is because other processes may add to the $PATH variable as well, so you don’t want to interfere with those processes. Adding to our $PATH variable depends on the different operating systems.\n\n\n9.3.2 Mac/Linux\nThe fastest way to add a directory to your path is to use the export command in your .bash_profile, or .bashrc file. For example, if the directory you want to add is /opt/homebrew/bin/, you’d edit your .bash_profile file and add the following line:\nexport PATH=$PATH:/opt/homebrew/bin/\nNote that spacing matters in Bash scripting, especially in assigning variable names.\n\n\n9.3.3 Other Environment Variables\nWe’ll see that dx-toolkit defines a certain number of environmental variables and we can view them using dx env. These include:\n\nCurrent Project\nCurrent User\nCurrent Directory in Project\nAPI token used to access the platform\netc."
+  }
+]

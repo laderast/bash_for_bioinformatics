@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Bash for Bioinformatics - 4&nbsp; Cloud Computing Basics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./04-doing-work-with-dx-run.html" rel="next">
+<link href="./02-scripting-basics.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script type="application/json" class="js-hypothesis-config">
+{
+  "theme": "clean",
+  "openSidebar": false
+}
+</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Cloud Computing Basics</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Bash for Bioinformatics</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-setup-course.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setup for the Course / dx-toolkit basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-scripting-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Shell Scripting Basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-cloud-computing-basics.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Cloud Computing Basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-doing-work-with-dx-run.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with files using <code>dx run</code></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-batch-processing.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Batch Processing on the Cloud</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-JSON.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with JSON on the DNAnexus Platform</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-containers.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containers and Reproducibility</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Appendix</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="toc-section-number">4.1</span>  Learning Objectives</a></li>
+  <li><a href="#important-terminology" id="toc-important-terminology" class="nav-link" data-scroll-target="#important-terminology"><span class="toc-section-number">4.2</span>  Important Terminology</a></li>
+  <li><a href="#understanding-the-key-players" id="toc-understanding-the-key-players" class="nav-link" data-scroll-target="#understanding-the-key-players"><span class="toc-section-number">4.3</span>  Understanding the key players</a>
+  <ul class="collapse">
+  <li><a href="#key-players-in-local-computing" id="toc-key-players-in-local-computing" class="nav-link" data-scroll-target="#key-players-in-local-computing"><span class="toc-section-number">4.3.1</span>  Key Players in Local Computing</a></li>
+  <li><a href="#key-players-in-cloud-computing" id="toc-key-players-in-cloud-computing" class="nav-link" data-scroll-target="#key-players-in-cloud-computing"><span class="toc-section-number">4.3.2</span>  Key Players in Cloud Computing</a></li>
+  </ul></li>
+  <li><a href="#sequence-of-events-of-running-a-job" id="toc-sequence-of-events-of-running-a-job" class="nav-link" data-scroll-target="#sequence-of-events-of-running-a-job"><span class="toc-section-number">4.4</span>  Sequence of Events of Running a Job</a>
+  <ul class="collapse">
+  <li><a href="#a-common-pattern-scripts-on-your-computer-scripts-on-the-worker" id="toc-a-common-pattern-scripts-on-your-computer-scripts-on-the-worker" class="nav-link" data-scroll-target="#a-common-pattern-scripts-on-your-computer-scripts-on-the-worker"><span class="toc-section-number">4.4.1</span>  A Common Pattern: Scripts on your computer, scripts on the worker</a></li>
+  </ul></li>
+  <li><a href="#key-differences-with-local-computing" id="toc-key-differences-with-local-computing" class="nav-link" data-scroll-target="#key-differences-with-local-computing"><span class="toc-section-number">4.5</span>  Key Differences with local computing</a></li>
+  <li><a href="#project-storage-vs-worker-storage" id="toc-project-storage-vs-worker-storage" class="nav-link" data-scroll-target="#project-storage-vs-worker-storage"><span class="toc-section-number">4.6</span>  Project Storage vs Worker Storage</a>
+  <ul class="collapse">
+  <li><a href="#running-scripts-on-a-worker-is-indirect" id="toc-running-scripts-on-a-worker-is-indirect" class="nav-link" data-scroll-target="#running-scripts-on-a-worker-is-indirect"><span class="toc-section-number">4.6.1</span>  Running Scripts on a Worker is Indirect</a></li>
+  </ul></li>
+  <li><a href="#instance-types" id="toc-instance-types" class="nav-link" data-scroll-target="#instance-types"><span class="toc-section-number">4.7</span>  Instance Types</a>
+  <ul class="collapse">
+  <li><a href="#when-to-scale-up-or-down" id="toc-when-to-scale-up-or-down" class="nav-link" data-scroll-target="#when-to-scale-up-or-down"><span class="toc-section-number">4.7.1</span>  When to Scale Up or Down?</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-cloud" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Cloud Computing Basics</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>We all need to start somewhere when we work with cloud computing.</p>
+<p>This chapter is a review of how cloud computing works on the DNAnexus platform. If you haven’t used cloud computing before, no worries! This chapter will get you up to speed.</p>
+<p>Also, if you are coming from using an on-premise high performance computing (HPC) cluster, you can skip ahead.</p>
+<section id="learning-objectives" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">4.1</span> Learning Objectives</h2>
+<ol type="1">
+<li><strong>Define</strong> key players in both local computing and cloud computing</li>
+<li><strong>Articulate</strong> key differences between local computing and cloud computing</li>
+<li><strong>Describe</strong> the sequence of events in launching jobs in the DNAnexus cloud</li>
+<li><strong>Differentiate</strong> local storage from cloud-based project storage</li>
+<li><strong>Describe</strong> instance types and how to use them.</li>
+</ol>
+</section>
+<section id="important-terminology" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="important-terminology"><span class="header-section-number">4.2</span> Important Terminology</h2>
+<p>Let’s establish the terminology we need to talk about cloud computing.</p>
+<ul>
+<li><strong>DNAnexus Project</strong> - contains files, executables (apps/applets), and logs associated with analysis.</li>
+<li><strong>Software Environment</strong> - everything needed to run a piece of software on a brand new computer. For example, this would include installing R, but also all of its dependencies as well.</li>
+<li><strong>App/Applet</strong> - Executable on the DNAnexus platform.</li>
+<li><strong>Project Storage</strong> - Part of the platform that stores our files and other objects. We’ll see that these other objects include applets, databases, and other object types.</li>
+</ul>
+</section>
+<section id="understanding-the-key-players" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="understanding-the-key-players"><span class="header-section-number">4.3</span> Understanding the key players</h2>
+<p>In order to understand what’s going on with Cloud Computing, we will have to change our mental model of computing.</p>
+<p>Let’s contrast the key players in local computing with the key players in cloud computing.</p>
+<section id="key-players-in-local-computing" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="key-players-in-local-computing"><span class="header-section-number">4.3.1</span> Key Players in Local Computing</h3>
+<div id="fig-local" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/local_compute.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4.1: Local Computing</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li>Our Machine</li>
+</ul>
+<p>When we run an analysis or process files on our computer, we are in control of all aspects of our computer. We are able to install a software environment, such as R or Python, and then execute scripts/notebooks that reside on our computer on data that’s on our computer.</p>
+<p>Our main point of access to either the HPC cluster or to the DNAnexus cloud is going to be our computer.</p>
+</section>
+<section id="key-players-in-cloud-computing" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="key-players-in-cloud-computing"><span class="header-section-number">4.3.2</span> Key Players in Cloud Computing</h3>
+<p>Let’s contrast our view of local computing with the key players in the DNAnexus platform (<a href="#fig-dnanexus-players">Figure&nbsp;<span>4.2</span></a>).</p>
+<div id="fig-dnanexus-players" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/dnanexus_players.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4.2: Key Players in DNAnexus Storage</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><strong>Our Machine</strong> - We interact with the platform via the dx-toolkit installed on our machine. When we utilize cloud resources, we request them from our own computer using commands from the dx toolkit.</li>
+<li><strong>DNAnexus Platform</strong> - Although there are many parts, we can treat the DNAnexus platform as a single entity that we interact with. Our request gets sent to the platform, and given availability, it will grant access to a temporary DNAnexus Worker. Also contains <strong>project storage</strong>.</li>
+<li><strong>DNAnexus Worker</strong> - A temporary machine that comes from a pool of available machines. We’ll see that it starts out as a blank slate.</li>
+</ul>
+</section>
+</section>
+<section id="sequence-of-events-of-running-a-job" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="sequence-of-events-of-running-a-job"><span class="header-section-number">4.4</span> Sequence of Events of Running a Job</h2>
+<p>Let’s run through the order of operations of running a job on the platform. Let’s focus on running an aligner (BWA-MEM) on a FASTQ file. Our output will be a .BAM (aligned reads) file.</p>
+<p>Let’s go over the order of operations needed to execute our job on the DNAnexus platform (<a href="#fig-dnanexus">Figure&nbsp;<span>4.3</span></a>).</p>
+<div id="fig-dnanexus" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/order_operations.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4.3: Order of Operations</figcaption><p></p>
+</figure>
+</div>
+<ol type="1">
+<li><strong>Start a job using <code>dx run</code> to send a request to the platform.</strong> In order to start a job, we will need two things: an app (<code>app-bwa-mem</code>), and a file to process on the platform (not shown). We specify this information using <code>dx run</code>. When we use <code>dx run</code>, a request is sent to the platform.</li>
+<li><strong>Platform requests for a worker from available workers; worker made available on platform.</strong> In this step, the DNAnexus platform looks for a worker instance that can meet our needs. The platform handles installing the app and its software environment to the worker as well. We’ll see that apps have a default instance type that are suggested by the authors.</li>
+<li><strong>Input files transferred from project storage.</strong> We’re going to process a FASTQ file (<code>53525342.fq.gz</code>). This needs to be transferred from the project storage to the worker storage on the machine.</li>
+<li><strong>Computations run on worker; output files are generated.</strong> Once our app is ready and our file is transferred, we can run the computation on the worker.</li>
+<li><strong>Output files transferred back to project storage.</strong> Any files that we generate during our computation (<code>53525342.bam</code>) must be transferred back into project storage.</li>
+<li><strong>Response from DNAnexus platform to User.</strong> If our job was successful, we will receive a response from the platform. This can be an email, or the output from <code>dx find jobs</code>. If our job was unable to run, we will recieve a “failed” response.</li>
+</ol>
+<p>When you are working on the platform, especially with batch jobs, keep in mind this order of execution. Being familiar with how the key players interact on the platform is key to running efficient jobs.</p>
+<section id="a-common-pattern-scripts-on-your-computer-scripts-on-the-worker" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="a-common-pattern-scripts-on-your-computer-scripts-on-the-worker"><span class="header-section-number">4.4.1</span> A Common Pattern: Scripts on your computer, scripts on the worker</h3>
+<p>A very common pattern we’ll use is having two sets of scripts (<a href="#fig-scripts">Figure&nbsp;<span>4.4</span></a>). The batch script that generates the separate jobs run on separate workers (<code>batch_RUN.sh</code>), and a script that is run on each worker (<code>plink_script.sh</code>).</p>
+<p>The batch script will specify file inputs as paths from project storage. For example, a project storage path might be <code>data/chr1.vcf.gz</code>.</p>
+<p>The trick with the worker script is being able to visualize the location of the files on the worker after they’re transferred. In most cases, the files will be transferred to the working directory of the worker.</p>
+<div id="fig-scripts" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/two_scripts.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4.4: Two kinds of scripts.</figcaption><p></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="key-differences-with-local-computing" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="key-differences-with-local-computing"><span class="header-section-number">4.5</span> Key Differences with local computing</h2>
+<p>As you might have surmised, running a job on the DNAnexus platform is very different from computing on your local computer.</p>
+<ol type="1">
+<li>We don’t own the worker machine, we only have temporary access to it. A lot of the complications of running cloud computations comes from this.</li>
+<li>We have to be explicit what kind of machine we want. We’ll talk much more about this in terms of instance types (<span class="quarto-unresolved-ref">?sec-instance</span>)</li>
+<li>We need to transfer files to and from our temporary worker.</li>
+</ol>
+</section>
+<section id="project-storage-vs-worker-storage" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="project-storage-vs-worker-storage"><span class="header-section-number">4.6</span> Project Storage vs Worker Storage</h2>
+<div id="fig-storage" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/storage.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4.5: Project Storage versus Worker storage</figcaption><p></p>
+</figure>
+</div>
+<p>You might have noticed that the worker is a blank slate after we request it. So any files we need to process need to be transferred over to the temporary worker storage.</p>
+<p>Fortunately, when we use apps, the file transfer process is handled by the app. This also means that when you build your own apps on the platform, you will need to specify inputs (what files the app will process) and outputs (the resulting files from the app).</p>
+<section id="running-scripts-on-a-worker-is-indirect" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="running-scripts-on-a-worker-is-indirect"><span class="header-section-number">4.6.1</span> Running Scripts on a Worker is Indirect</h3>
+<p>Because this file transfer occurs from project storage to the worker, when we run scripts on a worker, we have to think about the location of the files on the worker (<a href="#fig-indirect">Figure&nbsp;<span>4.6</span></a>).</p>
+<div id="fig-indirect" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/indirect.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4.6: An indirect process</figcaption><p></p>
+</figure>
+</div>
+<p>Let’s look at an example of that nestedness. Say we have two bed files and we want to combine them on a worker using PLINK.</p>
+<ol type="1">
+<li>Transfer data from project to the working directory on the worker. The first thing we need to do is transfer them from project storage to worker storage. Notice that even though in project storage they are in a data folder, they are in the base directory of the worker.</li>
+<li>Run the computation on the worker, and generate results file. The files we need to process are in the base directory of the worker, so we can refer to them without the folder path (<code>plink chr1.bed</code>). We generate a results file called <code>chr_combined.bed</code> (the combined <code>.bed</code> file).<br>
+</li>
+<li>Transfer results file back to the worker.</li>
+</ol>
+</section>
+</section>
+<section id="instance-types" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="instance-types"><span class="header-section-number">4.7</span> Instance Types</h2>
+<p>One of the major concerns when you’re getting started on the platform is cost.</p>
+<p>What impacts cost? The number of workers and your priority for those workers matters. Most importantly, the instance type matters (<a href="#fig-instance">Figure&nbsp;<span>4.7</span></a>). Let’s review how to pick an instance type on the platform.</p>
+<p>First off, all apps (including Swiss Army Knife) have a default instance selected.</p>
+<div id="fig-instance" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid" data-tooltip-selector="#mermaid-tooltip-1">graph LR
+  A["mem1_ &lt;br&gt; (Memory)"] --&gt; C["ssd1_ &lt;br&gt; (Disk Size)"]
+  C --&gt; E["v2_ &lt;br&gt; (Version)"]
+  E --&gt; G["x4 &lt;br&gt; (Cores)"]
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4.7: Anatomy of an instance type.</figcaption><p></p>
+</figure>
+</div>
+<p>This is an example of an instance type. We can see that it has four sections: a memory class (<code>mem1</code>), a disk space class (<code>ssd1</code>), a version (<code>v2</code>), and the number of CPUs (<code>x4</code>). Together, this combination of classes forms an <a href="https://documentation.dnanexus.com/developer/api/running-analyses/instance-types">instance type</a>.</p>
+<div id="fig-instances" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/instance_checklist.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4.8: An Instance Type Checklist</figcaption><p></p>
+</figure>
+</div>
+<p>Let’s talk about what aspects to concentrate on when choosing your instance type.</p>
+<section id="when-to-scale-up-or-down" class="level3" data-number="4.7.1">
+<h3 data-number="4.7.1" class="anchored" data-anchor-id="when-to-scale-up-or-down"><span class="header-section-number">4.7.1</span> When to Scale Up or Down?</h3>
+<p>One question we often get is about when to scale up and down instance types in terms of resource usage. It’s important when you’re starting out to do profiling of the app on a data file or dataset that you know well. Start with the default instance type for an app on your test files at first.</p>
+<p>Once you have run an app as a job, you can look at the job log to understand how the compute resources were utilized.</p>
+<p>In this case, our job under utilized the compute resources on our instance type, so we might want to scale to a lower instance type.</p>
+<p>If our job crashed due to a lack of resources, or is running slow, we may want to scale up our resource type.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./02-scripting-basics.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Shell Scripting Basics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./04-doing-work-with-dx-run.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with files using <code>dx run</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

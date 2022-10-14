@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Bash for Bioinformatics - 6&nbsp; Batch Processing on the Cloud</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./06-JSON.html" rel="next">
+<link href="./04-doing-work-with-dx-run.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script type="application/json" class="js-hypothesis-config">
+{
+  "theme": "clean",
+  "openSidebar": false
+}
+</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Batch Processing on the Cloud</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Bash for Bioinformatics</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-setup-course.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setup for the Course / dx-toolkit basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-scripting-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Shell Scripting Basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-cloud-computing-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Cloud Computing Basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-doing-work-with-dx-run.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with files using <code>dx run</code></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-batch-processing.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Batch Processing on the Cloud</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-JSON.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with JSON on the DNAnexus Platform</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-containers.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containers and Reproducibility</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Appendix</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="toc-section-number">6.1</span>  Learning Objectives</a></li>
+  <li><a href="#two-ways-of-batching" id="toc-two-ways-of-batching" class="nav-link" data-scroll-target="#two-ways-of-batching"><span class="toc-section-number">6.2</span>  Two Ways of Batching</a></li>
+  <li><a href="#finding-files-using-dx-find-data" id="toc-finding-files-using-dx-find-data" class="nav-link" data-scroll-target="#finding-files-using-dx-find-data"><span class="toc-section-number">6.3</span>  Finding files using <code>dx find data</code></a></li>
+  <li><a href="#helpful-dx-find-data-examples" id="toc-helpful-dx-find-data-examples" class="nav-link" data-scroll-target="#helpful-dx-find-data-examples"><span class="toc-section-number">6.4</span>  Helpful <code>dx find data</code> examples</a>
+  <ul class="collapse">
+  <li><a href="#find-all-.bam-files-in-a-project" id="toc-find-all-.bam-files-in-a-project" class="nav-link" data-scroll-target="#find-all-.bam-files-in-a-project"><span class="toc-section-number">6.4.1</span>  Find all *.bam files in a project</a></li>
+  <li><a href="#searching-within-a-folder" id="toc-searching-within-a-folder" class="nav-link" data-scroll-target="#searching-within-a-folder"><span class="toc-section-number">6.4.2</span>  Searching within a folder</a></li>
+  <li><a href="#find-all-files-with-a-field-id" id="toc-find-all-files-with-a-field-id" class="nav-link" data-scroll-target="#find-all-files-with-a-field-id"><span class="toc-section-number">6.4.3</span>  Find all files with a field id</a></li>
+  <li><a href="#find-all-files-that-are-of-class-file" id="toc-find-all-files-that-are-of-class-file" class="nav-link" data-scroll-target="#find-all-files-that-are-of-class-file"><span class="toc-section-number">6.4.4</span>  Find all files that are of class <code>file</code></a></li>
+  <li><a href="#in-general-think-about-leveraging-metadata" id="toc-in-general-think-about-leveraging-metadata" class="nav-link" data-scroll-target="#in-general-think-about-leveraging-metadata"><span class="toc-section-number">6.4.5</span>  In General: Think about leveraging metadata</a></li>
+  </ul></li>
+  <li><a href="#using-xargs-to-batch-multiple-files" id="toc-using-xargs-to-batch-multiple-files" class="nav-link" data-scroll-target="#using-xargs-to-batch-multiple-files"><span class="toc-section-number">6.5</span>  Using <code>xargs</code> to Batch Multiple Files</a>
+  <ul class="collapse">
+  <li><a href="#when-batching-tag-your-jobs" id="toc-when-batching-tag-your-jobs" class="nav-link" data-scroll-target="#when-batching-tag-your-jobs"><span class="toc-section-number">6.5.1</span>  When batching, tag your jobs</a></li>
+  <li><a href="#if-you-screw-up-use-the-tag-to-dx-terminate" id="toc-if-you-screw-up-use-the-tag-to-dx-terminate" class="nav-link" data-scroll-target="#if-you-screw-up-use-the-tag-to-dx-terminate"><span class="toc-section-number">6.5.2</span>  If you screw up, use the tag to <code>dx terminate</code></a></li>
+  </ul></li>
+  <li><a href="#batching-multiple-inputs-dx-generate_batch_inputs" id="toc-batching-multiple-inputs-dx-generate_batch_inputs" class="nav-link" data-scroll-target="#batching-multiple-inputs-dx-generate_batch_inputs"><span class="toc-section-number">6.6</span>  Batching multiple inputs: <code>dx generate_batch_inputs</code></a>
+  <ul class="collapse">
+  <li><a href="#drawbacks-to-dx-generate_batch_inputsdx-run---batch-tsv" id="toc-drawbacks-to-dx-generate_batch_inputsdx-run---batch-tsv" class="nav-link" data-scroll-target="#drawbacks-to-dx-generate_batch_inputsdx-run---batch-tsv"><span class="toc-section-number">6.6.1</span>  Drawbacks to <code>dx generate_batch_inputs</code>/<code>dx run --batch-tsv</code></a></li>
+  <li><a href="#for-more-information" id="toc-for-more-information" class="nav-link" data-scroll-target="#for-more-information"><span class="toc-section-number">6.6.2</span>  For More Information</a></li>
+  </ul></li>
+  <li><a href="#programatically-submitting-arrays-of-files-for-a-job" id="toc-programatically-submitting-arrays-of-files-for-a-job" class="nav-link" data-scroll-target="#programatically-submitting-arrays-of-files-for-a-job"><span class="toc-section-number">6.7</span>  Programatically Submitting Arrays of Files for a job</a></li>
+  <li><a href="#what-you-learned-in-this-chapter" id="toc-what-you-learned-in-this-chapter" class="nav-link" data-scroll-target="#what-you-learned-in-this-chapter"><span class="toc-section-number">6.8</span>  What you learned in this chapter</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-batch" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Batch Processing on the Cloud</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>Now we’re prepared for the big one: batch processing on the DNAnexus platform. All of the shell and DNAnexus skills will be leveraged in this chapter.</p>
+<section id="learning-objectives" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">6.1</span> Learning Objectives</h2>
+<ol type="1">
+<li><strong>Utilize</strong> <code>dx find data</code> to find data files on the platform to batch process.</li>
+<li><strong>Iterate</strong> over files using Bash scripting on the platform to batch process them within a DNAnexus project.</li>
+<li><strong>Leverage</strong> dxFUSE to simplify your bash scripts</li>
+<li><strong>Utilize</strong> <code>dx generate-batch-inputs</code>/<code>dx run --batch-tsv</code> to batch process files</li>
+<li><strong>Utilize</strong> Python to batch process multiple files per worker.</li>
+</ol>
+</section>
+<section id="two-ways-of-batching" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="two-ways-of-batching"><span class="header-section-number">6.2</span> Two Ways of Batching</h2>
+<div id="fig-batch1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid" data-tooltip-selector="#mermaid-tooltip-1">graph LR;
+  A[List files &lt;/br&gt; using `dx data`] --&gt; F{"|"}
+  F --&gt; E[`xargs` sh -c]
+  E --&gt; B[`dx run` &lt;/br&gt; on file1];
+  E --&gt; C[`dx run` &lt;/br&gt; on file2];
+  E --&gt; D[`dx run` &lt;/br&gt; on file3];
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;6.1: Batch method 1</figcaption><p></p>
+</figure>
+</div>
+<div id="fig-batch2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid" data-tooltip-selector="#mermaid-tooltip-2">graph LR;
+  A[Submit array &lt;/br&gt; of files &lt;/br&gt; in `dx run`] --&gt; B[Loop over array &lt;/br&gt; of files &lt;/br&gt; in worker];
+</pre>
+<div id="mermaid-tooltip-2" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;6.2: Batch method 2</figcaption><p></p>
+</figure>
+</div>
+<p>We actually have two methods of batching jobs using Swiss Army Knife:</p>
+<ol type="1">
+<li>Use <code>xargs</code> on our home system to run <code>dx run</code> statements for each file (<a href="#fig-batch1">Figure&nbsp;<span>6.1</span></a>).</li>
+<li>Submit an array of files as an input to Swiss Army Knife. Then process each file using the <code>icmd</code> input (<a href="#fig-batch2">Figure&nbsp;<span>6.2</span></a>)</li>
+</ol>
+<p>Both of these methods can potentially be useful.</p>
+</section>
+<section id="finding-files-using-dx-find-data" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="finding-files-using-dx-find-data"><span class="header-section-number">6.3</span> Finding files using <code>dx find data</code></h2>
+<p><code>dx find data</code> is a command that is extremely helpful on the DNAnexus platform. Based on metadata and folder paths, <code>dx find data</code> will return a list of files that meet the criteria.</p>
+<p><code>dx find data</code> lets you search on the following types of metadata:</p>
+<ul>
+<li>tags <code>--tag</code></li>
+<li>properties <code>--property</code></li>
+<li>name <code>--name</code></li>
+<li>type <code>--type</code></li>
+</ul>
+<p>It can output in a number of different formats. Including:</p>
+<ul>
+<li><code>--brief</code> - return only the file-ids</li>
+<li><code>--json</code> - return file information in JSON format</li>
+<li><code>--verbose</code> - this is the default setting</li>
+<li><code>--delimited</code> - return as a delimited text file</li>
+</ul>
+<p>Of all of these, <code>--brief</code> and <code>--json</code> are the most useful for automation. <code>--delimited</code> is also helpful, but there is also a utility called <code>dx generate-batch-inputs</code> that will let us specify multiple inputs to process line by line.</p>
+</section>
+<section id="helpful-dx-find-data-examples" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="helpful-dx-find-data-examples"><span class="header-section-number">6.4</span> Helpful <code>dx find data</code> examples</h2>
+<p>As we’re starting off in our batch processing journey, I wanted to provide some helpful recipes for selecting files.</p>
+<section id="find-all-.bam-files-in-a-project" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="find-all-.bam-files-in-a-project"><span class="header-section-number">6.4.1</span> Find all *.bam files in a project</h3>
+<p>You can use wildcard characters with the <code>--name</code> flag. Here, we’re looking for anything with the suffix “*.bam”.</p>
+<div class="cell" data-execution_count="1">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>05-batch-processing/dx_find_path.sh</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> find data <span class="at">--name</span> <span class="st">"*.bam"</span> <span class="at">--brief</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="searching-within-a-folder" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="searching-within-a-folder"><span class="header-section-number">6.4.2</span> Searching within a folder</h3>
+<p>You can add the <code>--path</code> command to search in a specific folder.</p>
+<div class="cell" data-execution_count="2">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>05-batch-processing/dx_find_path.sh</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> find data <span class="at">--name</span> <span class="st">"*bam"</span> <span class="at">--path</span> <span class="st">"data/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="find-all-files-with-a-field-id" class="level3" data-number="6.4.3">
+<h3 data-number="6.4.3" class="anchored" data-anchor-id="find-all-files-with-a-field-id"><span class="header-section-number">6.4.3</span> Find all files with a field id</h3>
+<p>Take advantage of metadata associated with files when you can. If you are on UKB RAP, one of the most helpful properties to search is <code>field_id</code>.</p>
+<p>Note: be careful with this one, especially if you are working on UK Biobank RAP. You don’t want to return 500,000 file ids. I would concentrate on the field ids that are aggregated on the population level, such as the pVCF files.</p>
+<div class="cell" data-execution_count="3">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>05-batch-processing/dx_find_data_field.sh</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> find data <span class="at">--property</span> field_id=23148 <span class="at">--brief</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="find-all-files-that-are-of-class-file" class="level3" data-number="6.4.4">
+<h3 data-number="6.4.4" class="anchored" data-anchor-id="find-all-files-that-are-of-class-file"><span class="header-section-number">6.4.4</span> Find all files that are of class <code>file</code></h3>
+<p>There are a number of different object classes on the platform, such as <code>file</code> or <code>applet</code></p>
+<p>Search for all files in your project that have a <code>file</code> class.</p>
+<div class="cell" data-execution_count="4">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>05-batch-processing/dx_find_data_class.sh</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> find data <span class="at">--class</span> file <span class="at">--brief</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="in-general-think-about-leveraging-metadata" class="level3" data-number="6.4.5">
+<h3 data-number="6.4.5" class="anchored" data-anchor-id="in-general-think-about-leveraging-metadata"><span class="header-section-number">6.4.5</span> In General: Think about leveraging metadata</h3>
+<p>In general, think about leveraging metadata that is attached to your files.</p>
+<p>For example, for the UKB Research Analysis Platform, data files in the <code>Bulk/</code> folder in your project have multiple properties: <code>field_id</code> (the data field as specified by UK Biobank) and <code>eid</code>.</p>
+</section>
+</section>
+<section id="using-xargs-to-batch-multiple-files" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="using-xargs-to-batch-multiple-files"><span class="header-section-number">6.5</span> Using <code>xargs</code> to Batch Multiple Files</h2>
+<p>Ok, now we have a list of files from <code>dx find data</code> that meet our criteria. How can we process them one by one?</p>
+<p>Remember our discussion of <code>xargs</code>? (<a href="02-scripting-basics.html#sec-xargs"><span>Section&nbsp;3.5</span></a>) This is where <code>xargs</code> shines, when you provide it a list of files.</p>
+<p>Remember, a really useful pattern for <code>xargs</code> is using it for variable expansion and starting a subshell to process individual files.</p>
+<div class="cell" data-execution_count="5">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>05-batch-processing/dx_find_xargs.sh</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> find data <span class="at">--name</span> <span class="st">"*.bam"</span> <span class="at">--brief</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xargs</span> <span class="at">-I</span> % sh <span class="at">-c</span> <span class="st">"dx run app-swiss-army-knife -y -iin="</span>%<span class="st">" </span><span class="dt">\</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="st">  -icmd='samtools view -c </span><span class="dt">\$</span><span class="st">{in_name} &gt; </span><span class="dt">\$</span><span class="st">{in_prefix-counts.txt}' </span><span class="dt">\</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">  --tag samjob --destination results/' </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>The key piece of code we’re doing the variable expansion in is here:</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sh</span> <span class="at">-c</span> <span class="st">'dx run app-swiss-army-knife -iin="%" \ </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="st">  -icmd="samtools view -c \${in_name}\ &gt; \${in_prefix}-counts.txt" \</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">  --tag samjob --destination results/'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We’re using <code>sh -c</code> to run a script as a <em>subshell</em> to execute the <code>dx run</code> statement.</p>
+<p>Note that we’re specifying the helper variables here with a <code>\</code>:</p>
+<p><code>\${in_name}</code></p>
+<p>This escaping (<code>\$</code>) of the dollar sign is to prevent the variable expansion from happening in the top-level shell - the helper variable names need to be passed in to the subshell which needs to pass it onto the worker. Figuring this out took time and made my brain hurt.</p>
+<p>This escaping is only necessary because we’re using <code>xargs</code> and passing our <code>-icmd</code> input into the worker. For the most part, you won’t need to escape the <code>$</code>.</p>
+<p>When we run this command, we get the following screen output:</p>
+<pre><code>Using input JSON:
+{
+    "cmd": "samtools view -c $in_name &gt; $in_prefix-counts.txt",
+    "in": [
+        {
+            "$dnanexus_link": {
+                "project": "project-GGyyqvj0yp6B82ZZ9y23Zf6q",
+                "id": "file-BZ9YGpj0x05xKxZ42QPqZkJY"
+            }
+        }
+    ]
+}
+
+Calling app-GFxJgVj9Q0qQFykQ8X27768Y with output destination
+  project-GGyyqvj0yp6B82ZZ9y23Zf6q:/results
+
+Job ID: job-GJ2xVZ80yp62X5Z51qp191Y8
+
+[more job info]</code></pre>
+<p>if we do a <code>dx find jobs</code>, we’ll see our jobs listed. Hopefully they are running:</p>
+<pre><code>dx find jobs --tag samjob
+* Swiss Army Knife (swiss-army-knife:main) (running) job-GJ2xVf00yp62kx9Z8VK10vpQ
+  tladeras 2022-10-11 13:57:59 (runtime 0:01:49)
+* Swiss Army Knife (swiss-army-knife:main) (running) job-GJ2xVb80yp6KjQpxFJJBzv5k
+  tladeras 2022-10-11 13:57:57 (runtime 0:00:52)
+* Swiss Army Knife (swiss-army-knife:main) (runnable) job-GJ2xVZj0yp6FFFXG11j6YJ9V
+  tladeras 2022-10-11 13:57:55 (runtime 0:01:15)
+* Swiss Army Knife (swiss-army-knife:main) (runnable) job-GJ2xVZ80yp62X5Z51qp191Y8
+  tladeras 2022-10-11 13:57:53 (runtime 0:00:56)</code></pre>
+<section id="when-batching-tag-your-jobs" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="when-batching-tag-your-jobs"><span class="header-section-number">6.5.1</span> When batching, tag your jobs</h3>
+<p>It is critical that you tag your jobs in your <code>dx run</code> code with the <code>--tag</code> argument.</p>
+<p>Why? You will at some point start up a bunch of batch jobs that might have some settings/parameters that were set wrong. That’s when you need the tag.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> find jobs <span class="at">--tag</span> <span class="st">"samjob"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="if-you-screw-up-use-the-tag-to-dx-terminate" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="if-you-screw-up-use-the-tag-to-dx-terminate"><span class="header-section-number">6.5.2</span> If you screw up, use the tag to <code>dx terminate</code></h3>
+<p><code>dx terminate &lt;jobid&gt;</code> will terminate a running job with that job id. It doesn’t take a tag as input.</p>
+<p>But again, <code>xargs</code> to the rescue. We can find our job ids with the tag <code>bcfjob</code> using <code>dx find jobs</code> and then pipe the <code>--brief</code> output into <code>xargs</code> to terminate each job id.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> find jobs <span class="at">--tag</span> samjob <span class="at">--brief</span> <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-I%</span> sh <span class="at">-c</span> <span class="st">"dx terminate %"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="batching-multiple-inputs-dx-generate_batch_inputs" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="batching-multiple-inputs-dx-generate_batch_inputs"><span class="header-section-number">6.6</span> Batching multiple inputs: <code>dx generate_batch_inputs</code></h2>
+<p>What if you have multiple input files that you need to batch with? This is where the <a href="https://documentation.dnanexus.com/user/running-apps-and-workflows/running-batch-jobs"><code>dx generate_batch_inputs</code></a> comes in.</p>
+<p>For each input for an app, we can specify it using wildcard characters.</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> generate_batch_inputs <span class="dt">\</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--path</span> <span class="st">"data/"</span><span class="dt">\</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-in</span><span class="op">=</span><span class="st">"(.*)\.bam$"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here we’re specifying a single input <code>in</code>, and we’ve supplied a wildcard search. It’s going to look in <code>data/</code> for this particular pattern (we’re looking for bam files).</p>
+<p>If we do this, we’ll get the following response:</p>
+<pre><code>Found 4 valid batch IDs matching desired pattern.
+Created batch file dx_batch.0000.tsv</code></pre>
+<p>So, there is 1 <code>.tsv</code> file that was generated by <code>dx generate_batch_inputs</code> on our machine.</p>
+<p>If we have many more input files, say 3000 files, it would generate 3 <code>.tsv</code> files. Each of these <code>.tsv</code> files contains about 1000 files per line. We can run these individual jobs with:</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> run swiss-army-knife <span class="at">--batch-tsv</span> dx_batch.0000.tsv <span class="dt">\</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">-icmd</span><span class="op">=</span><span class="st">'samtools stats ${in_name} &gt; ${in_prefix}.stats.txt '</span> <span class="dt">\</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">--destination</span> <span class="st">"/Results/"</span> <span class="dt">\</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">--detach</span> <span class="at">--allow-ssh</span> <span class="dt">\</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">--tag</span> bigjob</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This will generate 4 jobs from the <code>dx_batch.0000</code> file to process the individual files. Each <code>tsv</code> file will generate up to 1000 jobs.</p>
+<section id="drawbacks-to-dx-generate_batch_inputsdx-run---batch-tsv" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="drawbacks-to-dx-generate_batch_inputsdx-run---batch-tsv"><span class="header-section-number">6.6.1</span> Drawbacks to <code>dx generate_batch_inputs</code>/<code>dx run --batch-tsv</code></h3>
+<p>The largest drawback to using <code>dx generate_batch_inputs</code> is that each column must correspond to an individual input name - you can’t submit an array of files to a job this way.</p>
+</section>
+<section id="for-more-information" class="level3" data-number="6.6.2">
+<h3 data-number="6.6.2" class="anchored" data-anchor-id="for-more-information"><span class="header-section-number">6.6.2</span> For More Information</h3>
+<p>The Batch Jobs documentation page has some good code examples for <code>dx generate_batch_inputs</code> here: <a href="https://documentation.dnanexus.com/user/running-apps-and-workflows/running-batch-jobs/" class="uri">https://documentation.dnanexus.com/user/running-apps-and-workflows/running-batch-jobs/</a></p>
+</section>
+</section>
+<section id="programatically-submitting-arrays-of-files-for-a-job" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="programatically-submitting-arrays-of-files-for-a-job"><span class="header-section-number">6.7</span> Programatically Submitting Arrays of Files for a job</h2>
+<p>You can also use Python to build <code>dx run</code> statements, which is especially helpful when you want to submit arrays of 100+ files to a worker.</p>
+<p>See <a href="https://dnanexus.gitbook.io/uk-biobank-rap/science-corner/guide-to-analyzing-large-sample-sets" class="uri">https://dnanexus.gitbook.io/uk-biobank-rap/science-corner/guide-to-analyzing-large-sample-sets</a> for more info.</p>
+</section>
+<section id="what-you-learned-in-this-chapter" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="what-you-learned-in-this-chapter"><span class="header-section-number">6.8</span> What you learned in this chapter</h2>
+<p>This was a big chapter, and built on everything you learned before. We put together the output of <code>dx find data --brief</code> with a pipe, and <code>xargs</code> to spawn jobs per set of files. We also learned of alternative approaches using <code>dx generate_batch_inputs</code>/<code>dx run --batch-tsv</code> and using Python to build the <code>dx run</code> statements.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./04-doing-work-with-dx-run.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with files using <code>dx run</code></span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./06-JSON.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with JSON on the DNAnexus Platform</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
