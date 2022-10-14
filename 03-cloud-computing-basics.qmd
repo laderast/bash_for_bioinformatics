@@ -138,7 +138,7 @@ One question we often get is about when to scale up and down instance types in t
 
 Once you have run an app as a job, you can look at the job log to understand how the compute resources were utilized. 
 
-In this case, our job under utilized the compute resources on our instance type, so we might want to scale to a lower instance type.
+In this case, our job under utilized the compute resources on our instance type, so we might want to scale to a lower instance type. 
 
 If our job crashed due to a lack of resources, or is running slow, we may want to scale up our resource type.
 
