@@ -70,6 +70,7 @@ You can use wildcard characters with the `--name` flag. Here, we're looking for 
 
 ```{bash}
 #| eval: false
+#| filename: 05-batch-processing/dx_find_path.sh
 source ~/.bashrc
 dx find data --name "*.bam" --brief
 ```
@@ -80,9 +81,9 @@ You can add the `--path` command to search in a specific folder.
 
 ```{bash}
 #| eval: false
+#| filename: 05-batch-processing/dx_find_path.sh
 source ~/.bashrc
 dx find data --name "*bam" --path "data/"
-
 ```
 
 ### Find all files with a field id
@@ -93,6 +94,7 @@ Note: be careful with this one, especially if you are working on UK Biobank RAP.
 
 ```{bash}
 #| eval: false
+#| filename: 05-batch-processing/dx_find_data_field.sh
 source ~/.bashrc
 dx find data --property field_id=23148 --brief
 ```
@@ -105,7 +107,7 @@ Search for all files in your project that have a `file` class.
 
 ```{bash}
 #| eval: false
-
+#| filename: 05-batch-processing/dx_find_data_class.sh
 source ~/.bashrc
 dx find data --class file --brief
 ```
@@ -126,7 +128,7 @@ Remember, a really useful pattern for `xargs` is using it for variable expansion
 
 ```{bash}
 #| eval: false
-source ~/.bashrc
+#| filename: 05-batch-processing/dx_find_xargs.sh
 dx find data --name "*.bam" --brief | \
   xargs -I % sh -c "dx run app-swiss-army-knife -y -iin="%" \
   -icmd='samtools view -c \${in_name} > \${in_prefix-counts.txt}' \

@@ -8,6 +8,14 @@
 1. **Wrap** R and Python scripts using a bash script to run it on the cloud using `dx run`
 1. **Tag** output files on the platform for downstream use.
 
+## Prep for Exercises
+
+In your shell, make sure you're in the `bash_bioinfo_scripts/04-doing-work-with-dx-run/` folder:
+
+```
+cd 04-doing-work-with-dx-run/
+```
+
 ## Doing Bioinformatics with the Swiss Army Knife (SAK) App
 
 Let's focus on key bioinformatics tasks we need to accomplish. To make things easier, we'll be using [Swiss Army Knife](https://platform.dnanexus.com/app/swiss-army-knife), which is an app on the platform that contains a number of commonly used bioinformatics utilities, including:
@@ -51,6 +59,7 @@ In the sample project, you will see a `.bam` file in `data/` called `NA12878.bam
 ```{bash}
 #| eval: false
 #| filename: 04-doing-work-with-dx-run/run_sambamba.sh
+#! /bin/bash
 dx run app-swiss-army-knife \
   -iin="/data/NA12878.bam" \ 
   -icmd="sambamba index *"
@@ -62,7 +71,7 @@ The second line contains the file input we want to process, which is a file in o
 
 The third line is the actual command we want to run in Swiss Army Knife. We want to run `sambamba index` on our input file.
 
-When you run the above code, you'll see the following response. 
+When you run the above code, either by pasting it into your shell, or using `bash run_sambamba.sh` you'll see the following response. 
 
 ```
 Using input JSON:
@@ -157,15 +166,41 @@ We've seen how to specify file inputs to Swiss Army Knife. Let's dive into some 
 
 The `-icmd` input is helpful for small scripting jobs, but you often want to do a bunch of things in a Swiss Army Knife job.
 
-Bash scripting to the rescue! Say we have a script called `run-on-worker.sh` that takes 1 positional input:
+Bash scripting to the rescue! Say we have a script called `run-on-worker.sh` that takes 1 positional input, which is a file path. We'll run this script on the worker:
 
 ```{bash}
 #| eval: false
-#| filename: 04-dx-run/run-on-worker.sh
+#| filename: 04-doing-work-with-dx-run/run-on-worker.sh
 
 sambamba $1 > $1.bai
 samtools stats $1 > $1.stats.txt
 ```
+
+When we set up a `dx run app-swiss-army-knife`, we'll use this script as one of the inputs to `dx run`:
+
+```{bash}
+#| eval: false
+#| filename: 04-doing-work-with-dx-run/dx_run_script.sh
+
+dx run app-swiss-army-knife \
+  -iin="worker_scripts/run-on-worker.sh` \
+  -iin="data/NA12878.bam" \
+  -icmd="bash run-on-worker.sh $in_path"
+```
+
+The magic here is that we're using `bash` in our `cmd` input to run the script `run_on_worker.sh`. Notice this script is already in our project in the `worker_scripts/` folder, so we can submit it as a file input:
+
+```
+-iin="worker_scripts/run-on-worker.sh"
+```
+
+:::{.callout-note}
+# Why this is important on the platform
+
+This is a common pattern that we'll use when we need to do more complicated things with Swiss Army Knife. It doesn't seem that helpful right now, but it will once we get to batch scripting.
+:::
+
+You'll notice that we are using a special helper variable here called `${in_path}` - this gives the current path of the file on the *worker*. It is tremendously helpful in scripting. Let's learn about these built-in helper variables next.
 
 ### Bash Helper Variables
 
@@ -179,7 +214,7 @@ dx run app-swiss-army-knife \
   -icmd="sambamba index ${in_path}"
 ```
 
-You'll see that we are using a special variable called `$in_path` here to specify the file name. This is called a *helper variable*.
+You'll see that we are using a special variable called `$in_path` here to specify the file name. This is called a *helper variable* - they are available based on the different file inputs we submit to Swiss Army Knife.
 
 For our one input `-iin="data/NA12878.bam"`, this is what these helper variables contain:
 
@@ -236,13 +271,13 @@ The Swiss Army Knife Documentation notes that `-iin` is actually an *array* file
 
 ```{bash}
 #| eval: false
+#| filename: 04-doing-work-with-dx-run/dx-run-multiple-inputs.sh
 
 dx run app-swiss-army-knife \
   -iin="data/SRR100022_chrom20_mapped_to_b37.bam" \
   -iin="data/SRR100022_chrom21_mapped_to_b37.bam" \
   -iin="data/SRR100022_chrom22_mapped_to_b37.bam" \
   -icmd="ls *.bam | xargs -I% sh -c 'samtools view -c % > %.count.txt'"
-
 ```
 
 If we want to process each of these files, we'll have to use `xargs` in our `icmd` statement:
@@ -255,10 +290,11 @@ We'll cover more of this in @sec-batch.
 
 ### Using PLINK triplets {#sec-plink}
 
-If we're working with a PLINK trio of files (`.bed`, `.bim`, and `.fam` files), we can use the file inputs like this. We'll submit the trio of files separately, and use the `--bfile` option in `plink` to specify all three files.
+If we're working with a PLINK trio of files (`.bed`, `.bim`, and `.fam` files), we can use the file inputs as below. We'll submit the trio of files separately, and use the `--bfile` option in `plink` to specify all three files.
 
 ```{bash}
 #| eval: false
+#| filename 04-doing-work-with-dx-run/run_plink.sh
 
 dx run app-swiss-army-knife \
   -iin="data/chr1.bed" \
@@ -266,6 +302,8 @@ dx run app-swiss-army-knife \
   -iin="data/chr1.fam" \
   -icmd="plink --bfile chr1 --geno 0.01 --make-bed --out chr1_qc"
 ```
+
+We will output the QC'ed and filtered files as `chr1_qc.bed`, `chr1_qc.bim`, and `chr1_qc.fam`. We do that by specifiying the `--out` option for `plink`.
 
 ## `dx run` runs deep
 
@@ -278,20 +316,71 @@ If you've looked at the `dx run` help page, you'll notice it is quite long. Ther
   - `-y` - non-interactive mode. Replies yes to the questions and starts up `dx watch` for that job id.
   - `--allow-ssh` - very helpful in debugging jobs. Allows you to `dx ssh` into that worker and check out the status.
   - `--batch-tsv` - works with the tab-delimited files that you generate using `dx generate_batch_inputs`. 
-  - `--detach` - if a subjob of a job, it detaches the job. This is really important in batch operations
+  - `--detach` - if a subjob of a job, it detaches the job. This is really important in batch operations where a top-level job is generating a subjob. Running the subjobs as detached means that the entire top-level job will not fail if a subjob fails. 
 
 I'll outline some examples where we leverage the options below.
 
-###
+### Save our output files into a different folder
+
+As we mentioned above, by default our output files are generated in the root folder of the project. If we want to control this, we can use the `--destination` option. 
+
+Remember, if the folder our `--destination` option doesn't exist, `dx run` will create that folder and send the outputs into the newly created folder. 
+
+```{bash}
+#| eval: false
+#| filename: 04-doing-work-with-dx-run/run_destination.sh
+dx run app-swiss-army-knife \
+  -iin="data/chr1.bed" \
+  -iin="data/chr1.bim" \
+  -iin="data/chr1.fam" \
+  -icmd="plink --bfile chr1 --geno 0.01 --make-bed --out chr1_qc" \
+  --destination "results/"
+```
+
+### Run our job on a different instance type
+
+```{bash}
+#| eval: false
+#| filename: 04-doing-work-with-dx-run/dx_run_instance.sh
+dx run app-swiss-army-knife \
+  -iin="data/chr1.bed" \
+  -iin="data/chr1.bim" \
+  -iin="data/chr1.fam" \
+  -icmd="plink --bfile chr1 --geno 0.01 --make-bed --out chr1_qc" \
+  --instance-type "mem1_ssd1_v2_x8"
+```
+
+### Tag and rename our job
+
+```{bash}
+#| eval: false
+#| filename: 04-doing-work-with-dx-run/run_job_tag_name.sh
+dx run app-swiss-army-knife \
+  -iin="data/chr1.bed" \
+  -iin="data/chr1.bim" \
+  -iin="data/chr1.fam" \
+  -icmd="plink --bfile chr1 --geno 0.01 --make-bed --out chr1_qc" \
+  --tag "plink_job" --name "Run PLINK on fileset: $in_prefix"
+```
   
+### Clone an failed job
+
+```{bash}
+#| eval: false
+dx run app-swiss-army-knife --clone <job-id>
+```
+
 ## dxFUSE: Simplify your scripts with multiple inputs
 
-There is a general method for working in Swiss Army Knife and other apps that lets you bypass specifying file inputs: using the [dxFUSE file system](https://github.com/dnanexus/dxfuse).
+Ok, we learned about submitting files as inputs. Is there a way to run scripts with less typing?
+
+There is a general method for working in Swiss Army Knife and other apps that lets you bypass specifying file inputs explicitly in your `dx run` statement: using the [dxFUSE file system](https://github.com/dnanexus/dxfuse).
 
 The main thing you need to know as a developer is that you can prepend a `/mnt/project/` to your file path to use in your `-icmd` input directly. For the `dx run` statement in @sec-plink, we can rewrite it as the following:
 
 ```{bash}
 #| eval: false
+#| filename: 04-doing-work-with-dx-run/run_job_dxfuse.sh
 
 dx run app-swiss-army-knife \
   -icmd="plink --bfile /mnt/project/data/chr1 --geno 0.01 --make-bed --out chr1_qc"
@@ -320,4 +409,4 @@ See the containers chapter (@sec-containers) for more information.
 
 ## What you learned in this chapter
 
-We built upon our shell scripting skills (@sec-script) and our knowledge of cloud-computing (@sec-cloud) to start running jobs effectively in the cloud. 
+Kudos and congrats for reaching this far. We built upon our shell scripting skills (@sec-script) and our knowledge of cloud-computing (@sec-cloud) to start running jobs effectively in the cloud. 

@@ -4,3 +4,5 @@
 .Ruserdata
 
 /.quarto/
+_book/
+_freeze/

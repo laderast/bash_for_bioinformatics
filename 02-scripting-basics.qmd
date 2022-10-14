@@ -40,7 +40,7 @@ Let's take a look at the command that we're running first. We're going to run `s
 
 ```{bash}
 #| eval: false
-./sam_run my_file.bam out_stats.txt
+bash sam_run my_file.bam out_stats.txt
 ```
 
 When we run it like that, `sam_run.sh` will run `samtools stat` like this:
@@ -67,6 +67,7 @@ How would we rewrite `sam_run.sh` if we wanted to specify the output file as the
 
 ```{bash}
 #| eval: false
+#| filename: 02-scripting-basics/sam_run.sh 
 #!/bin/bash/
 
 samtools stats $1 > $2
@@ -84,6 +85,13 @@ For this script, we would switch the positions of `$1` and `$2`.
 #!/bin/bash/
 
 samtools stats $2 > $1
+```
+
+And we would run `sam_run.sh` like this:
+
+```{bash}
+#| eval: false
+bash sam_run.sh my_file.bam out_stats.txt
 ```
 :::
 
@@ -148,7 +156,8 @@ A really common pattern is taking a delimited list of files and doing something 
 Let's start out with a list of files:
 
 ```{bash}
-#| eval: false
+#| eval: true
+source ~/.bashrc
 ls data/*.qmd
 ```
 
@@ -271,7 +280,7 @@ my_var="chr1"
 echo "${my_var}.vcf.gz"
 ```
 
-If we didn't use the braces, bash would interpret the string as `$my_var.vcf.gz`, which isn't what we want. So use the curly braces `{}` when you expand variables..
+If we didn't use the braces, bash would interpret the string as `$my_var.vcf.gz`, which isn't what we want. So use the curly braces `{}` when you expand variables.
 
 ::: {.callout-note}
 ### Why this is important on the platform
