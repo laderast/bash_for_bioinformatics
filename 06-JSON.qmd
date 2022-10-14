@@ -97,7 +97,7 @@ For example:
 
 ```{bash}
 #| eval: false
-source ~/.bashrc
+
 dx find data --path ted_demo:data/ --json
 ```
 The output will look like this: 
@@ -183,7 +183,7 @@ It lacks indents, and it is really hard to see the actual structure of the JSON 
 If we run `jq .` on a JSON file, we'll see that it makes it much more readable.
 
 ```{bash}
-source ~/.bashrc
+#| eval: false
 jq '.' data/example.json
 ```
 
@@ -192,7 +192,7 @@ jq '.' data/example.json
 We can extract the keys from the top level JSON by using `'keys'` as our filter.
 
 ```{bash}
-source ~/.bashrc
+#| eval: false
 jq 'keys' data/example.json
 ```
 
@@ -203,7 +203,7 @@ So, say we want to extract the value from the `report_html` key in the above.
 We can specify the key that we're interested in to extract the value from that key.
 
 ```{bash}
-source ~/.bashrc
+#| eval: false
 jq '.report_html' data/example.json
 ```
 
@@ -238,7 +238,7 @@ What do you return?
 
 :::{.callout-note collapse="true"}
 ```{bash}
-source ~/.bashrc
+#| eval: false
 jq '.stats_txt' data/example.json
 ```
 
@@ -249,7 +249,7 @@ jq '.stats_txt' data/example.json
 We can extract the actual value associated with the `dnanexus_link` key within `report_html` by chaining onto our filter:
 
 ```{bash}
-source ~/.bashrc
+#| eval: false
 jq '.report_html.dnanexus_link' data/example.json
 ```
 
