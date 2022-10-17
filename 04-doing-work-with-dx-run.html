@@ -335,10 +335,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="code-with-filename-file">
 <pre><strong>04-doing-work-with-dx-run/run_sambamba.sh</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#! /bin/bash</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="dt">\</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"/data/NA12878.bam"</span> <span class="dt">\ </span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-icmd=</span><span class="st">"sambamba index *"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#! /bin/bash</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"/data/NA12878.bam"</span> <span class="dt">\ </span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="ex">-icmd=</span><span class="st">"sambamba index *"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>Let’s take this code apart. We start our command with <code>dx run</code> and the name of the app on the platform we want to use: <code>app-swiss-army-knife</code>.</p>
@@ -417,10 +417,10 @@ Answer
 <p>One of the nice things about Swiss Army Knife is that it automatically transfers files that we generate on the worker. In our above job, we generated the corresponding index file <code>NA12878.bam.bai</code> from our <code>-icmd</code> input. It was automatically transferred over from the worker to the root of our project.</p>
 <p>If we wanted to change the output folder, we can use the <code>--destination</code> flag, like below:</p>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="dt">\</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"/data/NA12878.bam"</span> <span class="dt">\ </span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-icmd=</span><span class="st">"sambamba index *"</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--destination</span> <span class="st">"data/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="dt">\</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"/data/NA12878.bam"</span> <span class="dt">\ </span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="ex">-icmd=</span><span class="st">"sambamba index *"</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="ex">--destination</span> <span class="st">"data/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Another nice thing about <code>dx run</code> is that it will automatically create the folder we specify with <code>--destination</code> if it doesn’t exist in project storage.</p>
 <div class="callout-note callout callout-style-default callout-captioned">
@@ -450,8 +450,8 @@ What if we run our statement multiple times?
 <div class="code-with-filename-file">
 <pre><strong>04-doing-work-with-dx-run/run-on-worker.sh</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sambamba</span> <span class="va">$1</span> <span class="op">&gt;</span> <span class="va">$1</span>.bai</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> stats <span class="va">$1</span> <span class="op">&gt;</span> <span class="va">$1</span>.stats.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">sambamba</span> <span class="va">$1</span> <span class="op">&gt;</span> <span class="va">$1</span>.bai</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="ex">samtools</span> stats <span class="va">$1</span> <span class="op">&gt;</span> <span class="va">$1</span>.stats.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>When we set up a <code>dx run app-swiss-army-knife</code>, we’ll use this script as one of the inputs to <code>dx run</code>:</p>
@@ -460,10 +460,10 @@ What if we run our statement multiple times?
 <div class="code-with-filename-file">
 <pre><strong>04-doing-work-with-dx-run/dx_run_script.sh</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="dt">\</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"worker_scripts/run-on-worker.sh</span><span class="kw">`</span> <span class="dt">\</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-iin=</span><span class="st">"data/NA12878.bam"</span> <span class="dt">\</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-icmd</span><span class="op">=</span><span class="st">"bash run-on-worker.sh </span><span class="va">$in_path</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="dt">\</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"worker_scripts/run-on-worker.sh</span><span class="kw">`</span> <span class="dt">\</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="ex">-iin=</span><span class="st">"data/NA12878.bam"</span> <span class="dt">\</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="at">-icmd</span><span class="op">=</span><span class="st">"bash run-on-worker.sh </span><span class="va">$in_path</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>The magic here is that we’re using <code>bash</code> in our <code>cmd</code> input to run the script <code>run_on_worker.sh</code>. Notice this script is already in our project in the <code>worker_scripts/</code> folder, so we can submit it as a file input:</p>
@@ -573,11 +573,11 @@ Why are we learning about helper variables?
 <div class="code-with-filename-file">
 <pre><strong>04-doing-work-with-dx-run/dx-run-multiple-inputs.sh</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="dt">\</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/SRR100022_chrom20_mapped_to_b37.bam"</span> <span class="dt">\</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/SRR100022_chrom21_mapped_to_b37.bam"</span> <span class="dt">\</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/SRR100022_chrom22_mapped_to_b37.bam"</span> <span class="dt">\</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">-icmd</span><span class="op">=</span><span class="st">"ls *.bam | xargs -I% sh -c 'samtools view -c % &gt; %.count.txt'"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="dt">\</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/SRR100022_chrom20_mapped_to_b37.bam"</span> <span class="dt">\</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/SRR100022_chrom21_mapped_to_b37.bam"</span> <span class="dt">\</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/SRR100022_chrom22_mapped_to_b37.bam"</span> <span class="dt">\</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>  <span class="at">-icmd</span><span class="op">=</span><span class="st">"ls *.bam | xargs -I% sh -c 'samtools view -c % &gt; %.count.txt'"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>If we want to process each of these files, we’ll have to use <code>xargs</code> in our <code>icmd</code> statement:</p>
@@ -588,11 +588,11 @@ Why are we learning about helper variables?
 <h3 data-number="5.7.2" class="anchored" data-anchor-id="sec-plink"><span class="header-section-number">5.7.2</span> Using PLINK triplets</h3>
 <p>If we’re working with a PLINK trio of files (<code>.bed</code>, <code>.bim</code>, and <code>.fam</code> files), we can use the file inputs as below. We’ll submit the trio of files separately, and use the <code>--bfile</code> option in <code>plink</code> to specify all three files.</p>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="dt">\</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.bed"</span> <span class="dt">\</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.bim"</span> <span class="dt">\</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.fam"</span> <span class="dt">\</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">-icmd</span><span class="op">=</span><span class="st">"plink --bfile chr1 --geno 0.01 --make-bed --out chr1_qc"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="dt">\</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.bed"</span> <span class="dt">\</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.bim"</span> <span class="dt">\</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.fam"</span> <span class="dt">\</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>  <span class="at">-icmd</span><span class="op">=</span><span class="st">"plink --bfile chr1 --geno 0.01 --make-bed --out chr1_qc"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We will output the QC’ed and filtered files as <code>chr1_qc.bed</code>, <code>chr1_qc.bim</code>, and <code>chr1_qc.fam</code>. We do that by specifiying the <code>--out</code> option for <code>plink</code>.</p>
 </section>
@@ -620,12 +620,12 @@ Why are we learning about helper variables?
 <div class="code-with-filename-file">
 <pre><strong>04-doing-work-with-dx-run/run_destination.sh</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="dt">\</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.bed"</span> <span class="dt">\</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.bim"</span> <span class="dt">\</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.fam"</span> <span class="dt">\</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">-icmd</span><span class="op">=</span><span class="st">"plink --bfile chr1 --geno 0.01 --make-bed --out chr1_qc"</span> <span class="dt">\</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">--destination</span> <span class="st">"results/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="dt">\</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.bed"</span> <span class="dt">\</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.bim"</span> <span class="dt">\</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.fam"</span> <span class="dt">\</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>  <span class="at">-icmd</span><span class="op">=</span><span class="st">"plink --bfile chr1 --geno 0.01 --make-bed --out chr1_qc"</span> <span class="dt">\</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>  <span class="at">--destination</span> <span class="st">"results/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -636,12 +636,12 @@ Why are we learning about helper variables?
 <div class="code-with-filename-file">
 <pre><strong>04-doing-work-with-dx-run/dx_run_instance.sh</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="dt">\</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.bed"</span> <span class="dt">\</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.bim"</span> <span class="dt">\</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.fam"</span> <span class="dt">\</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">-icmd</span><span class="op">=</span><span class="st">"plink --bfile chr1 --geno 0.01 --make-bed --out chr1_qc"</span> <span class="dt">\</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">--instance-type</span> <span class="st">"mem1_ssd1_v2_x8"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="dt">\</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.bed"</span> <span class="dt">\</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.bim"</span> <span class="dt">\</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.fam"</span> <span class="dt">\</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>  <span class="at">-icmd</span><span class="op">=</span><span class="st">"plink --bfile chr1 --geno 0.01 --make-bed --out chr1_qc"</span> <span class="dt">\</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a>  <span class="at">--instance-type</span> <span class="st">"mem1_ssd1_v2_x8"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -652,19 +652,19 @@ Why are we learning about helper variables?
 <div class="code-with-filename-file">
 <pre><strong>04-doing-work-with-dx-run/run_job_tag_name.sh</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="dt">\</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.bed"</span> <span class="dt">\</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.bim"</span> <span class="dt">\</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.fam"</span> <span class="dt">\</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">-icmd</span><span class="op">=</span><span class="st">"plink --bfile chr1 --geno 0.01 --make-bed --out chr1_qc"</span> <span class="dt">\</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">--tag</span> <span class="st">"plink_job"</span> <span class="at">--name</span> <span class="st">"Run PLINK on fileset: </span><span class="va">$in_prefix</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="dt">\</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.bed"</span> <span class="dt">\</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.bim"</span> <span class="dt">\</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.fam"</span> <span class="dt">\</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a>  <span class="at">-icmd</span><span class="op">=</span><span class="st">"plink --bfile chr1 --geno 0.01 --make-bed --out chr1_qc"</span> <span class="dt">\</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a>  <span class="at">--tag</span> <span class="st">"plink_job"</span> <span class="at">--name</span> <span class="st">"Run PLINK on fileset: </span><span class="va">$in_prefix</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section id="clone-an-failed-job" class="level3" data-number="5.8.4">
 <h3 data-number="5.8.4" class="anchored" data-anchor-id="clone-an-failed-job"><span class="header-section-number">5.8.4</span> Clone an failed job</h3>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="at">--clone</span> <span class="op">&lt;</span>job-id<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="at">--clone</span> <span class="op">&lt;</span>job-id<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -678,8 +678,8 @@ Why are we learning about helper variables?
 <div class="code-with-filename-file">
 <pre><strong>04-doing-work-with-dx-run/run_job_dxfuse.sh</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="dt">\</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-icmd</span><span class="op">=</span><span class="st">"plink --bfile /mnt/project/data/chr1 --geno 0.01 --make-bed --out chr1_qc"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="dt">\</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="at">-icmd</span><span class="op">=</span><span class="st">"plink --bfile /mnt/project/data/chr1 --geno 0.01 --make-bed --out chr1_qc"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>In our <code>-icmd</code> input, we are referring to the file location of the triplet by pre-pending a <code>/mnt/project/</code> to the project path of the triplet: <code>data/chr1</code>.</p>
