@@ -279,32 +279,27 @@ Why not just use <code>ttyd</code> for the entire course?
 <h2 data-number="9.2" class="anchored" data-anchor-id="sec-named"><span class="header-section-number">9.2</span> Named Arguments</h2>
 <p>In general, ordered arguments can be difficult to remember, and sometimes you have way too many parameters.</p>
 <p>What about named arguments? Let’s modify <code>sam_run.sh</code> to use named arguments.</p>
-<div class="cell" data-execution_count="1">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>sam_run_named.sh</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="cf">while</span> <span class="bu">[</span> <span class="va">$#</span> <span class="ot">-gt</span> 0 <span class="bu">]</span><span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="va">$1</span> <span class="ot">==</span> <span class="st">"--"</span><span class="pp">*</span> <span class="kw">]];</span> <span class="cf">then</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>        <span class="va">v</span><span class="op">=</span><span class="st">"</span><span class="va">${1</span><span class="op">/</span><span class="ss">--</span><span class="op">/</span><span class="va">}</span><span class="st">"</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a>        <span class="bu">declare</span> <span class="st">"</span><span class="va">$v</span><span class="st">"</span>=<span class="st">"</span><span class="va">$2</span><span class="st">"</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>        <span class="bu">shift</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>    <span class="cf">fi</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a>    <span class="bu">shift</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="cf">done</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="ex">samtools</span> <span class="va">${input_file}</span> <span class="op">&gt;</span> <span class="va">${output_file}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>#| filename: "sam_run_named.sh"</span>
+<span id="cb1-2"><a href="#cb1-2"></a>#| eval: false</span>
+<span id="cb1-3"><a href="#cb1-3"></a>#!/bin/bash</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a>while [ $# -gt 0 ]; do</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    if [[ $1 == "--"* ]]; then</span>
+<span id="cb1-7"><a href="#cb1-7"></a>        v="${1/--/}"</span>
+<span id="cb1-8"><a href="#cb1-8"></a>        declare "$v"="$2"</span>
+<span id="cb1-9"><a href="#cb1-9"></a>        shift</span>
+<span id="cb1-10"><a href="#cb1-10"></a>    fi</span>
+<span id="cb1-11"><a href="#cb1-11"></a>    shift</span>
+<span id="cb1-12"><a href="#cb1-12"></a>done</span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a>samtools ${input_file} &gt; ${output_file}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The magic of setting up the positional arguments happens in the <code>while</code> block above. It looks for any string arguments that follow our script name that begin with <code>--</code> - then it puts the value of that into the named variables.</p>
 <p>In this case, our script is expecting an <code>--input-file</code> and an <code>--output_file</code> arguments.</p>
 <section id="running-our-script-with-named-arguments" class="level3" data-number="9.2.1">
 <h3 data-number="9.2.1" class="anchored" data-anchor-id="running-our-script-with-named-arguments"><span class="header-section-number">9.2.1</span> Running our script with named arguments</h3>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">./sam_run_named.sh</span> <span class="at">--input_file</span> <span class="st">""</span> <span class="at">--output_file</span> <span class="st">""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>#| eval: false</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>./sam_run_named.sh --input_file "" --output_file ""</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
