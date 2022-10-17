@@ -367,9 +367,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="pull-your-image-from-a-registry" class="level3" data-number="8.4.5">
 <h3 data-number="8.4.5" class="anchored" data-anchor-id="pull-your-image-from-a-registry"><span class="header-section-number">8.4.5</span> Pull your image from a registry</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>#| eval: false</span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a>docker pull quay.io/biocontainers/samtools:1.15.1--h1170115_0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull quay.io/biocontainers/samtools:1.15.1--h1170115_0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>On your <code>ttyd</code> instance, do a <code>docker pull</code> to pull your image from the registry. Note that we’re pulling <code>samtools</code> from <code>quay.io</code> here, from the <code>biocontainers</code> user.</p>
 <p>We’re also specifying a <em>version tag</em> - the <code>1.15.1--h1170115_0</code> to tie our <code>samtools</code> to a specific version. This is important - most <code>docker pull</code> operations will pull from the <code>latest</code> tag, which is not tied to a specific version. So make sure to tie your image to a specific version.</p>
 <p>When you’re done pulling the docker image, try out the <code>docker images</code> command.</p>
@@ -377,16 +377,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="save-your-docker-image-as-a-snapshot" class="level3" data-number="8.4.6">
 <h3 data-number="8.4.6" class="anchored" data-anchor-id="save-your-docker-image-as-a-snapshot"><span class="header-section-number">8.4.6</span> Save your docker image as a snapshot</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>#| eval: false</span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a>docker save quay.io/biocontainers/samtools | gzip &gt; samtools_image.tar.gz </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> save quay.io/biocontainers/samtools <span class="kw">|</span> <span class="fu">gzip</span> <span class="op">&gt;</span> samtools_image.tar.gz </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Now that we’ve pulled the container, we are now going to save it as a snapshot file using <code>docker save</code>. We pipe the output of <code>docker save</code> into <code>gzip</code> to save it as <code>samtools_image.tar.gz</code></p>
 </section>
 <section id="upload-your-snapshot" class="level3" data-number="8.4.7">
 <h3 data-number="8.4.7" class="anchored" data-anchor-id="upload-your-snapshot"><span class="header-section-number">8.4.7</span> Upload your snapshot</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>#| eval: false</span>
-<span id="cb4-2"><a href="#cb4-2"></a>dx mkdir images/</span>
-<span id="cb4-3"><a href="#cb4-3"></a>dx upload samtools_image.tar.gz --destination images/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> mkdir images/</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> upload samtools_image.tar.gz <span class="at">--destination</span> images/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Now we can get our image back into project storage. We’ll create a folder called <code>images/</code> and then use <code>dx upload</code> to get our snapshot file.</p>
 </section>
 <section id="important-make-sure-to-terminate-your-ttyd-instance" class="level3" data-number="8.4.8">
@@ -404,12 +405,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>-iimage</code> - This is where you’d put the Docker URL (such as <code>quay.io/ucsc_cgl/samtools</code>)</li>
 </ul>
 <p>So, let’s run a <code>samtools</code> job using our Docker snapshot.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>#| eval: false</span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a>dx run app-swiss-army-knife \</span>
-<span id="cb5-4"><a href="#cb5-4"></a>  -iimage_file="images/samtools.tar.gz" \</span>
-<span id="cb5-5"><a href="#cb5-5"></a>  -iin="data/NA12878.bam"</span>
-<span id="cb5-6"><a href="#cb5-6"></a>  -icmd="docker run samtools stats * &gt; ${in_prefix}.stats.txt"</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="dt">\</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iimage_file</span><span class="op">=</span><span class="st">"images/samtools.tar.gz"</span> <span class="dt">\</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/NA12878.bam"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-icmd=</span><span class="st">"docker run samtools stats * &gt; </span><span class="va">${in_prefix}</span><span class="st">.stats.txt"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>The main thing that has been changed here is that we’ve added an the <code>-iimage_file</code> input to our <code>dx run</code> statement.</p>
 </section>
 <section id="extending-a-docker-image" class="level2" data-number="8.6">
@@ -421,10 +422,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="pulling-a-base-image" class="level3" data-number="8.6.1">
 <h3 data-number="8.6.1" class="anchored" data-anchor-id="pulling-a-base-image"><span class="header-section-number">8.6.1</span> Pulling a Base Image</h3>
 <p>We’ll start out with the official ubuntu 18.04 container in our ttyd session:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>#| eval: false</span>
-<span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a>docker pull ubuntu:18.04</span>
-<span id="cb7-4"><a href="#cb7-4"></a>docker images</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull ubuntu:18.04</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="open-up-interactive-mode" class="level3" data-number="8.6.2">
 <h3 data-number="8.6.2" class="anchored" data-anchor-id="open-up-interactive-mode"><span class="header-section-number">8.6.2</span> Open up interactive mode</h3>
@@ -436,30 +437,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="install-software" class="level3" data-number="8.6.3">
 <h3 data-number="8.6.3" class="anchored" data-anchor-id="install-software"><span class="header-section-number">8.6.3</span> Install Software</h3>
 <p>Now, let’s install <a href="https://emboss.sourceforge.net/">EMBOSS</a> (European Molecular Biology Open Software Suite), which is a suite of string utilities for working with genomic data. If you look at the EMBOSS link, you will see that you can install it via <code>apt install</code>, which is available by default in the <code>ubuntu</code> container.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a href="#cb9-1"></a>#| eval: false</span>
-<span id="cb9-2"><a href="#cb9-2"></a></span>
-<span id="cb9-3"><a href="#cb9-3"></a>apt update &amp;&amp; apt upgrade</span>
-<span id="cb9-4"><a href="#cb9-4"></a>apt install emboss gzip -y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> update <span class="kw">&amp;&amp;</span> <span class="ex">apt</span> upgrade</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> install emboss gzip <span class="at">-y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="exit-container" class="level3" data-number="8.6.4">
 <h3 data-number="8.6.4" class="anchored" data-anchor-id="exit-container"><span class="header-section-number">8.6.4</span> Exit Container</h3>
 <p>Now exit from your container’s interactive mode:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a href="#cb10-1"></a>#| eval: false</span>
-<span id="cb10-2"><a href="#cb10-2"></a></span>
-<span id="cb10-3"><a href="#cb10-3"></a>exit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>You’ll be back at the normal ttyd prompt.</p>
 </section>
 <section id="docker-commitdocker-save-your-new-snapshot-file" class="level3" data-number="8.6.5">
 <h3 data-number="8.6.5" class="anchored" data-anchor-id="docker-commitdocker-save-your-new-snapshot-file"><span class="header-section-number">8.6.5</span> <code>docker commit</code>/<code>docker save</code> your new snapshot file</h3>
 <p>We created a new container when we installed everything. We’ll need to find it its ID in ttyd.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a href="#cb11-1"></a>#| eval: false</span>
-<span id="cb11-2"><a href="#cb11-2"></a></span>
-<span id="cb11-3"><a href="#cb11-3"></a>docker ps -a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps <span class="at">-a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>We can see that our new container has the following id. We can use this id to save a new container with <code>docker commit</code>. Now we can save the snapshot file by using <code>docker save</code>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb12-1"><a href="#cb12-1"></a>#| eval: false</span>
-<span id="cb12-2"><a href="#cb12-2"></a>docker commit &lt;container_id&gt; emboss:6.6.0</span>
-<span id="cb12-3"><a href="#cb12-3"></a>docker save emboss:6.6.0 | gzip &gt; emboss.tar.gz</span>
-<span id="cb12-4"><a href="#cb12-4"></a>dx upload emboss.tar.gz --destination images/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> commit <span class="op">&lt;</span>container_id<span class="op">&gt;</span> emboss:6.6.0</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> save emboss:6.6.0 <span class="kw">|</span> <span class="fu">gzip</span> <span class="op">&gt;</span> emboss.tar.gz</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> upload emboss.tar.gz <span class="at">--destination</span> images/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 <section id="other-uses-of-interactive-mode" class="level2" data-number="8.7">

@@ -248,7 +248,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-json" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with JSON on the DNAnexus Platform</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with JSON on the DNAnexus Platform</span></h1>
 </div>
 
 
@@ -262,23 +262,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Preparing for this Chapter
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You’ll want to <code>cd</code> into the <code>06-JSON</code> folder in your project.</p>
-<p>You’ll also need to install <code>jq</code> if it’s not yet on your system. You can check by typing</p>
-<p><code>which jq</code></p>
-<p>If you’re on a Mac, you can use homebrew and</p>
-<p><code>brew install jq</code>.</p>
-</div>
-</div>
 <section id="learning-objectives" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">7.1</span> Learning Objectives</h2>
 <p>By the end of this chapter, you should be able to:</p>
@@ -322,18 +305,22 @@ Preparing for this Chapter
 <li><strong>Object</strong> <code>{}</code> - A collection of key/value pairs, enclosed with curly brackets (<code>{}</code>)</li>
 </ul>
 <p>Here’s the example we’re going to use:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>#| eval: false</span>
-<span id="cb1-2"><a href="#cb1-2"></a>#| filename: "data/example.json"</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a>{</span>
-<span id="cb1-5"><a href="#cb1-5"></a>  "report_html": {</span>
-<span id="cb1-6"><a href="#cb1-6"></a>    "dnanexus_link": "file-G4x7GX80VBzQy64k4jzgjqgY"</span>
-<span id="cb1-7"><a href="#cb1-7"></a>  },</span>
-<span id="cb1-8"><a href="#cb1-8"></a>  "stats_txt": {</span>
-<span id="cb1-9"><a href="#cb1-9"></a>    "dnanexus_link": "file-G4x7GXQ0VBzZxFxz4fqV120B"</span>
-<span id="cb1-10"><a href="#cb1-10"></a>  },</span>
-<span id="cb1-11"><a href="#cb1-11"></a>  "users": ["laderast", "ted", "tladeras"]</span>
-<span id="cb1-12"><a href="#cb1-12"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="1">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>data/example.json</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"report_html"</span><span class="ex">:</span> {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dnanexus_link"</span><span class="ex">:</span> <span class="st">"file-G4x7GX80VBzQy64k4jzgjqgY"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">},</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"stats_txt"</span><span class="ex">:</span> {</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dnanexus_link"</span><span class="ex">:</span> <span class="st">"file-G4x7GXQ0VBzZxFxz4fqV120B"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">},</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"users"</span><span class="ex">:</span> [<span class="st">"laderast"</span>, <span class="st">"ted"</span>, <span class="st">"tladeras"</span>]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -351,7 +338,7 @@ Check Yourself
 </div>
 </div>
 <div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -360,7 +347,7 @@ Answer
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>It is a list. We know this because the value contains a <code>[]</code>.</p>
 <pre><code>{
@@ -375,9 +362,9 @@ Answer
 <p>We already encountered the <code>dx find data</code> command, which we used in the batch processing chapter.</p>
 <p>If we use the <code>--json</code> option, then the file information will be outputted in json format. This command will return a list of JSON file objects.</p>
 <p>For example:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>#| eval: false</span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a>dx find data --path ted_demo:data/ --json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> find data <span class="at">--path</span> ted_demo:data/ <span class="at">--json</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>The output will look like this:</p>
 <pre><code>[
     {
@@ -421,13 +408,13 @@ Test your knowledge
 </div>
 <div class="callout-body-container callout-body">
 <p>What is returned when we run this code? Is it a JSON object, or a list of JSON objects?</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>#| eval: false</span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a>dx find jobs --json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> find jobs <span class="at">--json</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </div>
 <div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -436,7 +423,7 @@ Answer
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>We are returning a list of JSON objects, each of which corresponds to a single job run within our project.</p>
 </div>
@@ -446,8 +433,9 @@ Answer
 <section id="learning-jq-gradually" class="level2" data-number="7.7">
 <h2 data-number="7.7" class="anchored" data-anchor-id="learning-jq-gradually"><span class="header-section-number">7.7</span> Learning <code>jq</code> gradually</h2>
 <p><code>jq</code> is a utility that is made to process JSON. All <code>jq</code> commands have this format:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>#| eval: false</span>
-<span id="cb7-2"><a href="#cb7-2"></a>jq '&lt;filter&gt;' &lt;JSON file&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jq</span> <span class="st">'&lt;filter&gt;'</span> <span class="op">&lt;</span>JSON file<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Filters are the heart of processing data using <code>jq</code>. They let you extract JSON values or keys and process them with conditionals to filter data down. For example, you can do something like the following:</p>
 <ol type="1">
 <li>Select all elements where the job status is failed</li>
@@ -461,21 +449,24 @@ Answer
 <p>One of the biggest uses for <code>jq</code> is for more readable formatting. Oftentimes, the JSON spit out of an API is really hard to read.</p>
 <p>It lacks indents, and it is really hard to see the actual structure of the JSON response.</p>
 <p>If we run <code>jq .</code> on a JSON file, we’ll see that it makes it much more readable.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>#| eval: false</span>
-<span id="cb8-2"><a href="#cb8-2"></a>jq '.' data/example.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jq</span> <span class="st">'.'</span> data/example.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="getting-the-keys" class="level2" data-number="7.9">
 <h2 data-number="7.9" class="anchored" data-anchor-id="getting-the-keys"><span class="header-section-number">7.9</span> Getting the keys</h2>
 <p>We can extract the keys from the top level JSON by using <code>'keys'</code> as our filter.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a href="#cb9-1"></a>#| eval: false</span>
-<span id="cb9-2"><a href="#cb9-2"></a>jq 'keys' data/example.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jq</span> <span class="st">'keys'</span> data/example.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="extracting-a-value-from-a-container-jq-.report_html" class="level2" data-number="7.10">
 <h2 data-number="7.10" class="anchored" data-anchor-id="extracting-a-value-from-a-container-jq-.report_html"><span class="header-section-number">7.10</span> Extracting a value from a container: <code>jq .report_html</code></h2>
 <p>So, say we want to extract the value from the <code>report_html</code> key in the above.</p>
 <p>We can specify the key that we’re interested in to extract the value from that key.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a href="#cb10-1"></a>#| eval: false</span>
-<span id="cb10-2"><a href="#cb10-2"></a>jq '.report_html' data/example.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jq</span> <span class="st">'.report_html'</span> data/example.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -487,24 +478,28 @@ Try it out
 </div>
 <div class="callout-body-container callout-body">
 <p>This is the JSON file we’re going to be working with, in <code>data/example.json</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a href="#cb11-1"></a>#| eval: false</span>
-<span id="cb11-2"><a href="#cb11-2"></a>#| filename: "data/example.json"</span>
-<span id="cb11-3"><a href="#cb11-3"></a></span>
-<span id="cb11-4"><a href="#cb11-4"></a>{</span>
-<span id="cb11-5"><a href="#cb11-5"></a>  "report_html": {</span>
-<span id="cb11-6"><a href="#cb11-6"></a>    "dnanexus_link": "file-G4x7GX80VBzQy64k4jzgjqgY"</span>
-<span id="cb11-7"><a href="#cb11-7"></a>  },</span>
-<span id="cb11-8"><a href="#cb11-8"></a>  "stats_txt": {</span>
-<span id="cb11-9"><a href="#cb11-9"></a>    "dnanexus_link": "file-G4x7GXQ0VBzZxFxz4fqV120B"</span>
-<span id="cb11-10"><a href="#cb11-10"></a>  }</span>
-<span id="cb11-11"><a href="#cb11-11"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="8">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>data/example.json</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"report_html"</span><span class="ex">:</span> {</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dnanexus_link"</span><span class="ex">:</span> <span class="st">"file-G4x7GX80VBzQy64k4jzgjqgY"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">},</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"stats_txt"</span><span class="ex">:</span> {</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dnanexus_link"</span><span class="ex">:</span> <span class="st">"file-G4x7GXQ0VBzZxFxz4fqV120B"</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">}</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 <p>In your terminal, try out:</p>
 <pre><code>jq '.stats_txt' data/example.json</code></pre>
 <p>What do you return?</p>
 </div>
 </div>
 <div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -513,18 +508,20 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb13-1"><a href="#cb13-1"></a>#| eval: false</span>
-<span id="cb13-2"><a href="#cb13-2"></a>jq '.stats_txt' data/example.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jq</span> <span class="st">'.stats_txt'</span> data/example.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </div>
 </div>
 <section id="going-one-level-deeper" class="level3" data-number="7.10.1">
 <h3 data-number="7.10.1" class="anchored" data-anchor-id="going-one-level-deeper"><span class="header-section-number">7.10.1</span> Going one level deeper</h3>
 <p>We can extract the actual value associated with the <code>dnanexus_link</code> key within <code>report_html</code> by chaining onto our filter:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb14-1"><a href="#cb14-1"></a>#| eval: false</span>
-<span id="cb14-2"><a href="#cb14-2"></a>jq '.report_html.dnanexus_link' data/example.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jq</span> <span class="st">'.report_html.dnanexus_link'</span> data/example.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -539,7 +536,7 @@ Try It Out
 </div>
 </div>
 <div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -548,7 +545,7 @@ Answer
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 
 </div>
@@ -561,10 +558,11 @@ Answer
 <p>One natural use case for this is to rerun failed jobs.</p>
 <p>Failed jobs can occur when using normal priority, which focuses on using spot instances. So, if we ran a series of jobs, we would want to restart these failed jobs.</p>
 <p>This is a bit of code that would allow us to select those jobs that have failed.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb15-1"><a href="#cb15-1"></a>#| eval: false</span>
-<span id="cb15-2"><a href="#cb15-2"></a>dx find jobs --json |\ </span>
-<span id="cb15-3"><a href="#cb15-3"></a>jq '.[] | select (.state | contains("failed")) | .id' |\</span>
-<span id="cb15-4"><a href="#cb15-4"></a>xargs -I% sh -c "dx run --clone %"</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> find jobs <span class="at">--json</span> <span class="kw">|</span><span class="ex">\ </span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">jq</span> <span class="st">'.[] | select (.state | contains("failed")) | .id'</span> <span class="kw">|</span><span class="dt">\</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">xargs</span> <span class="at">-I%</span> sh <span class="at">-c</span> <span class="st">"dx run --clone %"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>The second line contains the <code>jq</code> filter that does the magic. Remember, the filter is contained within the single quotes (<code>''</code>).</p>
 <p>The last line contains <code>"dx run --clone %"</code>.</p>
 <p>Let’s take apart the different parts of the <code>jq</code> filter (<a href="#fig-jq-filter">Figure&nbsp;<span>7.1</span></a>):</p>
@@ -606,14 +604,15 @@ Check Yourself
 </div>
 <div class="callout-body-container callout-body">
 <p>How would you modify the code below to terminate all jobs that had <code>state</code> <code>running</code> using <code>dx terminate</code>?</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb16-1"><a href="#cb16-1"></a>#| eval: false</span>
-<span id="cb16-2"><a href="#cb16-2"></a>dx find jobs --json |\ </span>
-<span id="cb16-3"><a href="#cb16-3"></a>jq '.[] | select (.state | contains("failed")) | .id' |\</span>
-<span id="cb16-4"><a href="#cb16-4"></a>xargs -I% sh -c "dx run --clone %"</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> find jobs <span class="at">--json</span> <span class="kw">|</span><span class="ex">\ </span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">jq</span> <span class="st">'.[] | select (.state | contains("failed")) | .id'</span> <span class="kw">|</span><span class="dt">\</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">xargs</span> <span class="at">-I%</span> sh <span class="at">-c</span> <span class="st">"dx run --clone %"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </div>
 <div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -622,12 +621,13 @@ Answer
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb17-1"><a href="#cb17-1"></a>#| eval: false</span>
-<span id="cb17-2"><a href="#cb17-2"></a>dx find jobs --json |\ </span>
-<span id="cb17-3"><a href="#cb17-3"></a>jq '.[] | select (.state | contains("running")) | .id' |\</span>
-<span id="cb17-4"><a href="#cb17-4"></a>xargs -I% sh -c "dx terminate %"</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> find jobs <span class="at">--json</span> <span class="kw">|</span><span class="ex">\ </span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">jq</span> <span class="st">'.[] | select (.state | contains("running")) | .id'</span> <span class="kw">|</span><span class="dt">\</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">xargs</span> <span class="at">-I%</span> sh <span class="at">-c</span> <span class="st">"dx terminate %"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </div>
 </div>
