@@ -215,6 +215,34 @@ But again, `xargs` to the rescue. We can find our job ids with the tag `bcfjob` 
 dx find jobs --tag samjob --brief | xargs -I% sh -c "dx terminate %"
 ```
 
+## Submitting Mutltiple Files to Swiss Army Knife {#sec-mult-worker}
+
+We talked about another method to batch process files on a worker (@fig-batch2). We can submit an array of files to a worker, and then process them one at a time on a worker.
+
+The key is that we're running `xargs` on the worker, not on our own machine to process each file.
+
+```{bash}
+#| eval: false
+
+cmd_to_run="ls *.vcf.gz | xargs -I% sh -c "bcftools stats % > %.stats.txt"
+
+dx run swiss-army-knife \
+  -iin="data/chr1.vcf.gz" \
+  -iin="data/chr2.vcf.gz" \
+  -iin="data/chr3.vcf.gz" \
+  -icmd=${cmd_to_run}
+```
+
+In the variable `$cmd_to_run`, we're putting a command that we'll run on the worker. That command is:
+
+```
+ls *.vcf.gz | xargs -I% sh -c "bcftools stats % > %.stats.txt
+```
+
+We submitted an array of files in our `dx run` statement. So now they are transferred into our working directory on the worker. So we can list the files using `ls *.vcf.gz` and pipe that list into `xargs`.
+
+Note that we lose the ability to use helper variables in our script when we process a list of files on the worker. So here we have to use `%.stats.txt` in our `xargs` subshell.
+
 ## Batching multiple inputs: `dx generate_batch_inputs` 
 
 What if you have multiple input files that you need to batch with? This is where the [`dx generate_batch_inputs`](https://documentation.dnanexus.com/user/running-apps-and-workflows/running-batch-jobs) comes in.

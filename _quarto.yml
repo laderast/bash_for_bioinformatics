@@ -30,3 +30,4 @@ bibliography: references.bib
 format:
   html:
     code-copy: true
+    code-line-numbers: true
