@@ -56,6 +56,27 @@ Once you have access to Python 3 and `pip3`, you can install the dx-toolkit usin
 pip3 install dxpy
 ```
 
+Test it out by typing:
+
+```
+dx -h
+``
+
+You should get similar output:
+
+```
+usage: dx [-h] [--version] command ...
+
+DNAnexus Command-Line Client, API v1.0.0, client v0.330.0
+
+dx is a command-line client for interacting with the DNAnexus platform.  You can log in,
+navigate, upload, organize and share your data, launch analyses, and more.  For a quick tour
+of what the tool can do, see
+
+  https://documentation.dnanexus.com/getting-started/tutorials/cli-quickstart#quickstart-for->
+
+For a breakdown of dx commands by category, run "dx help".
+```
 
 ## Alternative Setup: binder.org
 
@@ -67,14 +88,14 @@ Just keep in mind that this shell is ephemeral - it will disappear. So make sure
 
 This shell includes the following utilities:
 
-- git (needed to download course materials)
-- nano (needed to edit files)
-- python/pip (needed to install dx-toolkit)
-- jq (needed to work with JSON files)
+- `git` (needed to download course materials)
+- `nano` (needed to edit files)
+- `python`/`pip` (needed to install dx-toolkit)
+- `jq` (needed to work with JSON files)
 
 ## Clone the files and scripts using git
 
-On your own computer, clone the repo (it will already be cloned if you're in the binder version).
+On your own computer/binder, clone the repo (it will already be cloned if you're in the binder version).
 
 ```{bash}
 #| eval: false
@@ -87,6 +108,8 @@ This will create a folder called `/bash_info_scripts/ in your current directory.
 ```
 cd bash_info_scripts
 ```
+
+
 
 ## Try logging in
 

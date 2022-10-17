@@ -1,11 +1,11 @@
 # Batch Processing on the Cloud {#sec-batch}
 
-Now we're prepared for the big one: batch processing on the DNAnexus platform. All of the shell and DNAnexus skills will be leveraged in this chapter.
+Now we're prepared for the big one: batch processing on the DNAnexus platform. All of the shell and DNAnexus skills we've learned will be leveraged in this chapter.
 
 ## Learning Objectives
 
 1. **Utilize** `dx find data` to find data files on the platform to batch process.
-1. **Iterate** over files using Bash scripting on the platform to batch process them within a DNAnexus project.
+1. **Iterate** over files using Bash scripting and `xargs` on the platform to batch process them within a DNAnexus project.
 1. **Leverage** dxFUSE to simplify your bash scripts
 1. **Utilize** `dx generate-batch-inputs`/`dx run --batch-tsv` to batch process files
 1. **Utilize** Python to batch process multiple files per worker. 
@@ -70,8 +70,7 @@ You can use wildcard characters with the `--name` flag. Here, we're looking for 
 
 ```{bash}
 #| eval: false
-#| filename: 05-batch-processing/dx_find_path.sh
-source ~/.bashrc
+#| filename: 05-batch-processing/dx-find-data-name.sh
 dx find data --name "*.bam" --brief
 ```
 
@@ -81,8 +80,8 @@ You can add the `--path` command to search in a specific folder.
 
 ```{bash}
 #| eval: false
-#| filename: 05-batch-processing/dx_find_path.sh
-source ~/.bashrc
+#| filename: 05-batch-processing/dx-find-path.sh
+
 dx find data --name "*bam" --path "data/"
 ```
 
@@ -94,8 +93,8 @@ Note: be careful with this one, especially if you are working on UK Biobank RAP.
 
 ```{bash}
 #| eval: false
-#| filename: 05-batch-processing/dx_find_data_field.sh
-source ~/.bashrc
+#| filename: 05-batch-processing/dx-find-data-field.sh
+
 dx find data --property field_id=23148 --brief
 ```
 
@@ -107,8 +106,8 @@ Search for all files in your project that have a `file` class.
 
 ```{bash}
 #| eval: false
-#| filename: 05-batch-processing/dx_find_data_class.sh
-source ~/.bashrc
+#| filename: 05-batch-processing/dx-find-data-class.sh
+
 dx find data --class file --brief
 ```
 
@@ -128,7 +127,7 @@ Remember, a really useful pattern for `xargs` is using it for variable expansion
 
 ```{bash}
 #| eval: false
-#| filename: 05-batch-processing/dx_find_xargs.sh
+#| filename: 05-batch-processing/dx-find-xargs.sh
 dx find data --name "*.bam" --brief | \
   xargs -I % sh -c "dx run app-swiss-army-knife -y -iin="%" \
   -icmd='samtools view -c \${in_name} > \${in_prefix-counts.txt}' \
@@ -215,15 +214,15 @@ But again, `xargs` to the rescue. We can find our job ids with the tag `bcfjob` 
 dx find jobs --tag samjob --brief | xargs -I% sh -c "dx terminate %"
 ```
 
-## Submitting Mutltiple Files to Swiss Army Knife {#sec-mult-worker}
+## Submitting Multiple Files to a Single Worker {#sec-mult-worker}
 
-We talked about another method to batch process files on a worker (@fig-batch2). We can submit an array of files to a worker, and then process them one at a time on a worker.
+We talked about another method to batch process files on a worker (@fig-batch2). We can submit an array of files to a worker, and then process them one at a time on the worker.
 
 The key is that we're running `xargs` on the worker, not on our own machine to process each file.
 
 ```{bash}
 #| eval: false
-
+#| filename: 05-batch-processing/batch-on-worker.sh
 cmd_to_run="ls *.vcf.gz | xargs -I% sh -c "bcftools stats % > %.stats.txt"
 
 dx run swiss-army-knife \
@@ -235,17 +234,18 @@ dx run swiss-army-knife \
 
 In the variable `$cmd_to_run`, we're putting a command that we'll run on the worker. That command is:
 
-```
+```{bash}
+#| eval: false
 ls *.vcf.gz | xargs -I% sh -c "bcftools stats % > %.stats.txt
 ```
 
 We submitted an array of files in our `dx run` statement. So now they are transferred into our working directory on the worker. So we can list the files using `ls *.vcf.gz` and pipe that list into `xargs`.
 
-Note that we lose the ability to use helper variables in our script when we process a list of files on the worker. So here we have to use `%.stats.txt` in our `xargs` subshell.
+Note that we lose the ability to use helper variables in our script when we process a list of files on the worker. So here we have to use `%.stats.txt` in our `xargs` subshell. 
 
 ## Batching multiple inputs: `dx generate_batch_inputs` 
 
-What if you have multiple input files that you need to batch with? This is where the [`dx generate_batch_inputs`](https://documentation.dnanexus.com/user/running-apps-and-workflows/running-batch-jobs) comes in.
+What if you have multiple inputs that you need to batch with? This is where the [`dx generate_batch_inputs`](https://documentation.dnanexus.com/user/running-apps-and-workflows/running-batch-jobs) comes in.
 
 For each input for an app, we can specify it using wildcard characters.
 
@@ -254,7 +254,7 @@ For each input for an app, we can specify it using wildcard characters.
 
 dx generate_batch_inputs \
   --path "data/"\
-  -in="(.*)\.bam$"
+  -iin="(.*)\.bam$"
 ```
 
 Here we're specifying a single input `in`, and we've supplied a wildcard search. It's going to look in `data/` for this particular pattern (we're looking for bam files).

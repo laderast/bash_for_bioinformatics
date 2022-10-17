@@ -6,7 +6,7 @@ project:
 book:
   title: "Bash for Bioinformatics"
   author: "Ted Laderas"
-  date: "10/6/2022"
+  date: "10/17/2022"
   link-external-icon: true
   link-external-newwindow: true
   chapters:
@@ -30,4 +30,3 @@ bibliography: references.bib
 format:
   html:
     code-copy: true
-    code-line-numbers: true

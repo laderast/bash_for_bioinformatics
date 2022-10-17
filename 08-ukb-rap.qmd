@@ -1,0 +1,22 @@
+# UK Biobank Research Analysis Platform
+
+## What's Different?
+
+There are three main differences with UK Biobank and the Core DNAnexus Platform
+
+1. You are limited to sharing within your own application ID.
+2. The participant identifiers (`eid`s) are different across applications.
+3. There is a `Bulk/` File Folder that contains many of the files you want to analyze.
+
+## Application ID and Sharing
+
+![UKB Application Process](images/ukb_application.png)
+
+## Psuedonymization and Participant IDs
+
+
+## Bulk Files
+
+
+## Example Jobs on UKB
+
