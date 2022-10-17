@@ -112,7 +112,7 @@ dx find data --class file --brief
 ```
 
 ### In General: Think about leveraging metadata
-
+ 
 In general, think about leveraging metadata that is attached to your files.
 
 For example, for the UKB Research Analysis Platform, data files in the `Bulk/` folder in your project have multiple properties: `field_id` (the data field as specified by UK Biobank) and `eid`.
