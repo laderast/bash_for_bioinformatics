@@ -1,5 +1,16 @@
 # Shell Scripting Basics {#sec-script} 
 
+:::{.callout-note}
+## Prep for Exercises
+
+In your shell (either on your machine or in binder), make sure you're in the `bash_bioinfo_scripts/02-scripting-basics/` folder:
+
+```
+cd 02-scripting-basics/
+```
+:::
+
+
 ## Learning Objectives
 
 1. **Utilize** positional *arguments* to generalize our scripts

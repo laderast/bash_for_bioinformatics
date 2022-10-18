@@ -1,5 +1,19 @@
 # Containers and Reproducibility {#sec-containers}
 
+:::{.callout-note}
+## Prep for Exercises
+
+Make sure you are logged into the platform using `dx login` and that your course project is selected with `dx select`.
+
+In your shell (either on your machine or in binder), make sure you're in the `bash_bioinfo_scripts/07-containers/` folder:
+
+```
+cd 07-containers/
+```
+:::
+
+
+
 ## Learning Objectives
 
 1. **Explain** the benefits of using containers on DNAnexus for reproducibility and for batch processing
@@ -46,8 +60,8 @@ These are mostly important when running containers that are web-servers or part 
 Here are some guidelines to think about when you are working with a container.
 
 - **Use vendor-specific Docker Images when possible**. 
-- **Use container scanners to spot potential vulnerabilities**. DockerHub has a vulnerability scanner that scans your Docker images for potential vulnerabilities.
-- **Avoid kitchen-sink images**. One issue is when an image is built on top of many other images. It makes it really difficult. 
+- **Use container scanners to spot potential vulnerabilities**. DockerHub has a vulnerability scanner that scans your Docker images for potential vulnerabilities. 
+- **Avoid kitchen-sink images**. One issue is when an image is built on top of many other images. It makes it really difficult to plug vulnerabilities. When in doubt, use images from trusted people and organizations.
 
 ### The Basic Snapshot Building Process
 
@@ -234,6 +248,6 @@ You can also use these snapshot files in your WDL workflow.
 
 - How containers enable reproducibility
 - Defined specific container terminology
-- Created snapshot files using ttyd
+- Created snapshot files using `ttyd`
 - Use these snapshot files with Swiss Army Knife
 - How to extend a docker image by installing new software

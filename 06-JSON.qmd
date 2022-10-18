@@ -3,6 +3,8 @@
 :::{.callout-note}
 ## Preparing for this Chapter
 
+You will not need to login to the platform for this chapter.
+
 You'll want to `cd` into the `06-JSON` folder in your project.
 
 ```

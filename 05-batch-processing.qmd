@@ -2,6 +2,19 @@
 
 Now we're prepared for the big one: batch processing on the DNAnexus platform. All of the shell and DNAnexus skills we've learned will be leveraged in this chapter.
 
+:::{.callout-note}
+## Prep for Exercises
+
+Make sure you are logged into the platform using `dx login` and that your course project is selected with `dx select`.
+
+In your shell (either on your machine or in binder), make sure you're in the `bash_bioinfo_scripts/05-batch-processing/` folder:
+
+```
+cd 05-batch-processing/
+```
+:::
+
+
 ## Learning Objectives
 
 1. **Utilize** `dx find data` to find data files on the platform to batch process.

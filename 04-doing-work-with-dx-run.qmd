@@ -3,6 +3,8 @@
 :::{.callout-note}
 ## Prep for Exercises
 
+Make sure you are logged into the platform using `dx login` and that your course project is selected with `dx select`.
+
 In your shell, make sure you're in the `bash_bioinfo_scripts/04-doing-work-with-dx-run/` folder:
 
 ```
@@ -396,7 +398,42 @@ dx run app-swiss-army-knife \
   -icmd="plink --bfile /mnt/project/data/chr1 --geno 0.01 --make-bed --out chr1_qc"
 ```
 
-In our `-icmd` input, we are referring to the file location of the triplet by pre-pending a `/mnt/project/` to the project path of the triplet: `data/chr1`. 
+In our `-icmd` input, we are referring to the file location of the triplet by pre-pending a `/mnt/project/` to the project path of the triplet: `data/chr1` to make a new path:
+
+```
+/mnt/project/data/chr1
+```
+
+This new path lets us specify files from project storage without directly specifying them as an input.
+
+We could rewrite this command
+
+```{bash}
+#| eval: false
+
+dx run app-swiss-army-knife \
+  -iin="data/NA12878.bam" \
+  -icmd="samtools view -c NA12878.bam > NA12878.counts.txt"
+```
+
+As this:
+
+```{bash}
+#| eval: false
+
+dx run app-swiss-army-knife \
+  -icmd="samtools view -c /mnt/project/data/NA12878.bam > NA12878.counts.txt"
+```
+
+We can also use an `ls` on a dxFUSE path in our `-icmd`:
+
+```{bash}
+#| eval: false
+
+dx run app-swiss-army-knife \
+  -icmd="ls /mnt/project/data/*.bam | xargs -I% sh -c 'samtools stats % > %.stats.txt'"
+```
+
 
 ### Advantages of dxFUSE
 
