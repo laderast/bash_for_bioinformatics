@@ -151,7 +151,7 @@ Note that we're specifying the helper variables here with a `\`:
 
 This escaping (`\$`) of the dollar sign is to prevent the variable expansion from happening in the top-level shell - the helper variable names need to be passed in to the subshell which needs to pass it onto the worker. Figuring this out took time and made my brain hurt.
 
-This escaping is only necessary because we're using `xargs` and passing our `-icmd` input into the worker. For the most part, you won't need to escape the `$`.
+This escaping is only necessary because we're using `xargs` and passing our `-icmd` input into the worker. For the most part, you won't need to escape the `$`. This is also a reason to write shell scripts that run on the worker. 
 
 When we run this command, we get the following screen output:
 
@@ -207,7 +207,7 @@ dx find jobs --tag "samjob"
 
 `dx terminate <jobid>` will terminate a running job with that job id. It doesn't take a tag as input. 
 
-But again, `xargs` to the rescue. We can find our job ids with the tag `bcfjob` using `dx find jobs` and then pipe the `--brief` output into `xargs` to terminate each job id.
+But again, `xargs` to the rescue. We can find our job ids with the tag `samjob` using `dx find jobs` and then pipe the `--brief` output into `xargs` to terminate each job id.
 
 ```{bash}
 #| eval: false
@@ -298,4 +298,4 @@ See <https://dnanexus.gitbook.io/uk-biobank-rap/science-corner/guide-to-analyzin
 
 ## What you learned in this chapter
 
-This was a big chapter, and built on everything you learned before. We put together the output of `dx find data --brief` with a pipe, and `xargs` to spawn jobs per set of files. We also learned of alternative approaches using `dx generate_batch_inputs`/`dx run --batch-tsv` and using Python to build the `dx run` statements.
+This was a big chapter, and built on everything you've learned in the previous chapters. We put together the output of `dx find data --brief` with a pipe, and `xargs` to spawn jobs per set of files. We also learned of alternative approaches using `dx generate_batch_inputs`/`dx run --batch-tsv` and using Python to build the `dx run` statements.
