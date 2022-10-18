@@ -222,6 +222,7 @@ Prep for Exercises
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>Make sure you are logged into the platform using <code>dx login</code> and that your course project is selected with <code>dx select</code>.</p>
 <p>In your shell, make sure you’re in the <code>bash_bioinfo_scripts/04-doing-work-with-dx-run/</code> folder:</p>
 <pre><code>cd 04-doing-work-with-dx-run/</code></pre>
 </div>
@@ -594,7 +595,25 @@ dx run app-swiss-army-knife --clone &lt;job-id&gt;</code></pre>
 
 dx run app-swiss-army-knife \
   -icmd="plink --bfile /mnt/project/data/chr1 --geno 0.01 --make-bed --out chr1_qc"</code></pre>
-<p>In our <code>-icmd</code> input, we are referring to the file location of the triplet by pre-pending a <code>/mnt/project/</code> to the project path of the triplet: <code>data/chr1</code>.</p>
+<p>In our <code>-icmd</code> input, we are referring to the file location of the triplet by pre-pending a <code>/mnt/project/</code> to the project path of the triplet: <code>data/chr1</code> to make a new path:</p>
+<pre><code>/mnt/project/data/chr1</code></pre>
+<p>This new path lets us specify files from project storage without directly specifying them as an input.</p>
+<p>We could rewrite this command</p>
+<pre class="{bash}"><code>#| eval: false
+
+dx run app-swiss-army-knife \
+  -iin="data/NA12878.bam" \
+  -icmd="samtools view -c NA12878.bam &gt; NA12878.counts.txt"</code></pre>
+<p>As this:</p>
+<pre class="{bash}"><code>#| eval: false
+
+dx run app-swiss-army-knife \
+  -icmd="samtools view -c /mnt/project/data/NA12878.bam &gt; NA12878.counts.txt"</code></pre>
+<p>We can also use an <code>ls</code> on a dxFUSE path in our <code>-icmd</code>:</p>
+<pre class="{bash}"><code>#| eval: false
+
+dx run app-swiss-army-knife \
+  -icmd="ls /mnt/project/data/*.bam | xargs -I% sh -c 'samtools stats % &gt; %.stats.txt'"</code></pre>
 <section id="advantages-of-dxfuse" class="level3" data-number="5.8.1">
 <h3 data-number="5.8.1" class="anchored" data-anchor-id="advantages-of-dxfuse"><span class="header-section-number">5.8.1</span> Advantages of dxFUSE</h3>
 <p>Most of my scripts leverage dxFUSE. Let’s talk about the advantages of using <code>dxFUSE</code>.</p>

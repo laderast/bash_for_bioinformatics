@@ -210,6 +210,21 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Prep for Exercises
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make sure you are logged into the platform using <code>dx login</code> and that your course project is selected with <code>dx select</code>.</p>
+<p>In your shell (either on your machine or in binder), make sure you’re in the <code>bash_bioinfo_scripts/07-containers/</code> folder:</p>
+<pre><code>cd 07-containers/</code></pre>
+</div>
+</div>
 <section id="learning-objectives" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">8.1</span> Learning Objectives</h2>
 <ol type="1">
@@ -258,7 +273,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><strong>Use vendor-specific Docker Images when possible</strong>.</li>
 <li><strong>Use container scanners to spot potential vulnerabilities</strong>. DockerHub has a vulnerability scanner that scans your Docker images for potential vulnerabilities.</li>
-<li><strong>Avoid kitchen-sink images</strong>. One issue is when an image is built on top of many other images. It makes it really difficult.</li>
+<li><strong>Avoid kitchen-sink images</strong>. One issue is when an image is built on top of many other images. It makes it really difficult to plug vulnerabilities. When in doubt, use images from trusted people and organizations.</li>
 </ul>
 </section>
 <section id="the-basic-snapshot-building-process" class="level3" data-number="8.4.3">
@@ -414,7 +429,7 @@ dx upload emboss.tar.gz --destination images/</code></pre>
 <ul>
 <li>How containers enable reproducibility</li>
 <li>Defined specific container terminology</li>
-<li>Created snapshot files using ttyd</li>
+<li>Created snapshot files using <code>ttyd</code></li>
 <li>Use these snapshot files with Swiss Army Knife</li>
 <li>How to extend a docker image by installing new software</li>
 </ul>
