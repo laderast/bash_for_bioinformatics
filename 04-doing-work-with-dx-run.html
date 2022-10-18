@@ -609,8 +609,12 @@ dx run app-swiss-army-knife \
 <ul>
 <li><strong>It obscures your audit trail.</strong> Because we are not specifying the files as inputs, it is less obvious as to which files were processed with each job.</li>
 <li><strong>It works best as read-only.</strong> dxFUSE has limited write capabilities at this point, so it is best to treat it as a read-only file system.</li>
-<li><strong>It works best with good file hygiene practices.</strong> One of the confusing things is that you can create files with the same filename in the same folder. This can easily happen if you clone a job. Because these two files have unique identifiers, they are allowed to have identical file names on the platform.</li>
+<li><strong>You have to be aware of how it resolves duplicate file names in a folder</strong>. dxFUSE works differently than what you might expect when it encounters multiple file names. It separates out duplicate files by prefacing them with a number. For example, if you generated three files called <code>chr1.results.txt</code> in a folder called <code>data</code>, this is how you would refer to each of them:</li>
 </ul>
+<pre><code>data/chr1_results.txt
+data/1/chr1_results.txt
+data/2/chr1_results.txt</code></pre>
+<p>This name resolution can be tricky to work with. - <strong>It works best with good file hygiene practices.</strong> One of the confusing things is that you can create files with the same filename in the same folder (see previous point). This can easily happen if you clone a job. Because these two files have unique identifiers, they are allowed to have identical file names on the platform. This is one reason to tag each set of jobs with a run number (such as <code>run001</code>), so you can make sure that all of the updated files are the correct version.</p>
 </section>
 </section>
 <section id="using-a-docker-image-with-dx-runswiss-army-knife" class="level2" data-number="5.9">

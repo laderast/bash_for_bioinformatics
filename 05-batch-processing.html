@@ -351,7 +351,7 @@ sh -c 'dx run app-swiss-army-knife -iin="%" \
 <p>Note that we’re specifying the helper variables here with a <code>\</code>:</p>
 <p><code>\${in_name}</code></p>
 <p>This escaping (<code>\$</code>) of the dollar sign is to prevent the variable expansion from happening in the top-level shell - the helper variable names need to be passed in to the subshell which needs to pass it onto the worker. Figuring this out took time and made my brain hurt.</p>
-<p>This escaping is only necessary because we’re using <code>xargs</code> and passing our <code>-icmd</code> input into the worker. For the most part, you won’t need to escape the <code>$</code>.</p>
+<p>This escaping is only necessary because we’re using <code>xargs</code> and passing our <code>-icmd</code> input into the worker. For the most part, you won’t need to escape the <code>$</code>. This is also a reason to write shell scripts that run on the worker.</p>
 <p>When we run this command, we get the following screen output:</p>
 <pre><code>Using input JSON:
 {
@@ -393,7 +393,7 @@ dx find jobs --tag "samjob"</code></pre>
 <section id="if-you-screw-up-use-the-tag-to-dx-terminate" class="level3" data-number="6.5.2">
 <h3 data-number="6.5.2" class="anchored" data-anchor-id="if-you-screw-up-use-the-tag-to-dx-terminate"><span class="header-section-number">6.5.2</span> If you screw up, use the tag to <code>dx terminate</code></h3>
 <p><code>dx terminate &lt;jobid&gt;</code> will terminate a running job with that job id. It doesn’t take a tag as input.</p>
-<p>But again, <code>xargs</code> to the rescue. We can find our job ids with the tag <code>bcfjob</code> using <code>dx find jobs</code> and then pipe the <code>--brief</code> output into <code>xargs</code> to terminate each job id.</p>
+<p>But again, <code>xargs</code> to the rescue. We can find our job ids with the tag <code>samjob</code> using <code>dx find jobs</code> and then pipe the <code>--brief</code> output into <code>xargs</code> to terminate each job id.</p>
 <pre class="{bash}"><code>#| eval: false
 dx find jobs --tag samjob --brief | xargs -I% sh -c "dx terminate %"</code></pre>
 </section>
@@ -456,7 +456,7 @@ dx run swiss-army-knife --batch-tsv dx_batch.0000.tsv \
 </section>
 <section id="what-you-learned-in-this-chapter" class="level2" data-number="6.9">
 <h2 data-number="6.9" class="anchored" data-anchor-id="what-you-learned-in-this-chapter"><span class="header-section-number">6.9</span> What you learned in this chapter</h2>
-<p>This was a big chapter, and built on everything you learned before. We put together the output of <code>dx find data --brief</code> with a pipe, and <code>xargs</code> to spawn jobs per set of files. We also learned of alternative approaches using <code>dx generate_batch_inputs</code>/<code>dx run --batch-tsv</code> and using Python to build the <code>dx run</code> statements.</p>
+<p>This was a big chapter, and built on everything you’ve learned in the previous chapters. We put together the output of <code>dx find data --brief</code> with a pipe, and <code>xargs</code> to spawn jobs per set of files. We also learned of alternative approaches using <code>dx generate_batch_inputs</code>/<code>dx run --batch-tsv</code> and using Python to build the <code>dx run</code> statements.</p>
 
 
 </section>

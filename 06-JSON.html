@@ -341,7 +341,7 @@ dx find data --path ted_demo:data/ --json</code></pre>
             "class": "file",
             "name": "small-celegans-sample.fastq",
             "state": "closed",
-            "folder": "/data",
+            "folder": "/json_data",
             "modified": 1665003035646,
             "size": 16801690
         }
@@ -355,7 +355,7 @@ dx find data --path ted_demo:data/ --json</code></pre>
             "class": "file",
             "name": "NC_001422.fasta",
             "state": "closed",
-            "folder": "/data",
+            "folder": "/json_data",
             "modified": 1665003035645,
             "size": 5539
         }
@@ -390,7 +390,7 @@ Answer
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>We are returning a list of JSON objects, each of which corresponds to a single job run within our project.</p>
+<p>It’s hard to tell at first, but We are returning a list of JSON objects, each of which corresponds to a single job run within our project.</p>
 </div>
 </div>
 </div>
@@ -407,12 +407,11 @@ jq '&lt;filter&gt;' &lt;JSON file&gt;</code></pre>
 <li>For each of these elements, output the job-status id</li>
 </ol>
 <p>You can see how <code>jq</code> can be extremely powerful.</p>
-<p>You can also pipe JSON from standard output into <code>jq</code>. This will be really helpful for us when we start using pipes of datafiles from <code>dx find data</code>.</p>
+<p>You can also pipe JSON from standard output into <code>jq</code>. This will be really helpful for us when we start using pipes of data files from <code>dx find data</code>.</p>
 </section>
 <section id="our-simplest-filter-." class="level2" data-number="7.9">
 <h2 data-number="7.9" class="anchored" data-anchor-id="our-simplest-filter-."><span class="header-section-number">7.9</span> Our simplest filter: <code>.</code></h2>
-<p>One of the biggest uses for <code>jq</code> is for more readable formatting. Oftentimes, the JSON spit out of an API is really hard to read.</p>
-<p>It lacks indents, and it is really hard to see the actual structure of the JSON response.</p>
+<p>One of the biggest uses for <code>jq</code> is for more readable formatting. Oftentimes, the JSON returned by an API call is really hard to read. It can be returned as a single line of text, and it is really hard for humans to see the actual structure of the JSON response.</p>
 <p>If we run <code>jq .</code> on a JSON file, we’ll see that it makes it much more readable.</p>
 <pre class="{bash}"><code>#| eval: false
 #| filename: 06-JSON/jq-simple.sh
@@ -452,11 +451,12 @@ Try it out
   },
   "stats_txt": {
     "dnanexus_link": "file-G4x7GXQ0VBzZxFxz4fqV120B"
-  }
+  },
+  "users": ["laderast", "ted", "tladeras"]
 }
 </code></pre>
 <p>In your terminal, try out:</p>
-<pre><code>jq '.stats_txt' data/example.json</code></pre>
+<pre><code>jq '.stats_txt' json_data/example.json</code></pre>
 <p>What do you return?</p>
 </div>
 </div>
@@ -466,7 +466,7 @@ Try it out
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-Note
+Answer
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -474,7 +474,11 @@ Note
 <div class="callout-body-container callout-body">
 <pre class="{bash}"><code>#| eval: false
 #| filename: 06-JSON/jq-stats-txt.sh
-jq '.stats_txt' data/example.json</code></pre>
+jq '.stats_txt' json_data/example.json</code></pre>
+<p>We’ll return the following JSON object, which contains a single key-value pair.</p>
+<pre><code>{
+  "dnanexus_link": "file-G4x7GXQ0VBzZxFxz4fqV120B"
+}</code></pre>
 </div>
 </div>
 </div>
@@ -483,7 +487,7 @@ jq '.stats_txt' data/example.json</code></pre>
 <p>We can extract the actual value associated with the <code>dnanexus_link</code> key within <code>report_html</code> by chaining onto our filter:</p>
 <pre class="{bash}"><code>#| eval: false
 #| filename: 06-JSON/jq-nested.sh
-jq '.report_html.dnanexus_link' data/example.json</code></pre>
+jq '.report_html.dnanexus_link' json_data/example.json</code></pre>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -494,7 +498,10 @@ Try It Out
 </div>
 </div>
 <div class="callout-body-container callout-body">
-
+<p>What is returned when you run this code?</p>
+<pre class="{bash}"><code>#| eval: false
+#| filename: 06-JSON/jq-nested.sh
+jq '.report_html.dnanexus_link' json_data/example.json</code></pre>
 </div>
 </div>
 <div class="callout-note callout callout-style-default callout-captioned">
@@ -509,7 +516,8 @@ Answer
 </div>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-
+<p>You should return the actual value.</p>
+<pre><code>"file-G4x7GX80VBzQy64k4jzgjqgY"</code></pre>
 </div>
 </div>
 </div>
