@@ -187,7 +187,7 @@ The full script for setting up is in the `01-setup-course/project_setup.sh`
 
 ```{bash}
 #| eval: false
-#| filename: 01-setup-course/project_setup.sh
+#| filename: setup-course/project_setup.sh
 
 ## Login
 dx login

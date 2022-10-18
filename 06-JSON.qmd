@@ -5,13 +5,13 @@
 
 You will not need to login to the platform for this chapter.
 
-You'll want to `cd` into the `06-JSON` folder in your project.
+You'll want to `cd` into the `JSON` folder in your project.
 
 ```
-cd 06-JSON/
+cd JSON/
 ```
 
-You'll also need to [install `jq`](https://stedolan.github.io/jq/download/) if it's not yet on your system. If you're on Ubuntu/WSL, I recommend installing via `apt-get`. If you're on Mac, I recommend installing via `brew install`.
+You'll also need to [install `jq`](https://stedolan.github.io/jq/download/) if it's not yet on your system. If you're on Ubuntu/WSL, I recommend installing via `apt install`. If you're on Mac, I recommend installing via `brew install`.
 
 You can check if `jq` is already installed by typing 
 
@@ -224,7 +224,7 @@ If we run `jq .` on a JSON file, we'll see that it makes it much more readable.
 
 ```{bash}
 #| eval: false
-#| filename: 06-JSON/jq-simple.sh
+#| filename: JSON/jq-simple.sh
 jq '.' json_data/example.json
 ```
 
@@ -234,7 +234,7 @@ We can extract the keys from the top level JSON by using `'keys'` as our filter.
 
 ```{bash}
 #| eval: false
-#| filename: 06-JSON/jq-keys.sh
+#| filename: JSON/jq-keys.sh
 jq 'keys' json_data/example.json
 ```
 
@@ -246,7 +246,7 @@ We can specify the key that we're interested in to extract the value from that k
 
 ```{bash}
 #| eval: false
-#| filename: 06-JSON/jq-report.sh
+#| filename: JSON/jq-report.sh
 jq '.report_html' json_data/example.json
 ```
 
@@ -285,7 +285,7 @@ What do you return?
 
 ```{bash}
 #| eval: false
-#| filename: 06-JSON/jq-stats-txt.sh
+#| filename: JSON/jq-stats-txt.sh
 jq '.stats_txt' json_data/example.json
 ```
 
@@ -304,7 +304,7 @@ We can extract the actual value associated with the `dnanexus_link` key within `
 
 ```{bash}
 #| eval: false
-#| filename: 06-JSON/jq-nested.sh
+#| filename: JSON/jq-nested.sh
 jq '.report_html.dnanexus_link' json_data/example.json
 ```
 
@@ -315,7 +315,7 @@ What is returned when you run this code?
 
 ```{bash}
 #| eval: false
-#| filename: 06-JSON/jq-nested.sh
+#| filename: JSON/jq-nested.sh
 jq '.report_html.dnanexus_link' json_data/example.json
 ```
 
@@ -342,7 +342,7 @@ This is a bit of code that would allow us to select those jobs that have failed.
 
 ```{bash}
 #| eval: false
-#| filename: 06-JSON/dx-find-jobs-jq-clone.sh
+#| filename: JSON/dx-find-jobs-jq-clone.sh
 dx find jobs --json |\ 
 jq '.[] | select (.state | contains("failed")) | .id' |\
 xargs -I% sh -c "dx run --clone %"

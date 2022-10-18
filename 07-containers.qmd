@@ -5,10 +5,10 @@
 
 Make sure you are logged into the platform using `dx login` and that your course project is selected with `dx select`.
 
-In your shell (either on your machine or in binder), make sure you're in the `bash_bioinfo_scripts/07-containers/` folder:
+In your shell (either on your machine or in binder), make sure you're in the `bash_bioinfo_scripts/containers/` folder:
 
 ```
-cd 07-containers/
+cd containers/
 ```
 :::
 

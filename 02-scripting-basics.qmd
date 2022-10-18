@@ -3,10 +3,10 @@
 :::{.callout-note}
 ## Prep for Exercises
 
-In your shell (either on your machine or in binder), make sure you're in the `bash_bioinfo_scripts/02-scripting-basics/` folder:
+In your shell (either on your machine or in binder), make sure you're in the `bash_bioinfo_scripts/scripting-basics/` folder:
 
 ```
-cd 02-scripting-basics/
+cd scripting-basics/
 ```
 :::
 
@@ -40,7 +40,7 @@ Say we have [`samtools`](http://www.htslib.org/doc/samtools-stats.html) installe
 
 ```{bash}
 #| eval: false 
-#| filename: 02-scripting-basics/sam_run.sh
+#| filename: scripting-basics/sam_run.sh
 
 #!/bin/bash/
 
@@ -78,7 +78,7 @@ How would we rewrite `sam_run.sh` if we wanted to specify the output file as the
 
 ```{bash}
 #| eval: false
-#| filename: 02-scripting-basics/sam_run.sh 
+#| filename: scripting-basics/sam_run.sh 
 #!/bin/bash/
 
 samtools stats $1 > $2
@@ -176,7 +176,7 @@ Now we have a list of files, let's look at the first few lines of each of them, 
 
 ```{bash}
 #| eval: false
-#| filename: 02-scripting-basics/xargs_example.sh
+#| filename: scripting-basics/xargs_example.sh
 
 ls data/*.qmd | xargs -I% sh -c 'head %; echo "---\n"'
 ```
@@ -206,11 +206,11 @@ So for our first file, `01-scripting-basics.qmd`, we are substituting that for `
 'head 01-scripting-basics.qmd; echo "---\n"'
 ```
 
-For our second file, `02-cloud-computing-basics.qmd`, we would substitute that for the `%`:
+For our second file, `cloud-computing-basics.qmd`, we would substitute that for the `%`:
 
 ```{bash}
 #| eval: false
-'head 02-cloud-computing-basics.qmd; echo "---\n"'
+'head cloud-computing-basics.qmd; echo "---\n"'
 ```
 
 Until we cycle through all of the files in our list.
@@ -314,7 +314,7 @@ We're storing the command we want to run in the `${my_cmd}` variable. Here we're
 Let's end this chapter with wrapping R scripts in a bash script. Say you have an R Script you need to run on the command line. In our bash script, we can do the following:
 
 ```{bash}
-#| filename: "02-scripting-basics/wrap_r_script.sh"
+#| filename: "scripting-basics/wrap_r_script.sh"
 #| eval: false
 #!/bin/bash
 Rscript my_script.R CSVFILE="${1}"
@@ -330,7 +330,7 @@ We refer to our `CSVFILE` argument as `args$CSVFILE` in our script.
 
 ```{r}
 #| eval: false
-#| filename: "02-scripting-basics/r_script.R"
+#| filename: "scripting-basics/r_script.R"
 library(tidyverse)
 
 args <- commandArgs()

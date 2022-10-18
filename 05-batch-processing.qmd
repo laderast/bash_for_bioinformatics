@@ -7,10 +7,10 @@ Now we're prepared for the big one: batch processing on the DNAnexus platform. A
 
 Make sure you are logged into the platform using `dx login` and that your course project is selected with `dx select`.
 
-In your shell (either on your machine or in binder), make sure you're in the `bash_bioinfo_scripts/05-batch-processing/` folder:
+In your shell (either on your machine or in binder), make sure you're in the `bash_bioinfo_scripts/batch-processing/` folder:
 
 ```
-cd 05-batch-processing/
+cd batch-processing/
 ```
 :::
 
@@ -83,7 +83,7 @@ You can use wildcard characters with the `--name` flag. Here, we're looking for 
 
 ```{bash}
 #| eval: false
-#| filename: 05-batch-processing/dx-find-data-name.sh
+#| filename: batch-processing/dx-find-data-name.sh
 dx find data --name "*.bam" --brief
 ```
 
@@ -93,7 +93,7 @@ You can add the `--path` command to search in a specific folder.
 
 ```{bash}
 #| eval: false
-#| filename: 05-batch-processing/dx-find-path.sh
+#| filename: batch-processing/dx-find-path.sh
 
 dx find data --name "*bam" --path "data/"
 ```
@@ -106,7 +106,7 @@ Note: be careful with this one, especially if you are working on UK Biobank RAP.
 
 ```{bash}
 #| eval: false
-#| filename: 05-batch-processing/dx-find-data-field.sh
+#| filename: batch-processing/dx-find-data-field.sh
 
 dx find data --property field_id=23148 --brief
 ```
@@ -119,7 +119,7 @@ Search for all files in your project that have a `file` class.
 
 ```{bash}
 #| eval: false
-#| filename: 05-batch-processing/dx-find-data-class.sh
+#| filename: batch-processing/dx-find-data-class.sh
 
 dx find data --class file --brief
 ```
@@ -140,7 +140,7 @@ Remember, a really useful pattern for `xargs` is using it for variable expansion
 
 ```{bash}
 #| eval: false
-#| filename: 05-batch-processing/dx-find-xargs.sh
+#| filename: batch-processing/dx-find-xargs.sh
 dx find data --name "*.bam" --brief | \
   xargs -I % sh -c "dx run app-swiss-army-knife -y -iin="%" \
   -icmd='samtools view -c \${in_name} > \${in_prefix-counts.txt}' \
@@ -235,7 +235,7 @@ The key is that we're running `xargs` on the worker, not on our own machine to p
 
 ```{bash}
 #| eval: false
-#| filename: 05-batch-processing/batch-on-worker.sh
+#| filename: batch-processing/batch-on-worker.sh
 cmd_to_run="ls *.vcf.gz | xargs -I% sh -c "bcftools stats % > %.stats.txt"
 
 dx run swiss-army-knife \
