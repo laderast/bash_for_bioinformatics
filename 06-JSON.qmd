@@ -151,7 +151,7 @@ The output will look like this:
             "class": "file",
             "name": "small-celegans-sample.fastq",
             "state": "closed",
-            "folder": "/data",
+            "folder": "/json_data",
             "modified": 1665003035646,
             "size": 16801690
         }
@@ -165,7 +165,7 @@ The output will look like this:
             "class": "file",
             "name": "NC_001422.fasta",
             "state": "closed",
-            "folder": "/data",
+            "folder": "/json_data",
             "modified": 1665003035645,
             "size": 5539
         }
@@ -188,7 +188,7 @@ dx find jobs --json
 :::{.callout-note collapse="true"}
 ## Answer
 
-We are returning a list of JSON objects, each of which corresponds to a single job run within our project.
+It's hard to tell at first, but We are returning a list of JSON objects, each of which corresponds to a single job run within our project.
 :::
 
 
@@ -212,13 +212,11 @@ Filters are the heart of processing data using `jq`. They let you extract JSON v
 
 You can see how `jq` can be extremely powerful.
 
-You can also pipe JSON from standard output into `jq`. This will be really helpful for us when we start using pipes of datafiles from `dx find data`. 
+You can also pipe JSON from standard output into `jq`. This will be really helpful for us when we start using pipes of data files from `dx find data`. 
 
 ## Our simplest filter: `.`
 
-One of the biggest uses for `jq` is for more readable formatting. Oftentimes, the JSON spit out of an API is really hard to read. 
-
-It lacks indents, and it is really hard to see the actual structure of the JSON response. 
+One of the biggest uses for `jq` is for more readable formatting. Oftentimes, the JSON returned by an API call is really hard to read. It can be returned as a single line of text, and it is really hard for humans to see the actual structure of the JSON response. 
 
 If we run `jq .` on a JSON file, we'll see that it makes it much more readable.
 
@@ -265,7 +263,8 @@ This is the JSON file we're going to be working with, in `json_data/example.json
   },
   "stats_txt": {
     "dnanexus_link": "file-G4x7GXQ0VBzZxFxz4fqV120B"
-  }
+  },
+  "users": ["laderast", "ted", "tladeras"]
 }
 
 ```
@@ -273,19 +272,28 @@ This is the JSON file we're going to be working with, in `json_data/example.json
 In your terminal, try out:
 
 ```
-jq '.stats_txt' data/example.json
+jq '.stats_txt' json_data/example.json
 ```
 
 What do you return?
 :::
 
 :::{.callout-note collapse="true"}
+## Answer
+
 ```{bash}
 #| eval: false
 #| filename: 06-JSON/jq-stats-txt.sh
-jq '.stats_txt' data/example.json
+jq '.stats_txt' json_data/example.json
 ```
 
+We'll return the following JSON object, which contains a single key-value pair.
+
+```
+{
+  "dnanexus_link": "file-G4x7GXQ0VBzZxFxz4fqV120B"
+}
+```
 :::
 
 ### Going one level deeper
@@ -295,17 +303,30 @@ We can extract the actual value associated with the `dnanexus_link` key within `
 ```{bash}
 #| eval: false
 #| filename: 06-JSON/jq-nested.sh
-jq '.report_html.dnanexus_link' data/example.json
+jq '.report_html.dnanexus_link' json_data/example.json
 ```
 
 :::{.callout-note}
 ## Try It Out
 
+What is returned when you run this code?
+
+```{bash}
+#| eval: false
+#| filename: 06-JSON/jq-nested.sh
+jq '.report_html.dnanexus_link' json_data/example.json
+```
 
 :::
 
 :::{.callout-note collapse="true"}
 ## Answer
+
+You should return the actual value. 
+
+```
+"file-G4x7GX80VBzQy64k4jzgjqgY"
+```
 
 :::
 
