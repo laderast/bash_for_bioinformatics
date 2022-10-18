@@ -220,8 +220,8 @@ Prep for Exercises
 </div>
 <div class="callout-body-container callout-body">
 <p>Make sure you are logged into the platform using <code>dx login</code> and that your course project is selected with <code>dx select</code>.</p>
-<p>In your shell (either on your machine or in binder), make sure you’re in the <code>bash_bioinfo_scripts/05-batch-processing/</code> folder:</p>
-<pre><code>cd 05-batch-processing/</code></pre>
+<p>In your shell (either on your machine or in binder), make sure you’re in the <code>bash_bioinfo_scripts/batch-processing/</code> folder:</p>
+<pre><code>cd batch-processing/</code></pre>
 </div>
 </div>
 <section id="learning-objectives" class="level2" data-number="6.1">
@@ -311,14 +311,14 @@ Prep for Exercises
 <h3 data-number="6.4.1" class="anchored" data-anchor-id="find-all-.bam-files-in-a-project"><span class="header-section-number">6.4.1</span> Find all *.bam files in a project</h3>
 <p>You can use wildcard characters with the <code>--name</code> flag. Here, we’re looking for anything with the suffix “*.bam”.</p>
 <pre class="{bash}"><code>#| eval: false
-#| filename: 05-batch-processing/dx-find-data-name.sh
+#| filename: batch-processing/dx-find-data-name.sh
 dx find data --name "*.bam" --brief</code></pre>
 </section>
 <section id="searching-within-a-folder" class="level3" data-number="6.4.2">
 <h3 data-number="6.4.2" class="anchored" data-anchor-id="searching-within-a-folder"><span class="header-section-number">6.4.2</span> Searching within a folder</h3>
 <p>You can add the <code>--path</code> command to search in a specific folder.</p>
 <pre class="{bash}"><code>#| eval: false
-#| filename: 05-batch-processing/dx-find-path.sh
+#| filename: batch-processing/dx-find-path.sh
 
 dx find data --name "*bam" --path "data/"</code></pre>
 </section>
@@ -327,7 +327,7 @@ dx find data --name "*bam" --path "data/"</code></pre>
 <p>Take advantage of metadata associated with files when you can. If you are on UKB RAP, one of the most helpful properties to search is <code>field_id</code>.</p>
 <p>Note: be careful with this one, especially if you are working on UK Biobank RAP. You don’t want to return 500,000 file ids. I would concentrate on the field ids that are aggregated on the population level, such as the pVCF files.</p>
 <pre class="{bash}"><code>#| eval: false
-#| filename: 05-batch-processing/dx-find-data-field.sh
+#| filename: batch-processing/dx-find-data-field.sh
 
 dx find data --property field_id=23148 --brief</code></pre>
 </section>
@@ -336,7 +336,7 @@ dx find data --property field_id=23148 --brief</code></pre>
 <p>There are a number of different object classes on the platform, such as <code>file</code> or <code>applet</code></p>
 <p>Search for all files in your project that have a <code>file</code> class.</p>
 <pre class="{bash}"><code>#| eval: false
-#| filename: 05-batch-processing/dx-find-data-class.sh
+#| filename: batch-processing/dx-find-data-class.sh
 
 dx find data --class file --brief</code></pre>
 </section>
@@ -352,7 +352,7 @@ dx find data --class file --brief</code></pre>
 <p>Remember our discussion of <code>xargs</code>? (<a href="02-scripting-basics.html#sec-xargs"><span>Section&nbsp;3.5</span></a>) This is where <code>xargs</code> shines, when you provide it a list of files.</p>
 <p>Remember, a really useful pattern for <code>xargs</code> is using it for variable expansion and starting a subshell to process individual files.</p>
 <pre class="{bash}"><code>#| eval: false
-#| filename: 05-batch-processing/dx-find-xargs.sh
+#| filename: batch-processing/dx-find-xargs.sh
 dx find data --name "*.bam" --brief | \
   xargs -I % sh -c "dx run app-swiss-army-knife -y -iin="%" \
   -icmd='samtools view -c \${in_name} &gt; \${in_prefix-counts.txt}' \
@@ -418,7 +418,7 @@ dx find jobs --tag samjob --brief | xargs -I% sh -c "dx terminate %"</code></pre
 <p>We talked about another method to batch process files on a worker (<a href="#fig-batch2">Figure&nbsp;<span>6.2</span></a>). We can submit an array of files to a worker, and then process them one at a time on the worker.</p>
 <p>The key is that we’re running <code>xargs</code> on the worker, not on our own machine to process each file.</p>
 <pre class="{bash}"><code>#| eval: false
-#| filename: 05-batch-processing/batch-on-worker.sh
+#| filename: batch-processing/batch-on-worker.sh
 cmd_to_run="ls *.vcf.gz | xargs -I% sh -c "bcftools stats % &gt; %.stats.txt"
 
 dx run swiss-army-knife \

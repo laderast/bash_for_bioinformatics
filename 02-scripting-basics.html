@@ -280,8 +280,8 @@ Prep for Exercises
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In your shell (either on your machine or in binder), make sure you’re in the <code>bash_bioinfo_scripts/02-scripting-basics/</code> folder:</p>
-<pre><code>cd 02-scripting-basics/</code></pre>
+<p>In your shell (either on your machine or in binder), make sure you’re in the <code>bash_bioinfo_scripts/scripting-basics/</code> folder:</p>
+<pre><code>cd scripting-basics/</code></pre>
 </div>
 </div>
 <section id="learning-objectives" class="level2" data-number="3.1">
@@ -313,7 +313,7 @@ Prep for Exercises
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>02-scripting-basics/sam_run.sh</strong></pre>
+<pre><strong>scripting-basics/sam_run.sh</strong></pre>
 </div>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash/</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -348,7 +348,7 @@ Test yourself
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>02-scripting-basics/sam_run.sh</strong></pre>
+<pre><strong>scripting-basics/sam_run.sh</strong></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash/</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -471,7 +471,7 @@ Why this is important on the platform
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>02-scripting-basics/xargs_example.sh</strong></pre>
+<pre><strong>scripting-basics/xargs_example.sh</strong></pre>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> data/<span class="pp">*</span>.qmd <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-I%</span> sh <span class="at">-c</span> <span class="st">'head %; echo "---\n"'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -490,9 +490,9 @@ Why this is important on the platform
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="st">'head 01-scripting-basics.qmd; echo "---\n"'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>For our second file, <code>02-cloud-computing-basics.qmd</code>, we would substitute that for the <code>%</code>:</p>
+<p>For our second file, <code>cloud-computing-basics.qmd</code>, we would substitute that for the <code>%</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="st">'head 02-cloud-computing-basics.qmd; echo "---\n"'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="st">'head cloud-computing-basics.qmd; echo "---\n"'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Until we cycle through all of the files in our list.</p>
 <section id="the-basic-xargs-pattern" class="level3" data-number="3.5.1">
@@ -628,7 +628,7 @@ Why this is important on the platform
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>02-scripting-basics/wrap_r_script.sh</strong></pre>
+<pre><strong>scripting-basics/wrap_r_script.sh</strong></pre>
 </div>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> my_script.R CSVFILE=<span class="st">"</span><span class="va">${1}</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -642,7 +642,7 @@ Why this is important on the platform
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>02-scripting-basics/r_script.R</strong></pre>
+<pre><strong>scripting-basics/r_script.R</strong></pre>
 </div>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>

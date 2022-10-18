@@ -211,9 +211,9 @@ Preparing for this Chapter
 </div>
 <div class="callout-body-container callout-body">
 <p>You will not need to login to the platform for this chapter.</p>
-<p>You’ll want to <code>cd</code> into the <code>06-JSON</code> folder in your project.</p>
-<pre><code>cd 06-JSON/</code></pre>
-<p>You’ll also need to <a href="https://stedolan.github.io/jq/download/">install <code>jq</code></a> if it’s not yet on your system. If you’re on Ubuntu/WSL, I recommend installing via <code>apt-get</code>. If you’re on Mac, I recommend installing via <code>brew install</code>.</p>
+<p>You’ll want to <code>cd</code> into the <code>JSON</code> folder in your project.</p>
+<pre><code>cd JSON/</code></pre>
+<p>You’ll also need to <a href="https://stedolan.github.io/jq/download/">install <code>jq</code></a> if it’s not yet on your system. If you’re on Ubuntu/WSL, I recommend installing via <code>apt install</code>. If you’re on Mac, I recommend installing via <code>brew install</code>.</p>
 <p>You can check if <code>jq</code> is already installed by typing</p>
 <p><code>which jq</code></p>
 </div>
@@ -415,14 +415,14 @@ jq '&lt;filter&gt;' &lt;JSON file&gt;</code></pre>
 <p>One of the biggest uses for <code>jq</code> is for more readable formatting. Oftentimes, the JSON returned by an API call is really hard to read. It can be returned as a single line of text, and it is really hard for humans to see the actual structure of the JSON response.</p>
 <p>If we run <code>jq .</code> on a JSON file, we’ll see that it makes it much more readable.</p>
 <pre class="{bash}"><code>#| eval: false
-#| filename: 06-JSON/jq-simple.sh
+#| filename: JSON/jq-simple.sh
 jq '.' json_data/example.json</code></pre>
 </section>
 <section id="getting-the-keys" class="level2" data-number="7.10">
 <h2 data-number="7.10" class="anchored" data-anchor-id="getting-the-keys"><span class="header-section-number">7.10</span> Getting the keys</h2>
 <p>We can extract the keys from the top level JSON by using <code>'keys'</code> as our filter.</p>
 <pre class="{bash}"><code>#| eval: false
-#| filename: 06-JSON/jq-keys.sh
+#| filename: JSON/jq-keys.sh
 jq 'keys' json_data/example.json</code></pre>
 </section>
 <section id="extracting-a-value-from-a-container-jq-.report_html" class="level2" data-number="7.11">
@@ -430,7 +430,7 @@ jq 'keys' json_data/example.json</code></pre>
 <p>So, say we want to extract the value from the <code>report_html</code> key in the above.</p>
 <p>We can specify the key that we’re interested in to extract the value from that key.</p>
 <pre class="{bash}"><code>#| eval: false
-#| filename: 06-JSON/jq-report.sh
+#| filename: JSON/jq-report.sh
 jq '.report_html' json_data/example.json</code></pre>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -474,7 +474,7 @@ Answer
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <pre class="{bash}"><code>#| eval: false
-#| filename: 06-JSON/jq-stats-txt.sh
+#| filename: JSON/jq-stats-txt.sh
 jq '.stats_txt' json_data/example.json</code></pre>
 <p>We’ll return the following JSON object, which contains a single key-value pair.</p>
 <pre><code>{
@@ -487,7 +487,7 @@ jq '.stats_txt' json_data/example.json</code></pre>
 <h3 data-number="7.11.1" class="anchored" data-anchor-id="going-one-level-deeper"><span class="header-section-number">7.11.1</span> Going one level deeper</h3>
 <p>We can extract the actual value associated with the <code>dnanexus_link</code> key within <code>report_html</code> by chaining onto our filter:</p>
 <pre class="{bash}"><code>#| eval: false
-#| filename: 06-JSON/jq-nested.sh
+#| filename: JSON/jq-nested.sh
 jq '.report_html.dnanexus_link' json_data/example.json</code></pre>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -501,7 +501,7 @@ Try It Out
 <div class="callout-body-container callout-body">
 <p>What is returned when you run this code?</p>
 <pre class="{bash}"><code>#| eval: false
-#| filename: 06-JSON/jq-nested.sh
+#| filename: JSON/jq-nested.sh
 jq '.report_html.dnanexus_link' json_data/example.json</code></pre>
 </div>
 </div>
@@ -530,7 +530,7 @@ Answer
 <p>Failed jobs can occur when using normal priority, which focuses on using spot instances. So, if we ran a series of jobs, we would want to restart these failed jobs.</p>
 <p>This is a bit of code that would allow us to select those jobs that have failed.</p>
 <pre class="{bash}"><code>#| eval: false
-#| filename: 06-JSON/dx-find-jobs-jq-clone.sh
+#| filename: JSON/dx-find-jobs-jq-clone.sh
 dx find jobs --json |\ 
 jq '.[] | select (.state | contains("failed")) | .id' |\
 xargs -I% sh -c "dx run --clone %"</code></pre>
