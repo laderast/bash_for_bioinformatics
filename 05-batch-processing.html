@@ -176,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#using-xargs-to-batch-multiple-files" id="toc-using-xargs-to-batch-multiple-files" class="nav-link" data-scroll-target="#using-xargs-to-batch-multiple-files"><span class="toc-section-number">6.5</span>  Using <code>xargs</code> to Batch Multiple Files</a>
   <ul class="collapse">
   <li><a href="#when-batching-tag-your-jobs" id="toc-when-batching-tag-your-jobs" class="nav-link" data-scroll-target="#when-batching-tag-your-jobs"><span class="toc-section-number">6.5.1</span>  When batching, tag your jobs</a></li>
-  <li><a href="#sec-terminate" id="toc-sec-terminate" class="nav-link" data-scroll-target="#sec-terminate"><span class="toc-section-number">6.5.2</span>  If you screw up, use the tag to <code>dx terminate</code></a></li>
+  <li><a href="#sec-terminate" id="toc-sec-terminate" class="nav-link" data-scroll-target="#sec-terminate"><span class="toc-section-number">6.5.2</span>  Using tags to <code>dx terminate</code> jobs</a></li>
   </ul></li>
   <li><a href="#sec-mult-worker" id="toc-sec-mult-worker" class="nav-link" data-scroll-target="#sec-mult-worker"><span class="toc-section-number">6.6</span>  Submitting Multiple Files to a Single Worker</a></li>
   <li><a href="#batching-multiple-inputs-dx-generate_batch_inputs" id="toc-batching-multiple-inputs-dx-generate_batch_inputs" class="nav-link" data-scroll-target="#batching-multiple-inputs-dx-generate_batch_inputs"><span class="toc-section-number">6.7</span>  Batching multiple inputs: <code>dx generate_batch_inputs</code></a>
@@ -256,7 +256,7 @@ Prep for Exercises
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;6.1: Batch method 1</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;6.1: Batch method 1. We list files and then pipe them into <code>xargs</code>, which generates individual dx-run statements.</figcaption><p></p>
 </figure>
 </div>
 <div id="fig-batch2" class="quarto-figure quarto-figure-center anchored">
@@ -275,7 +275,7 @@ Prep for Exercises
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;6.2: Batch method 2</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;6.2: Batch method 2. We first get our files onto the worker through a single dx run command, and then use <code>xargs</code> on the worker to cycle through them.</figcaption><p></p>
 </figure>
 </div>
 <p>We actually have two methods of batching jobs using Swiss Army Knife:</p>
@@ -406,7 +406,7 @@ Job ID: job-GJ2xVZ80yp62X5Z51qp191Y8
 dx find jobs --tag "samjob"</code></pre>
 </section>
 <section id="sec-terminate" class="level3" data-number="6.5.2">
-<h3 data-number="6.5.2" class="anchored" data-anchor-id="sec-terminate"><span class="header-section-number">6.5.2</span> If you screw up, use the tag to <code>dx terminate</code></h3>
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="sec-terminate"><span class="header-section-number">6.5.2</span> Using tags to <code>dx terminate</code> jobs</h3>
 <p><code>dx terminate &lt;jobid&gt;</code> will terminate a running job with that job id. It doesn’t take a tag as input.</p>
 <p>But again, <code>xargs</code> to the rescue. We can find our job ids with the tag <code>samjob</code> using <code>dx find jobs</code> and then pipe the <code>--brief</code> output into <code>xargs</code> to terminate each job id.</p>
 <pre class="{bash}"><code>#| eval: false
