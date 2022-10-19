@@ -164,7 +164,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="toc-section-number">6.1</span>  Learning Objectives</a></li>
   <li><a href="#two-ways-of-batching" id="toc-two-ways-of-batching" class="nav-link" data-scroll-target="#two-ways-of-batching"><span class="toc-section-number">6.2</span>  Two Ways of Batching</a></li>
-  <li><a href="#finding-files-using-dx-find-data" id="toc-finding-files-using-dx-find-data" class="nav-link" data-scroll-target="#finding-files-using-dx-find-data"><span class="toc-section-number">6.3</span>  Finding files using <code>dx find data</code></a></li>
+  <li><a href="#sec-dx-find" id="toc-sec-dx-find" class="nav-link" data-scroll-target="#sec-dx-find"><span class="toc-section-number">6.3</span>  Finding files using <code>dx find data</code></a></li>
   <li><a href="#helpful-dx-find-data-examples" id="toc-helpful-dx-find-data-examples" class="nav-link" data-scroll-target="#helpful-dx-find-data-examples"><span class="toc-section-number">6.4</span>  Helpful <code>dx find data</code> examples</a>
   <ul class="collapse">
   <li><a href="#find-all-.bam-files-in-a-project" id="toc-find-all-.bam-files-in-a-project" class="nav-link" data-scroll-target="#find-all-.bam-files-in-a-project"><span class="toc-section-number">6.4.1</span>  Find all *.bam files in a project</a></li>
@@ -173,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#find-all-files-that-are-of-class-file" id="toc-find-all-files-that-are-of-class-file" class="nav-link" data-scroll-target="#find-all-files-that-are-of-class-file"><span class="toc-section-number">6.4.4</span>  Find all files that are of class <code>file</code></a></li>
   <li><a href="#in-general-think-about-leveraging-metadata" id="toc-in-general-think-about-leveraging-metadata" class="nav-link" data-scroll-target="#in-general-think-about-leveraging-metadata"><span class="toc-section-number">6.4.5</span>  In General: Think about leveraging metadata</a></li>
   </ul></li>
-  <li><a href="#using-xargs-to-batch-multiple-files" id="toc-using-xargs-to-batch-multiple-files" class="nav-link" data-scroll-target="#using-xargs-to-batch-multiple-files"><span class="toc-section-number">6.5</span>  Using <code>xargs</code> to Batch Multiple Files</a>
+  <li><a href="#sec-xargs2" id="toc-sec-xargs2" class="nav-link" data-scroll-target="#sec-xargs2"><span class="toc-section-number">6.5</span>  Using <code>xargs</code> to Batch Multiple Files</a>
   <ul class="collapse">
   <li><a href="#when-batching-tag-your-jobs" id="toc-when-batching-tag-your-jobs" class="nav-link" data-scroll-target="#when-batching-tag-your-jobs"><span class="toc-section-number">6.5.1</span>  When batching, tag your jobs</a></li>
   <li><a href="#sec-terminate" id="toc-sec-terminate" class="nav-link" data-scroll-target="#sec-terminate"><span class="toc-section-number">6.5.2</span>  Using tags to <code>dx terminate</code> jobs</a></li>
@@ -285,8 +285,8 @@ Prep for Exercises
 </ol>
 <p>Both of these methods can potentially be useful.</p>
 </section>
-<section id="finding-files-using-dx-find-data" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="finding-files-using-dx-find-data"><span class="header-section-number">6.3</span> Finding files using <code>dx find data</code></h2>
+<section id="sec-dx-find" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="sec-dx-find"><span class="header-section-number">6.3</span> Finding files using <code>dx find data</code></h2>
 <p><code>dx find data</code> is a command that is extremely helpful on the DNAnexus platform. Based on metadata and folder paths, <code>dx find data</code> will return a list of files that meet the criteria.</p>
 <p><code>dx find data</code> lets you search on the following types of metadata:</p>
 <ul>
@@ -346,8 +346,8 @@ dx find data --class file --brief</code></pre>
 <p>For example, for the UKB Research Analysis Platform, data files in the <code>Bulk/</code> folder in your project have multiple properties: <code>field_id</code> (the data field as specified by UK Biobank) and <code>eid</code>.</p>
 </section>
 </section>
-<section id="using-xargs-to-batch-multiple-files" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="using-xargs-to-batch-multiple-files"><span class="header-section-number">6.5</span> Using <code>xargs</code> to Batch Multiple Files</h2>
+<section id="sec-xargs2" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="sec-xargs2"><span class="header-section-number">6.5</span> Using <code>xargs</code> to Batch Multiple Files</h2>
 <p>Ok, now we have a list of files from <code>dx find data</code> that meet our criteria. How can we process them one by one?</p>
 <p>Remember our discussion of <code>xargs</code>? (<a href="02-scripting-basics.html#sec-xargs"><span>Section&nbsp;3.5</span></a>) This is where <code>xargs</code> shines, when you provide it a list of files.</p>
 <p>Remember, a really useful pattern for <code>xargs</code> is using it for variable expansion and starting a subshell to process individual files.</p>
@@ -472,7 +472,8 @@ dx run swiss-army-knife --batch-tsv dx_batch.0000.tsv \
 <section id="what-you-learned-in-this-chapter" class="level2" data-number="6.9">
 <h2 data-number="6.9" class="anchored" data-anchor-id="what-you-learned-in-this-chapter"><span class="header-section-number">6.9</span> What you learned in this chapter</h2>
 <p>This was a big chapter, and built on everything you’ve learned in the previous chapters.</p>
-<p>We put together the output of <code>dx find data --brief</code> with a pipe (<code>|</code>), and <code>xargs</code> to spawn jobs per set of files.</p>
+<p>We put together the output of <code>dx find data --brief</code> (<a href="#sec-dx-find"><span>Section&nbsp;6.3</span></a>) with a pipe (<code>|</code>), and <code>xargs</code> (<a href="#sec-xargs2"><span>Section&nbsp;6.5</span></a>) to spawn jobs per set of files.</p>
+<p>Another way to process files is to upload them onto a worker and process them (<a href="#sec-mult-worker"><span>Section&nbsp;6.6</span></a>).</p>
 <p>We also learned of alternative approaches using <code>dx generate_batch_inputs</code>/<code>dx run --batch-tsv</code> and using Python to build the <code>dx run</code> statements.</p>
 
 
