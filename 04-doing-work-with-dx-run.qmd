@@ -64,7 +64,6 @@ In the sample project, you will see a `.bam` file in `data/` called `NA12878.bam
 ```{bash}
 #| eval: false
 #| filename: dx-run/run-sambamba.sh
-#! /bin/bash
 dx run app-swiss-army-knife \
   -iin="/data/NA12878.bam" \ 
   -icmd="sambamba index *"
