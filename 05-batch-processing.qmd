@@ -216,7 +216,7 @@ Why? You will at some point start up a bunch of batch jobs that might have some 
 dx find jobs --tag "samjob"
 ```
 
-### If you screw up, use the tag to `dx terminate`
+### If you screw up, use the tag to `dx terminate` {#sec-terminate}
 
 `dx terminate <jobid>` will terminate a running job with that job id. It doesn't take a tag as input. 
 
@@ -311,4 +311,8 @@ See <https://dnanexus.gitbook.io/uk-biobank-rap/science-corner/guide-to-analyzin
 
 ## What you learned in this chapter
 
-This was a big chapter, and built on everything you've learned in the previous chapters. We put together the output of `dx find data --brief` with a pipe, and `xargs` to spawn jobs per set of files. We also learned of alternative approaches using `dx generate_batch_inputs`/`dx run --batch-tsv` and using Python to build the `dx run` statements.
+This was a big chapter, and built on everything you've learned in the previous chapters. 
+
+We put together the output of `dx find data --brief` with a pipe (`|`), and `xargs` to spawn jobs per set of files. 
+
+We also learned of alternative approaches using `dx generate_batch_inputs`/`dx run --batch-tsv` and using Python to build the `dx run` statements.

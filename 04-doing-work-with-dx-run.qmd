@@ -347,6 +347,8 @@ dx run app-swiss-army-knife \
 
 ### Run our job on a different instance type
 
+We can specify a different instance type (@sec-instance) with the `--instance-type` parameter. 
+
 ```{bash}
 #| eval: false
 #| filename: dx-run/run-instance.sh
@@ -359,6 +361,10 @@ dx run app-swiss-army-knife \
 ```
 
 ### Tag and rename our job
+
+We can change the name of our job using `--name` - this can be very helpful when running a bunch of jobs. Here we're adding `$in_prefix` so we can see what Chromosome we're running on. Very helpful in batch submissions.
+
+Adding a tag to our job, such as the run number, can be very helpful in terminating a large set of jobs (@sec-terminate).
 
 ```{bash}
 #| eval: false
@@ -375,6 +381,8 @@ dx run app-swiss-army-knife \
 
 If you have run a job on a lower priority, your job has a chance of getting bumped (stopped). If that's the case, your job will fail.
 
+That's when using the `--clone` parameter can come in handy.
+
 ```{bash}
 #| eval: false
 dx run app-swiss-army-knife --clone <job-id>
@@ -382,7 +390,7 @@ dx run app-swiss-army-knife --clone <job-id>
 
 When we learn about JSON (#sec-json), we'll learn a recipe for restarting a list of these failed jobs.
 
-## dxFUSE: Simplify your scripts with multiple inputs
+## dxFUSE: Simplify your scripts with multiple inputs {#sec-dxfuse}
 
 Ok, we learned about submitting files as inputs. Is there a way to run scripts with less typing?
 
@@ -425,7 +433,7 @@ dx run app-swiss-army-knife \
   -icmd="samtools view -c /mnt/project/data/NA12878.bam > NA12878.counts.txt"
 ```
 
-We can also use an `ls` on a dxFUSE path in our `-icmd`:
+We can also use an `ls` on a dxFUSE path in our `-icmd`. This is a pattern that will become especially helpful when we do process multiple files on a single worker (@sec-mult-worker)
 
 ```{bash}
 #| eval: false
