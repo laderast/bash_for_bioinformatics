@@ -27,14 +27,14 @@ One way to approach learning DNAnexus is to think about the skills you need to p
 
 | Level | \# of Files   | Skill                                     |
 |-------|---------------|-------------------------------------------|
-| 1     | 1             | `dx run`                                  |
-| 2     | 1-50 Files    | Swiss Army Knife                          |
+| 1     | 1             | Interactive Analysis (Cloud Workstation, JupyterLab)                                  |
+| 2     | 1-50 Files    | `dx run`, Swiss Army Knife                          |
 | 3     | 50-1000 Files | Building your own apps                    |
 | 4     | 1000+ Files, multiple steps   | Using WDL (Workflow Description Language) |
 
-We'll be covering Levels 1 and 2, but you will have the skills to move on to Level 3.
+We'll be covering mostly level 2, but you will have the skills to move on to Level 3.
 
-The key is to gradually build on your skills.
+The key is to gradually build on your skills. 
 
 ## What is not covered
 
