@@ -13,3 +13,7 @@ Our goal is to showcase the "glue" skills that help you do bioinformatics reprod
 - **Execute** batch processing of multiple files in a project on the DNAnexus platform
 - **Monitor**, **profile**, and **retry** jobs to optimize costs
 - **Manage** software dependencies reproducibly using container-based technologies such as Docker
+
+## License
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.

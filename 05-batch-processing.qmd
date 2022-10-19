@@ -34,7 +34,7 @@ graph LR;
   E --> C[`dx run` </br> on file2];
   E --> D[`dx run` </br> on file3];
 ```
-Batch method 1
+Batch method 1. We list files and then pipe them into `xargs`, which generates individual dx-run statements.
 :::
 
 :::{#fig-batch2}
@@ -42,7 +42,7 @@ Batch method 1
 graph LR;
   A[Submit array </br> of files </br> in `dx run`] --> B[Loop over array </br> of files </br> in worker];
 ```
-Batch method 2
+Batch method 2. We first get our files onto the worker through a single dx run command, and then use `xargs` on the worker to cycle through them.
 :::
 
 We actually have two methods of batching jobs using Swiss Army Knife: 
@@ -216,7 +216,7 @@ Why? You will at some point start up a bunch of batch jobs that might have some 
 dx find jobs --tag "samjob"
 ```
 
-### If you screw up, use the tag to `dx terminate` {#sec-terminate}
+### Using tags to `dx terminate` jobs {#sec-terminate}
 
 `dx terminate <jobid>` will terminate a running job with that job id. It doesn't take a tag as input. 
 
