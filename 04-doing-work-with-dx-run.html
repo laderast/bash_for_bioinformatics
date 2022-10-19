@@ -183,7 +183,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#tag-and-rename-our-job" id="toc-tag-and-rename-our-job" class="nav-link" data-scroll-target="#tag-and-rename-our-job"><span class="toc-section-number">5.7.3</span>  Tag and rename our job</a></li>
   <li><a href="#clone-an-failed-job" id="toc-clone-an-failed-job" class="nav-link" data-scroll-target="#clone-an-failed-job"><span class="toc-section-number">5.7.4</span>  Clone an failed job</a></li>
   </ul></li>
-  <li><a href="#dxfuse-simplify-your-scripts-with-multiple-inputs" id="toc-dxfuse-simplify-your-scripts-with-multiple-inputs" class="nav-link" data-scroll-target="#dxfuse-simplify-your-scripts-with-multiple-inputs"><span class="toc-section-number">5.8</span>  dxFUSE: Simplify your scripts with multiple inputs</a>
+  <li><a href="#sec-dxfuse" id="toc-sec-dxfuse" class="nav-link" data-scroll-target="#sec-dxfuse"><span class="toc-section-number">5.8</span>  dxFUSE: Simplify your scripts with multiple inputs</a>
   <ul class="collapse">
   <li><a href="#advantages-of-dxfuse" id="toc-advantages-of-dxfuse" class="nav-link" data-scroll-target="#advantages-of-dxfuse"><span class="toc-section-number">5.8.1</span>  Advantages of dxFUSE</a></li>
   <li><a href="#disadvantages-of-dxfuse" id="toc-disadvantages-of-dxfuse" class="nav-link" data-scroll-target="#disadvantages-of-dxfuse"><span class="toc-section-number">5.8.2</span>  Disadvantages of dxFUSE</a></li>
@@ -557,6 +557,7 @@ dx run app-swiss-army-knife \
 </section>
 <section id="run-our-job-on-a-different-instance-type" class="level3" data-number="5.7.2">
 <h3 data-number="5.7.2" class="anchored" data-anchor-id="run-our-job-on-a-different-instance-type"><span class="header-section-number">5.7.2</span> Run our job on a different instance type</h3>
+<p>We can specify a different instance type (<a href="03-cloud-computing-basics.html#sec-instance"><span>Section&nbsp;4.7</span></a>) with the <code>--instance-type</code> parameter.</p>
 <pre class="{bash}"><code>#| eval: false
 #| filename: dx-run/run-instance.sh
 dx run app-swiss-army-knife \
@@ -568,6 +569,8 @@ dx run app-swiss-army-knife \
 </section>
 <section id="tag-and-rename-our-job" class="level3" data-number="5.7.3">
 <h3 data-number="5.7.3" class="anchored" data-anchor-id="tag-and-rename-our-job"><span class="header-section-number">5.7.3</span> Tag and rename our job</h3>
+<p>We can change the name of our job using <code>--name</code> - this can be very helpful when running a bunch of jobs. Here we’re adding <code>$in_prefix</code> so we can see what Chromosome we’re running on. Very helpful in batch submissions.</p>
+<p>Adding a tag to our job, such as the run number, can be very helpful in terminating a large set of jobs (<a href="05-batch-processing.html#sec-terminate"><span>Section&nbsp;6.5.2</span></a>).</p>
 <pre class="{bash}"><code>#| eval: false
 #| filename: dx-run/run-job-tag-name.sh
 dx run app-swiss-army-knife \
@@ -580,13 +583,14 @@ dx run app-swiss-army-knife \
 <section id="clone-an-failed-job" class="level3" data-number="5.7.4">
 <h3 data-number="5.7.4" class="anchored" data-anchor-id="clone-an-failed-job"><span class="header-section-number">5.7.4</span> Clone an failed job</h3>
 <p>If you have run a job on a lower priority, your job has a chance of getting bumped (stopped). If that’s the case, your job will fail.</p>
+<p>That’s when using the <code>--clone</code> parameter can come in handy.</p>
 <pre class="{bash}"><code>#| eval: false
 dx run app-swiss-army-knife --clone &lt;job-id&gt;</code></pre>
 <p>When we learn about JSON (#sec-json), we’ll learn a recipe for restarting a list of these failed jobs.</p>
 </section>
 </section>
-<section id="dxfuse-simplify-your-scripts-with-multiple-inputs" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="dxfuse-simplify-your-scripts-with-multiple-inputs"><span class="header-section-number">5.8</span> dxFUSE: Simplify your scripts with multiple inputs</h2>
+<section id="sec-dxfuse" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="sec-dxfuse"><span class="header-section-number">5.8</span> dxFUSE: Simplify your scripts with multiple inputs</h2>
 <p>Ok, we learned about submitting files as inputs. Is there a way to run scripts with less typing?</p>
 <p>There is a general method for working in Swiss Army Knife and other apps that lets you bypass specifying file inputs explicitly in your <code>dx run</code> statement: using the <a href="https://github.com/dnanexus/dxfuse">dxFUSE file system</a>.</p>
 <p>The main thing you need to know as a developer is that you can prepend a <code>/mnt/project/</code> to your file path to use in your <code>-icmd</code> input directly. For the <code>dx run</code> statement in <a href="#sec-plink"><span>Section&nbsp;5.6.2</span></a>, we can rewrite it as the following:</p>
@@ -609,7 +613,7 @@ dx run app-swiss-army-knife \
 
 dx run app-swiss-army-knife \
   -icmd="samtools view -c /mnt/project/data/NA12878.bam &gt; NA12878.counts.txt"</code></pre>
-<p>We can also use an <code>ls</code> on a dxFUSE path in our <code>-icmd</code>:</p>
+<p>We can also use an <code>ls</code> on a dxFUSE path in our <code>-icmd</code>. This is a pattern that will become especially helpful when we do process multiple files on a single worker (<a href="05-batch-processing.html#sec-mult-worker"><span>Section&nbsp;6.6</span></a>)</p>
 <pre class="{bash}"><code>#| eval: false
 
 dx run app-swiss-army-knife \

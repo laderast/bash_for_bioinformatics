@@ -176,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#using-xargs-to-batch-multiple-files" id="toc-using-xargs-to-batch-multiple-files" class="nav-link" data-scroll-target="#using-xargs-to-batch-multiple-files"><span class="toc-section-number">6.5</span>  Using <code>xargs</code> to Batch Multiple Files</a>
   <ul class="collapse">
   <li><a href="#when-batching-tag-your-jobs" id="toc-when-batching-tag-your-jobs" class="nav-link" data-scroll-target="#when-batching-tag-your-jobs"><span class="toc-section-number">6.5.1</span>  When batching, tag your jobs</a></li>
-  <li><a href="#if-you-screw-up-use-the-tag-to-dx-terminate" id="toc-if-you-screw-up-use-the-tag-to-dx-terminate" class="nav-link" data-scroll-target="#if-you-screw-up-use-the-tag-to-dx-terminate"><span class="toc-section-number">6.5.2</span>  If you screw up, use the tag to <code>dx terminate</code></a></li>
+  <li><a href="#sec-terminate" id="toc-sec-terminate" class="nav-link" data-scroll-target="#sec-terminate"><span class="toc-section-number">6.5.2</span>  If you screw up, use the tag to <code>dx terminate</code></a></li>
   </ul></li>
   <li><a href="#sec-mult-worker" id="toc-sec-mult-worker" class="nav-link" data-scroll-target="#sec-mult-worker"><span class="toc-section-number">6.6</span>  Submitting Multiple Files to a Single Worker</a></li>
   <li><a href="#batching-multiple-inputs-dx-generate_batch_inputs" id="toc-batching-multiple-inputs-dx-generate_batch_inputs" class="nav-link" data-scroll-target="#batching-multiple-inputs-dx-generate_batch_inputs"><span class="toc-section-number">6.7</span>  Batching multiple inputs: <code>dx generate_batch_inputs</code></a>
@@ -405,8 +405,8 @@ Job ID: job-GJ2xVZ80yp62X5Z51qp191Y8
 
 dx find jobs --tag "samjob"</code></pre>
 </section>
-<section id="if-you-screw-up-use-the-tag-to-dx-terminate" class="level3" data-number="6.5.2">
-<h3 data-number="6.5.2" class="anchored" data-anchor-id="if-you-screw-up-use-the-tag-to-dx-terminate"><span class="header-section-number">6.5.2</span> If you screw up, use the tag to <code>dx terminate</code></h3>
+<section id="sec-terminate" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="sec-terminate"><span class="header-section-number">6.5.2</span> If you screw up, use the tag to <code>dx terminate</code></h3>
 <p><code>dx terminate &lt;jobid&gt;</code> will terminate a running job with that job id. It doesn’t take a tag as input.</p>
 <p>But again, <code>xargs</code> to the rescue. We can find our job ids with the tag <code>samjob</code> using <code>dx find jobs</code> and then pipe the <code>--brief</code> output into <code>xargs</code> to terminate each job id.</p>
 <pre class="{bash}"><code>#| eval: false
@@ -471,7 +471,9 @@ dx run swiss-army-knife --batch-tsv dx_batch.0000.tsv \
 </section>
 <section id="what-you-learned-in-this-chapter" class="level2" data-number="6.9">
 <h2 data-number="6.9" class="anchored" data-anchor-id="what-you-learned-in-this-chapter"><span class="header-section-number">6.9</span> What you learned in this chapter</h2>
-<p>This was a big chapter, and built on everything you’ve learned in the previous chapters. We put together the output of <code>dx find data --brief</code> with a pipe, and <code>xargs</code> to spawn jobs per set of files. We also learned of alternative approaches using <code>dx generate_batch_inputs</code>/<code>dx run --batch-tsv</code> and using Python to build the <code>dx run</code> statements.</p>
+<p>This was a big chapter, and built on everything you’ve learned in the previous chapters.</p>
+<p>We put together the output of <code>dx find data --brief</code> with a pipe (<code>|</code>), and <code>xargs</code> to spawn jobs per set of files.</p>
+<p>We also learned of alternative approaches using <code>dx generate_batch_inputs</code>/<code>dx run --batch-tsv</code> and using Python to build the <code>dx run</code> statements.</p>
 
 
 </section>
