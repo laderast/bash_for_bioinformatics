@@ -278,7 +278,6 @@ Prep for Exercises
 <p>In the sample project, you will see a <code>.bam</code> file in <code>data/</code> called <code>NA12878.bam</code> with no index. Let’s create an index for this file with <code>sambamba</code> by running it with <code>dx run app-swiss-army-knife</code>.</p>
 <pre class="{bash}"><code>#| eval: false
 #| filename: dx-run/run-sambamba.sh
-#! /bin/bash
 dx run app-swiss-army-knife \
   -iin="/data/NA12878.bam" \ 
   -icmd="sambamba index *"</code></pre>
