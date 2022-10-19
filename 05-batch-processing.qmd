@@ -53,7 +53,7 @@ We actually have two methods of batching jobs using Swiss Army Knife:
 Both of these methods can potentially be useful.
 
 
-## Finding files using `dx find data`
+## Finding files using `dx find data` {#sec-dx-find}
 
 `dx find data` is a command that is extremely helpful on the DNAnexus platform. Based on metadata and folder paths, `dx find data` will return a list of files that meet the criteria. 
 
@@ -130,7 +130,7 @@ In general, think about leveraging metadata that is attached to your files.
 
 For example, for the UKB Research Analysis Platform, data files in the `Bulk/` folder in your project have multiple properties: `field_id` (the data field as specified by UK Biobank) and `eid`.
 
-## Using `xargs` to Batch Multiple Files
+## Using `xargs` to Batch Multiple Files {#sec-xargs2}
 
 Ok, now we have a list of files from `dx find data` that meet our criteria. How can we process them one by one? 
 
@@ -313,6 +313,8 @@ See <https://dnanexus.gitbook.io/uk-biobank-rap/science-corner/guide-to-analyzin
 
 This was a big chapter, and built on everything you've learned in the previous chapters. 
 
-We put together the output of `dx find data --brief` with a pipe (`|`), and `xargs` to spawn jobs per set of files. 
+We put together the output of `dx find data --brief` (@sec-dx-find) with a pipe (`|`), and `xargs` (@sec-xargs2) to spawn jobs per set of files. 
+
+Another way to process files is to upload them onto a worker and process them (@sec-mult-worker). 
 
 We also learned of alternative approaches using `dx generate_batch_inputs`/`dx run --batch-tsv` and using Python to build the `dx run` statements.

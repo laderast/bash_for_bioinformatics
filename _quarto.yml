@@ -7,6 +7,7 @@ book:
   title: "Bash for Bioinformatics"
   author: "Ted Laderas"
   date: "10/17/2022"
+  engine: knitr
   link-external-icon: true
   link-external-newwindow: true
   chapters:
