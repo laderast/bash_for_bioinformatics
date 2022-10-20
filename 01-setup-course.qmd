@@ -91,13 +91,13 @@ When you launch it, you will first see this page:
 
 ![Launch Binder Screen](images/binder_screen.png)
 
-Then after a few moments, the JupyterLab interface should launch. Select the "Terminal" from the bottom of the launcher:
+Then after a few moments (hopefully no more than 5 minutes), the JupyterLab interface should launch. Select the "Terminal" from the bottom of the launcher:
 
-![JupyterLab Interface]()
+![JupyterLab Interface](images/binder2.png)
 
 Once you select the terminal, this is what you should see:
 
-![](JupyterLab Terminal)
+![JupyterLab Terminal](images/binder3.png)
 
 Now you're ready to get started. Login (@sec-login) and proceed from there.
 
