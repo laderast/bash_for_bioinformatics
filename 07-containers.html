@@ -339,12 +339,12 @@ docker save quay.io/biocontainers/samtools | gzip &gt; samtools_image.tar.gz </c
 <pre class="{bash}"><code>#| eval: false
 dx mkdir images/
 dx upload samtools_image.tar.gz --destination images/</code></pre>
-<p>Now we can get our image back into project storage. We’ll create a folder called <code>images/</code> and then use <code>dx upload</code> to get our snapshot file.</p>
+<p>Now we can get our image back into project storage. We’ll create a folder called <code>images/</code> with <code>dx mkdir</code> and then use <code>dx upload</code> to get our snapshot file into the <code>images/</code> folder.</p>
 </section>
 <section id="important-make-sure-to-terminate-your-ttyd-instance" class="level3" data-number="8.4.8">
 <h3 data-number="8.4.8" class="anchored" data-anchor-id="important-make-sure-to-terminate-your-ttyd-instance"><span class="header-section-number">8.4.8</span> Important: make sure to terminate your ttyd instance!</h3>
 <p>One thing to remember is that there is no timeout associated with <code>ttyd</code>. You will get a reminder email after it’s been open after 24 hours, but you will get no warning after that.</p>
-<p>So make sure to use <code>dx terminate</code> to terminate your ttyd job.</p>
+<p>So make sure to use <code>dx terminate</code> or terminate the ttyd job under the <code>Manage</code> tab.</p>
 </section>
 </section>
 <section id="sec-docker-sak" class="level2" data-number="8.5">

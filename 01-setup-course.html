@@ -164,11 +164,13 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#on-ubuntu" id="toc-on-ubuntu" class="nav-link" data-scroll-target="#on-ubuntu"><span class="toc-section-number">2.3</span>  On Ubuntu</a></li>
   <li><a href="#on-macs" id="toc-on-macs" class="nav-link" data-scroll-target="#on-macs"><span class="toc-section-number">2.4</span>  On Macs</a></li>
   <li><a href="#for-both-machines" id="toc-for-both-machines" class="nav-link" data-scroll-target="#for-both-machines"><span class="toc-section-number">2.5</span>  For both machines</a></li>
-  <li><a href="#try-logging-in" id="toc-try-logging-in" class="nav-link" data-scroll-target="#try-logging-in"><span class="toc-section-number">2.6</span>  Try logging in</a></li>
-  <li><a href="#super-quick-intro-to-dx-toolkit" id="toc-super-quick-intro-to-dx-toolkit" class="nav-link" data-scroll-target="#super-quick-intro-to-dx-toolkit"><span class="toc-section-number">2.7</span>  Super Quick Intro to dx-toolkit</a></li>
-  <li><a href="#create-project-for-course" id="toc-create-project-for-course" class="nav-link" data-scroll-target="#create-project-for-course"><span class="toc-section-number">2.8</span>  Create Project for Course</a></li>
-  <li><a href="#transferring-files-from-our-shell-to-project-storage" id="toc-transferring-files-from-our-shell-to-project-storage" class="nav-link" data-scroll-target="#transferring-files-from-our-shell-to-project-storage"><span class="toc-section-number">2.9</span>  Transferring files from our shell to Project Storage</a></li>
-  <li><a href="#full-script" id="toc-full-script" class="nav-link" data-scroll-target="#full-script"><span class="toc-section-number">2.10</span>  Full Script</a></li>
+  <li><a href="#alternative-setup-binder.org" id="toc-alternative-setup-binder.org" class="nav-link" data-scroll-target="#alternative-setup-binder.org"><span class="toc-section-number">2.6</span>  Alternative Setup: binder.org</a></li>
+  <li><a href="#clone-the-files-and-scripts-using-git" id="toc-clone-the-files-and-scripts-using-git" class="nav-link" data-scroll-target="#clone-the-files-and-scripts-using-git"><span class="toc-section-number">2.7</span>  Clone the files and scripts using git</a></li>
+  <li><a href="#try-logging-in" id="toc-try-logging-in" class="nav-link" data-scroll-target="#try-logging-in"><span class="toc-section-number">2.8</span>  Try logging in</a></li>
+  <li><a href="#super-quick-intro-to-dx-toolkit" id="toc-super-quick-intro-to-dx-toolkit" class="nav-link" data-scroll-target="#super-quick-intro-to-dx-toolkit"><span class="toc-section-number">2.9</span>  Super Quick Intro to dx-toolkit</a></li>
+  <li><a href="#create-project-for-course" id="toc-create-project-for-course" class="nav-link" data-scroll-target="#create-project-for-course"><span class="toc-section-number">2.10</span>  Create Project for Course</a></li>
+  <li><a href="#transferring-files-from-our-shell-to-project-storage" id="toc-transferring-files-from-our-shell-to-project-storage" class="nav-link" data-scroll-target="#transferring-files-from-our-shell-to-project-storage"><span class="toc-section-number">2.11</span>  Transferring files from our shell to Project Storage</a></li>
+  <li><a href="#full-script" id="toc-full-script" class="nav-link" data-scroll-target="#full-script"><span class="toc-section-number">2.12</span>  Full Script</a></li>
   </ul>
 </nav>
     </div>
@@ -228,53 +230,52 @@ brew install jq</code></pre>
 <p>Once you have access to Python 3 and <code>pip3</code>, you can install the dx-toolkit using the following command:</p>
 <pre><code>pip3 install dxpy</code></pre>
 <p>Test it out by typing:</p>
-<pre><code>dx -h
-``
+<pre><code>dx -h</code></pre>
+<p>You should get similar output:</p>
+<pre><code>usage: dx [-h] [--version] command ...
 
-You should get similar output:
-</code></pre>
-<p>usage: dx [-h] [–version] command …</p>
-<p>DNAnexus Command-Line Client, API v1.0.0, client v0.330.0</p>
-<p>dx is a command-line client for interacting with the DNAnexus platform. You can log in, navigate, upload, organize and share your data, launch analyses, and more. For a quick tour of what the tool can do, see</p>
-<p>https://documentation.dnanexus.com/getting-started/tutorials/cli-quickstart#quickstart-for-&gt;</p>
-<p>For a breakdown of dx commands by category, run “dx help”.</p>
-<pre><code>
-## Alternative Setup: binder.org
+DNAnexus Command-Line Client, API v1.0.0, client v0.330.0
 
-If you aren't able to install the dx-toolkit to your machine, you can use this Binder link to try out the commands. Binder opens a preinstalled image with a shell that has `dxpy` preinstalled on one of the &lt;https://mybinder.org&gt; servers. 
+dx is a command-line client for interacting with the DNAnexus platform.  You can log in,
+navigate, upload, organize and share your data, launch analyses, and more.  For a quick tour
+of what the tool can do, see
 
-&lt;https://mybinder.org/v2/gh/laderast/minimal_dxpy/HEAD?urlpath=lab&gt;
+  https://documentation.dnanexus.com/getting-started/tutorials/cli-quickstart#quickstart-for-&gt;
 
-Just keep in mind that this shell is ephemeral - it will disappear. So make sure that any files you create that you want to save are either uploaded back to your project with `dx upload` or you've downloaded them using the file explorer.
-
-This shell includes the following utilities:
-
-- `git` (needed to download course materials)
-- `nano` (needed to edit files)
-- `python`/`pip` (needed to install dx-toolkit)
-- `jq` (needed to work with JSON files)
-
-## Clone the files and scripts using git
-
-On your own computer/binder, clone the repo (it will already be cloned if you're in the binder version).
-
-```{bash}
-#| eval: false
+For a breakdown of dx commands by category, run "dx help".</code></pre>
+</section>
+<section id="alternative-setup-binder.org" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="alternative-setup-binder.org"><span class="header-section-number">2.6</span> Alternative Setup: binder.org</h2>
+<p>If you aren’t able to install the dx-toolkit to your machine, you can use this Binder link to try out the commands. Binder opens a preinstalled image with a shell that has <code>dxpy</code> preinstalled on one of the <a href="https://mybinder.org" class="uri">https://mybinder.org</a> servers.</p>
+<p><a href="https://mybinder.org/v2/gh/laderast/minimal_dxpy/HEAD?urlpath=lab" class="uri">https://mybinder.org/v2/gh/laderast/minimal_dxpy/HEAD?urlpath=lab</a></p>
+<p>Just keep in mind that this shell is ephemeral - it will disappear. So make sure that any files you create that you want to save are either uploaded back to your project with <code>dx upload</code> or you’ve downloaded them using the file explorer.</p>
+<p>This shell includes the following utilities:</p>
+<ul>
+<li><code>git</code> (needed to download course materials)</li>
+<li><code>nano</code> (needed to edit files)</li>
+<li><code>python</code>/<code>pip</code> (needed to install dx-toolkit)</li>
+<li><code>jq</code> (needed to work with JSON files)</li>
+</ul>
+</section>
+<section id="clone-the-files-and-scripts-using-git" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="clone-the-files-and-scripts-using-git"><span class="header-section-number">2.7</span> Clone the files and scripts using git</h2>
+<p>On your own computer/binder, clone the repo (it will already be cloned if you’re in the binder version).</p>
+<pre class="{bash}"><code>#| eval: false
 
 git clone https://github.com/laderast/bash_info_scripts/</code></pre>
 <p>This will create a folder called `/bash_info_scripts/ in your current directory. Change to it:</p>
 <pre><code>cd bash_info_scripts</code></pre>
 </section>
-<section id="try-logging-in" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="try-logging-in"><span class="header-section-number">2.6</span> Try logging in</h2>
+<section id="try-logging-in" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="try-logging-in"><span class="header-section-number">2.8</span> Try logging in</h2>
 <p>Now that you have an account and the <code>dx-toolkit</code> installed, try logging in with <code>dx login</code>:</p>
 <pre class="{bash}"><code>#| eval: false
 dx login</code></pre>
 <p>The platform will then ask you for your username and password. Enter them.</p>
 <p>If you are successful, you will see either the select screen or, if you only have one project, that project will be selected for you.</p>
 </section>
-<section id="super-quick-intro-to-dx-toolkit" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="super-quick-intro-to-dx-toolkit"><span class="header-section-number">2.7</span> Super Quick Intro to dx-toolkit</h2>
+<section id="super-quick-intro-to-dx-toolkit" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="super-quick-intro-to-dx-toolkit"><span class="header-section-number">2.9</span> Super Quick Intro to dx-toolkit</h2>
 <p>The dx-toolkit is our main tool for interacting with the DNAnexus platform on the command-line. It handles the following:</p>
 <ul>
 <li>Creating a project and managing membership (<code>dx new project</code>/<code>dx invite</code>/<code>dx uninvite</code>).</li>
@@ -288,8 +289,8 @@ dx login</code></pre>
 <pre class="{bash}"><code>#| eval: false
 dx ls</code></pre>
 </section>
-<section id="create-project-for-course" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="create-project-for-course"><span class="header-section-number">2.8</span> Create Project for Course</h2>
+<section id="create-project-for-course" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="create-project-for-course"><span class="header-section-number">2.10</span> Create Project for Course</h2>
 <p>Let’s create a project on the platform, and then we will get files into it to prepare for the online work with the platform.</p>
 <p>The first command we’ll run is <code>dx new project</code> in order to create our project.</p>
 <pre class="{bash}"><code>#| eval: false
@@ -309,8 +310,8 @@ What’s happening here?
 </div>
 </div>
 </section>
-<section id="transferring-files-from-our-shell-to-project-storage" class="level2" data-number="2.9">
-<h2 data-number="2.9" class="anchored" data-anchor-id="transferring-files-from-our-shell-to-project-storage"><span class="header-section-number">2.9</span> Transferring files from our shell to Project Storage</h2>
+<section id="transferring-files-from-our-shell-to-project-storage" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="transferring-files-from-our-shell-to-project-storage"><span class="header-section-number">2.11</span> Transferring files from our shell to Project Storage</h2>
 <p>Our worker scripts live in the the <code>bash_for_bioinformatics/</code> folder on our machine. We’ll need to transfer these scripts, because some of them will be run directly on the DNAnexus workers.</p>
 <p>Let’s copy our files from our shell into our DNAnexus project.</p>
 <pre class="{bash}"><code>#| eval: false
@@ -321,8 +322,8 @@ dx cp -r "project-GJ496B00FZfxPV5VG36FybvY" .</code></pre>
 tree
 dx tree</code></pre>
 </section>
-<section id="full-script" class="level2" data-number="2.10">
-<h2 data-number="2.10" class="anchored" data-anchor-id="full-script"><span class="header-section-number">2.10</span> Full Script</h2>
+<section id="full-script" class="level2" data-number="2.12">
+<h2 data-number="2.12" class="anchored" data-anchor-id="full-script"><span class="header-section-number">2.12</span> Full Script</h2>
 <p>The full script for setting up is in the <code>01-setup-course/project_setup.sh</code></p>
 <pre class="{bash}"><code>#| eval: false
 #| filename: setup-course/project_setup.sh
