@@ -173,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#sec-login" id="toc-sec-login" class="nav-link" data-scroll-target="#sec-login"><span class="toc-section-number">2.8</span>  Try logging in</a></li>
   <li><a href="#super-quick-intro-to-dx-toolkit" id="toc-super-quick-intro-to-dx-toolkit" class="nav-link" data-scroll-target="#super-quick-intro-to-dx-toolkit"><span class="toc-section-number">2.9</span>  Super Quick Intro to dx-toolkit</a></li>
   <li><a href="#create-project-for-course" id="toc-create-project-for-course" class="nav-link" data-scroll-target="#create-project-for-course"><span class="toc-section-number">2.10</span>  Create Project for Course</a></li>
-  <li><a href="#transferring-files-from-our-shell-to-project-storage" id="toc-transferring-files-from-our-shell-to-project-storage" class="nav-link" data-scroll-target="#transferring-files-from-our-shell-to-project-storage"><span class="toc-section-number">2.11</span>  Transferring files from our shell to Project Storage</a></li>
+  <li><a href="#copying-files-to-project-storage" id="toc-copying-files-to-project-storage" class="nav-link" data-scroll-target="#copying-files-to-project-storage"><span class="toc-section-number">2.11</span>  Copying Files to Project Storage</a></li>
   <li><a href="#full-script" id="toc-full-script" class="nav-link" data-scroll-target="#full-script"><span class="toc-section-number">2.12</span>  Full Script</a></li>
   </ul>
 </nav>
@@ -346,17 +346,61 @@ What’s happening here?
 </div>
 </div>
 </section>
-<section id="transferring-files-from-our-shell-to-project-storage" class="level2" data-number="2.11">
-<h2 data-number="2.11" class="anchored" data-anchor-id="transferring-files-from-our-shell-to-project-storage"><span class="header-section-number">2.11</span> Transferring files from our shell to Project Storage</h2>
-<p>Our worker scripts live in the the <code>bash_for_bioinformatics/</code> folder on our machine. We’ll need to transfer these scripts, because some of them will be run directly on the DNAnexus workers.</p>
-<p>Let’s copy our files from our shell into our DNAnexus project.</p>
+<section id="copying-files-to-project-storage" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="copying-files-to-project-storage"><span class="header-section-number">2.11</span> Copying Files to Project Storage</h2>
+<p>Our worker scripts live in the the <code>bash_for_bioinformatics/</code> folder on our machine.</p>
+<p>Let’s copy our files from the public project into our newly created DNAnexus project.</p>
 <pre class="{bash}"><code>#| eval: false
 dx cp -r "project-GJ496B00FZfxPV5VG36FybvY" .</code></pre>
-<p>Confirm that the projects match the following output:</p>
+<p>Confirm that your file system on your machine is similiar to the following output:</p>
+<pre class="{bash}"><code>#| eval: false
+tree</code></pre>
+<pre><code>├── JSON
+│&nbsp;&nbsp; └── json_data
+│&nbsp;&nbsp;     ├── dxapp.json
+│&nbsp;&nbsp;     ├── example.json
+│&nbsp;&nbsp;     ├── fastqc.json
+│&nbsp;&nbsp;     ├── job.json
+│&nbsp;&nbsp;     └── rap-jobs.json
+├── batch-processing
+│&nbsp;&nbsp; ├── batch-on-worker.sh
+│&nbsp;&nbsp; ├── dx-find-data-class.sh
+│&nbsp;&nbsp; ├── dx-find-data-field.sh
+│&nbsp;&nbsp; ├── dx-find-data-name.sh
+│&nbsp;&nbsp; ├── dx-find-path.sh
+│&nbsp;&nbsp; └── dx-find-xargs.sh</code></pre>
+<p>And the file system in your project should look similar to this when you run <code>dx tree</code>:</p>
 <pre class="{bash}"><code>#| eval: false
 
-tree
 dx tree</code></pre>
+<pre><code>├── data
+│   ├── NA12878.bai
+│   ├── NA12878.bam
+│   ├── NC_000868.fasta
+│   ├── NC_001422.fasta
+│   ├── small-celegans-sample.fastq
+│   ├── SRR100022_chrom20_mapped_to_b37.bam
+│   ├── SRR100022_chrom21_mapped_to_b37.bam
+│   └── SRR100022_chrom22_mapped_to_b37.bam</code></pre>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Why are there two file systems?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When we do cloud computing, there are two file systems we’ll have to be familiar with:</p>
+<ol type="1">
+<li>The file system on our own machine</li>
+<li>The file system in our DNAnexus project</li>
+</ol>
+<p>The <code>tree</code> command shows you the contents of your local machine.</p>
+<p><code>dx tree</code> on the other hand, shows you the contents of your project storage. Remember that anything that begins with <code>dx</code> is a command that interacts with the platform!</p>
+</div>
+</div>
 </section>
 <section id="full-script" class="level2" data-number="2.12">
 <h2 data-number="2.12" class="anchored" data-anchor-id="full-script"><span class="header-section-number">2.12</span> Full Script</h2>
