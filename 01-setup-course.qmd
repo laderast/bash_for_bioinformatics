@@ -124,7 +124,7 @@ git clone https://github.com/laderast/bash_info_scripts/
 ```
 
 
-This will create a folder called `/bash_info_scripts/ in your current directory. Change to it:
+This will create a folder called `/bash_info_scripts/` in your current directory. Change to it:
 
 ```
 cd bash_info_scripts
