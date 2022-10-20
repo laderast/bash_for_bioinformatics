@@ -34,17 +34,18 @@ If you get a blank response, then you'll need to install it.
 ```
 sudo apt-get install python3 ## If python is not yet installed
 sudo apt-get install pip3
+sudo apt-get install git
 sudo apt-get install jq
 ```
-That last command will install the `dx-toolkit` to your machine, which are the command line tools you'll need to work on the DNAnexus cloud.
 
 ## On Macs
 
-Install homebrew to your mac and install `python3` and `pip`:
+Install [homebrew](https://brew.sh/) to your mac and install `python3` and `pip3`:
 
 ```
 brew install python3
 brew install pip3
+brew install git
 brew install jq
 ```
 
@@ -55,6 +56,8 @@ Once you have access to Python 3 and `pip3`, you can install the dx-toolkit usin
 ```
 pip3 install dxpy
 ```
+
+That last command will install the `dx-toolkit` to your machine, which are the command line tools you'll need to work on the DNAnexus cloud.
 
 Test it out by typing:
 
@@ -82,7 +85,21 @@ For a breakdown of dx commands by category, run "dx help".
 
 If you aren't able to install the dx-toolkit to your machine, you can use this Binder link to try out the commands. Binder opens a preinstalled image with a shell that has `dxpy` preinstalled on one of the <https://mybinder.org> servers. 
 
-<https://mybinder.org/v2/gh/laderast/minimal_dxpy/HEAD?urlpath=lab>
+<https://mybinder.org/v2/gh/laderast/bash_bioinfo_scripts/HEAD?urlpath=lab>
+
+When you launch it, you will first see this page:
+
+![Launch Binder Screen](images/binder_screen.png)
+
+Then after a few moments, the JupyterLab interface should launch. Select the "Terminal" from the bottom of the launcher:
+
+![JupyterLab Interface]()
+
+Once you select the terminal, this is what you should see:
+
+![](JupyterLab Terminal)
+
+Now you're ready to get started. Login (@sec-login) and proceed from there.
 
 Just keep in mind that this shell is ephemeral - it will disappear. So make sure that any files you create that you want to save are either uploaded back to your project with `dx upload` or you've downloaded them using the file explorer.
 
@@ -90,12 +107,15 @@ This shell includes the following utilities:
 
 - `git` (needed to download course materials)
 - `nano` (needed to edit files)
+- `dxpy` (the dx-toolkit)
 - `python`/`pip` (needed to install dx-toolkit)
 - `jq` (needed to work with JSON files)
 
 ## Clone the files and scripts using git
 
-On your own computer/binder, clone the repo (it will already be cloned if you're in the binder version).
+### On Your Own Computer
+
+On your own computer, clone the repo (it will already be cloned if you're in the binder version).
 
 ```{bash}
 #| eval: false
@@ -103,15 +123,18 @@ On your own computer/binder, clone the repo (it will already be cloned if you're
 git clone https://github.com/laderast/bash_info_scripts/
 ```
 
+
 This will create a folder called `/bash_info_scripts/ in your current directory. Change to it:
 
 ```
 cd bash_info_scripts
 ```
 
+### In the binder
 
+You will already be in the bash_info_scripts/ folder.
 
-## Try logging in
+## Try logging in {#sec-login}
 
 Now that you have an account and the `dx-toolkit` installed, try logging in with `dx login`:
 
@@ -183,7 +206,7 @@ dx tree
 
 ## Full Script
 
-The full script for setting up is in the `01-setup-course/project_setup.sh`
+The full script for setting up is in the `setup-course/project_setup.sh`
 
 ```{bash}
 #| eval: false
