@@ -37,12 +37,9 @@ If `ttyd` is so great, why don't we use it for the entire course?
 
 `ttyd` covers a number of use cases, not just for learning. The main difference with ttyd and using a shell on your computer is that ttyd starts with a project context - that is, you need to specify the project before you start up the `ttyd` app. 
 
-This context makes `ttyd` a little inflexible, especially when we are creating and administering new projects from the command-line.
+This context makes `ttyd` a little inflexible, especially when we are creating and administering new projects from the command-line. 
 
 :::
-
-
-
 
 ## Named Arguments {#sec-named}
 

@@ -251,6 +251,8 @@ When we do cloud computing, there are two file systems we'll have to be familiar
 The `tree` command shows you the contents of your local machine.
 
 `dx tree` on the other hand, shows you the contents of your project storage. Remember that anything that begins with `dx` is a command that interacts with the platform!
+
+Ok, I lied. There are technically 3 filesystems we need to be familar with. The last one is the working directory on the worker machine. We'll talk more about this in the cloud computing basics (@sec-cloud) section.
 :::
 
 ## Full Script
