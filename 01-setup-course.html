@@ -165,8 +165,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#on-macs" id="toc-on-macs" class="nav-link" data-scroll-target="#on-macs"><span class="toc-section-number">2.4</span>  On Macs</a></li>
   <li><a href="#for-both-machines" id="toc-for-both-machines" class="nav-link" data-scroll-target="#for-both-machines"><span class="toc-section-number">2.5</span>  For both machines</a></li>
   <li><a href="#alternative-setup-binder.org" id="toc-alternative-setup-binder.org" class="nav-link" data-scroll-target="#alternative-setup-binder.org"><span class="toc-section-number">2.6</span>  Alternative Setup: binder.org</a></li>
-  <li><a href="#clone-the-files-and-scripts-using-git" id="toc-clone-the-files-and-scripts-using-git" class="nav-link" data-scroll-target="#clone-the-files-and-scripts-using-git"><span class="toc-section-number">2.7</span>  Clone the files and scripts using git</a></li>
-  <li><a href="#try-logging-in" id="toc-try-logging-in" class="nav-link" data-scroll-target="#try-logging-in"><span class="toc-section-number">2.8</span>  Try logging in</a></li>
+  <li><a href="#clone-the-files-and-scripts-using-git" id="toc-clone-the-files-and-scripts-using-git" class="nav-link" data-scroll-target="#clone-the-files-and-scripts-using-git"><span class="toc-section-number">2.7</span>  Clone the files and scripts using git</a>
+  <ul class="collapse">
+  <li><a href="#on-your-own-computer" id="toc-on-your-own-computer" class="nav-link" data-scroll-target="#on-your-own-computer"><span class="toc-section-number">2.7.1</span>  On Your Own Computer</a></li>
+  <li><a href="#in-the-binder" id="toc-in-the-binder" class="nav-link" data-scroll-target="#in-the-binder"><span class="toc-section-number">2.7.2</span>  In the binder</a></li>
+  </ul></li>
+  <li><a href="#sec-login" id="toc-sec-login" class="nav-link" data-scroll-target="#sec-login"><span class="toc-section-number">2.8</span>  Try logging in</a></li>
   <li><a href="#super-quick-intro-to-dx-toolkit" id="toc-super-quick-intro-to-dx-toolkit" class="nav-link" data-scroll-target="#super-quick-intro-to-dx-toolkit"><span class="toc-section-number">2.9</span>  Super Quick Intro to dx-toolkit</a></li>
   <li><a href="#create-project-for-course" id="toc-create-project-for-course" class="nav-link" data-scroll-target="#create-project-for-course"><span class="toc-section-number">2.10</span>  Create Project for Course</a></li>
   <li><a href="#transferring-files-from-our-shell-to-project-storage" id="toc-transferring-files-from-our-shell-to-project-storage" class="nav-link" data-scroll-target="#transferring-files-from-our-shell-to-project-storage"><span class="toc-section-number">2.11</span>  Transferring files from our shell to Project Storage</a></li>
@@ -215,20 +219,22 @@ ul.task-list li input[type="checkbox"] {
 <p>If you get a blank response, then you’ll need to install it.</p>
 <pre><code>sudo apt-get install python3 ## If python is not yet installed
 sudo apt-get install pip3
+sudo apt-get install git
 sudo apt-get install jq</code></pre>
-<p>That last command will install the <code>dx-toolkit</code> to your machine, which are the command line tools you’ll need to work on the DNAnexus cloud.</p>
 </section>
 <section id="on-macs" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="on-macs"><span class="header-section-number">2.4</span> On Macs</h2>
-<p>Install homebrew to your mac and install <code>python3</code> and <code>pip</code>:</p>
+<p>Install <a href="https://brew.sh/">homebrew</a> to your mac and install <code>python3</code> and <code>pip3</code>:</p>
 <pre><code>brew install python3
 brew install pip3
+brew install git
 brew install jq</code></pre>
 </section>
 <section id="for-both-machines" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="for-both-machines"><span class="header-section-number">2.5</span> For both machines</h2>
 <p>Once you have access to Python 3 and <code>pip3</code>, you can install the dx-toolkit using the following command:</p>
 <pre><code>pip3 install dxpy</code></pre>
+<p>That last command will install the <code>dx-toolkit</code> to your machine, which are the command line tools you’ll need to work on the DNAnexus cloud.</p>
 <p>Test it out by typing:</p>
 <pre><code>dx -h</code></pre>
 <p>You should get similar output:</p>
@@ -247,27 +253,52 @@ For a breakdown of dx commands by category, run "dx help".</code></pre>
 <section id="alternative-setup-binder.org" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="alternative-setup-binder.org"><span class="header-section-number">2.6</span> Alternative Setup: binder.org</h2>
 <p>If you aren’t able to install the dx-toolkit to your machine, you can use this Binder link to try out the commands. Binder opens a preinstalled image with a shell that has <code>dxpy</code> preinstalled on one of the <a href="https://mybinder.org" class="uri">https://mybinder.org</a> servers.</p>
-<p><a href="https://mybinder.org/v2/gh/laderast/minimal_dxpy/HEAD?urlpath=lab" class="uri">https://mybinder.org/v2/gh/laderast/minimal_dxpy/HEAD?urlpath=lab</a></p>
+<p><a href="https://mybinder.org/v2/gh/laderast/bash_bioinfo_scripts/HEAD?urlpath=lab" class="uri">https://mybinder.org/v2/gh/laderast/bash_bioinfo_scripts/HEAD?urlpath=lab</a></p>
+<p>When you launch it, you will first see this page:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/binder_screen.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Launch Binder Screen</figcaption><p></p>
+</figure>
+</div>
+<p>Then after a few moments, the JupyterLab interface should launch. Select the “Terminal” from the bottom of the launcher:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">JupyterLab Interface</figcaption><p></p>
+</figure>
+</div>
+<p>Once you select the terminal, this is what you should see:</p>
+<p><img src="JupyterLab%20Terminal.png" class="img-fluid"></p>
+<p>Now you’re ready to get started. Login (<a href="#sec-login"><span>Section&nbsp;2.8</span></a>) and proceed from there.</p>
 <p>Just keep in mind that this shell is ephemeral - it will disappear. So make sure that any files you create that you want to save are either uploaded back to your project with <code>dx upload</code> or you’ve downloaded them using the file explorer.</p>
 <p>This shell includes the following utilities:</p>
 <ul>
 <li><code>git</code> (needed to download course materials)</li>
 <li><code>nano</code> (needed to edit files)</li>
+<li><code>dxpy</code> (the dx-toolkit)</li>
 <li><code>python</code>/<code>pip</code> (needed to install dx-toolkit)</li>
 <li><code>jq</code> (needed to work with JSON files)</li>
 </ul>
 </section>
 <section id="clone-the-files-and-scripts-using-git" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="clone-the-files-and-scripts-using-git"><span class="header-section-number">2.7</span> Clone the files and scripts using git</h2>
-<p>On your own computer/binder, clone the repo (it will already be cloned if you’re in the binder version).</p>
+<section id="on-your-own-computer" class="level3" data-number="2.7.1">
+<h3 data-number="2.7.1" class="anchored" data-anchor-id="on-your-own-computer"><span class="header-section-number">2.7.1</span> On Your Own Computer</h3>
+<p>On your own computer, clone the repo (it will already be cloned if you’re in the binder version).</p>
 <pre class="{bash}"><code>#| eval: false
 
 git clone https://github.com/laderast/bash_info_scripts/</code></pre>
 <p>This will create a folder called `/bash_info_scripts/ in your current directory. Change to it:</p>
 <pre><code>cd bash_info_scripts</code></pre>
 </section>
-<section id="try-logging-in" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="try-logging-in"><span class="header-section-number">2.8</span> Try logging in</h2>
+<section id="in-the-binder" class="level3" data-number="2.7.2">
+<h3 data-number="2.7.2" class="anchored" data-anchor-id="in-the-binder"><span class="header-section-number">2.7.2</span> In the binder</h3>
+<p>You will already be in the bash_info_scripts/ folder.</p>
+</section>
+</section>
+<section id="sec-login" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="sec-login"><span class="header-section-number">2.8</span> Try logging in</h2>
 <p>Now that you have an account and the <code>dx-toolkit</code> installed, try logging in with <code>dx login</code>:</p>
 <pre class="{bash}"><code>#| eval: false
 dx login</code></pre>
@@ -324,7 +355,7 @@ dx tree</code></pre>
 </section>
 <section id="full-script" class="level2" data-number="2.12">
 <h2 data-number="2.12" class="anchored" data-anchor-id="full-script"><span class="header-section-number">2.12</span> Full Script</h2>
-<p>The full script for setting up is in the <code>01-setup-course/project_setup.sh</code></p>
+<p>The full script for setting up is in the <code>setup-course/project_setup.sh</code></p>
 <pre class="{bash}"><code>#| eval: false
 #| filename: setup-course/project_setup.sh
 

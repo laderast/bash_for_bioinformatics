@@ -32,39 +32,39 @@
     "href": "01-setup-course.html#on-ubuntu",
     "title": "2  Setup for the Course / dx-toolkit basics",
     "section": "2.3 On Ubuntu",
-    "text": "2.3 On Ubuntu\nYou should have a python3 installation - check by typing in:\nwhich python3\nIf you get a blank response, then you’ll need to install it.\nsudo apt-get install python3 ## If python is not yet installed\nsudo apt-get install pip3\nsudo apt-get install jq\nThat last command will install the dx-toolkit to your machine, which are the command line tools you’ll need to work on the DNAnexus cloud."
+    "text": "2.3 On Ubuntu\nYou should have a python3 installation - check by typing in:\nwhich python3\nIf you get a blank response, then you’ll need to install it.\nsudo apt-get install python3 ## If python is not yet installed\nsudo apt-get install pip3\nsudo apt-get install git\nsudo apt-get install jq"
   },
   {
     "objectID": "01-setup-course.html#on-macs",
     "href": "01-setup-course.html#on-macs",
     "title": "2  Setup for the Course / dx-toolkit basics",
     "section": "2.4 On Macs",
-    "text": "2.4 On Macs\nInstall homebrew to your mac and install python3 and pip:\nbrew install python3\nbrew install pip3\nbrew install jq"
+    "text": "2.4 On Macs\nInstall homebrew to your mac and install python3 and pip3:\nbrew install python3\nbrew install pip3\nbrew install git\nbrew install jq"
   },
   {
     "objectID": "01-setup-course.html#for-both-machines",
     "href": "01-setup-course.html#for-both-machines",
     "title": "2  Setup for the Course / dx-toolkit basics",
     "section": "2.5 For both machines",
-    "text": "2.5 For both machines\nOnce you have access to Python 3 and pip3, you can install the dx-toolkit using the following command:\npip3 install dxpy\nTest it out by typing:\ndx -h\nYou should get similar output:\nusage: dx [-h] [--version] command ...\n\nDNAnexus Command-Line Client, API v1.0.0, client v0.330.0\n\ndx is a command-line client for interacting with the DNAnexus platform.  You can log in,\nnavigate, upload, organize and share your data, launch analyses, and more.  For a quick tour\nof what the tool can do, see\n\n  https://documentation.dnanexus.com/getting-started/tutorials/cli-quickstart#quickstart-for->\n\nFor a breakdown of dx commands by category, run \"dx help\"."
+    "text": "2.5 For both machines\nOnce you have access to Python 3 and pip3, you can install the dx-toolkit using the following command:\npip3 install dxpy\nThat last command will install the dx-toolkit to your machine, which are the command line tools you’ll need to work on the DNAnexus cloud.\nTest it out by typing:\ndx -h\nYou should get similar output:\nusage: dx [-h] [--version] command ...\n\nDNAnexus Command-Line Client, API v1.0.0, client v0.330.0\n\ndx is a command-line client for interacting with the DNAnexus platform.  You can log in,\nnavigate, upload, organize and share your data, launch analyses, and more.  For a quick tour\nof what the tool can do, see\n\n  https://documentation.dnanexus.com/getting-started/tutorials/cli-quickstart#quickstart-for->\n\nFor a breakdown of dx commands by category, run \"dx help\"."
   },
   {
     "objectID": "01-setup-course.html#alternative-setup-binder.org",
     "href": "01-setup-course.html#alternative-setup-binder.org",
     "title": "2  Setup for the Course / dx-toolkit basics",
     "section": "2.6 Alternative Setup: binder.org",
-    "text": "2.6 Alternative Setup: binder.org\nIf you aren’t able to install the dx-toolkit to your machine, you can use this Binder link to try out the commands. Binder opens a preinstalled image with a shell that has dxpy preinstalled on one of the https://mybinder.org servers.\nhttps://mybinder.org/v2/gh/laderast/minimal_dxpy/HEAD?urlpath=lab\nJust keep in mind that this shell is ephemeral - it will disappear. So make sure that any files you create that you want to save are either uploaded back to your project with dx upload or you’ve downloaded them using the file explorer.\nThis shell includes the following utilities:\n\ngit (needed to download course materials)\nnano (needed to edit files)\npython/pip (needed to install dx-toolkit)\njq (needed to work with JSON files)"
+    "text": "2.6 Alternative Setup: binder.org\nIf you aren’t able to install the dx-toolkit to your machine, you can use this Binder link to try out the commands. Binder opens a preinstalled image with a shell that has dxpy preinstalled on one of the https://mybinder.org servers.\nhttps://mybinder.org/v2/gh/laderast/bash_bioinfo_scripts/HEAD?urlpath=lab\nWhen you launch it, you will first see this page:\n\n\n\nLaunch Binder Screen\n\n\nThen after a few moments, the JupyterLab interface should launch. Select the “Terminal” from the bottom of the launcher:\n\n\n\nJupyterLab Interface\n\n\nOnce you select the terminal, this is what you should see:\n\nNow you’re ready to get started. Login (Section 2.8) and proceed from there.\nJust keep in mind that this shell is ephemeral - it will disappear. So make sure that any files you create that you want to save are either uploaded back to your project with dx upload or you’ve downloaded them using the file explorer.\nThis shell includes the following utilities:\n\ngit (needed to download course materials)\nnano (needed to edit files)\ndxpy (the dx-toolkit)\npython/pip (needed to install dx-toolkit)\njq (needed to work with JSON files)"
   },
   {
     "objectID": "01-setup-course.html#clone-the-files-and-scripts-using-git",
     "href": "01-setup-course.html#clone-the-files-and-scripts-using-git",
     "title": "2  Setup for the Course / dx-toolkit basics",
     "section": "2.7 Clone the files and scripts using git",
-    "text": "2.7 Clone the files and scripts using git\nOn your own computer/binder, clone the repo (it will already be cloned if you’re in the binder version).\n#| eval: false\n\ngit clone https://github.com/laderast/bash_info_scripts/\nThis will create a folder called `/bash_info_scripts/ in your current directory. Change to it:\ncd bash_info_scripts"
+    "text": "2.7 Clone the files and scripts using git\n\n2.7.1 On Your Own Computer\nOn your own computer, clone the repo (it will already be cloned if you’re in the binder version).\n#| eval: false\n\ngit clone https://github.com/laderast/bash_info_scripts/\nThis will create a folder called `/bash_info_scripts/ in your current directory. Change to it:\ncd bash_info_scripts\n\n\n2.7.2 In the binder\nYou will already be in the bash_info_scripts/ folder."
   },
   {
-    "objectID": "01-setup-course.html#try-logging-in",
-    "href": "01-setup-course.html#try-logging-in",
+    "objectID": "01-setup-course.html#sec-login",
+    "href": "01-setup-course.html#sec-login",
     "title": "2  Setup for the Course / dx-toolkit basics",
     "section": "2.8 Try logging in",
     "text": "2.8 Try logging in\nNow that you have an account and the dx-toolkit installed, try logging in with dx login:\n#| eval: false\ndx login\nThe platform will then ask you for your username and password. Enter them.\nIf you are successful, you will see either the select screen or, if you only have one project, that project will be selected for you."
@@ -95,7 +95,7 @@
     "href": "01-setup-course.html#full-script",
     "title": "2  Setup for the Course / dx-toolkit basics",
     "section": "2.12 Full Script",
-    "text": "2.12 Full Script\nThe full script for setting up is in the 01-setup-course/project_setup.sh\n#| eval: false\n#| filename: setup-course/project_setup.sh\n\n## Login\ndx login\n\n## Create your new project\ndx new project -y my_project\n\n## Clone this repository onto your computer\ngit clone https://github.com/laderast/bash_bioinfo_scripts\n\n## Upload the scripts into the scripts folder\ncd bash_bioinfo_scripts\ndx upload -r worker_scripts/\n\n## Copy the data over\ndx cp -r \"project-BQbJpBj0bvygyQxgQ1800Jkk:/Developer Quickstart\" .\ndx mv \"Developer Quickstart/\" \"data/\"\n\n## Confirm your project matches\ndx tree\ntree"
+    "text": "2.12 Full Script\nThe full script for setting up is in the setup-course/project_setup.sh\n#| eval: false\n#| filename: setup-course/project_setup.sh\n\n## Login\ndx login\n\n## Create your new project\ndx new project -y my_project\n\n## Clone this repository onto your computer\ngit clone https://github.com/laderast/bash_bioinfo_scripts\n\n## Upload the scripts into the scripts folder\ncd bash_bioinfo_scripts\ndx upload -r worker_scripts/\n\n## Copy the data over\ndx cp -r \"project-BQbJpBj0bvygyQxgQ1800Jkk:/Developer Quickstart\" .\ndx mv \"Developer Quickstart/\" \"data/\"\n\n## Confirm your project matches\ndx tree\ntree"
   },
   {
     "objectID": "02-scripting-basics.html",
