@@ -159,17 +159,25 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#starting-ttyd" id="toc-starting-ttyd" class="nav-link active" data-scroll-target="#starting-ttyd"><span class="toc-section-number">9.1</span>  Starting ttyd</a></li>
-  <li><a href="#sec-named" id="toc-sec-named" class="nav-link" data-scroll-target="#sec-named"><span class="toc-section-number">9.2</span>  Named Arguments</a>
+  <li><a href="#other-useful-dx-toolkit-commands" id="toc-other-useful-dx-toolkit-commands" class="nav-link active" data-scroll-target="#other-useful-dx-toolkit-commands"><span class="toc-section-number">9.1</span>  Other Useful <code>dx-toolkit</code> commands</a>
   <ul class="collapse">
-  <li><a href="#running-our-script-with-named-arguments" id="toc-running-our-script-with-named-arguments" class="nav-link" data-scroll-target="#running-our-script-with-named-arguments"><span class="toc-section-number">9.2.1</span>  Running our script with named arguments</a></li>
-  <li><a href="#for-more-info" id="toc-for-more-info" class="nav-link" data-scroll-target="#for-more-info"><span class="toc-section-number">9.2.2</span>  For more info</a></li>
+  <li><a href="#dx-api" id="toc-dx-api" class="nav-link" data-scroll-target="#dx-api"><span class="toc-section-number">9.1.1</span>  <code>dx api</code></a></li>
+  <li><a href="#dx-cp" id="toc-dx-cp" class="nav-link" data-scroll-target="#dx-cp"><span class="toc-section-number">9.1.2</span>  <code>dx cp</code></a></li>
+  <li><a href="#dx-pwddx-cddx-lsdx-tree" id="toc-dx-pwddx-cddx-lsdx-tree" class="nav-link" data-scroll-target="#dx-pwddx-cddx-lsdx-tree"><span class="toc-section-number">9.1.3</span>  <code>dx pwd</code>/<code>dx cd</code>/<code>dx ls</code>/<code>dx tree</code></a></li>
+  <li><a href="#dx-env" id="toc-dx-env" class="nav-link" data-scroll-target="#dx-env"><span class="toc-section-number">9.1.4</span>  <code>dx env</code></a></li>
+  <li><a href="#dx-mkdirdx-uploaddx-downloaddx-head" id="toc-dx-mkdirdx-uploaddx-downloaddx-head" class="nav-link" data-scroll-target="#dx-mkdirdx-uploaddx-downloaddx-head"><span class="toc-section-number">9.1.5</span>  <code>dx mkdir</code>/<code>dx upload</code>/<code>dx download</code>/<code>dx head</code></a></li>
   </ul></li>
-  <li><a href="#sec-environment" id="toc-sec-environment" class="nav-link" data-scroll-target="#sec-environment"><span class="toc-section-number">9.3</span>  Environment Variables</a>
+  <li><a href="#starting-ttyd" id="toc-starting-ttyd" class="nav-link" data-scroll-target="#starting-ttyd"><span class="toc-section-number">9.2</span>  Starting ttyd</a></li>
+  <li><a href="#sec-named" id="toc-sec-named" class="nav-link" data-scroll-target="#sec-named"><span class="toc-section-number">9.3</span>  Named Arguments</a>
   <ul class="collapse">
-  <li><a href="#path" id="toc-path" class="nav-link" data-scroll-target="#path"><span class="toc-section-number">9.3.1</span>  <code>$PATH</code></a></li>
-  <li><a href="#maclinux" id="toc-maclinux" class="nav-link" data-scroll-target="#maclinux"><span class="toc-section-number">9.3.2</span>  Mac/Linux</a></li>
-  <li><a href="#other-environment-variables" id="toc-other-environment-variables" class="nav-link" data-scroll-target="#other-environment-variables"><span class="toc-section-number">9.3.3</span>  Other Environment Variables</a></li>
+  <li><a href="#running-our-script-with-named-arguments" id="toc-running-our-script-with-named-arguments" class="nav-link" data-scroll-target="#running-our-script-with-named-arguments"><span class="toc-section-number">9.3.1</span>  Running our script with named arguments</a></li>
+  <li><a href="#for-more-info" id="toc-for-more-info" class="nav-link" data-scroll-target="#for-more-info"><span class="toc-section-number">9.3.2</span>  For more info</a></li>
+  </ul></li>
+  <li><a href="#sec-environment" id="toc-sec-environment" class="nav-link" data-scroll-target="#sec-environment"><span class="toc-section-number">9.4</span>  Environment Variables</a>
+  <ul class="collapse">
+  <li><a href="#path" id="toc-path" class="nav-link" data-scroll-target="#path"><span class="toc-section-number">9.4.1</span>  <code>$PATH</code></a></li>
+  <li><a href="#maclinux" id="toc-maclinux" class="nav-link" data-scroll-target="#maclinux"><span class="toc-section-number">9.4.2</span>  Mac/Linux</a></li>
+  <li><a href="#other-environment-variables" id="toc-other-environment-variables" class="nav-link" data-scroll-target="#other-environment-variables"><span class="toc-section-number">9.4.3</span>  Other Environment Variables</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -194,8 +202,31 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>The appendix contains multiple sections that I wanted to refer to, but there’s not a really good place for them.</p>
-<section id="starting-ttyd" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="starting-ttyd"><span class="header-section-number">9.1</span> Starting ttyd</h2>
+<section id="other-useful-dx-toolkit-commands" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="other-useful-dx-toolkit-commands"><span class="header-section-number">9.1</span> Other Useful <code>dx-toolkit</code> commands</h2>
+<section id="dx-api" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="dx-api"><span class="header-section-number">9.1.1</span> <code>dx api</code></h3>
+<p>Sometimes there are actually API calls that you will need to run directly with <code>dx api</code>, since they don’t have a <code>dx-toolkit</code> equivalent</p>
+</section>
+<section id="dx-cp" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="dx-cp"><span class="header-section-number">9.1.2</span> <code>dx cp</code></h3>
+<p>We used this when we set up our project, to copy from the public project into our own project. Copying has a specific definition on the platform: it means <em>copying files from one project to another project</em>.</p>
+</section>
+<section id="dx-pwddx-cddx-lsdx-tree" class="level3" data-number="9.1.3">
+<h3 data-number="9.1.3" class="anchored" data-anchor-id="dx-pwddx-cddx-lsdx-tree"><span class="header-section-number">9.1.3</span> <code>dx pwd</code>/<code>dx cd</code>/<code>dx ls</code>/<code>dx tree</code></h3>
+</section>
+<section id="dx-env" class="level3" data-number="9.1.4">
+<h3 data-number="9.1.4" class="anchored" data-anchor-id="dx-env"><span class="header-section-number">9.1.4</span> <code>dx env</code></h3>
+<p>When you run this by itself, it will give you the environment variables associated with your project.</p>
+<p>There are some times when you’ll need to change some environment variables</p>
+</section>
+<section id="dx-mkdirdx-uploaddx-downloaddx-head" class="level3" data-number="9.1.5">
+<h3 data-number="9.1.5" class="anchored" data-anchor-id="dx-mkdirdx-uploaddx-downloaddx-head"><span class="header-section-number">9.1.5</span> <code>dx mkdir</code>/<code>dx upload</code>/<code>dx download</code>/<code>dx head</code></h3>
+<p>These are the file manipulation and creation commands.</p>
+</section>
+</section>
+<section id="starting-ttyd" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="starting-ttyd"><span class="header-section-number">9.2</span> Starting ttyd</h2>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -212,8 +243,8 @@ Why not just use <code>ttyd</code> for the entire course?
 </div>
 </div>
 </section>
-<section id="sec-named" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="sec-named"><span class="header-section-number">9.2</span> Named Arguments</h2>
+<section id="sec-named" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="sec-named"><span class="header-section-number">9.3</span> Named Arguments</h2>
 <p>In general, ordered arguments can be difficult to remember, and sometimes you have way too many parameters.</p>
 <p>What about named arguments? Let’s modify <code>sam_run.sh</code> to use named arguments.</p>
 <pre class="{bash}"><code>#| filename: "sam_run_named.sh"
@@ -232,8 +263,8 @@ done
 samtools ${input_file} &gt; ${output_file}</code></pre>
 <p>The magic of setting up the positional arguments happens in the <code>while</code> block above. It looks for any string arguments that follow our script name that begin with <code>--</code> - then it puts the value of that into the named variables.</p>
 <p>In this case, our script is expecting an <code>--input-file</code> and an <code>--output_file</code> arguments.</p>
-<section id="running-our-script-with-named-arguments" class="level3" data-number="9.2.1">
-<h3 data-number="9.2.1" class="anchored" data-anchor-id="running-our-script-with-named-arguments"><span class="header-section-number">9.2.1</span> Running our script with named arguments</h3>
+<section id="running-our-script-with-named-arguments" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="running-our-script-with-named-arguments"><span class="header-section-number">9.3.1</span> Running our script with named arguments</h3>
 <pre class="{bash}"><code>#| eval: false
 
 ./sam_run_named.sh --input_file "" --output_file ""</code></pre>
@@ -268,26 +299,26 @@ Answer
 </div>
 </div>
 </section>
-<section id="for-more-info" class="level3" data-number="9.2.2">
-<h3 data-number="9.2.2" class="anchored" data-anchor-id="for-more-info"><span class="header-section-number">9.2.2</span> For more info</h3>
+<section id="for-more-info" class="level3" data-number="9.3.2">
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="for-more-info"><span class="header-section-number">9.3.2</span> For more info</h3>
 <p><a href="https://keestalkstech.com/2022/03/named-arguments-in-a-bash-script/" class="uri">https://keestalkstech.com/2022/03/named-arguments-in-a-bash-script/</a></p>
 </section>
 </section>
-<section id="sec-environment" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="sec-environment"><span class="header-section-number">9.3</span> Environment Variables</h2>
-<section id="path" class="level3" data-number="9.3.1">
-<h3 data-number="9.3.1" class="anchored" data-anchor-id="path"><span class="header-section-number">9.3.1</span> <code>$PATH</code></h3>
+<section id="sec-environment" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="sec-environment"><span class="header-section-number">9.4</span> Environment Variables</h2>
+<section id="path" class="level3" data-number="9.4.1">
+<h3 data-number="9.4.1" class="anchored" data-anchor-id="path"><span class="header-section-number">9.4.1</span> <code>$PATH</code></h3>
 <p>The <code>$PATH</code> variable is one of the most important environment variables we’ll set on your local machine. It specifies the directories where executables and binaries can be found. This is important when you install dx-toolkit to interact with the DNAnexus platform.</p>
 <p>In general, you want to append paths to the <code>$PATH</code> variable, rather than overwriting it. This is because other processes may add to the <code>$PATH</code> variable as well, so you don’t want to interfere with those processes. Adding to our <code>$PATH</code> variable depends on the different operating systems.</p>
 </section>
-<section id="maclinux" class="level3" data-number="9.3.2">
-<h3 data-number="9.3.2" class="anchored" data-anchor-id="maclinux"><span class="header-section-number">9.3.2</span> Mac/Linux</h3>
+<section id="maclinux" class="level3" data-number="9.4.2">
+<h3 data-number="9.4.2" class="anchored" data-anchor-id="maclinux"><span class="header-section-number">9.4.2</span> Mac/Linux</h3>
 <p>The fastest way to add a directory to your path is to use the <code>export</code> command in your <code>.bash_profile</code>, or <code>.bashrc</code> file. For example, if the directory you want to add is <code>/opt/homebrew/bin/</code>, you’d edit your <code>.bash_profile</code> file and add the following line:</p>
 <pre><code>export PATH=$PATH:/opt/homebrew/bin/</code></pre>
 <p>Note that spacing matters in Bash scripting, especially in assigning variable names.</p>
 </section>
-<section id="other-environment-variables" class="level3" data-number="9.3.3">
-<h3 data-number="9.3.3" class="anchored" data-anchor-id="other-environment-variables"><span class="header-section-number">9.3.3</span> Other Environment Variables</h3>
+<section id="other-environment-variables" class="level3" data-number="9.4.3">
+<h3 data-number="9.4.3" class="anchored" data-anchor-id="other-environment-variables"><span class="header-section-number">9.4.3</span> Other Environment Variables</h3>
 <p>We’ll see that <code>dx-toolkit</code> defines a certain number of environmental variables and we can view them using <code>dx env</code>. These include:</p>
 <ul>
 <li>Current Project</li>
