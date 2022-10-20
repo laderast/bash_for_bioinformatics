@@ -125,13 +125,13 @@ dx mkdir images/
 dx upload samtools_image.tar.gz --destination images/
 ```
 
-Now we can get our image back into project storage. We'll create a folder called `images/` and then use `dx upload` to get our snapshot file.
+Now we can get our image back into project storage. We'll create a folder called `images/` with `dx mkdir` and then use `dx upload` to get our snapshot file into the `images/` folder.
 
 ### Important: make sure to terminate your ttyd instance!
 
 One thing to remember is that there is no timeout associated with `ttyd`. You will get a reminder email after it's been open after 24 hours, but you will get no warning after that.
 
-So make sure to use `dx terminate` to terminate your ttyd job.
+So make sure to use `dx terminate` or terminate the ttyd job under the `Manage` tab.
 
 ## Using Docker with Swiss Army Knife {#sec-docker-sak}
 

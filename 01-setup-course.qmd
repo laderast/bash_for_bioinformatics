@@ -60,7 +60,7 @@ Test it out by typing:
 
 ```
 dx -h
-``
+```
 
 You should get similar output:
 
