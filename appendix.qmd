@@ -2,6 +2,31 @@
 
 The appendix contains multiple sections that I wanted to refer to, but there's not a really good place for them.
 
+## Other Useful `dx-toolkit` commands
+
+### `dx api`
+
+Sometimes there are actually API calls that you will need to run directly with `dx api`, since they don't have a `dx-toolkit` equivalent
+
+### `dx cp`
+
+We used this when we set up our project, to copy from the public project into our own project. Copying has a specific definition on the platform: it means *copying files from one project to another project*. 
+
+### `dx pwd`/`dx cd`/`dx ls`/`dx tree`
+
+
+
+### `dx env`
+
+When you run this by itself, it will give you the environment variables associated with your project. 
+
+There are some times when you'll need to change some environment variables
+
+### `dx mkdir`/`dx upload`/`dx download`/`dx head`
+
+These are the file manipulation and creation commands. 
+
+
 ## Starting ttyd
 
 
