@@ -8,7 +8,7 @@ book:
   author: "Ted Laderas"
   date: "10/17/2022"
   engine: knitr
-  google-analytics: G-QM3D3CT5J5
+  google-analytics: "G-QM3D3CT5J5"
   link-external-icon: true
   link-external-newwindow: true
   chapters:
