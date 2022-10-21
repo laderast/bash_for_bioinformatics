@@ -75,6 +75,23 @@ No one writes a book alone. This book comes from a lot of conversations with eve
 -   David Stanek
 -   Chai Fungtammasan
 
+## Want to be a Contributor?
+
+This is the first draft of this book. It's not going to be perfect, and we need help. Specifically, we need help with testing the setup and the exercises.
+
+If you have an problem, you can file it as an issue using [this link](https://github.com/laderast/bash_for_bioinformatics/issues/new/choose).
+
+In your issue, please note the following:
+
+- Your Name
+- What your issue was
+- Which section, and line you found problematic or wouldn't run
+
+
+If you're quarto/GitHub savvy, you can fork and file a pull request for typos/edits. If you're not, you can file an issue.
+
+Just be aware that this is not my primary job - I'll try to be as responsive as I can.
+
 ## License
 
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons License" style="border-width:0"/></a><br />[Bash for Bioinformatics]{xmlns:dct="http://purl.org/dc/terms/" property="dct:title"} by <a xmlns:cc="http://creativecommons.org/ns#" href="https://laderast.github.io/bash_for_bioinformatics" property="cc:attributionName" rel="cc:attributionURL">Ted Laderas</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/laderast/bash_for_bioinformatics" rel="dct:source">https://github.com/laderast/bash_for_bioinformatics</a>.
