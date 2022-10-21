@@ -351,7 +351,8 @@ What’s happening here?
 <p>Our worker scripts live in the the <code>bash_for_bioinformatics/</code> folder on our machine.</p>
 <p>Let’s copy our files from the public project into our newly created DNAnexus project.</p>
 <pre class="{bash}"><code>#| eval: false
-dx cp -r "project-GJ496B00FZfxPV5VG36FybvY" .</code></pre>
+dx cp -r "project-BQbJpBj0bvygyQxgQ1800Jkk:/Developer Quickstart" .
+dx mv "Developer Quickstart/" "data/"</code></pre>
 <p>Confirm that your file system on your machine is similiar to the following output:</p>
 <pre class="{bash}"><code>#| eval: false
 tree</code></pre>
