@@ -65,7 +65,7 @@ In the sample project, you will see a `.bam` file in `data/` called `NA12878.bam
 #| eval: false
 #| filename: dx-run/run-sambamba.sh
 dx run app-swiss-army-knife \
-  -iin="/data/NA12878.bam" \ 
+  -iin="/data/NA12878.bam" \
   -icmd="sambamba index *"
 ```
 
@@ -150,8 +150,8 @@ If we wanted to change the output folder, we can use the `--destination` flag, l
 #| eval: false
 
 dx run app-swiss-army-knife \
-  -iin="/data/NA12878.bam" \ 
-  -icmd="sambamba index *"
+  -iin="/data/NA12878.bam" \
+  -icmd="sambamba index *" \
   --destination "data/"
 ```
 
@@ -190,7 +190,7 @@ When we set up a `dx run app-swiss-army-knife`, we'll use this script as one of 
 #| filename: dx-run/dx-run-script.sh
 
 dx run app-swiss-army-knife \
-  -iin="worker_scripts/run-on-worker.sh` \
+  -iin="worker_scripts/run-on-worker.sh" \
   -iin="data/NA12878.bam" \
   -icmd="bash run-on-worker.sh $in_path"
 ```
@@ -304,9 +304,9 @@ If we're working with a PLINK trio of files (`.bed`, `.bim`, and `.fam` files), 
 #| filename dx-run/run-plink.sh
 
 dx run app-swiss-army-knife \
-  -iin="data/chr1.bed" \
-  -iin="data/chr1.bim" \
-  -iin="data/chr1.fam" \
+  -iin="data/plink/chr1.bed" \
+  -iin="data/plink/chr1.bim" \
+  -iin="data/plink/chr1.fam" \
   -icmd="plink --bfile chr1 --geno 0.01 --make-bed --out chr1_qc"
 ```
 
