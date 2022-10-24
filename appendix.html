@@ -173,8 +173,8 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
   <li><a href="#dx-api" id="toc-dx-api" class="nav-link" data-scroll-target="#dx-api"><span class="toc-section-number">9.1.1</span>  <code>dx api</code></a></li>
   <li><a href="#dx-cp" id="toc-dx-cp" class="nav-link" data-scroll-target="#dx-cp"><span class="toc-section-number">9.1.2</span>  <code>dx cp</code></a></li>
   <li><a href="#dx-pwddx-cddx-lsdx-tree" id="toc-dx-pwddx-cddx-lsdx-tree" class="nav-link" data-scroll-target="#dx-pwddx-cddx-lsdx-tree"><span class="toc-section-number">9.1.3</span>  <code>dx pwd</code>/<code>dx cd</code>/<code>dx ls</code>/<code>dx tree</code></a></li>
-  <li><a href="#dx-env" id="toc-dx-env" class="nav-link" data-scroll-target="#dx-env"><span class="toc-section-number">9.1.4</span>  <code>dx env</code></a></li>
-  <li><a href="#dx-mkdirdx-uploaddx-downloaddx-head" id="toc-dx-mkdirdx-uploaddx-downloaddx-head" class="nav-link" data-scroll-target="#dx-mkdirdx-uploaddx-downloaddx-head"><span class="toc-section-number">9.1.5</span>  <code>dx mkdir</code>/<code>dx upload</code>/<code>dx download</code>/<code>dx head</code></a></li>
+  <li><a href="#dx-mkdirdx-uploaddx-downloaddx-head" id="toc-dx-mkdirdx-uploaddx-downloaddx-head" class="nav-link" data-scroll-target="#dx-mkdirdx-uploaddx-downloaddx-head"><span class="toc-section-number">9.1.4</span>  <code>dx mkdir</code>/<code>dx upload</code>/<code>dx download</code>/<code>dx head</code></a></li>
+  <li><a href="#dx-env" id="toc-dx-env" class="nav-link" data-scroll-target="#dx-env"><span class="toc-section-number">9.1.5</span>  <code>dx env</code></a></li>
   </ul></li>
   <li><a href="#starting-ttyd" id="toc-starting-ttyd" class="nav-link" data-scroll-target="#starting-ttyd"><span class="toc-section-number">9.2</span>  Starting ttyd</a></li>
   <li><a href="#sec-named" id="toc-sec-named" class="nav-link" data-scroll-target="#sec-named"><span class="toc-section-number">9.3</span>  Named Arguments</a>
@@ -213,9 +213,13 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 <p>The appendix contains multiple sections that I wanted to refer to, but there’s not a really good place for them.</p>
 <section id="other-useful-dx-toolkit-commands" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="other-useful-dx-toolkit-commands"><span class="header-section-number">9.1</span> Other Useful <code>dx-toolkit</code> commands</h2>
+<p>The link to the <a href="https://documentation.dnanexus.com/user/helpstrings-of-sdk-command-line-utilities"><code>dx</code> commands</a> page is your friend for understanding everything that you do on the platform. We’ll talk about some of the most important commands.</p>
 <section id="dx-api" class="level3" data-number="9.1.1">
 <h3 data-number="9.1.1" class="anchored" data-anchor-id="dx-api"><span class="header-section-number">9.1.1</span> <code>dx api</code></h3>
-<p>Sometimes there are actually API calls that you will need to run directly with <code>dx api</code>, since they don’t have a <code>dx-toolkit</code> equivalent</p>
+<p>Sometimes there are <a href="https://documentation.dnanexus.com/developer/api/api-directory">actually API calls</a> that you will need to run directly with <code>dx api</code>, since they don’t have a <code>dx-toolkit</code> equivalent.</p>
+<p>You’ll use <code>dx api</code> to run these.</p>
+<p>For example, there are some flags you can set within a project, and you can set them with <code>dx api</code>:</p>
+<pre><code>dx api project-B0VK6F6gpqG6z7JGkbqQ000Q update '{"description": "desc"}'</code></pre>
 </section>
 <section id="dx-cp" class="level3" data-number="9.1.2">
 <h3 data-number="9.1.2" class="anchored" data-anchor-id="dx-cp"><span class="header-section-number">9.1.2</span> <code>dx cp</code></h3>
@@ -223,15 +227,17 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 </section>
 <section id="dx-pwddx-cddx-lsdx-tree" class="level3" data-number="9.1.3">
 <h3 data-number="9.1.3" class="anchored" data-anchor-id="dx-pwddx-cddx-lsdx-tree"><span class="header-section-number">9.1.3</span> <code>dx pwd</code>/<code>dx cd</code>/<code>dx ls</code>/<code>dx tree</code></h3>
+<p>These commands are for navigating the project. <code>dx pwd</code> will give the present working directory of the project. <code>dx cd</code> lets us change directories, <code>dx ls</code> will list the contents of your current folder, and <code>dx tree</code> will show the overall file structure of your current folder.</p>
+<p>Be really careful when running <code>dx tree</code> on UKB RAP, especially the bulk folder. It is a big ask of the metadata server.</p>
 </section>
-<section id="dx-env" class="level3" data-number="9.1.4">
-<h3 data-number="9.1.4" class="anchored" data-anchor-id="dx-env"><span class="header-section-number">9.1.4</span> <code>dx env</code></h3>
+<section id="dx-mkdirdx-uploaddx-downloaddx-head" class="level3" data-number="9.1.4">
+<h3 data-number="9.1.4" class="anchored" data-anchor-id="dx-mkdirdx-uploaddx-downloaddx-head"><span class="header-section-number">9.1.4</span> <code>dx mkdir</code>/<code>dx upload</code>/<code>dx download</code>/<code>dx head</code></h3>
+<p>These are the file manipulation and creation commands.</p>
+</section>
+<section id="dx-env" class="level3" data-number="9.1.5">
+<h3 data-number="9.1.5" class="anchored" data-anchor-id="dx-env"><span class="header-section-number">9.1.5</span> <code>dx env</code></h3>
 <p>When you run this by itself, it will give you the environment variables associated with your project.</p>
 <p>There are some times when you’ll need to change some environment variables</p>
-</section>
-<section id="dx-mkdirdx-uploaddx-downloaddx-head" class="level3" data-number="9.1.5">
-<h3 data-number="9.1.5" class="anchored" data-anchor-id="dx-mkdirdx-uploaddx-downloaddx-head"><span class="header-section-number">9.1.5</span> <code>dx mkdir</code>/<code>dx upload</code>/<code>dx download</code>/<code>dx head</code></h3>
-<p>These are the file manipulation and creation commands.</p>
 </section>
 </section>
 <section id="starting-ttyd" class="level2" data-number="9.2">
