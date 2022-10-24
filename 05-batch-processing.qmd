@@ -236,7 +236,7 @@ The key is that we're running `xargs` on the worker, not on our own machine to p
 ```{bash}
 #| eval: false
 #| filename: batch-processing/batch-on-worker.sh
-cmd_to_run="ls *.vcf.gz | xargs -I% sh -c "bcftools stats % > %.stats.txt"
+cmd_to_run="ls *.vcf.gz | xargs -I% sh -c 'bcftools stats % > \$(basename %).stats.txt'"
 
 dx run swiss-army-knife \
   -iin="data/chr1.vcf.gz" \
@@ -249,12 +249,14 @@ In the variable `$cmd_to_run`, we're putting a command that we'll run on the wor
 
 ```{bash}
 #| eval: false
-ls *.vcf.gz | xargs -I% sh -c "bcftools stats % > %.stats.txt
+ls *.vcf.gz | xargs -I% sh -c "bcftools stats % > \$(basename %).stats.txt
 ```
 
 We submitted an array of files in our `dx run` statement. So now they are transferred into our working directory on the worker. So we can list the files using `ls *.vcf.gz` and pipe that list into `xargs`.
 
-Note that we lose the ability to use helper variables in our script when we process a list of files on the worker. So here we have to use `%.stats.txt` in our `xargs` subshell. 
+Note that we lose the ability to use helper variables in our script when we process a list of files on the worker. So here we have to use `\$(basename %)`, because we use `()` to expand a variable in a subshell, and we escape the `$` here so that bash will execute the variable expansion on the worker. 
+
+Again, this is possible, but it may be easier to have a separate script that contains our commands, transfer that as an input to Swiss Army Knife, and run that script by specifying `bash myscript.sh` in our command.
 
 ## Batching multiple inputs: `dx generate_batch_inputs` 
 

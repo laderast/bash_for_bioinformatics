@@ -309,6 +309,22 @@ dx run dxjupyterlab -icmd="${my_cmd}" -iin="notebook.ipynb"
 We're storing the command we want to run in the `${my_cmd}` variable. Here we're mostly using it to break up the `dx run` statement on the next line. 
 :::
 
+### `basename` can be very handy when on workers
+
+If we are processing a bunch of files on a worker that we have specified using `dxFUSE` (@sec-), we need a way to get the bare filename from a `dxfuse` path. We will take advantage of this when we run process multiple files on the worker.
+
+```
+basename /mnt/project/worker_scripts/dx-run-script.sh
+```
+
+This will return:
+
+```
+dx-run-script.sh
+```
+
+
+
 ## Running a R script on the command line
 
 Let's end this chapter with wrapping R scripts in a bash script. Say you have an R Script you need to run on the command line. In our bash script, we can do the following:

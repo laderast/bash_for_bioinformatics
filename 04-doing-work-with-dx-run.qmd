@@ -169,7 +169,7 @@ What's going on here? Well, files are considered as *objects* on the platform. E
 
 We've seen how to specify file inputs to Swiss Army Knife. Let's dive into some of the intricacies of using the `-icmd` input.
 
-### Submitting a script to the worker
+### Submitting a script to the worker {#sec-worker-script}
 
 The `-icmd` input is helpful for small scripting jobs, but you often want to do a bunch of things in a Swiss Army Knife job.
 
@@ -438,10 +438,25 @@ We can also use an `ls` on a dxFUSE path in our `-icmd`. This is a pattern that 
 #| eval: false
 
 dx run app-swiss-army-knife \
-  -icmd="ls /mnt/project/data/*.bam | xargs -I% sh -c 'samtools stats % > %.stats.txt'" \
+  -icmd="ls /mnt/project/data/*.bam | xargs -I% sh -c 'samtools stats % > \$(basename %).stats.txt'" \
   --destination "results/"
 ```
 
+Our `cmd` input is kind of complicated here. Within the subshell, we're taking advantage of the `basename` command, which returns the bare filename of our object. We need this because we can't currently write using dxfuse. 
+
+```
+sh -c 'samtools stats % > \$(basename %).stats.txt'
+```
+
+What's going on with the `\$(basename %)`? We need to use the parentheses (`()`) because it's in a subshell command, and we escape the `$` in front of it, so that our base shell doesn't expand it, since we want the shell on the worker to expand it instead. 
+
+So if our first file is `/mnt/project/data/NA12878.bam`, then the substitution on the worker goes like this:
+
+```
+samtools stats /mnt/project/data/NA12878.bam > NA12878.stats.txt
+```
+
+Most of these issues are because we need to specify subshells in our `cmd` and use `dxfuse`. Honestly, I would probably put the `xargs` code into a script, and submit that script into the worker, rather than specify it as a single line in our `cmd` input. (@sec-worker-script)
 
 ### Advantages of dxFUSE
 
