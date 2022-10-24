@@ -315,7 +315,7 @@ See <https://dnanexus.gitbook.io/uk-biobank-rap/science-corner/guide-to-analyzin
 
 This was a big chapter, and built on everything you've learned in the previous chapters. 
 
-We put together the output of `dx find data --brief` (@sec-dx-find) with a pipe (`|`), and `xargs` (@sec-xargs2) to spawn jobs per set of files. 
+We put together the output of `dx find data --brief` (@sec-dx-find) with a pipe (`|`), and used `xargs` (@sec-xargs2) to spawn jobs per set of files. 
 
 Another way to process files is to upload them onto a worker and process them (@sec-mult-worker). 
 
