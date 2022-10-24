@@ -652,7 +652,10 @@ dx run app-swiss-army-knife \
 <pre><code>data/chr1_results.txt
 data/1/chr1_results.txt
 data/2/chr1_results.txt</code></pre>
-<p>This name resolution can be tricky to work with. - <strong>It works best with good file hygiene practices.</strong> One of the confusing things is that you can create files with the same filename in the same folder (see previous point). This can easily happen if you clone a job. Because these two files have unique identifiers, they are allowed to have identical file names on the platform. This is one reason to tag each set of jobs with a run number (such as <code>run001</code>), so you can make sure that all of the updated files are the correct version.</p>
+<p>This name resolution can be tricky to work with.</p>
+<ul>
+<li><strong>It works best with good file hygiene practices.</strong> One of the confusing things is that you can create files with the same filename in the same folder (see previous point). This can easily happen if you <code>clone</code> a job. Because these two files have unique identifiers, they are allowed to have identical file names on the platform. This is one reason to tag each set of jobs with a run number (such as <code>run001</code>), so you can make sure that all of the updated files are the correct version.</li>
+</ul>
 </section>
 </section>
 <section id="using-a-docker-image-with-dx-runswiss-army-knife" class="level2" data-number="5.9">
