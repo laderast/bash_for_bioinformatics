@@ -288,7 +288,7 @@ Prep for Exercises
 <pre class="{bash}"><code>#| eval: false
 #| filename: dx-run/run-sambamba.sh
 dx run app-swiss-army-knife \
-  -iin="/data/NA12878.bam" \ 
+  -iin="/data/NA12878.bam" \
   -icmd="sambamba index *"</code></pre>
 <p>Let’s take this code apart. We start our command with <code>dx run</code> and the name of the app on the platform we want to use: <code>app-swiss-army-knife</code>.</p>
 <p>The second line contains the file input we want to process, which is a file in our current project. Note that the input is specified as <code>-iin</code>, not <code>--in</code> or <code>--iin</code>. Using a single hyphen <code>-</code> here instead of a double hyphen <code>--</code> for our inputs is different than we might expect for other linux/UNIX parameters.</p>
@@ -368,8 +368,8 @@ Answer
 <pre class="{bash}"><code>#| eval: false
 
 dx run app-swiss-army-knife \
-  -iin="/data/NA12878.bam" \ 
-  -icmd="sambamba index *"
+  -iin="/data/NA12878.bam" \
+  -icmd="sambamba index *" \
   --destination "data/"</code></pre>
 <p>Another nice thing about <code>dx run</code> is that it will automatically create the folder we specify with <code>--destination</code> if it doesn’t exist in project storage.</p>
 <div class="callout-note callout callout-style-default callout-captioned">
@@ -405,7 +405,7 @@ samtools stats $1 &gt; $1.stats.txt</code></pre>
 #| filename: dx-run/dx-run-script.sh
 
 dx run app-swiss-army-knife \
-  -iin="worker_scripts/run-on-worker.sh` \
+  -iin="worker_scripts/run-on-worker.sh" \
   -iin="data/NA12878.bam" \
   -icmd="bash run-on-worker.sh $in_path"</code></pre>
 <p>The magic here is that we’re using <code>bash</code> in our <code>cmd</code> input to run the script <code>run-on-worker.sh</code>. Notice this script is already in our project in the <code>worker_scripts/</code> folder, so we can submit it as a file input:</p>
@@ -529,9 +529,9 @@ dx run app-swiss-army-knife \
 #| filename dx-run/run-plink.sh
 
 dx run app-swiss-army-knife \
-  -iin="data/chr1.bed" \
-  -iin="data/chr1.bim" \
-  -iin="data/chr1.fam" \
+  -iin="data/plink/chr1.bed" \
+  -iin="data/plink/chr1.bim" \
+  -iin="data/plink/chr1.fam" \
   -icmd="plink --bfile chr1 --geno 0.01 --make-bed --out chr1_qc"</code></pre>
 <p>We will output the QC’ed and filtered files as <code>chr1_qc.bed</code>, <code>chr1_qc.bim</code>, and <code>chr1_qc.fam</code>. We do that by specifiying the <code>--out</code> option for <code>plink</code>.</p>
 </section>
