@@ -45,7 +45,7 @@ Installing `miniconda` (the minimal [Anaconda installer](https://docs.conda.io/e
 
 Here's a link that discusses using conda environments and how you can use them to install software on your computer: <https://towardsdatascience.com/a-guide-to-conda-environments-bc6180fc533>
 
-The short of it is that you define a *conda environment*, which is a space that lets you install R or Python packages and other software dependencies. For example, I could have an environment that uses Python 2.8, and another one that uses Python 3.9, and I could switch between them.
+The short of it is that you define a *conda environment*, which is a space that lets you install R or Python packages and other software dependencies. For example, I could have an environment that uses Python 2.8, and another one that uses Python 3.9, and I could switch between them using a command called `conda activate`.
 :::
 
 
