@@ -606,7 +606,7 @@ dx run app-swiss-army-knife --clone &lt;job-id&gt;</code></pre>
 #| filename: dx-run/run-job_dxfuse.sh
 
 dx run app-swiss-army-knife \
-  -icmd="plink --bfile /mnt/project/data/chr1 --geno 0.01 --make-bed --out chr1_qc"</code></pre>
+  -icmd="plink --bfile /mnt/project/data/plink/chr1 --geno 0.01 --make-bed --out chr1_qc"</code></pre>
 <p>In our <code>-icmd</code> input, we are referring to the file location of the triplet by pre-pending a <code>/mnt/project/</code> to the project path of the triplet: <code>data/chr1</code> to make a new path:</p>
 <pre><code>/mnt/project/data/chr1</code></pre>
 <p>This new path lets us specify files from project storage without directly specifying them as an input.</p>
@@ -625,7 +625,8 @@ dx run app-swiss-army-knife \
 <pre class="{bash}"><code>#| eval: false
 
 dx run app-swiss-army-knife \
-  -icmd="ls /mnt/project/data/*.bam | xargs -I% sh -c 'samtools stats % &gt; %.stats.txt'"</code></pre>
+  -icmd="ls /mnt/project/data/*.bam | xargs -I% sh -c 'samtools stats % &gt; %.stats.txt'" \
+  --destination "results/"</code></pre>
 <section id="advantages-of-dxfuse" class="level3" data-number="5.8.1">
 <h3 data-number="5.8.1" class="anchored" data-anchor-id="advantages-of-dxfuse"><span class="header-section-number">5.8.1</span> Advantages of dxFUSE</h3>
 <p>Most of my scripts leverage dxFUSE. Let’s talk about the advantages of using <code>dxFUSE</code>.</p>
