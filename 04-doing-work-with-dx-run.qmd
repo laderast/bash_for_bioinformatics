@@ -402,7 +402,7 @@ The main thing you need to know as a developer is that you can prepend a `/mnt/p
 #| filename: dx-run/run-job_dxfuse.sh
 
 dx run app-swiss-army-knife \
-  -icmd="plink --bfile /mnt/project/data/chr1 --geno 0.01 --make-bed --out chr1_qc"
+  -icmd="plink --bfile /mnt/project/data/plink/chr1 --geno 0.01 --make-bed --out chr1_qc"
 ```
 
 In our `-icmd` input, we are referring to the file location of the triplet by pre-pending a `/mnt/project/` to the project path of the triplet: `data/chr1` to make a new path:
@@ -438,7 +438,8 @@ We can also use an `ls` on a dxFUSE path in our `-icmd`. This is a pattern that 
 #| eval: false
 
 dx run app-swiss-army-knife \
-  -icmd="ls /mnt/project/data/*.bam | xargs -I% sh -c 'samtools stats % > %.stats.txt'"
+  -icmd="ls /mnt/project/data/*.bam | xargs -I% sh -c 'samtools stats % > %.stats.txt'" \
+  --destination "results/"
 ```
 
 
