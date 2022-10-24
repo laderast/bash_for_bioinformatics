@@ -428,7 +428,7 @@ dx find jobs --tag samjob --brief | xargs -I% sh -c "dx terminate %"</code></pre
 <p>The key is that we’re running <code>xargs</code> on the worker, not on our own machine to process each file.</p>
 <pre class="{bash}"><code>#| eval: false
 #| filename: batch-processing/batch-on-worker.sh
-cmd_to_run="ls *.vcf.gz | xargs -I% sh -c "bcftools stats % &gt; %.stats.txt"
+cmd_to_run="ls *.vcf.gz | xargs -I% sh -c 'bcftools stats % &gt; \$(basename %).stats.txt'"
 
 dx run swiss-army-knife \
   -iin="data/chr1.vcf.gz" \
@@ -437,9 +437,10 @@ dx run swiss-army-knife \
   -icmd=${cmd_to_run}</code></pre>
 <p>In the variable <code>$cmd_to_run</code>, we’re putting a command that we’ll run on the worker. That command is:</p>
 <pre class="{bash}"><code>#| eval: false
-ls *.vcf.gz | xargs -I% sh -c "bcftools stats % &gt; %.stats.txt</code></pre>
+ls *.vcf.gz | xargs -I% sh -c "bcftools stats % &gt; \$(basename %).stats.txt</code></pre>
 <p>We submitted an array of files in our <code>dx run</code> statement. So now they are transferred into our working directory on the worker. So we can list the files using <code>ls *.vcf.gz</code> and pipe that list into <code>xargs</code>.</p>
-<p>Note that we lose the ability to use helper variables in our script when we process a list of files on the worker. So here we have to use <code>%.stats.txt</code> in our <code>xargs</code> subshell.</p>
+<p>Note that we lose the ability to use helper variables in our script when we process a list of files on the worker. So here we have to use <code>\$(basename %)</code>, because we use <code>()</code> to expand a variable in a subshell, and we escape the <code>$</code> here so that bash will execute the variable expansion on the worker.</p>
+<p>Again, this is possible, but it may be easier to have a separate script that contains our commands, transfer that as an input to Swiss Army Knife, and run that script by specifying <code>bash myscript.sh</code> in our command.</p>
 </section>
 <section id="batching-multiple-inputs-dx-generate_batch_inputs" class="level2" data-number="6.7">
 <h2 data-number="6.7" class="anchored" data-anchor-id="batching-multiple-inputs-dx-generate_batch_inputs"><span class="header-section-number">6.7</span> Batching multiple inputs: <code>dx generate_batch_inputs</code></h2>

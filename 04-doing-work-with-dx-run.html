@@ -177,7 +177,7 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
   </ul></li>
   <li><a href="#building-on-our-first-dx-run-job" id="toc-building-on-our-first-dx-run-job" class="nav-link" data-scroll-target="#building-on-our-first-dx-run-job"><span class="toc-section-number">5.5</span>  Building on our first <code>dx run</code> job</a>
   <ul class="collapse">
-  <li><a href="#submitting-a-script-to-the-worker" id="toc-submitting-a-script-to-the-worker" class="nav-link" data-scroll-target="#submitting-a-script-to-the-worker"><span class="toc-section-number">5.5.1</span>  Submitting a script to the worker</a></li>
+  <li><a href="#sec-worker-script" id="toc-sec-worker-script" class="nav-link" data-scroll-target="#sec-worker-script"><span class="toc-section-number">5.5.1</span>  Submitting a script to the worker</a></li>
   <li><a href="#bash-helper-variables" id="toc-bash-helper-variables" class="nav-link" data-scroll-target="#bash-helper-variables"><span class="toc-section-number">5.5.2</span>  Bash Helper Variables</a></li>
   </ul></li>
   <li><a href="#more-swiss-army-knife" id="toc-more-swiss-army-knife" class="nav-link" data-scroll-target="#more-swiss-army-knife"><span class="toc-section-number">5.6</span>  More Swiss Army Knife</a>
@@ -391,8 +391,8 @@ What if we run our statement multiple times?
 <section id="building-on-our-first-dx-run-job" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="building-on-our-first-dx-run-job"><span class="header-section-number">5.5</span> Building on our first <code>dx run</code> job</h2>
 <p>We’ve seen how to specify file inputs to Swiss Army Knife. Let’s dive into some of the intricacies of using the <code>-icmd</code> input.</p>
-<section id="submitting-a-script-to-the-worker" class="level3" data-number="5.5.1">
-<h3 data-number="5.5.1" class="anchored" data-anchor-id="submitting-a-script-to-the-worker"><span class="header-section-number">5.5.1</span> Submitting a script to the worker</h3>
+<section id="sec-worker-script" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="sec-worker-script"><span class="header-section-number">5.5.1</span> Submitting a script to the worker</h3>
 <p>The <code>-icmd</code> input is helpful for small scripting jobs, but you often want to do a bunch of things in a Swiss Army Knife job.</p>
 <p>Bash scripting to the rescue! Say we have a script called <code>run-on-worker.sh</code> that takes 1 positional input, which is a file path. We’ll run this script on the worker:</p>
 <pre class="{bash}"><code>#| eval: false
@@ -625,8 +625,14 @@ dx run app-swiss-army-knife \
 <pre class="{bash}"><code>#| eval: false
 
 dx run app-swiss-army-knife \
-  -icmd="ls /mnt/project/data/*.bam | xargs -I% sh -c 'samtools stats % &gt; %.stats.txt'" \
+  -icmd="ls /mnt/project/data/*.bam | xargs -I% sh -c 'samtools stats % &gt; \$(basename %).stats.txt'" \
   --destination "results/"</code></pre>
+<p>Our <code>cmd</code> input is kind of complicated here. Within the subshell, we’re taking advantage of the <code>basename</code> command, which returns the bare filename of our object. We need this because we can’t currently write using dxfuse.</p>
+<pre><code>sh -c 'samtools stats % &gt; \$(basename %).stats.txt'</code></pre>
+<p>What’s going on with the <code>\$(basename %)</code>? We need to use the parentheses (<code>()</code>) because it’s in a subshell command, and we escape the <code>$</code> in front of it, so that our base shell doesn’t expand it, since we want the shell on the worker to expand it instead.</p>
+<p>So if our first file is <code>/mnt/project/data/NA12878.bam</code>, then the substitution on the worker goes like this:</p>
+<pre><code>samtools stats /mnt/project/data/NA12878.bam &gt; NA12878.stats.txt</code></pre>
+<p>Most of these issues are because we need to specify subshells in our <code>cmd</code> and use <code>dxfuse</code>. Honestly, I would probably put the <code>xargs</code> code into a script, and submit that script into the worker, rather than specify it as a single line in our <code>cmd</code> input. (<a href="#sec-worker-script"><span>Section&nbsp;5.5.1</span></a>)</p>
 <section id="advantages-of-dxfuse" class="level3" data-number="5.8.1">
 <h3 data-number="5.8.1" class="anchored" data-anchor-id="advantages-of-dxfuse"><span class="header-section-number">5.8.1</span> Advantages of dxFUSE</h3>
 <p>Most of my scripts leverage dxFUSE. Let’s talk about the advantages of using <code>dxFUSE</code>.</p>

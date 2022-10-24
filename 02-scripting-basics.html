@@ -250,7 +250,10 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
   <li><a href="#the-basic-xargs-pattern" id="toc-the-basic-xargs-pattern" class="nav-link" data-scroll-target="#the-basic-xargs-pattern"><span class="toc-section-number">3.5.1</span>  The Basic <code>xargs</code> pattern</a></li>
   <li><a href="#for-more-information" id="toc-for-more-information" class="nav-link" data-scroll-target="#for-more-information"><span class="toc-section-number">3.5.2</span>  For more information</a></li>
   </ul></li>
-  <li><a href="#sec-bash-variables" id="toc-sec-bash-variables" class="nav-link" data-scroll-target="#sec-bash-variables"><span class="toc-section-number">3.6</span>  Variables in Bash Scripts</a></li>
+  <li><a href="#sec-bash-variables" id="toc-sec-bash-variables" class="nav-link" data-scroll-target="#sec-bash-variables"><span class="toc-section-number">3.6</span>  Variables in Bash Scripts</a>
+  <ul class="collapse">
+  <li><a href="#basename-can-be-very-handy-when-on-workers" id="toc-basename-can-be-very-handy-when-on-workers" class="nav-link" data-scroll-target="#basename-can-be-very-handy-when-on-workers"><span class="toc-section-number">3.6.1</span>  <code>basename</code> can be very handy when on workers</a></li>
+  </ul></li>
   <li><a href="#running-a-r-script-on-the-command-line" id="toc-running-a-r-script-on-the-command-line" class="nav-link" data-scroll-target="#running-a-r-script-on-the-command-line"><span class="toc-section-number">3.7</span>  Running a R script on the command line</a>
   <ul class="collapse">
   <li><a href="#using-named-arguments-in-an-r-script" id="toc-using-named-arguments-in-an-r-script" class="nav-link" data-scroll-target="#using-named-arguments-in-an-r-script"><span class="toc-section-number">3.7.1</span>  Using Named Arguments in an R script</a></li>
@@ -630,6 +633,13 @@ Why this is important on the platform
 <p>We’re storing the command we want to run in the <code>${my_cmd}</code> variable. Here we’re mostly using it to break up the <code>dx run</code> statement on the next line.</p>
 </div>
 </div>
+<section id="basename-can-be-very-handy-when-on-workers" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="basename-can-be-very-handy-when-on-workers"><span class="header-section-number">3.6.1</span> <code>basename</code> can be very handy when on workers</h3>
+<p>If we are processing a bunch of files on a worker that we have specified using <code>dxFUSE</code> (<span class="citation" data-cites="sec">(<a href="references.html#ref-sec" role="doc-biblioref"><strong>sec?</strong></a>)</span>-), we need a way to get the bare filename from a <code>dxfuse</code> path. We will take advantage of this when we run process multiple files on the worker.</p>
+<pre><code>basename /mnt/project/worker_scripts/dx-run-script.sh</code></pre>
+<p>This will return:</p>
+<pre><code>dx-run-script.sh</code></pre>
+</section>
 </section>
 <section id="running-a-r-script-on-the-command-line" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="running-a-r-script-on-the-command-line"><span class="header-section-number">3.7</span> Running a R script on the command line</h2>
@@ -639,8 +649,8 @@ Why this is important on the platform
 <div class="code-with-filename-file">
 <pre><strong>scripting-basics/wrap_r_script.sh</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> my_script.R CSVFILE=<span class="st">"</span><span class="va">${1}</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> my_script.R CSVFILE=<span class="st">"</span><span class="va">${1}</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>This calls <code>Rscript</code>, which is the command line executable to run our R script. Note that we have a named argument called <code>CSVFILE</code> and it is done differently than in Bash - how do we use this in our R Script?</p>
@@ -653,17 +663,17 @@ Why this is important on the platform
 <div class="code-with-filename-file">
 <pre><strong>scripting-basics/r_script.R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>args <span class="ot">&lt;-</span> <span class="fu">commandArgs</span>()</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use arg$CSVFILE in read.csv</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>csv_file <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file=</span>args<span class="sc">$</span>CSVFILE)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Do some work with csv_file</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>csv_filtered <span class="ot">&lt;-</span> csv_file <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>()</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Write output</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(csv_filtered, <span class="at">file =</span> <span class="fu">paste0</span>(args<span class="sc">$</span>CSVFILE, <span class="st">"_filtered.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>args <span class="ot">&lt;-</span> <span class="fu">commandArgs</span>()</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use arg$CSVFILE in read.csv</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>csv_file <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file=</span>args<span class="sc">$</span>CSVFILE)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Do some work with csv_file</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>csv_filtered <span class="ot">&lt;-</span> csv_file <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>()</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Write output</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(csv_filtered, <span class="at">file =</span> <span class="fu">paste0</span>(args<span class="sc">$</span>CSVFILE, <span class="st">"_filtered.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -671,7 +681,7 @@ Why this is important on the platform
 <h3 data-number="3.7.2" class="anchored" data-anchor-id="running-our-r-script"><span class="header-section-number">3.7.2</span> Running our R Script</h3>
 <p>Now that we’ve set it up, we can run the R script from the command line as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./my_bash_script.sh</span> my_csvfile.csv </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./my_bash_script.sh</span> my_csvfile.csv </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In our bash script, <code>my_bash_script.sh</code>, we’re using positional argument (for simplicity) to specify our csvfile, and then passing the positional argument to named ones (<code>CSVFILE</code>) for <code>my_r_script.R</code>.</p>
 <div class="callout-note callout callout-style-default callout-captioned">
