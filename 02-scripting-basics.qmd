@@ -47,7 +47,7 @@ Say we have [`samtools`](http://www.htslib.org/doc/samtools-stats.html) installe
 samtools stats $1 > $2
 ```
 
-Let's take a look at the command that we're running first. We're going to run `samtools stat`, which will give us statistics on an incoming `bam` or `sam` file and save it in a file. We want to be able to run our script like this:
+Let's take a look at the command that we're running first. We're going to run `samtools stats`, which will give us statistics on an incoming `bam` or `sam` file and save it in a file. We want to be able to run our script like this:
 
 ```{bash}
 #| eval: false

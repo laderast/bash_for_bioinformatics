@@ -4,9 +4,19 @@ The appendix contains multiple sections that I wanted to refer to, but there's n
 
 ## Other Useful `dx-toolkit` commands
 
+The link to the [`dx` commands](https://documentation.dnanexus.com/user/helpstrings-of-sdk-command-line-utilities) page is your friend for understanding everything that you do on the platform. We'll talk about some of the most important commands. 
+
 ### `dx api`
 
-Sometimes there are actually API calls that you will need to run directly with `dx api`, since they don't have a `dx-toolkit` equivalent
+Sometimes there are [actually API calls](https://documentation.dnanexus.com/developer/api/api-directory) that you will need to run directly with `dx api`, since they don't have a `dx-toolkit` equivalent.  
+
+You'll use `dx api` to run these.
+
+For example, there are some flags you can set within a project, and you can set them with `dx api`:
+
+```
+dx api project-B0VK6F6gpqG6z7JGkbqQ000Q update '{"description": "desc"}'
+```
 
 ### `dx cp`
 
@@ -14,6 +24,13 @@ We used this when we set up our project, to copy from the public project into ou
 
 ### `dx pwd`/`dx cd`/`dx ls`/`dx tree`
 
+These commands are for navigating the project. `dx pwd` will give the present working directory of the project. `dx cd` lets us change directories, `dx ls` will list the contents of your current folder, and `dx tree` will show the overall file structure of your current folder.
+
+Be really careful when running `dx tree` on UKB RAP, especially the bulk folder. It is a big ask of the metadata server.
+
+### `dx mkdir`/`dx upload`/`dx download`/`dx head`
+
+These are the file manipulation and creation commands. 
 
 
 ### `dx env`
@@ -22,9 +39,6 @@ When you run this by itself, it will give you the environment variables associat
 
 There are some times when you'll need to change some environment variables
 
-### `dx mkdir`/`dx upload`/`dx download`/`dx head`
-
-These are the file manipulation and creation commands. 
 
 
 ## Starting ttyd
