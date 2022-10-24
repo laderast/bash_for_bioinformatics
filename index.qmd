@@ -1,6 +1,6 @@
 # Introduction 
 
-Bash scripting is an essential skill in bioinformatics that is often expected that bioinformaticians will just pickup in their careers. I think that this underestimates the difficulty of learning and applying Bash scripting.
+Bash scripting is an essential skill in bioinformatics that we often expect bioinformaticians to have automatically learned. I think that this underestimates the difficulty of learning and applying Bash scripting.
 
 This is a book that is meant to bring you (a budding bioinformaticist) beyond the foundational shell scripting skills learned from a shell scripting course such as [the Software Carpentries Shell  Course](https://swcarpentry.github.io/shell-novice/).
 

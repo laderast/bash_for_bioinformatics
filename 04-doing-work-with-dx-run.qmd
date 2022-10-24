@@ -481,7 +481,8 @@ data/2/chr1_results.txt
 ```
 
 This name resolution can be tricky to work with.
-  - **It works best with good file hygiene practices.** One of the confusing things is that you can create files with the same filename in the same folder (see previous point). This can easily happen if you clone a job. Because these two files have unique identifiers, they are allowed to have identical file names on the platform. This is one reason to tag each set of jobs with a run number (such as `run001`), so you can make sure that all of the updated files are the correct version.
+
+  - **It works best with good file hygiene practices.** One of the confusing things is that you can create files with the same filename in the same folder (see previous point). This can easily happen if you `clone` a job. Because these two files have unique identifiers, they are allowed to have identical file names on the platform. This is one reason to tag each set of jobs with a run number (such as `run001`), so you can make sure that all of the updated files are the correct version.
 
 ## Using a Docker Image with `dx run`/Swiss Army Knife
 
