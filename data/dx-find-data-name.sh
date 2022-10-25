@@ -1,0 +1,1 @@
+dx find data --name "*.bam" --brief
