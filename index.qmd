@@ -57,9 +57,10 @@ At each step, you'll be able to do useful things with your data. We will focus o
 
 Before you tackle this book, you should be able to accomplish the following:
 
+-   Open and utilize a shell. This section from the Missing Semester of your CS Education is very helpful: <https://missing.csail.mit.edu/2020/course-shell/>
 -   [**Utilize** and **navigate**](https://swcarpentry.github.io/shell-novice/02-filedir/index.html) File Paths (both absolute and relative) in a Unix system
 
-We recommend reviewing a course such as the [Software Carpentry course for Shell Scripting](https://swcarpentry.github.io/shell-novice/) before getting started with this book.
+We recommend reviewing a course such as the [Software Carpentry course for Shell Scripting](https://swcarpentry.github.io/shell-novice/) before getting started with this book. [The Missing Semester of your CS Education](https://missing.csail.mit.edu/) is another great introduction/resource.
 
 ## Contributors
 
