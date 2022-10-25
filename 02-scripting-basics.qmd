@@ -168,8 +168,17 @@ Let's start out with a list of files:
 
 ```{bash}
 #| eval: false
-source ~/.bashrc
+source ~/.bashrc #| hide_line
 ls data/*.sh
+```
+
+```
+data/batch-on-worker.sh
+data/dx-find-data-class.sh
+data/dx-find-data-field.sh
+data/dx-find-data-name.sh
+data/dx-find-path.sh
+data/dx-find-xargs.sh
 ```
 
 Now we have a list of files, let's look at the first few lines of each of them, and print a separator `---` for each.
@@ -177,9 +186,33 @@ Now we have a list of files, let's look at the first few lines of each of them, 
 ```{bash}
 #| eval: false
 #| filename: scripting-basics/xargs_example.sh
-
-ls data/*.sh | xargs -I% sh -c 'head %; echo "---\n"'
+source ~/.bashrc #| hide_line
+ls data/*.sh | xargs -I% sh -c 'head %; echo "\n---\n"'
 ```
+```
+#!/bash/bin
+
+cmd_to_run="ls *.vcf.gz | xargs -I% sh -c "bcftools stats % > %.stats.txt"
+
+dx run swiss-army-knife \
+  -iin="data/chr1.vcf.gz" \
+  -iin="data/chr2.vcf.gz" \
+  -iin="data/chr3.vcf.gz" \
+  -icmd=${cmd_to_run}
+---
+
+#!/bin/bash
+
+dx find data --class file --brief
+---
+
+dx find data --property field_id=23148 --brief
+---
+
+dx find data --name "*.bam" --brief
+---
+```
+
 
 Let's take this apart piece by piece.
 
@@ -241,8 +274,8 @@ We will leverage this pattern when we get to batch processing files (@sec-batch)
 
 How would we modify the below code to do the following?
 
-- List only `.json` files in our `data/` folder using `ls`
-- Use `tail` instead of `head`
+1. List only `.json` files in our `data/` folder using `ls`
+1. Use `tail` instead of `head`
 
 ```{bash}
 #| eval: false
@@ -293,6 +326,9 @@ echo "${my_var}.vcf.gz"
 
 If we didn't use the braces, bash would interpret the string as `$my_var.vcf.gz`, which isn't what we want. So use the curly braces `{}` when you expand variables.
 
+There is an alternate method for variable expansion which we will use when we call a *sub-shell* - a shell within a shell, much like in our `xargs` command above. We need to use parentheses `()` to expand them within the sub-shell, but not the top-shell. We'll use this when we process multiple files within a single worker.
+
+
 ::: {.callout-note}
 ### Why this is important on the platform
 
@@ -311,7 +347,9 @@ We're storing the command we want to run in the `${my_cmd}` variable. Here we're
 
 ### `basename` can be very handy when on workers
 
-If we are processing a bunch of files on a worker that we have specified using `dxFUSE` (@sec-), we need a way to get the bare filename from a `dxfuse` path. We will take advantage of this when we run process multiple files on the worker.
+If we are processing a bunch of files on a worker that we have specified using `dxFUSE` (@sec-dxfuse), we need a way to get the bare filename from a `dxfuse` path. We will take advantage of this when we run process multiple files on the worker.
+
+For example
 
 ```
 basename /mnt/project/worker_scripts/dx-run-script.sh
@@ -323,7 +361,7 @@ This will return:
 dx-run-script.sh
 ```
 
-
+Which can be really handy when we name our outputs. 
 
 ## Running a R script on the command line
 
@@ -366,7 +404,7 @@ Now that we've set it up, we can run the R script from the command line as follo
 
 ```{bash}
 #| eval: false
-./my_bash_script.sh my_csvfile.csv 
+bash my_bash_script.sh my_csvfile.csv 
 ```
 
 In our bash script, `my_bash_script.sh`, we're using positional argument (for simplicity) to specify our csvfile, and then passing the positional argument to named ones (`CSVFILE`) for `my_r_script.R`.
