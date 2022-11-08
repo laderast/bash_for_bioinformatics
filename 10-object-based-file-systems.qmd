@@ -28,7 +28,7 @@ Folders and paths are the organizing factor for folder based systems. For a file
 ```
 In the same folder. 
 
-In contrast, object-based filesystems do not organize data like a folder based system. Each file object (such as a csv file, or a BAM file) has a unique identifier that identifies the data object. This unique identifier (like `file-aagejFHEJSEI`) serves as the main way to locate the data object.
+In contrast, object-based filesystems do not organize data like a folder based system. Each file object (such as a csv file, or a BAM file) has a unique identifier that identifies the data object. This unique identifier (like `file-aagejFHEJSEI`) serves as the main way to locate the data object. 
 
 However, file objects also have metadata that can be attached to them. This metadata can be:
 
@@ -38,7 +38,7 @@ However, file objects also have metadata that can be attached to them. This meta
 - Tags
 - Properties
 
-On the DNAnexus platform, both the filename and its path are considered **metadata**: they are part of objects that are created. That means that there are technically no folders on the platform - they only exist within the metadata for the objects. This was pretty confusing to me when I started out. 
+On the DNAnexus platform, both the filename and its path are considered **metadata**: they are part of objects that are created. That means that there are technically no folder objects on the platform - folders only exist within the metadata for the file objects. This was pretty confusing to me when I started out. 
 
 The other issue is that metadata has no requirements to be unique. Which means you can have duplicates with the same file name in the same folder. I know, this can be very distressing for most people. You can have two objects with the same file name, but they are considered distinct objects because they have unique identifiers. 
 
@@ -47,11 +47,13 @@ The other issue is that metadata has no requirements to be unique. Which means y
 :::{.callout-note}
 ## Par-what-now?
 
-You may have heard of Parquet files and wondered how they relate to file objects. They are a way to store data in a format called *columnar* storage.
+You may have heard of *Parquet* files and wondered how they relate to file objects. They are a way to store data in a format called *columnar* storage.
 
 It turns out it is faster for retrieval to store data not by *rows*, but by *columns*. This is really helpful because the data is sorted by *data* type and it's easier to traverse for this reason. 
 
-There are a number of *database engines* that are fast at searching and traversing these types of files.
+There are a number of *database engines* that are fast at searching and traversing these types of files. Some examples are Snowflake and Apache Arrow. 
+
+On the DNAnexus platform, certain data objects (called Datasets) are actually stored in Parquet format.
 :::
 
 ## Tracing the journey of a file object onto the platform
@@ -59,7 +61,7 @@ There are a number of *database engines* that are fast at searching and traversi
 
 
 
-## Advantages of Object Based Filesystems
+### Advantages of Object Based Filesystems
 
 Why does the world run on object based filesystems? There are a lot of advantages. 
 
@@ -67,7 +69,9 @@ Why does the world run on object based filesystems? There are a lot of advantage
 - **Fast Retrieval.** Object-based filesystems let us work with arbitrarily large file sizes, and we can actually stream files to and from workers.
 - **Improved search speed.** You can attach various database engines to a set of objects and rapidly search through them. An example of such an engine is Snowflake.
 
-## Disadvantages
+### Disadvantages
+
+Coming from folder based filesystems, it can be a bit of a mind-bender getting used to object-based filesystems.
 
 - **Objects are immutable**. You can't edit an object in place. 
 - **You have to be careful when generating outputs**. You can end up with two different objects with the same filename 
@@ -76,4 +80,7 @@ Why does the world run on object based filesystems? There are a lot of advantage
 
 ## Making our way in a metadata world
 
-We've already discovered one way of working with files on the platform: `dx find data` (@sec-dx-find).
+We've already discovered one way of working with files on the platform: `dx find data` (@sec-dx-find). This is our main tool for selecting files with metadata.
+
+## Use Case: Use tags for archiving
+
