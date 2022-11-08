@@ -1,0 +1,17 @@
+# Object Based File Systems
+
+Project storage on the DNAnexus platform is object-based.
+
+## What is an Object Based Filesystem?
+
+You may be familar with folder based filesystems as ways to organize your data. The main way to find/refer to a file is through it's path.
+
+## Advantages of Object Based Filesystems
+
+- Highly scalable.
+- 
+
+## Disadvantages
+
+- It's confusing
+- Metadata is much more important with file management.

@@ -198,7 +198,7 @@ It's hard to tell at first, but We are returning a list of JSON objects, each of
 
 ## Learning `jq` gradually
 
-As you can see, JSON can be a very complicated to process, depending on how many levels you go deep in a J
+As you can see, JSON can be very complicated to process and extract information from, depending on how many levels you go deep in a JSON document. That's why `jq` exists
 
 `jq` is a utility that is made to process JSON. All `jq` commands have this format:
 
@@ -324,7 +324,7 @@ jq '.report_html.dnanexus_link' json_data/example.json
 :::{.callout-note collapse="true"}
 ## Answer
 
-You should return the actual value. 
+Running this command should return the value of `dnanexus-link` within `report_html`: 
 
 ```
 "file-G4x7GX80VBzQy64k4jzgjqgY"
@@ -334,7 +334,7 @@ You should return the actual value.
 
 ## Conditional Filters using `jq`
 
-One natural use case for this is to rerun failed jobs. 
+One natural use case for using `jq` on the DNAnexus platform is to rerun failed jobs. 
 
 Failed jobs can occur when using normal priority, which focuses on using spot instances. So, if we ran a series of jobs, we would want to restart these failed jobs.
 

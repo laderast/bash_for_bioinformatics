@@ -10,13 +10,23 @@ There are three main differences with UK Biobank and the Core DNAnexus Platform
 
 ## Application ID and Sharing
 
+What is an application ID? 
+
 ![UKB Application Process](images/ukb_application.png)
 
 ## Psuedonymization and Participant IDs
 
+Within an application, the participant IDs (also known as EIDs) are unique, through the pseudonymization process. This process has been done to ensure security and anonymity of participants. This means that you **cannot join data across applications**.
+
+For example, if I'm in application ID 43333 and you're in application 11111, our EIDs will not correspond because we have unique EIDs. Our data files are also mapped to these unique IDs.
+
+So if I make a pheno matrix with EIDs and you want to reuse this pheno matrix in your application, it won't work, because our EIDs don't match up. 
 
 ## Bulk Files
 
+The other difference with UKB RAP is that a lot of the data (image, genomics, etc) are available as files that have been dispensed into your `Bulk/` folder. 
+
+Here are a few examples
 
 ## Example Jobs on UKB
 
