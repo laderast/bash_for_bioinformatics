@@ -407,7 +407,7 @@ Answer
 </section>
 <section id="learning-jq-gradually" class="level2" data-number="7.8">
 <h2 data-number="7.8" class="anchored" data-anchor-id="learning-jq-gradually"><span class="header-section-number">7.8</span> Learning <code>jq</code> gradually</h2>
-<p>As you can see, JSON can be a very complicated to process, depending on how many levels you go deep in a J</p>
+<p>As you can see, JSON can be very complicated to process and extract information from, depending on how many levels you go deep in a JSON document. That’s why <code>jq</code> exists</p>
 <p><code>jq</code> is a utility that is made to process JSON. All <code>jq</code> commands have this format:</p>
 <pre class="{bash}"><code>#| eval: false
 jq '&lt;filter&gt;' &lt;JSON file&gt;</code></pre>
@@ -526,7 +526,7 @@ Answer
 </div>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>You should return the actual value.</p>
+<p>Running this command should return the value of <code>dnanexus-link</code> within <code>report_html</code>:</p>
 <pre><code>"file-G4x7GX80VBzQy64k4jzgjqgY"</code></pre>
 </div>
 </div>
@@ -535,7 +535,7 @@ Answer
 </section>
 <section id="conditional-filters-using-jq" class="level2" data-number="7.12">
 <h2 data-number="7.12" class="anchored" data-anchor-id="conditional-filters-using-jq"><span class="header-section-number">7.12</span> Conditional Filters using <code>jq</code></h2>
-<p>One natural use case for this is to rerun failed jobs.</p>
+<p>One natural use case for using <code>jq</code> on the DNAnexus platform is to rerun failed jobs.</p>
 <p>Failed jobs can occur when using normal priority, which focuses on using spot instances. So, if we ran a series of jobs, we would want to restart these failed jobs.</p>
 <p>This is a bit of code that would allow us to select those jobs that have failed.</p>
 <pre class="{bash}"><code>#| eval: false
