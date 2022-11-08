@@ -13,7 +13,7 @@ Project storage on the DNAnexus platform is object-based. This kind of filesyste
 
 ## What is an Object Based Filesystem?
 
-You may be familar with folder based filesystems as a way to organize your data. The main way to find/refer to a file is through it's path.
+You may be familar with *folder based* filesystems as a way to organize your data. The main way to find/refer to a file is through its path. What does this mean?
 
 For example, if my file is called `chr1.vcf.gz` and it is located in the folder `/Geno_Data`, we'd refer to it using the *full path*:
 
@@ -49,8 +49,9 @@ The other issue is that metadata has no requirements to be unique. Which means y
 
 You may have heard of Parquet files and wondered how they relate to file objects. They are a way to store data in a format called *columnar* storage.
 
-It turns out it is faster to store data not by rows, but by columns. This is really helpful because the data is sorted by *data* type and it's easier to traverse for this reason. 
+It turns out it is faster for retrieval to store data not by *rows*, but by *columns*. This is really helpful because the data is sorted by *data* type and it's easier to traverse for this reason. 
 
+There are a number of *database engines* that are fast at searching and traversing these types of files.
 :::
 
 ## Tracing the journey of a file object onto the platform
