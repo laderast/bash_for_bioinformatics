@@ -1,17 +1,78 @@
 # Object Based File Systems
 
-Project storage on the DNAnexus platform is object-based.
+Project storage on the DNAnexus platform is object-based. This kind of filesystem is probably very different from other file systems you've experienced.
+
+
+## Terminology
+
+- **Data** - The actual file contents. For example, for a CSV file, the actual header and rows correspond to the data
+- **Metadata** - information that is not part of the data, but is associated with the data. Some examples are the filename, the path, the creator, the created by date.
+- **Object** - A file that contains both the data and metadata. Has a unique identifier. 
+- **Unique Identifier** - the actual "address" for accessing the file. Unique to the file object when it is created. Does not change for the entire lifecycle of an object.
+- **Database Engine** - software that allows for rapid searching and retrieving objects. 
 
 ## What is an Object Based Filesystem?
 
-You may be familar with folder based filesystems as ways to organize your data. The main way to find/refer to a file is through it's path.
+You may be familar with folder based filesystems as a way to organize your data. The main way to find/refer to a file is through it's path.
+
+For example, if my file is called `chr1.vcf.gz` and it is located in the folder `/Geno_Data`, we'd refer to it using the *full path*:
+
+```
+/Geno_Data/chr1.vcf.gz
+```
+
+Folders and paths are the organizing factor for folder based systems. For a file in a folder-based filesystem, **the path needs to be unique.** If they are not, there are rules for whether to replace that file with a new one, or to save both versions. For example, we can't have two files named:
+
+```
+/Geno_Data/chr1.vcf.gz
+```
+In the same folder. 
+
+In contrast, object-based filesystems do not organize data like a folder based system. Each file object (such as a csv file, or a BAM file) has a unique identifier that identifies the data object. This unique identifier (like `file-aagejFHEJSEI`) serves as the main way to locate the data object.
+
+However, file objects also have metadata that can be attached to them. This metadata can be:
+
+- Filename
+- Path
+- Creation Date
+- Tags
+- Properties
+
+On the DNAnexus platform, both the filename and its path are considered **metadata**: they are part of objects that are created. That means that there are technically no folders on the platform - they only exist within the metadata for the objects. This was pretty confusing to me when I started out. 
+
+The other issue is that metadata has no requirements to be unique. Which means you can have duplicates with the same file name in the same folder. I know, this can be very distressing for most people. You can have two objects with the same file name, but they are considered distinct objects because they have unique identifiers. 
+
+<https://www.ibm.com/cloud/blog/object-vs-file-vs-block-storage>
+
+:::{.callout-note}
+## Par-what-now?
+
+You may have heard of Parquet files and wondered how they relate to file objects. They are a way to store data in a format called *columnar* storage.
+
+It turns out it is faster to store data not by rows, but by columns. This is really helpful because the data is sorted by *data* type and it's easier to traverse for this reason. 
+
+:::
+
+## Tracing the journey of a file object onto the platform
+
+
+
 
 ## Advantages of Object Based Filesystems
 
-- Highly scalable.
-- 
+Why does the world run on object based filesystems? There are a lot of advantages. 
+
+- **Highly scalable.** This is the main reason given for using an object-based system. Given that unique identifier, the data part of the object can be very large.
+- **Fast Retrieval.** Object-based filesystems let us work with arbitrarily large file sizes, and we can actually stream files to and from workers.
+- **Improved search speed.** You can attach various database engines to a set of objects and rapidly search through them. An example of such an engine is Snowflake.
 
 ## Disadvantages
 
-- It's confusing
-- Metadata is much more important with file management.
+- **Objects are immutable**. You can't edit an object in place. 
+- **You have to be careful when generating outputs**. You can end up with two different objects with the same filename 
+- **It's confusing.** You can actually have two files with the same filename in the same folder, because it is part of the changeable metadaa. Disambiguating these two files without using file-ids can be difficult. There are rules that govern this.
+- **Metadata is much more important with file management.**
+
+## Making our way in a metadata world
+
+We've already discovered one way of working with files on the platform: `dx find data` (@sec-dx-find).
