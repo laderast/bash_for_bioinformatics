@@ -47,14 +47,6 @@ Underneath it all, all interactions with the DNAnexus API server are JSON submis
 
 You can see that JSON is used in many places on the DNAnexus platforms, and for many purposes. So having basic knowledge of JSON can be really helpful.
 
-## Writing and modifying JSON
-
-I know that JSON is supposed to be human readable. However, there are a lot of little quibbles that don't make it easily human writable. 
-
-I highly recommend using an editor such as [VS Code](https://code.visualstudio.com/), with the appropriate [JSON plugin](https://code.visualstudio.com/docs/languages/json). 
-
-Using the plugin and this tutorial will help you write well formed JSON, and point out any issues you might have. It's easy to misplace a comma, or a bracket, and this tool helps you write well-formed JSON.
-
 ## Elements of a JSON file
 
 Here are the main elements of a JSON file:
@@ -403,5 +395,17 @@ xargs -I% sh -c "dx terminate %"
 
 ## Using JSON as an Input
 
-Coming soon.
+This section is made to help you in writing JSON files. If you build an app or a workflow, you will need to edit the `dxapp.json` or `dxworkflow.json` files to enable your executables to be runnable. 
+
+### Writing and modifying JSON
+
+I know that JSON is supposed to be human readable. However, there are a lot of little quibbles that don't make it easily human writable. 
+
+I highly recommend using an editor such as [VS Code](https://code.visualstudio.com/), with the appropriate [JSON plugin](https://code.visualstudio.com/docs/languages/json). A JSON Visualizer such as the [JSON Crack Extension](https://marketplace.visualstudio.com/items?itemName=AykutSarac.jsoncrack-vscode) will be extremely helpful as well.
+
+![JSON Visualizer Plugin](images/json_visualizer.png)
+
+Using the visualizer plugin and this tutorial will help you write well formed JSON, and point out any issues you might have. It's easy to misplace a comma, or a bracket, and this tool helps you write well-formed JSON.
+
+
 
