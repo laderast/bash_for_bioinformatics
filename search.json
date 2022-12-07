@@ -4,14 +4,63 @@
     "href": "index.html",
     "title": "Bash for Bioinformatics",
     "section": "",
-    "text": "Bash scripting is an essential skill in bioinformatics that we often expect bioinformaticians to have automatically learned. I think that this underestimates the difficulty of learning and applying Bash scripting.\nThis is a book that is meant to bring you (a budding bioinformaticist) beyond the foundational shell scripting skills learned from a shell scripting course such as the Software Carpentries Shell Course.\nYou might also be savvy with an on-premise High Performance Computing (HPC) cluster and are wondering how to transition to working in the cloud. We have an abbreviated path for you that can get you to running jobs in the cloud as quickly as possible.\nSpecifically, this book shows you a path to get started with reproducible cloud computing on the DNAnexus platform.\nOur goal is to showcase the “glue” skills that help you do bioinformatics reproducibly in the cloud.\n\n\nAfter reading and doing the exercises in this book, you should be able to:\n\nApply bash scripting to your own work\nArticulate basic Cloud Computing concepts that apply to the DNAnexus platform\nLeverage bash scripting and the dx-toolkit to execute jobs on the DNAnexus platform\nExecute batch processing of multiple files in a project on the DNAnexus platform\nMonitor, profile, terminate and retry jobs to optimize costs\nManage software dependencies reproducibly using container-based technologies such as Docker\n\n\n\n\nOne way to approach learning DNAnexus is to think about the skills you need to process a number of files. Ben Busby has noted there are 4 main skill levels in processing files on the DNAnexus platform:\n\n\n\n\n\n\n\n\nLevel\n# of Files\nSkill\n\n\n\n\n1\n1\nInteractive Analysis (Cloud Workstation, JupyterLab)\n\n\n2\n1-50 Files\ndx run, Swiss Army Knife\n\n\n3\n50-1000 Files\nBuilding your own apps\n\n\n4\n1000+ Files, multiple steps\nUsing WDL (Workflow Description Language)\n\n\n\nWe’ll be covering mostly level 2, but you will have the skills to move on to Level 3.\nThe key is to gradually build on your skills.\n\n\n\n\nUsing Bash scripting in DNAnexus Apps and Workflows\nUsing Bash Scripting in Workflow Description Language (WDL)\n\nAs mentioned, these are advanced level topics. However, this book will provide an excellent foundation to effectively building apps and workflows on the DNAnexus platform.\nThis book is not meant to be a substitute for excellent books such as Data Science on the Command Line. This book focuses on the essential Bash shell skills that will help you on the DNAnexus platform.\n\n\n\nThis is a very opinionated journey through Bash shell scripting, workflow languages, and reproduciblity. This is written from the perspective of a user, and should not be considered as official DNAnexus documentation.\nIt is designed to build on each of the concepts in a gradual manner. Where possible, we link to the official DNAnexus documentation. It is not meant to be a replacement for the DNAnexus documentation.\nAt each step, you’ll be able to do useful things with your data. We will focus on skills and programming patterns that are useful.\n\n\n\nBefore you tackle this book, you should be able to accomplish the following:\n\nOpen and utilize a shell. This section from the Missing Semester of your CS Education is very helpful: https://missing.csail.mit.edu/2020/course-shell/\nUtilize and navigate File Paths (both absolute and relative) in a Unix system\n\nWe recommend reviewing a course such as the Software Carpentry course for Shell Scripting before getting started with this book. The Missing Semester of your CS Education is another great introduction/resource.\n\n\n\nNo one writes a book alone. This book comes from a lot of conversations with everyone at DNAnexus, including:\n\nAllison Regier\nBen Busby\nAnastazie Sedlakova\nScott Funkhouser\nStanley Lan\nOndrej Klempir\nBranislav Slavik\nDavid Stanek\nChai Fungtammasan\n\n\n\n\nThis is the first draft of this book. It’s not going to be perfect, and we need help. Specifically, we need help with testing the setup and the exercises.\nIf you have an problem, you can file it as an issue using this link.\nIn your issue, please note the following:\n\nYour Name\nWhat your issue was\nWhich section, and line you found problematic or wouldn’t run\n\nIf you’re quarto/GitHub savvy, you can fork and file a pull request for typos/edits. If you’re not, you can file an issue.\nJust be aware that this is not my primary job - I’ll try to be as responsive as I can.\n\n\n\nBash for Bioinformatics by Ted Laderas is licensed under a Creative Commons Attribution 4.0 International License.Based on a work at https://github.com/laderast/bash_for_bioinformatics."
+    "text": "1 Introduction\nBash scripting is an essential skill in bioinformatics that we often expect bioinformaticians to have automatically learned. I think that this underestimates the difficulty of learning and applying Bash scripting.\nThis is a book that is meant to bring you (a budding bioinformaticist) beyond the foundational shell scripting skills learned from a shell scripting course such as the Software Carpentries Shell Course.\nYou might also be savvy with an on-premise High Performance Computing (HPC) cluster and are wondering how to transition to working in the cloud. We have an abbreviated path for you that can get you to running jobs in the cloud as quickly as possible.\nSpecifically, this book shows you a path to get started with reproducible cloud computing on the DNAnexus platform.\nOur goal is to showcase the “glue” skills that help you do bioinformatics reproducibly in the cloud."
   },
   {
-    "objectID": "01-setup-course.html",
-    "href": "01-setup-course.html",
-    "title": "2  Setup for the Course / dx-toolkit basics",
-    "section": "",
-    "text": "In this chapter, we’ll setup our DNAnexus account, start a project, get files into it, and run a job with those files.\nThis is meant to be a whirlwind tour - we’ll expand on more information about each of these steps in further chapters."
+    "objectID": "index.html#learning-objectives-for-this-book",
+    "href": "index.html#learning-objectives-for-this-book",
+    "title": "Bash for Bioinformatics",
+    "section": "1.1 Learning Objectives for this Book",
+    "text": "1.1 Learning Objectives for this Book\nAfter reading and doing the exercises in this book, you should be able to:\n\nApply bash scripting to your own work\nArticulate basic Cloud Computing concepts that apply to the DNAnexus platform\nLeverage bash scripting and the dx-toolkit to execute jobs on the DNAnexus platform\nExecute batch processing of multiple files in a project on the DNAnexus platform\nMonitor, profile, terminate and retry jobs to optimize costs\nManage software dependencies reproducibly using container-based technologies such as Docker"
+  },
+  {
+    "objectID": "index.html#four-levels-of-using-dnanexus",
+    "href": "index.html#four-levels-of-using-dnanexus",
+    "title": "Bash for Bioinformatics",
+    "section": "1.2 Four Levels of Using DNAnexus",
+    "text": "1.2 Four Levels of Using DNAnexus\nOne way to approach learning DNAnexus is to think about the skills you need to process a number of files. Ben Busby has noted there are 4 main skill levels in processing files on the DNAnexus platform:\n\n\n\n\n\n\n\n\nLevel\n# of Files\nSkill\n\n\n\n\n1\n1\nInteractive Analysis (Cloud Workstation, JupyterLab)\n\n\n2\n1-50 Files\ndx run, Swiss Army Knife\n\n\n3\n50-1000 Files\nBuilding your own apps\n\n\n4\n1000+ Files, multiple steps\nUsing WDL (Workflow Description Language)\n\n\n\nWe’ll be covering mostly level 2, but you will have the skills to move on to Level 3.\nThe key is to gradually build on your skills."
+  },
+  {
+    "objectID": "index.html#what-is-not-covered",
+    "href": "index.html#what-is-not-covered",
+    "title": "Bash for Bioinformatics",
+    "section": "1.3 What is not covered",
+    "text": "1.3 What is not covered\n\nUsing Bash scripting in DNAnexus Apps and Workflows\nUsing Bash Scripting in Workflow Description Language (WDL)\n\nAs mentioned, these are advanced level topics. However, this book will provide an excellent foundation to effectively building apps and workflows on the DNAnexus platform.\nThis book is not meant to be a substitute for excellent books such as Data Science on the Command Line. This book focuses on the essential Bash shell skills that will help you on the DNAnexus platform."
+  },
+  {
+    "objectID": "index.html#notes",
+    "href": "index.html#notes",
+    "title": "Bash for Bioinformatics",
+    "section": "1.4 Notes",
+    "text": "1.4 Notes\nThis is a very opinionated journey through Bash shell scripting, workflow languages, and reproduciblity. This is written from the perspective of a user, and should not be considered as official DNAnexus documentation.\nIt is designed to build on each of the concepts in a gradual manner. Where possible, we link to the official DNAnexus documentation. It is not meant to be a replacement for the DNAnexus documentation.\nAt each step, you’ll be able to do useful things with your data. We will focus on skills and programming patterns that are useful."
+  },
+  {
+    "objectID": "index.html#prerequisites",
+    "href": "index.html#prerequisites",
+    "title": "Bash for Bioinformatics",
+    "section": "1.5 Prerequisites",
+    "text": "1.5 Prerequisites\nBefore you tackle this book, you should be able to accomplish the following:\n\nOpen and utilize a shell. This section from the Missing Semester of your CS Education is very helpful: https://missing.csail.mit.edu/2020/course-shell/\nUtilize and navigate File Paths (both absolute and relative) in a Unix system\n\nWe recommend reviewing a course such as the Software Carpentry course for Shell Scripting before getting started with this book. The Missing Semester of your CS Education is another great introduction/resource."
+  },
+  {
+    "objectID": "index.html#contributors",
+    "href": "index.html#contributors",
+    "title": "Bash for Bioinformatics",
+    "section": "1.6 Contributors",
+    "text": "1.6 Contributors\nNo one writes a book alone. This book comes from a lot of conversations with everyone at DNAnexus, including:\n\nAllison Regier\nBen Busby\nAnastazie Sedlakova\nScott Funkhouser\nStanley Lan\nOndrej Klempir\nBranislav Slavik\nDavid Stanek\nChai Fungtammasan"
+  },
+  {
+    "objectID": "index.html#want-to-be-a-contributor",
+    "href": "index.html#want-to-be-a-contributor",
+    "title": "Bash for Bioinformatics",
+    "section": "1.7 Want to be a Contributor?",
+    "text": "1.7 Want to be a Contributor?\nThis is the first draft of this book. It’s not going to be perfect, and we need help. Specifically, we need help with testing the setup and the exercises.\nIf you have an problem, you can file it as an issue using this link.\nIn your issue, please note the following:\n\nYour Name\nWhat your issue was\nWhich section, and line you found problematic or wouldn’t run\n\nIf you’re quarto/GitHub savvy, you can fork and file a pull request for typos/edits. If you’re not, you can file an issue.\nJust be aware that this is not my primary job - I’ll try to be as responsive as I can."
+  },
+  {
+    "objectID": "index.html#license",
+    "href": "index.html#license",
+    "title": "Bash for Bioinformatics",
+    "section": "1.8 License",
+    "text": "1.8 License\nBash for Bioinformatics by Ted Laderas is licensed under a Creative Commons Attribution 4.0 International License.Based on a work at https://github.com/laderast/bash_for_bioinformatics."
   },
   {
     "objectID": "01-setup-course.html#setup-your-dnanexus-account",
@@ -98,13 +147,6 @@
     "text": "2.12 Full Script\nThe full script for setting up is in the setup-course/project_setup.sh\n#| eval: false\n#| filename: setup-course/project_setup.sh\n\n## Login\ndx login\n\n## Create your new project\ndx new project -y my_project\n\n## Clone this repository onto your computer\ngit clone https://github.com/laderast/bash_bioinfo_scripts\n\n## Upload the scripts into the scripts folder\ncd bash_bioinfo_scripts\ndx upload -r worker_scripts/\n\n## Copy the data over\ndx cp -r \"project-BQbJpBj0bvygyQxgQ1800Jkk:/Developer Quickstart\" .\ndx mv \"Developer Quickstart/\" \"data/\"\n\n## Confirm your project matches\ndx tree\ntree"
   },
   {
-    "objectID": "02-scripting-basics.html",
-    "href": "02-scripting-basics.html",
-    "title": "3  Shell Scripting Basics",
-    "section": "",
-    "text": "Prep for Exercises\n\n\n\nIn your shell (either on your machine or in binder), make sure you’re in the bash_bioinfo_scripts/scripting-basics/ folder:\ncd scripting-basics/"
-  },
-  {
     "objectID": "02-scripting-basics.html#learning-objectives",
     "href": "02-scripting-basics.html#learning-objectives",
     "title": "3  Shell Scripting Basics",
@@ -161,13 +203,6 @@
     "text": "3.8 What you learned in this chapter\nWhew, this was a whirlwind tour. Keep this chapter in mind when you’re working with the platform - the bash programming patterns will serve you well. We’ll refer to these patterns a lot when we get to doing more bioinformatics tasks on the platform.\n\nSetting up bash scripts with positional arguments\nIterating over a list of files using xargs\nHow to use bash variables and variable expansions\nWrapping an R Script in a bash script"
   },
   {
-    "objectID": "03-cloud-computing-basics.html",
-    "href": "03-cloud-computing-basics.html",
-    "title": "4  Cloud Computing Basics",
-    "section": "",
-    "text": "We all need to start somewhere when we work with cloud computing.\nThis chapter is a review of how cloud computing works on the DNAnexus platform. If you haven’t used cloud computing before, no worries! This chapter will get you up to speed.\nAlso, if you are coming from using an on-premise high performance computing (HPC) cluster, you can skip ahead."
-  },
-  {
     "objectID": "03-cloud-computing-basics.html#learning-objectives",
     "href": "03-cloud-computing-basics.html#learning-objectives",
     "title": "4  Cloud Computing Basics",
@@ -217,13 +252,6 @@
     "text": "4.7 Instance Types\nOne of the major concerns when you’re getting started on the platform is cost.\nWhat impacts cost? The number of workers and your priority for those workers matters. Most importantly, the instance type matters (Figure 4.7). Let’s review how to pick an instance type on the platform.\nFirst off, all apps (including Swiss Army Knife) have a default instance selected.\n\n\n\n\n\n\ngraph LR\n  A[\"mem1_ <br> (Memory)\"] --> C[\"ssd1_ <br> (Disk Size)\"]\n  C --> E[\"v2_ <br> (Version)\"]\n  E --> G[\"x4 <br> (Cores)\"]\n\n\n\n\n\n\n\n\nFigure 4.7: Anatomy of an instance type.\n\n\nThis is an example of an instance type. We can see that it has four sections: a memory class (mem1), a disk space class (ssd1), a version (v2), and the number of CPUs (x4). Together, this combination of classes forms an instance type.\n\n\n\nFigure 4.8: An Instance Type Checklist\n\n\nLet’s talk about what aspects to concentrate on when choosing your instance type.\n\n\n\n\n\n\nRead the Swiss Army Knife documentation\n\n\n\nWhen you run Swiss Army Knife from the command line, the default instance type is mem1_ssd1_v2_x4 - how many cores are available in this instance?\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n4 Cores (that’s what the x4 suffix means.)\n\n\n\n\n4.7.1 When to Scale Up or Down?\nOne question we often get is about when to scale up and down instance types in terms of resource usage. It’s important when you’re starting out to do profiling of the app on a data file or dataset that you know well. Start with the default instance type for an app on your test files at first.\nOnce you have run an app as a job, you can look at the job log to understand how the compute resources were utilized.\nIn this case, our job under utilized the compute resources on our instance type, so we might want to scale to a lower instance type.\nIf our job crashed due to a lack of resources, or is running slow, we may want to scale up our resource type."
   },
   {
-    "objectID": "04-doing-work-with-dx-run.html",
-    "href": "04-doing-work-with-dx-run.html",
-    "title": "5  Working with files using dx run",
-    "section": "",
-    "text": "Prep for Exercises\n\n\n\nMake sure you are logged into the platform using dx login and that your course project is selected with dx select.\nIn your shell, make sure you’re in the bash_bioinfo_scripts/dx-run/ folder:\ncd dx-run/"
-  },
-  {
     "objectID": "04-doing-work-with-dx-run.html#learning-objectives",
     "href": "04-doing-work-with-dx-run.html#learning-objectives",
     "title": "5  Working with files using dx run",
@@ -263,7 +291,7 @@
     "href": "04-doing-work-with-dx-run.html#more-swiss-army-knife",
     "title": "5  Working with files using dx run",
     "section": "5.6 More Swiss Army Knife",
-    "text": "5.6 More Swiss Army Knife\nThere is a table in the Swiss Army Knife documentation that specifies the inputs and how to configure the -icmd parameter for each operation.\nOne thing you’ll notice is that some of them require multiple file inputs. How do you specify them?\n\n5.6.1 Multiple file inputs to Swiss Army Knife\nOne thing that may not be apparent to you is that you can specify multiple file inputs with multiple -iin options.\nThe Swiss Army Knife Documentation notes that -iin is actually an array file input. That means that we can submit multiple files like this:\n#| eval: false\n#| filename: dx-run/dx-run-multiple-inputs.sh\n\ndx run app-swiss-army-knife \\\n  -iin=\"data/SRR100022_chrom20_mapped_to_b37.bam\" \\\n  -iin=\"data/SRR100022_chrom21_mapped_to_b37.bam\" \\\n  -iin=\"data/SRR100022_chrom22_mapped_to_b37.bam\" \\\n  -icmd=\"ls *.bam | xargs -I% sh -c 'samtools view -c % > %.count.txt'\"\nIf we want to process each of these files, we’ll have to use xargs in our icmd statement:\n-icmd=\"ls *.bam | xargs -I% sh -c 'samtools view -c % > %.count.txt'\"\nWe’ll cover more of this in Chapter 6.\n\n\n5.6.2 Using PLINK triplets\nIf we’re working with a PLINK trio of files (.bed, .bim, and .fam files), we can use the file inputs as below. We’ll submit the trio of files separately, and use the --bfile option in plink to specify all three files.\n#| eval: false\n#| filename dx-run/run-plink.sh\n\ndx run app-swiss-army-knife \\\n  -iin=\"data/plink/chr1.bed\" \\\n  -iin=\"data/plink/chr1.bim\" \\\n  -iin=\"data/plink/chr1.fam\" \\\n  -icmd=\"plink --bfile chr1 --geno 0.01 --make-bed --out chr1_qc\"\nWe will output the QC’ed and filtered files as chr1_qc.bed, chr1_qc.bim, and chr1_qc.fam. We do that by specifiying the --out option for plink."
+    "text": "5.6 More Swiss Army Knife\nThere is a table in the Swiss Army Knife documentation that specifies the inputs and how to configure the -icmd parameter for each operation.\nOne thing you’ll notice is that some of them require multiple file inputs. How do you specify them?\n\n5.6.1 Multiple file inputs to Swiss Army Knife\nOne thing that may not be apparent to you is that you can specify multiple file inputs with multiple -iin options.\nThe Swiss Army Knife Documentation notes that -iin is actually an array file input. That means that we can submit multiple files like this:\n#| eval: false\n#| filename: dx-run/dx-run-multiple-inputs.sh\n\ndx run app-swiss-army-knife \\\n  -iin=\"data/SRR100022_chrom20_mapped_to_b37.bam\" \\\n  -iin=\"data/SRR100022_chrom21_mapped_to_b37.bam\" \\\n  -iin=\"data/SRR100022_chrom22_mapped_to_b37.bam\" \\\n  -icmd=\"ls *.bam | xargs -I% sh -c 'samtools view -c % > %.count.txt'\"\nIf we want to process each of these files, we’ll have to use xargs in our icmd statement:\n-icmd=\"ls *.bam | xargs -I% sh -c 'samtools view -c % > %.count.txt'\"\nWe’ll cover more of this in Chapter 6.\n\n\n5.6.2 Using PLINK triplets\nIf we’re working with a PLINK trio of files (.bed, .bim, and .fam files), we can use the file inputs as below. We’ll submit the trio of files separately, and use the --bfile option in plink to specify all three files.\n#| eval: false\n#| filename: dx-run/run-plink.sh\n\ndx run app-swiss-army-knife \\\n  -iin=\"data/plink/chr1.bed\" \\\n  -iin=\"data/plink/chr1.bim\" \\\n  -iin=\"data/plink/chr1.fam\" \\\n  -icmd=\"plink --bfile chr1 --geno 0.01 --make-bed --out chr1_qc\"\nWe will output the QC’ed and filtered files as chr1_qc.bed, chr1_qc.bim, and chr1_qc.fam. We do that by specifiying the --out option for plink."
   },
   {
     "objectID": "04-doing-work-with-dx-run.html#dx-run-runs-deep",
@@ -292,13 +320,6 @@
     "title": "5  Working with files using dx run",
     "section": "5.10 What you learned in this chapter",
     "text": "5.10 What you learned in this chapter\nKudos and congrats for reaching this far. We built upon our shell scripting skills (Chapter 3) and our knowledge of cloud-computing (Chapter 4) to start running jobs effectively in the cloud."
-  },
-  {
-    "objectID": "05-batch-processing.html",
-    "href": "05-batch-processing.html",
-    "title": "6  Batch Processing on the Cloud",
-    "section": "",
-    "text": "Now we’re prepared for the big one: batch processing on the DNAnexus platform. All of the shell and DNAnexus skills we’ve learned will be leveraged in this chapter."
   },
   {
     "objectID": "05-batch-processing.html#learning-objectives",
@@ -364,13 +385,6 @@
     "text": "6.9 What you learned in this chapter\nThis was a big chapter, and built on everything you’ve learned in the previous chapters.\nWe put together the output of dx find data --brief (Section 6.3) with a pipe (|), and used xargs (Section 6.5) to spawn jobs per set of files.\nAnother way to process files is to upload them onto a worker and process them (Section 6.6).\nWe also learned of alternative approaches using dx generate_batch_inputs/dx run --batch-tsv and using Python to build the dx run statements."
   },
   {
-    "objectID": "06-JSON.html",
-    "href": "06-JSON.html",
-    "title": "7  Working with JSON on the DNAnexus Platform",
-    "section": "",
-    "text": "Preparing for this Chapter\n\n\n\nYou will not need to login to the platform for this chapter.\nYou’ll want to cd into the JSON folder in your project.\ncd JSON/\nYou’ll also need to install jq if it’s not yet on your system. If you’re on Ubuntu/WSL, I recommend installing via apt install. If you’re on Mac, I recommend installing via brew install.\nYou can check if jq is already installed by typing\nwhich jq"
-  },
-  {
     "objectID": "06-JSON.html#learning-objectives",
     "href": "06-JSON.html#learning-objectives",
     "title": "7  Working with JSON on the DNAnexus Platform",
@@ -392,81 +406,67 @@
     "text": "7.3 How is JSON used on the DNAnexus Platform?\nJSON is used in multiple ways on the DNAnexus Platform, including:\n\nSubmitting Jobs with complex parameters/inputs\nSpecifying parameters of an app or workflow (dxapp.json and dxworkflow.json)\nOutput of commands such as dx find data or dx find jobs with the --json flag\nExtracting environment variables from dx env\n\nUnderneath it all, all interactions with the DNAnexus API server are JSON submissions.\nYou can see that JSON is used in many places on the DNAnexus platforms, and for many purposes. So having basic knowledge of JSON can be really helpful."
   },
   {
-    "objectID": "06-JSON.html#writing-and-modifying-json",
-    "href": "06-JSON.html#writing-and-modifying-json",
-    "title": "7  Working with JSON on the DNAnexus Platform",
-    "section": "7.4 Writing and modifying JSON",
-    "text": "7.4 Writing and modifying JSON\nI know that JSON is supposed to be human readable. However, there are a lot of little quibbles that don’t make it easily human writable.\nI highly recommend using an editor such as VS Code, with the appropriate JSON plugin.\nUsing the plugin and this tutorial will help you write well formed JSON, and point out any issues you might have. It’s easy to misplace a comma, or a bracket, and this tool helps you write well-formed JSON."
-  },
-  {
     "objectID": "06-JSON.html#elements-of-a-json-file",
     "href": "06-JSON.html#elements-of-a-json-file",
     "title": "7  Working with JSON on the DNAnexus Platform",
-    "section": "7.5 Elements of a JSON file",
-    "text": "7.5 Elements of a JSON file\nHere are the main elements of a JSON file:\n\nKey:Value Pair. Example: \"name\": \"Ted Laderas\". In this example, our key is “name” and our value is “Ted Laderas”\nList [] - a collection of values. All values have to be the same data type. Example: [\"mom\", \"dad\"]\nObject {} - A collection of key/value pairs, enclosed with curly brackets ({})\n\nHere’s the example we’re going to use. We’ll do most of our processing of JSON on our own machine.\n#| eval: false\n#| filename: \"json_data/example.json\"\n\n{\n  \"report_html\": {\n    \"dnanexus_link\": \"file-G4x7GX80VBzQy64k4jzgjqgY\"\n  },\n  \"stats_txt\": {\n    \"dnanexus_link\": \"file-G4x7GXQ0VBzZxFxz4fqV120B\"\n  },\n  \"users\": [\"laderast\", \"ted\", \"tladeras\"]\n}\n\n\n\n\n\n\n\nCheck Yourself\n\n\n\nWhat does the names value contain in the following JSON? Is it a list, object or key:value pair?\n{\n  \"names\": [\"Ted\", \"Lisa\", \"George\"]\n}\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nIt is a list. We know this because the value contains a [].\n{\n  \"names\": [\"Ted\", \"Lisa\", \"George\"]\n}"
+    "section": "7.4 Elements of a JSON file",
+    "text": "7.4 Elements of a JSON file\nHere are the main elements of a JSON file:\n\nKey:Value Pair. Example: \"name\": \"Ted Laderas\". In this example, our key is “name” and our value is “Ted Laderas”\nList [] - a collection of values. All values have to be the same data type. Example: [\"mom\", \"dad\"]\nObject {} - A collection of key/value pairs, enclosed with curly brackets ({})\n\nHere’s the example we’re going to use. We’ll do most of our processing of JSON on our own machine.\n#| eval: false\n#| filename: \"json_data/example.json\"\n\n{\n  \"report_html\": {\n    \"dnanexus_link\": \"file-G4x7GX80VBzQy64k4jzgjqgY\"\n  },\n  \"stats_txt\": {\n    \"dnanexus_link\": \"file-G4x7GXQ0VBzZxFxz4fqV120B\"\n  },\n  \"users\": [\"laderast\", \"ted\", \"tladeras\"]\n}\n\n\n\n\n\n\n\nCheck Yourself\n\n\n\nWhat does the names value contain in the following JSON? Is it a list, object or key:value pair?\n{\n  \"names\": [\"Ted\", \"Lisa\", \"George\"]\n}\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nIt is a list. We know this because the value contains a [].\n{\n  \"names\": [\"Ted\", \"Lisa\", \"George\"]\n}"
   },
   {
     "objectID": "06-JSON.html#nestedness",
     "href": "06-JSON.html#nestedness",
     "title": "7  Working with JSON on the DNAnexus Platform",
-    "section": "7.6 Nestedness",
-    "text": "7.6 Nestedness\nJSON wouldn’t be helpful if it were only limited to a single level or key:values. Values can be lists or objects as well. For example, in our example JSON, we can see that the value of report_html is a JSON object:\n\"report_html\": {\n    \"dnanexus_link\": \"file-G4x7GX80VBzQy64k4jzgjqgY\"\n  }\nThe object is:\n{\n    \"dnanexus_link\": \"file-G4x7GX80VBzQy64k4jzgjqgY\"\n  }\nWhen we work with extracting information, we’ll have to take this nested structure in mind."
+    "section": "7.5 Nestedness",
+    "text": "7.5 Nestedness\nJSON wouldn’t be helpful if it were only limited to a single level or key:values. Values can be lists or objects as well. For example, in our example JSON, we can see that the value of report_html is a JSON object:\n\"report_html\": {\n    \"dnanexus_link\": \"file-G4x7GX80VBzQy64k4jzgjqgY\"\n  }\nThe object is:\n{\n    \"dnanexus_link\": \"file-G4x7GX80VBzQy64k4jzgjqgY\"\n  }\nWhen we work with extracting information, we’ll have to take this nested structure in mind."
   },
   {
     "objectID": "06-JSON.html#outputting-json-with-dx-find-commands",
     "href": "06-JSON.html#outputting-json-with-dx-find-commands",
     "title": "7  Working with JSON on the DNAnexus Platform",
-    "section": "7.7 Outputting JSON with dx find commands",
-    "text": "7.7 Outputting JSON with dx find commands\nWe already encountered the dx find data command, which we used in the batch processing chapter.\nIf we use the --json option, then the file information will be outputted in json format. This command will return a list of JSON file objects.\nFor example:\n#| eval: false\n#| filename: 05-JSON/dx-find-data-json.sh\n\ndx find data --path ted_demo:data/ --json\nThe output will look like this:\n[\n    {\n        \"project\": \"project-GGyyqvj0yp6B82ZZ9y23Zf6q\",\n        \"id\": \"file-FvQGZb00bvyQXzG3250XGbgz\",\n        \"describe\": {\n            \"id\": \"file-FvQGZb00bvyQXzG3250XGbgz\",\n            \"project\": \"project-GGyyqvj0yp6B82ZZ9y23Zf6q\",\n            \"class\": \"file\",\n            \"name\": \"small-celegans-sample.fastq\",\n            \"state\": \"closed\",\n            \"folder\": \"/json_data\",\n            \"modified\": 1665003035646,\n            \"size\": 16801690\n        }\n    },\n    {\n        \"project\": \"project-GGyyqvj0yp6B82ZZ9y23Zf6q\",\n        \"id\": \"file-B5Q8z8V5g3bX5qQ9y9YQ006k\",\n        \"describe\": {\n            \"id\": \"file-B5Q8z8V5g3bX5qQ9y9YQ006k\",\n            \"project\": \"project-GGyyqvj0yp6B82ZZ9y23Zf6q\",\n            \"class\": \"file\",\n            \"name\": \"NC_001422.fasta\",\n            \"state\": \"closed\",\n            \"folder\": \"/json_data\",\n            \"modified\": 1665003035645,\n            \"size\": 5539\n        }\n    }\n]\n\n\n\n\n\n\n\nTest your knowledge\n\n\n\nWhat is returned when we run this code? Is it a JSON object, or a list of JSON objects?\n#| eval: false\n#| filename: 05-JSON/dx-find-jobs-json.sh\ndx find jobs --json\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nIt’s hard to tell at first, but We are returning a list of JSON objects, each of which corresponds to a single job run within our project."
+    "section": "7.6 Outputting JSON with dx find commands",
+    "text": "7.6 Outputting JSON with dx find commands\nWe already encountered the dx find data command, which we used in the batch processing chapter.\nIf we use the --json option, then the file information will be outputted in json format. This command will return a list of JSON file objects.\nFor example:\n#| eval: false\n#| filename: 05-JSON/dx-find-data-json.sh\n\ndx find data --path ted_demo:data/ --json\nThe output will look like this:\n[\n    {\n        \"project\": \"project-GGyyqvj0yp6B82ZZ9y23Zf6q\",\n        \"id\": \"file-FvQGZb00bvyQXzG3250XGbgz\",\n        \"describe\": {\n            \"id\": \"file-FvQGZb00bvyQXzG3250XGbgz\",\n            \"project\": \"project-GGyyqvj0yp6B82ZZ9y23Zf6q\",\n            \"class\": \"file\",\n            \"name\": \"small-celegans-sample.fastq\",\n            \"state\": \"closed\",\n            \"folder\": \"/json_data\",\n            \"modified\": 1665003035646,\n            \"size\": 16801690\n        }\n    },\n    {\n        \"project\": \"project-GGyyqvj0yp6B82ZZ9y23Zf6q\",\n        \"id\": \"file-B5Q8z8V5g3bX5qQ9y9YQ006k\",\n        \"describe\": {\n            \"id\": \"file-B5Q8z8V5g3bX5qQ9y9YQ006k\",\n            \"project\": \"project-GGyyqvj0yp6B82ZZ9y23Zf6q\",\n            \"class\": \"file\",\n            \"name\": \"NC_001422.fasta\",\n            \"state\": \"closed\",\n            \"folder\": \"/json_data\",\n            \"modified\": 1665003035645,\n            \"size\": 5539\n        }\n    }\n]\n\n\n\n\n\n\n\nTest your knowledge\n\n\n\nWhat is returned when we run this code? Is it a JSON object, or a list of JSON objects?\n#| eval: false\n#| filename: 05-JSON/dx-find-jobs-json.sh\ndx find jobs --json\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nIt’s hard to tell at first, but We are returning a list of JSON objects, each of which corresponds to a single job run within our project."
   },
   {
     "objectID": "06-JSON.html#learning-jq-gradually",
     "href": "06-JSON.html#learning-jq-gradually",
     "title": "7  Working with JSON on the DNAnexus Platform",
-    "section": "7.8 Learning jq gradually",
-    "text": "7.8 Learning jq gradually\nAs you can see, JSON can be very complicated to process and extract information from, depending on how many levels you go deep in a JSON document. That’s why jq exists\njq is a utility that is made to process JSON. All jq commands have this format:\n#| eval: false\njq '<filter>' <JSON file>\nFilters are the heart of processing data using jq. They let you extract JSON values or keys and process them with conditionals to filter data down. For example, you can do something like the following:\n\nSelect all elements where the job status is failed\nFor each of these elements, output the job-status id\n\nYou can see how jq can be extremely powerful.\nYou can also pipe JSON from standard output into jq. This will be really helpful for us when we start using pipes of data files from dx find data."
+    "section": "7.7 Learning jq gradually",
+    "text": "7.7 Learning jq gradually\nAs you can see, JSON can be very complicated to process and extract information from, depending on how many levels you go deep in a JSON document. That’s why jq exists\njq is a utility that is made to process JSON. All jq commands have this format:\n#| eval: false\njq '<filter>' <JSON file>\nFilters are the heart of processing data using jq. They let you extract JSON values or keys and process them with conditionals to filter data down. For example, you can do something like the following:\n\nSelect all elements where the job status is failed\nFor each of these elements, output the job-status id\n\nYou can see how jq can be extremely powerful.\nYou can also pipe JSON from standard output into jq. This will be really helpful for us when we start using pipes of data files from dx find data."
   },
   {
     "objectID": "06-JSON.html#our-simplest-filter-.",
     "href": "06-JSON.html#our-simplest-filter-.",
     "title": "7  Working with JSON on the DNAnexus Platform",
-    "section": "7.9 Our simplest filter: .",
-    "text": "7.9 Our simplest filter: .\nOne of the biggest uses for jq is for more readable formatting. Oftentimes, the JSON returned by an API call is really hard to read. It can be returned as a single line of text, and it is really hard for humans to see the actual structure of the JSON response.\nIf we run jq . on a JSON file, we’ll see that it makes it much more readable.\n#| eval: false\n#| filename: JSON/jq-simple.sh\njq '.' json_data/example.json"
+    "section": "7.8 Our simplest filter: .",
+    "text": "7.8 Our simplest filter: .\nOne of the biggest uses for jq is for more readable formatting. Oftentimes, the JSON returned by an API call is really hard to read. It can be returned as a single line of text, and it is really hard for humans to see the actual structure of the JSON response.\nIf we run jq . on a JSON file, we’ll see that it makes it much more readable.\n#| eval: false\n#| filename: JSON/jq-simple.sh\njq '.' json_data/example.json"
   },
   {
     "objectID": "06-JSON.html#getting-the-keys",
     "href": "06-JSON.html#getting-the-keys",
     "title": "7  Working with JSON on the DNAnexus Platform",
-    "section": "7.10 Getting the keys",
-    "text": "7.10 Getting the keys\nWe can extract the keys from the top level JSON by using 'keys' as our filter.\n#| eval: false\n#| filename: JSON/jq-keys.sh\njq 'keys' json_data/example.json"
+    "section": "7.9 Getting the keys",
+    "text": "7.9 Getting the keys\nWe can extract the keys from the top level JSON by using 'keys' as our filter.\n#| eval: false\n#| filename: JSON/jq-keys.sh\njq 'keys' json_data/example.json"
   },
   {
     "objectID": "06-JSON.html#extracting-a-value-from-a-container-jq-.report_html",
     "href": "06-JSON.html#extracting-a-value-from-a-container-jq-.report_html",
     "title": "7  Working with JSON on the DNAnexus Platform",
-    "section": "7.11 Extracting a value from a container: jq .report_html",
-    "text": "7.11 Extracting a value from a container: jq .report_html\nSo, say we want to extract the value from the report_html key in the above.\nWe can specify the key that we’re interested in to extract the value from that key.\n#| eval: false\n#| filename: JSON/jq-report.sh\njq '.report_html' json_data/example.json\n\n\n\n\n\n\nTry it out\n\n\n\nThis is the JSON file we’re going to be working with, in json_data/example.json.\n#| eval: false\n#| filename: \"json_data/example.json\"\n\n{\n  \"report_html\": {\n    \"dnanexus_link\": \"file-G4x7GX80VBzQy64k4jzgjqgY\"\n  },\n  \"stats_txt\": {\n    \"dnanexus_link\": \"file-G4x7GXQ0VBzZxFxz4fqV120B\"\n  },\n  \"users\": [\"laderast\", \"ted\", \"tladeras\"]\n}\n\nIn your terminal, try out:\njq '.stats_txt' json_data/example.json\nWhat do you return?\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n#| eval: false\n#| filename: JSON/jq-stats-txt.sh\njq '.stats_txt' json_data/example.json\nWe’ll return the following JSON object, which contains a single key-value pair.\n{\n  \"dnanexus_link\": \"file-G4x7GXQ0VBzZxFxz4fqV120B\"\n}\n\n\n\n\n7.11.1 Going one level deeper\nWe can extract the actual value associated with the dnanexus_link key within report_html by chaining onto our filter:\n#| eval: false\n#| filename: JSON/jq-nested.sh\njq '.report_html.dnanexus_link' json_data/example.json\n\n\n\n\n\n\nTry It Out\n\n\n\nWhat is returned when you run this code?\n#| eval: false\n#| filename: JSON/jq-nested.sh\njq '.report_html.dnanexus_link' json_data/example.json\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nRunning this command should return the value of dnanexus-link within report_html:\n\"file-G4x7GX80VBzQy64k4jzgjqgY\""
+    "section": "7.10 Extracting a value from a container: jq .report_html",
+    "text": "7.10 Extracting a value from a container: jq .report_html\nSo, say we want to extract the value from the report_html key in the above.\nWe can specify the key that we’re interested in to extract the value from that key.\n#| eval: false\n#| filename: JSON/jq-report.sh\njq '.report_html' json_data/example.json\n\n\n\n\n\n\nTry it out\n\n\n\nThis is the JSON file we’re going to be working with, in json_data/example.json.\n#| eval: false\n#| filename: \"json_data/example.json\"\n\n{\n  \"report_html\": {\n    \"dnanexus_link\": \"file-G4x7GX80VBzQy64k4jzgjqgY\"\n  },\n  \"stats_txt\": {\n    \"dnanexus_link\": \"file-G4x7GXQ0VBzZxFxz4fqV120B\"\n  },\n  \"users\": [\"laderast\", \"ted\", \"tladeras\"]\n}\n\nIn your terminal, try out:\njq '.stats_txt' json_data/example.json\nWhat do you return?\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n#| eval: false\n#| filename: JSON/jq-stats-txt.sh\njq '.stats_txt' json_data/example.json\nWe’ll return the following JSON object, which contains a single key-value pair.\n{\n  \"dnanexus_link\": \"file-G4x7GXQ0VBzZxFxz4fqV120B\"\n}\n\n\n\n\n7.10.1 Going one level deeper\nWe can extract the actual value associated with the dnanexus_link key within report_html by chaining onto our filter:\n#| eval: false\n#| filename: JSON/jq-nested.sh\njq '.report_html.dnanexus_link' json_data/example.json\n\n\n\n\n\n\nTry It Out\n\n\n\nWhat is returned when you run this code?\n#| eval: false\n#| filename: JSON/jq-nested.sh\njq '.report_html.dnanexus_link' json_data/example.json\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nRunning this command should return the value of dnanexus-link within report_html:\n\"file-G4x7GX80VBzQy64k4jzgjqgY\""
   },
   {
     "objectID": "06-JSON.html#conditional-filters-using-jq",
     "href": "06-JSON.html#conditional-filters-using-jq",
     "title": "7  Working with JSON on the DNAnexus Platform",
-    "section": "7.12 Conditional Filters using jq",
-    "text": "7.12 Conditional Filters using jq\nOne natural use case for using jq on the DNAnexus platform is to rerun failed jobs.\nFailed jobs can occur when using normal priority, which focuses on using spot instances. So, if we ran a series of jobs, we would want to restart these failed jobs.\nThis is a bit of code that would allow us to select those jobs that have failed.\n#| eval: false\n#| filename: JSON/dx-find-jobs-jq-clone.sh\ndx find jobs --json |\\ \njq '.[] | select (.state | contains(\"failed\")) | .id' |\\\nxargs -I% sh -c \"dx run --clone %\"\nThe second line contains the jq filter that does the magic. Remember, the filter is contained within the single quotes ('').\nThe last line contains \"dx run --clone %\".\nLet’s take apart the different parts of the jq filter (Figure 7.1):\n\n\n\n\n\n\ngraph LR;\n  A[\".[]\"] --> B{\"|\"} \n  B --> C[\"select (.state | contains('failed'))\"] \n  C --> D{\"|\"} \n  D --> E[\".id\"]\n\n\n\n\n\n\n\n\nFigure 7.1: Taking apart the jq filter.\n\n\nNote that the pipes in this filter apply only to the jq filter, so don’t mix them up with the other pipes in our overall Bash statement.\nThe first part of the filter, .[], says that we want to process the list (remember, dx find jobs returns a list of objects).\nThe second part of the filter, select (.state | contains('failed')) will let us select objects in the list that have a state of failed. This list of objects is then passed on the next part of the filter.\nThe last part of the filter, .id, returns the the file ids for our failed jobs.\nThis is a basic pattern for selecting objects that meet a criteria, and can be really helpful when you want more control of your batch processing.\n\n\n\n\n\n\nCheck Yourself\n\n\n\nHow would you modify the code below to terminate all jobs that had state running using dx terminate?\n#| eval: false\ndx find jobs --json |\\ \njq '.[] | select (.state | contains(\"failed\")) | .id' |\\\nxargs -I% sh -c \"dx run --clone %\"\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n#| eval: false\ndx find jobs --json | \\ \njq '.[] | select (.state | contains(\"running\")) | .id' | \\\nxargs -I% sh -c \"dx terminate %\""
+    "section": "7.11 Conditional Filters using jq",
+    "text": "7.11 Conditional Filters using jq\nOne natural use case for using jq on the DNAnexus platform is to rerun failed jobs.\nFailed jobs can occur when using normal priority, which focuses on using spot instances. So, if we ran a series of jobs, we would want to restart these failed jobs.\nThis is a bit of code that would allow us to select those jobs that have failed.\n#| eval: false\n#| filename: JSON/dx-find-jobs-jq-clone.sh\ndx find jobs --json |\\ \njq '.[] | select (.state | contains(\"failed\")) | .id' |\\\nxargs -I% sh -c \"dx run --clone %\"\nThe second line contains the jq filter that does the magic. Remember, the filter is contained within the single quotes ('').\nThe last line contains \"dx run --clone %\".\nLet’s take apart the different parts of the jq filter (Figure 7.1):\n\n\n\n\n\n\ngraph LR;\n  A[\".[]\"] --> B{\"|\"} \n  B --> C[\"select (.state | contains('failed'))\"] \n  C --> D{\"|\"} \n  D --> E[\".id\"]\n\n\n\n\n\n\n\n\nFigure 7.1: Taking apart the jq filter.\n\n\nNote that the pipes in this filter apply only to the jq filter, so don’t mix them up with the other pipes in our overall Bash statement.\nThe first part of the filter, .[], says that we want to process the list (remember, dx find jobs returns a list of objects).\nThe second part of the filter, select (.state | contains('failed')) will let us select objects in the list that have a state of failed. This list of objects is then passed on the next part of the filter.\nThe last part of the filter, .id, returns the the file ids for our failed jobs.\nThis is a basic pattern for selecting objects that meet a criteria, and can be really helpful when you want more control of your batch processing.\n\n\n\n\n\n\nCheck Yourself\n\n\n\nHow would you modify the code below to terminate all jobs that had state running using dx terminate?\n#| eval: false\ndx find jobs --json |\\ \njq '.[] | select (.state | contains(\"failed\")) | .id' |\\\nxargs -I% sh -c \"dx run --clone %\"\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n#| eval: false\ndx find jobs --json | \\ \njq '.[] | select (.state | contains(\"running\")) | .id' | \\\nxargs -I% sh -c \"dx terminate %\""
   },
   {
     "objectID": "06-JSON.html#using-json-as-an-input",
     "href": "06-JSON.html#using-json-as-an-input",
     "title": "7  Working with JSON on the DNAnexus Platform",
-    "section": "7.13 Using JSON as an Input",
-    "text": "7.13 Using JSON as an Input\nComing soon."
-  },
-  {
-    "objectID": "07-containers.html",
-    "href": "07-containers.html",
-    "title": "8  Containers and Reproducibility",
-    "section": "",
-    "text": "Prep for Exercises\n\n\n\nMake sure you are logged into the platform using dx login and that your course project is selected with dx select.\nIn your shell (either on your machine or in binder), make sure you’re in the bash_bioinfo_scripts/containers/ folder:\ncd containers/"
+    "section": "7.12 Using JSON as an Input",
+    "text": "7.12 Using JSON as an Input\nThis section is made to help you in writing JSON files. If you build an app or a workflow, you will need to edit the dxapp.json or dxworkflow.json files to enable your executables to be runnable.\n\n7.12.1 Writing and modifying JSON\nI know that JSON is supposed to be human readable. However, there are a lot of little quibbles that don’t make it easily human writable.\nI highly recommend using an editor such as VS Code, with the appropriate JSON plugin. A JSON Visualizer such as the JSON Crack Extension will be extremely helpful as well.\n\n\n\nJSON Visualizer Plugin\n\n\nUsing the visualizer plugin and this tutorial will help you write well formed JSON, and point out any issues you might have. It’s easy to misplace a comma, or a bracket, and this tool helps you write well-formed JSON."
   },
   {
     "objectID": "07-containers.html#learning-objectives",
@@ -530,13 +530,6 @@
     "title": "8  Containers and Reproducibility",
     "section": "8.9 What you learned in this chapter",
     "text": "8.9 What you learned in this chapter\n\nHow containers enable reproducibility\nDefined specific container terminology\nCreated snapshot files using ttyd\nUse these snapshot files with Swiss Army Knife\nHow to extend a docker image by installing new software"
-  },
-  {
-    "objectID": "appendix.html",
-    "href": "appendix.html",
-    "title": "9  Appendix",
-    "section": "",
-    "text": "The appendix contains multiple sections that I wanted to refer to, but there’s not a really good place for them."
   },
   {
     "objectID": "appendix.html#other-useful-dx-toolkit-commands",

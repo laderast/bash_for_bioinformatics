@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -174,19 +174,21 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="toc-section-number">7.1</span>  Learning Objectives</a></li>
   <li><a href="#what-is-json" id="toc-what-is-json" class="nav-link" data-scroll-target="#what-is-json"><span class="toc-section-number">7.2</span>  What is JSON?</a></li>
   <li><a href="#how-is-json-used-on-the-dnanexus-platform" id="toc-how-is-json-used-on-the-dnanexus-platform" class="nav-link" data-scroll-target="#how-is-json-used-on-the-dnanexus-platform"><span class="toc-section-number">7.3</span>  How is JSON used on the DNAnexus Platform?</a></li>
-  <li><a href="#writing-and-modifying-json" id="toc-writing-and-modifying-json" class="nav-link" data-scroll-target="#writing-and-modifying-json"><span class="toc-section-number">7.4</span>  Writing and modifying JSON</a></li>
-  <li><a href="#elements-of-a-json-file" id="toc-elements-of-a-json-file" class="nav-link" data-scroll-target="#elements-of-a-json-file"><span class="toc-section-number">7.5</span>  Elements of a JSON file</a></li>
-  <li><a href="#nestedness" id="toc-nestedness" class="nav-link" data-scroll-target="#nestedness"><span class="toc-section-number">7.6</span>  Nestedness</a></li>
-  <li><a href="#outputting-json-with-dx-find-commands" id="toc-outputting-json-with-dx-find-commands" class="nav-link" data-scroll-target="#outputting-json-with-dx-find-commands"><span class="toc-section-number">7.7</span>  Outputting JSON with <code>dx find</code> commands</a></li>
-  <li><a href="#learning-jq-gradually" id="toc-learning-jq-gradually" class="nav-link" data-scroll-target="#learning-jq-gradually"><span class="toc-section-number">7.8</span>  Learning <code>jq</code> gradually</a></li>
-  <li><a href="#our-simplest-filter-." id="toc-our-simplest-filter-." class="nav-link" data-scroll-target="#our-simplest-filter-."><span class="toc-section-number">7.9</span>  Our simplest filter: <code>.</code></a></li>
-  <li><a href="#getting-the-keys" id="toc-getting-the-keys" class="nav-link" data-scroll-target="#getting-the-keys"><span class="toc-section-number">7.10</span>  Getting the keys</a></li>
-  <li><a href="#extracting-a-value-from-a-container-jq-.report_html" id="toc-extracting-a-value-from-a-container-jq-.report_html" class="nav-link" data-scroll-target="#extracting-a-value-from-a-container-jq-.report_html"><span class="toc-section-number">7.11</span>  Extracting a value from a container: <code>jq .report_html</code></a>
+  <li><a href="#elements-of-a-json-file" id="toc-elements-of-a-json-file" class="nav-link" data-scroll-target="#elements-of-a-json-file"><span class="toc-section-number">7.4</span>  Elements of a JSON file</a></li>
+  <li><a href="#nestedness" id="toc-nestedness" class="nav-link" data-scroll-target="#nestedness"><span class="toc-section-number">7.5</span>  Nestedness</a></li>
+  <li><a href="#outputting-json-with-dx-find-commands" id="toc-outputting-json-with-dx-find-commands" class="nav-link" data-scroll-target="#outputting-json-with-dx-find-commands"><span class="toc-section-number">7.6</span>  Outputting JSON with <code>dx find</code> commands</a></li>
+  <li><a href="#learning-jq-gradually" id="toc-learning-jq-gradually" class="nav-link" data-scroll-target="#learning-jq-gradually"><span class="toc-section-number">7.7</span>  Learning <code>jq</code> gradually</a></li>
+  <li><a href="#our-simplest-filter-." id="toc-our-simplest-filter-." class="nav-link" data-scroll-target="#our-simplest-filter-."><span class="toc-section-number">7.8</span>  Our simplest filter: <code>.</code></a></li>
+  <li><a href="#getting-the-keys" id="toc-getting-the-keys" class="nav-link" data-scroll-target="#getting-the-keys"><span class="toc-section-number">7.9</span>  Getting the keys</a></li>
+  <li><a href="#extracting-a-value-from-a-container-jq-.report_html" id="toc-extracting-a-value-from-a-container-jq-.report_html" class="nav-link" data-scroll-target="#extracting-a-value-from-a-container-jq-.report_html"><span class="toc-section-number">7.10</span>  Extracting a value from a container: <code>jq .report_html</code></a>
   <ul class="collapse">
-  <li><a href="#going-one-level-deeper" id="toc-going-one-level-deeper" class="nav-link" data-scroll-target="#going-one-level-deeper"><span class="toc-section-number">7.11.1</span>  Going one level deeper</a></li>
+  <li><a href="#going-one-level-deeper" id="toc-going-one-level-deeper" class="nav-link" data-scroll-target="#going-one-level-deeper"><span class="toc-section-number">7.10.1</span>  Going one level deeper</a></li>
   </ul></li>
-  <li><a href="#conditional-filters-using-jq" id="toc-conditional-filters-using-jq" class="nav-link" data-scroll-target="#conditional-filters-using-jq"><span class="toc-section-number">7.12</span>  Conditional Filters using <code>jq</code></a></li>
-  <li><a href="#using-json-as-an-input" id="toc-using-json-as-an-input" class="nav-link" data-scroll-target="#using-json-as-an-input"><span class="toc-section-number">7.13</span>  Using JSON as an Input</a></li>
+  <li><a href="#conditional-filters-using-jq" id="toc-conditional-filters-using-jq" class="nav-link" data-scroll-target="#conditional-filters-using-jq"><span class="toc-section-number">7.11</span>  Conditional Filters using <code>jq</code></a></li>
+  <li><a href="#using-json-as-an-input" id="toc-using-json-as-an-input" class="nav-link" data-scroll-target="#using-json-as-an-input"><span class="toc-section-number">7.12</span>  Using JSON as an Input</a>
+  <ul class="collapse">
+  <li><a href="#writing-and-modifying-json" id="toc-writing-and-modifying-json" class="nav-link" data-scroll-target="#writing-and-modifying-json"><span class="toc-section-number">7.12.1</span>  Writing and modifying JSON</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -203,6 +205,7 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -255,14 +258,8 @@ Preparing for this Chapter
 <p>Underneath it all, all interactions with the DNAnexus API server are JSON submissions.</p>
 <p>You can see that JSON is used in many places on the DNAnexus platforms, and for many purposes. So having basic knowledge of JSON can be really helpful.</p>
 </section>
-<section id="writing-and-modifying-json" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="writing-and-modifying-json"><span class="header-section-number">7.4</span> Writing and modifying JSON</h2>
-<p>I know that JSON is supposed to be human readable. However, there are a lot of little quibbles that don’t make it easily human writable.</p>
-<p>I highly recommend using an editor such as <a href="https://code.visualstudio.com/">VS Code</a>, with the appropriate <a href="https://code.visualstudio.com/docs/languages/json">JSON plugin</a>.</p>
-<p>Using the plugin and this tutorial will help you write well formed JSON, and point out any issues you might have. It’s easy to misplace a comma, or a bracket, and this tool helps you write well-formed JSON.</p>
-</section>
-<section id="elements-of-a-json-file" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="elements-of-a-json-file"><span class="header-section-number">7.5</span> Elements of a JSON file</h2>
+<section id="elements-of-a-json-file" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="elements-of-a-json-file"><span class="header-section-number">7.4</span> Elements of a JSON file</h2>
 <p>Here are the main elements of a JSON file:</p>
 <ul>
 <li><strong>Key:Value Pair</strong>. Example: <code>"name": "Ted Laderas"</code>. In this example, our key is “name” and our value is “Ted Laderas”</li>
@@ -319,8 +316,8 @@ Answer
 </div>
 </div>
 </section>
-<section id="nestedness" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="nestedness"><span class="header-section-number">7.6</span> Nestedness</h2>
+<section id="nestedness" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="nestedness"><span class="header-section-number">7.5</span> Nestedness</h2>
 <p>JSON wouldn’t be helpful if it were only limited to a single level or key:values. Values can be lists or objects as well. For example, in our example JSON, we can see that the value of <code>report_html</code> is a JSON object:</p>
 <pre><code>"report_html": {
     "dnanexus_link": "file-G4x7GX80VBzQy64k4jzgjqgY"
@@ -331,8 +328,8 @@ Answer
   }</code></pre>
 <p>When we work with extracting information, we’ll have to take this nested structure in mind.</p>
 </section>
-<section id="outputting-json-with-dx-find-commands" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="outputting-json-with-dx-find-commands"><span class="header-section-number">7.7</span> Outputting JSON with <code>dx find</code> commands</h2>
+<section id="outputting-json-with-dx-find-commands" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="outputting-json-with-dx-find-commands"><span class="header-section-number">7.6</span> Outputting JSON with <code>dx find</code> commands</h2>
 <p>We already encountered the <code>dx find data</code> command, which we used in the batch processing chapter.</p>
 <p>If we use the <code>--json</code> option, then the file information will be outputted in json format. This command will return a list of JSON file objects.</p>
 <p>For example:</p>
@@ -405,8 +402,8 @@ Answer
 </div>
 </div>
 </section>
-<section id="learning-jq-gradually" class="level2" data-number="7.8">
-<h2 data-number="7.8" class="anchored" data-anchor-id="learning-jq-gradually"><span class="header-section-number">7.8</span> Learning <code>jq</code> gradually</h2>
+<section id="learning-jq-gradually" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="learning-jq-gradually"><span class="header-section-number">7.7</span> Learning <code>jq</code> gradually</h2>
 <p>As you can see, JSON can be very complicated to process and extract information from, depending on how many levels you go deep in a JSON document. That’s why <code>jq</code> exists</p>
 <p><code>jq</code> is a utility that is made to process JSON. All <code>jq</code> commands have this format:</p>
 <pre class="{bash}"><code>#| eval: false
@@ -419,23 +416,23 @@ jq '&lt;filter&gt;' &lt;JSON file&gt;</code></pre>
 <p>You can see how <code>jq</code> can be extremely powerful.</p>
 <p>You can also pipe JSON from standard output into <code>jq</code>. This will be really helpful for us when we start using pipes of data files from <code>dx find data</code>.</p>
 </section>
-<section id="our-simplest-filter-." class="level2" data-number="7.9">
-<h2 data-number="7.9" class="anchored" data-anchor-id="our-simplest-filter-."><span class="header-section-number">7.9</span> Our simplest filter: <code>.</code></h2>
+<section id="our-simplest-filter-." class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="our-simplest-filter-."><span class="header-section-number">7.8</span> Our simplest filter: <code>.</code></h2>
 <p>One of the biggest uses for <code>jq</code> is for more readable formatting. Oftentimes, the JSON returned by an API call is really hard to read. It can be returned as a single line of text, and it is really hard for humans to see the actual structure of the JSON response.</p>
 <p>If we run <code>jq .</code> on a JSON file, we’ll see that it makes it much more readable.</p>
 <pre class="{bash}"><code>#| eval: false
 #| filename: JSON/jq-simple.sh
 jq '.' json_data/example.json</code></pre>
 </section>
-<section id="getting-the-keys" class="level2" data-number="7.10">
-<h2 data-number="7.10" class="anchored" data-anchor-id="getting-the-keys"><span class="header-section-number">7.10</span> Getting the keys</h2>
+<section id="getting-the-keys" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="getting-the-keys"><span class="header-section-number">7.9</span> Getting the keys</h2>
 <p>We can extract the keys from the top level JSON by using <code>'keys'</code> as our filter.</p>
 <pre class="{bash}"><code>#| eval: false
 #| filename: JSON/jq-keys.sh
 jq 'keys' json_data/example.json</code></pre>
 </section>
-<section id="extracting-a-value-from-a-container-jq-.report_html" class="level2" data-number="7.11">
-<h2 data-number="7.11" class="anchored" data-anchor-id="extracting-a-value-from-a-container-jq-.report_html"><span class="header-section-number">7.11</span> Extracting a value from a container: <code>jq .report_html</code></h2>
+<section id="extracting-a-value-from-a-container-jq-.report_html" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="extracting-a-value-from-a-container-jq-.report_html"><span class="header-section-number">7.10</span> Extracting a value from a container: <code>jq .report_html</code></h2>
 <p>So, say we want to extract the value from the <code>report_html</code> key in the above.</p>
 <p>We can specify the key that we’re interested in to extract the value from that key.</p>
 <pre class="{bash}"><code>#| eval: false
@@ -492,8 +489,8 @@ jq '.stats_txt' json_data/example.json</code></pre>
 </div>
 </div>
 </div>
-<section id="going-one-level-deeper" class="level3" data-number="7.11.1">
-<h3 data-number="7.11.1" class="anchored" data-anchor-id="going-one-level-deeper"><span class="header-section-number">7.11.1</span> Going one level deeper</h3>
+<section id="going-one-level-deeper" class="level3" data-number="7.10.1">
+<h3 data-number="7.10.1" class="anchored" data-anchor-id="going-one-level-deeper"><span class="header-section-number">7.10.1</span> Going one level deeper</h3>
 <p>We can extract the actual value associated with the <code>dnanexus_link</code> key within <code>report_html</code> by chaining onto our filter:</p>
 <pre class="{bash}"><code>#| eval: false
 #| filename: JSON/jq-nested.sh
@@ -533,8 +530,8 @@ Answer
 </div>
 </section>
 </section>
-<section id="conditional-filters-using-jq" class="level2" data-number="7.12">
-<h2 data-number="7.12" class="anchored" data-anchor-id="conditional-filters-using-jq"><span class="header-section-number">7.12</span> Conditional Filters using <code>jq</code></h2>
+<section id="conditional-filters-using-jq" class="level2" data-number="7.11">
+<h2 data-number="7.11" class="anchored" data-anchor-id="conditional-filters-using-jq"><span class="header-section-number">7.11</span> Conditional Filters using <code>jq</code></h2>
 <p>One natural use case for using <code>jq</code> on the DNAnexus platform is to rerun failed jobs.</p>
 <p>Failed jobs can occur when using normal priority, which focuses on using spot instances. So, if we ran a series of jobs, we would want to restart these failed jobs.</p>
 <p>This is a bit of code that would allow us to select those jobs that have failed.</p>
@@ -552,7 +549,7 @@ xargs -I% sh -c "dx run --clone %"</code></pre>
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid" data-tooltip-selector="#mermaid-tooltip-1">graph LR;
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">graph LR;
   A[".[]"] --&gt; B{"|"} 
   B --&gt; C["select (.state | contains('failed'))"] 
   C --&gt; D{"|"} 
@@ -610,11 +607,23 @@ xargs -I% sh -c "dx terminate %"</code></pre>
 </div>
 </div>
 </section>
-<section id="using-json-as-an-input" class="level2" data-number="7.13">
-<h2 data-number="7.13" class="anchored" data-anchor-id="using-json-as-an-input"><span class="header-section-number">7.13</span> Using JSON as an Input</h2>
-<p>Coming soon.</p>
+<section id="using-json-as-an-input" class="level2" data-number="7.12">
+<h2 data-number="7.12" class="anchored" data-anchor-id="using-json-as-an-input"><span class="header-section-number">7.12</span> Using JSON as an Input</h2>
+<p>This section is made to help you in writing JSON files. If you build an app or a workflow, you will need to edit the <code>dxapp.json</code> or <code>dxworkflow.json</code> files to enable your executables to be runnable.</p>
+<section id="writing-and-modifying-json" class="level3" data-number="7.12.1">
+<h3 data-number="7.12.1" class="anchored" data-anchor-id="writing-and-modifying-json"><span class="header-section-number">7.12.1</span> Writing and modifying JSON</h3>
+<p>I know that JSON is supposed to be human readable. However, there are a lot of little quibbles that don’t make it easily human writable.</p>
+<p>I highly recommend using an editor such as <a href="https://code.visualstudio.com/">VS Code</a>, with the appropriate <a href="https://code.visualstudio.com/docs/languages/json">JSON plugin</a>. A JSON Visualizer such as the <a href="https://marketplace.visualstudio.com/items?itemName=AykutSarac.jsoncrack-vscode">JSON Crack Extension</a> will be extremely helpful as well.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/json_visualizer.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">JSON Visualizer Plugin</figcaption><p></p>
+</figure>
+</div>
+<p>Using the visualizer plugin and this tutorial will help you write well formed JSON, and point out any issues you might have. It’s easy to misplace a comma, or a bracket, and this tool helps you write well-formed JSON.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -659,7 +668,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -695,24 +721,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
