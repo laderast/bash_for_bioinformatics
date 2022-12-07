@@ -98,14 +98,27 @@ The DNAnexus platform is only one example of an object-based filesystem. Other e
 
 Coming from folder based filesystems, it can be a bit of a mind-bender getting used to object-based filesystems.
 
-- **Objects are immutable**. You can't edit an object in place. 
+- **Objects are immutable**. You can't edit an object in place. If you modify a file on a worker, you can't overwrite the original file object. A new file object must be created. 
 - **You have to be careful when generating outputs**. You can end up with two different objects with the same filename, and it can be some work to disambiguate these objects.
 - **It's confusing.** You can actually have two files with the same filename in the same folder, because it is part of the changeable metadaa. Disambiguating these two files without using file-ids can be difficult. There are rules that govern this.
 - **Metadata is much more important with file management.** Seriously, use tags for everything, including jobs and files. It will make working with multiple files much easier. And if you are on UKB RAP, leverage the file property metadata (`eid` and `field_id`) to help you select the files you want to process.
 
-## Making our way in a metadata world
+## Always add project IDs to your File IDs
 
 We've already discovered one way of working with files on the platform: `dx find data` (@sec-dx-find). This is our main tool for selecting files with metadata.
+
+There is a search tree when `dx find data` is looking for a file object based on just file ID. 
+
+1. Look for the file in the current project
+2. Look at all files across all projects
+
+If you want to use the platform effectively, you want to avoid 2. at all costs, especially when working with a lot of files. The metadata server will take much longer to find your files.
+
+The lesson here is when using file-ids that belong to a different project than your current project in your work to put the project-id in front of your file id such as:
+
+```
+project-XXXXX:file-YYYYYYYYY
+```
 
 :::{.callout-note}
 ## What about dxFUSE?
