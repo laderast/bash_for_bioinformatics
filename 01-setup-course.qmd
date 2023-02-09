@@ -132,19 +132,19 @@ On your own computer, clone the repo (it will already be cloned if you're in the
 ```{bash}
 #| eval: false
 
-git clone https://github.com/laderast/bash_info_scripts/
+git clone https://github.com/laderast/bash_bioinfo_scripts/
 ```
 
 
-This will create a folder called `/bash_info_scripts/` in your current directory. Change to it:
+This will create a folder called `/bash_bioinfo_scripts/` in your current directory. Change to it:
 
 ```
-cd bash_info_scripts
+cd bash_bioinfo_scripts
 ```
 
 ### In the binder
 
-You will already be in the bash_info_scripts/ folder.
+You will already be in the `bash_bioinfo_scripts/` folder.
 
 ## Try logging in {#sec-login}
 
