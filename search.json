@@ -109,7 +109,7 @@
     "href": "01-setup-course.html#clone-the-files-and-scripts-using-git",
     "title": "2  Setup for the Course / dx-toolkit basics",
     "section": "2.7 Clone the files and scripts using git",
-    "text": "2.7 Clone the files and scripts using git\n\n2.7.1 On Your Own Computer\nOn your own computer, clone the repo (it will already be cloned if you’re in the binder version).\n#| eval: false\n\ngit clone https://github.com/laderast/bash_info_scripts/\nThis will create a folder called /bash_info_scripts/ in your current directory. Change to it:\ncd bash_info_scripts\n\n\n2.7.2 In the binder\nYou will already be in the bash_info_scripts/ folder."
+    "text": "2.7 Clone the files and scripts using git\n\n2.7.1 On Your Own Computer\nOn your own computer, clone the repo (it will already be cloned if you’re in the binder version).\n#| eval: false\n\ngit clone https://github.com/laderast/bash_bioinfo_scripts/\nThis will create a folder called /bash_bioinfo_scripts/ in your current directory. Change to it:\ncd bash_bioinfo_scripts\n\n\n2.7.2 In the binder\nYou will already be in the bash_bioinfo_scripts/ folder."
   },
   {
     "objectID": "01-setup-course.html#sec-login",
