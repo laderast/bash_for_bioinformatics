@@ -336,7 +336,7 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 <li>Transfer data from project to the working directory on the worker. The first thing we need to do is transfer them from project storage to worker storage. Notice that even though in project storage they are in a data folder, they are in the base directory of the worker.</li>
 <li>Run the computation on the worker, and generate results file. The files we need to process are in the base directory of the worker, so we can refer to them without the folder path (<code>plink chr1.bed</code>). We generate a results file called <code>chr_combined.bed</code> (the combined <code>.bed</code> file).<br>
 </li>
-<li>Transfer results file back to the worker.</li>
+<li>Transfer results file back to the project storage.</li>
 </ol>
 </section>
 </section>
