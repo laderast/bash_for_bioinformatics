@@ -104,7 +104,7 @@ Let's look at an example of that nestedness. Say we have two bed files and we wa
 
 1. Transfer data from project to the working directory on the worker. The first thing we need to do is transfer them from project storage to worker storage. Notice that even though in project storage they are in a data folder, they are in the base directory of the worker.
 2. Run the computation on the worker, and generate results file. The files we need to process are in the base directory of the worker, so we can refer to them without the folder path (`plink chr1.bed`). We generate a results file called `chr_combined.bed` (the combined `.bed` file).  
-3. Transfer results file back to the worker. 
+3. Transfer results file back to the project storage. 
 
 
 ## Instance Types {#sec-instance}
