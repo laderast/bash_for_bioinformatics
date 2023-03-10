@@ -414,7 +414,7 @@ The backslash is a clue to Bash that we don't want variable expansion in this ca
 This is rarely used, but if you need to keep an escaped character in your filename, you can use single quotes. Say we have a filename called `Thi\$file.bam` and you need that backslash in the file name (btw, please don't do this), you can use single quotes to preserve that backslash:
 
 ```
-samtools view -c 'Thi\$file.bam`
+samtools view -c 'Thi\$file.bam'
 ```
 
 Again, hopefully you won't need this.
