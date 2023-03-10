@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -170,20 +233,13 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
   <ul>
   <li><a href="#setup-your-dnanexus-account" id="toc-setup-your-dnanexus-account" class="nav-link active" data-scroll-target="#setup-your-dnanexus-account"><span class="toc-section-number">2.1</span>  Setup your DNAnexus Account</a></li>
   <li><a href="#terminal-setup-dx-toolkit-setup" id="toc-terminal-setup-dx-toolkit-setup" class="nav-link" data-scroll-target="#terminal-setup-dx-toolkit-setup"><span class="toc-section-number">2.2</span>  Terminal setup / dx-toolkit setup</a></li>
-  <li><a href="#on-ubuntu" id="toc-on-ubuntu" class="nav-link" data-scroll-target="#on-ubuntu"><span class="toc-section-number">2.3</span>  On Ubuntu</a></li>
-  <li><a href="#on-macs" id="toc-on-macs" class="nav-link" data-scroll-target="#on-macs"><span class="toc-section-number">2.4</span>  On Macs</a></li>
-  <li><a href="#for-both-machines" id="toc-for-both-machines" class="nav-link" data-scroll-target="#for-both-machines"><span class="toc-section-number">2.5</span>  For both machines</a></li>
-  <li><a href="#alternative-setup-binder.org" id="toc-alternative-setup-binder.org" class="nav-link" data-scroll-target="#alternative-setup-binder.org"><span class="toc-section-number">2.6</span>  Alternative Setup: binder.org</a></li>
-  <li><a href="#clone-the-files-and-scripts-using-git" id="toc-clone-the-files-and-scripts-using-git" class="nav-link" data-scroll-target="#clone-the-files-and-scripts-using-git"><span class="toc-section-number">2.7</span>  Clone the files and scripts using git</a>
-  <ul class="collapse">
-  <li><a href="#on-your-own-computer" id="toc-on-your-own-computer" class="nav-link" data-scroll-target="#on-your-own-computer"><span class="toc-section-number">2.7.1</span>  On Your Own Computer</a></li>
-  <li><a href="#in-the-binder" id="toc-in-the-binder" class="nav-link" data-scroll-target="#in-the-binder"><span class="toc-section-number">2.7.2</span>  In the binder</a></li>
-  </ul></li>
-  <li><a href="#sec-login" id="toc-sec-login" class="nav-link" data-scroll-target="#sec-login"><span class="toc-section-number">2.8</span>  Try logging in</a></li>
-  <li><a href="#super-quick-intro-to-dx-toolkit" id="toc-super-quick-intro-to-dx-toolkit" class="nav-link" data-scroll-target="#super-quick-intro-to-dx-toolkit"><span class="toc-section-number">2.9</span>  Super Quick Intro to dx-toolkit</a></li>
-  <li><a href="#create-project-for-course" id="toc-create-project-for-course" class="nav-link" data-scroll-target="#create-project-for-course"><span class="toc-section-number">2.10</span>  Create Project for Course</a></li>
-  <li><a href="#copying-files-to-project-storage" id="toc-copying-files-to-project-storage" class="nav-link" data-scroll-target="#copying-files-to-project-storage"><span class="toc-section-number">2.11</span>  Copying Files to Project Storage</a></li>
-  <li><a href="#full-script" id="toc-full-script" class="nav-link" data-scroll-target="#full-script"><span class="toc-section-number">2.12</span>  Full Script</a></li>
+  <li><a href="#alternative-setup-binder.org" id="toc-alternative-setup-binder.org" class="nav-link" data-scroll-target="#alternative-setup-binder.org"><span class="toc-section-number">2.3</span>  Alternative Setup: binder.org</a></li>
+  <li><a href="#clone-the-files-and-scripts-using-git" id="toc-clone-the-files-and-scripts-using-git" class="nav-link" data-scroll-target="#clone-the-files-and-scripts-using-git"><span class="toc-section-number">2.4</span>  Clone the files and scripts using git</a></li>
+  <li><a href="#try-logging-in" id="toc-try-logging-in" class="nav-link" data-scroll-target="#try-logging-in"><span class="toc-section-number">2.5</span>  Try logging in</a></li>
+  <li><a href="#super-quick-intro-to-dx-toolkit" id="toc-super-quick-intro-to-dx-toolkit" class="nav-link" data-scroll-target="#super-quick-intro-to-dx-toolkit"><span class="toc-section-number">2.6</span>  Super Quick Intro to dx-toolkit</a></li>
+  <li><a href="#create-project-for-course" id="toc-create-project-for-course" class="nav-link" data-scroll-target="#create-project-for-course"><span class="toc-section-number">2.7</span>  Create Project for Course</a></li>
+  <li><a href="#transferring-files-from-our-shell-to-project-storage" id="toc-transferring-files-from-our-shell-to-project-storage" class="nav-link" data-scroll-target="#transferring-files-from-our-shell-to-project-storage"><span class="toc-section-number">2.8</span>  Transferring files from our shell to Project Storage</a></li>
+  <li><a href="#full-script" id="toc-full-script" class="nav-link" data-scroll-target="#full-script"><span class="toc-section-number">2.9</span>  Full Script</a></li>
   </ul>
 </nav>
     </div>
@@ -221,122 +277,42 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 <p>If you are on Linux/Mac, you’ll be working with the terminal. If you are on Windows, I recommend you install <a href="https://learn.microsoft.com/en-us/windows/wsl/install">Windows Subsystem for Linux</a>, and specifically the Ubuntu distribution. That will give you a command-line shell that you can use to interact with the DNAnexus platform.</p>
 <p>On your machine, I recommend using a text editor to edit the scripts in your terminal. Good ones include <a href="https://code.visualstudio.com/">VS Code</a>, or built in ones such as <code>nano</code>.</p>
 <p>Now that we have a terminal and code editor, we can install the <a href="https://documentation.dnanexus.com/downloads">dx-toolkit</a> onto our machine. In your terminal, you’ll first need to make sure that python 3 is installed, and the <code>pip</code> installer is installed as well.</p>
-</section>
-<section id="on-ubuntu" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="on-ubuntu"><span class="header-section-number">2.3</span> On Ubuntu</h2>
-<p>You should have a python3 installation - check by typing in:</p>
-<p><code>which python3</code></p>
-<p>If you get a blank response, then you’ll need to install it.</p>
-<pre><code>sudo apt-get install python3 ## If python is not yet installed
-sudo apt-get install pip3
-sudo apt-get install git
-sudo apt-get install jq</code></pre>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-What about <code>miniconda</code>?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Installing <code>miniconda</code> (the minimal <a href="https://docs.conda.io/en/latest/miniconda.html">Anaconda installer</a>) has some advantages, but does require some learning, especially about conda environments.</p>
-<p>Here’s a link that discusses using conda environments and how you can use them to install software on your computer: <a href="https://towardsdatascience.com/a-guide-to-conda-environments-bc6180fc533" class="uri">https://towardsdatascience.com/a-guide-to-conda-environments-bc6180fc533</a></p>
-<p>The short of it is that you define a <em>conda environment</em>, which is a space that lets you install R or Python packages and other software dependencies. For example, I could have an environment that uses Python 2.8, and another one that uses Python 3.9, and I could switch between them using a command called <code>conda activate</code>.</p>
-</div>
-</div>
-</section>
-<section id="on-macs" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="on-macs"><span class="header-section-number">2.4</span> On Macs</h2>
-<p>Install <a href="https://brew.sh/">homebrew</a> to your mac and install <code>python3</code> and <code>pip3</code>:</p>
-<pre><code>brew install python3
-brew install pip3
-brew install git
-brew install jq</code></pre>
-</section>
-<section id="for-both-machines" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="for-both-machines"><span class="header-section-number">2.5</span> For both machines</h2>
-<p>Once you have access to Python 3 and <code>pip3</code>, you can install the dx-toolkit using the following command:</p>
+<pre><code>sudo apt-get install python3
+sudo apt-get install pip3</code></pre>
+<p>Once you have access to Python 3 and <code>pip3</code>, you can install the dx-toolkit using the following:</p>
 <pre><code>pip3 install dxpy</code></pre>
 <p>That last command will install the <code>dx-toolkit</code> to your machine, which are the command line tools you’ll need to work on the DNAnexus cloud.</p>
-<p>Test it out by typing:</p>
-<pre><code>dx -h</code></pre>
-<p>You should get similar output:</p>
-<pre><code>usage: dx [-h] [--version] command ...
-
-DNAnexus Command-Line Client, API v1.0.0, client v0.330.0
-
-dx is a command-line client for interacting with the DNAnexus platform.  You can log in,
-navigate, upload, organize and share your data, launch analyses, and more.  For a quick tour
-of what the tool can do, see
-
-  https://documentation.dnanexus.com/getting-started/tutorials/cli-quickstart#quickstart-for-&gt;
-
-For a breakdown of dx commands by category, run "dx help".</code></pre>
 </section>
-<section id="alternative-setup-binder.org" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="alternative-setup-binder.org"><span class="header-section-number">2.6</span> Alternative Setup: binder.org</h2>
+<section id="alternative-setup-binder.org" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="alternative-setup-binder.org"><span class="header-section-number">2.3</span> Alternative Setup: binder.org</h2>
 <p>If you aren’t able to install the dx-toolkit to your machine, you can use this Binder link to try out the commands. Binder opens a preinstalled image with a shell that has <code>dxpy</code> preinstalled on one of the <a href="https://mybinder.org" class="uri">https://mybinder.org</a> servers.</p>
-<p><a href="https://mybinder.org/v2/gh/laderast/bash_bioinfo_scripts/HEAD?urlpath=lab" class="uri">https://mybinder.org/v2/gh/laderast/bash_bioinfo_scripts/HEAD?urlpath=lab</a></p>
-<p>When you launch it, you will first see this page:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/binder_screen.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Launch Binder Screen</figcaption><p></p>
-</figure>
-</div>
-<p>Then after a few moments (hopefully no more than 5 minutes), the JupyterLab interface should launch. Select the “Terminal” from the bottom of the launcher:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/binder2.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">JupyterLab Interface</figcaption><p></p>
-</figure>
-</div>
-<p>Once you select the terminal, this is what you should see:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/binder3.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">JupyterLab Terminal</figcaption><p></p>
-</figure>
-</div>
-<p>Now you’re ready to get started. Login (<a href="#sec-login"><span>Section&nbsp;2.8</span></a>) and proceed from there.</p>
+<p><a href="https://mybinder.org/v2/gh/laderast/minimal_dxpy/HEAD?urlpath=lab" class="uri">https://mybinder.org/v2/gh/laderast/minimal_dxpy/HEAD?urlpath=lab</a></p>
 <p>Just keep in mind that this shell is ephemeral - it will disappear. So make sure that any files you create that you want to save are either uploaded back to your project with <code>dx upload</code> or you’ve downloaded them using the file explorer.</p>
 <p>This shell includes the following utilities:</p>
 <ul>
-<li><code>git</code> (needed to download course materials)</li>
-<li><code>nano</code> (needed to edit files)</li>
-<li><code>dxpy</code> (the dx-toolkit)</li>
-<li><code>python</code>/<code>pip</code> (needed to install dx-toolkit)</li>
-<li><code>jq</code> (needed to work with JSON files)</li>
+<li>git (needed to download course materials)</li>
+<li>nano (needed to edit files)</li>
+<li>python/pip (needed to install dx-toolkit)</li>
+<li>jq (needed to work with JSON files)</li>
 </ul>
 </section>
-<section id="clone-the-files-and-scripts-using-git" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="clone-the-files-and-scripts-using-git"><span class="header-section-number">2.7</span> Clone the files and scripts using git</h2>
-<section id="on-your-own-computer" class="level3" data-number="2.7.1">
-<h3 data-number="2.7.1" class="anchored" data-anchor-id="on-your-own-computer"><span class="header-section-number">2.7.1</span> On Your Own Computer</h3>
-<p>On your own computer, clone the repo (it will already be cloned if you’re in the binder version).</p>
-<pre class="{bash}"><code>#| eval: false
-
-git clone https://github.com/laderast/bash_bioinfo_scripts/</code></pre>
-<p>This will create a folder called <code>/bash_bioinfo_scripts/</code> in your current directory. Change to it:</p>
-<pre><code>cd bash_bioinfo_scripts</code></pre>
+<section id="clone-the-files-and-scripts-using-git" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="clone-the-files-and-scripts-using-git"><span class="header-section-number">2.4</span> Clone the files and scripts using git</h2>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="in-the-binder" class="level3" data-number="2.7.2">
-<h3 data-number="2.7.2" class="anchored" data-anchor-id="in-the-binder"><span class="header-section-number">2.7.2</span> In the binder</h3>
-<p>You will already be in the <code>bash_bioinfo_scripts/</code> folder.</p>
-</section>
-</section>
-<section id="sec-login" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="sec-login"><span class="header-section-number">2.8</span> Try logging in</h2>
-<p>Now that you have an account and the <code>dx-toolkit</code> installed, try logging in with <code>dx login</code>:</p>
-<pre class="{bash}"><code>#| eval: false
-dx login</code></pre>
+<section id="try-logging-in" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="try-logging-in"><span class="header-section-number">2.5</span> Try logging in</h2>
+<p>Now that you have an account and a way to run the <code>dx-toolkit</code>, try logging in with <code>dx login</code>:</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> login</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>The platform will then ask you for your username and password. Enter them.</p>
 <p>If you are successful, you will see either the select screen or, if you only have one project, that project will be selected for you.</p>
 </section>
-<section id="super-quick-intro-to-dx-toolkit" class="level2" data-number="2.9">
-<h2 data-number="2.9" class="anchored" data-anchor-id="super-quick-intro-to-dx-toolkit"><span class="header-section-number">2.9</span> Super Quick Intro to dx-toolkit</h2>
+<section id="super-quick-intro-to-dx-toolkit" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="super-quick-intro-to-dx-toolkit"><span class="header-section-number">2.6</span> Super Quick Intro to dx-toolkit</h2>
 <p>The dx-toolkit is our main tool for interacting with the DNAnexus platform on the command-line. It handles the following:</p>
 <ul>
 <li>Creating a project and managing membership (<code>dx new project</code>/<code>dx invite</code>/<code>dx uninvite</code>).</li>
@@ -347,114 +323,66 @@ dx login</code></pre>
 <li>Building Workflows, which string together apps on the platform (<code>dx build</code>)</li>
 </ul>
 <p>How do you know a command belongs to the dx-toolkit? They all begin with <code>dx</code>. For example, to list the contents of your current project, you’ll use something like <code>ls</code>:</p>
-<pre class="{bash}"><code>#| eval: false
-dx ls</code></pre>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="create-project-for-course" class="level2" data-number="2.10">
-<h2 data-number="2.10" class="anchored" data-anchor-id="create-project-for-course"><span class="header-section-number">2.10</span> Create Project for Course</h2>
+<section id="create-project-for-course" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="create-project-for-course"><span class="header-section-number">2.7</span> Create Project for Course</h2>
 <p>Let’s create a project on the platform, and then we will get files into it to prepare for the online work with the platform.</p>
 <p>The first command we’ll run is <code>dx new project</code> in order to create our project.</p>
-<pre class="{bash}"><code>#| eval: false
-dx new project -y my_project </code></pre>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-What’s happening here?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>When you call <code>dx new project</code>, that creates a project on the platform with the name <code>my_project</code>. This project lives in the cloud, within the DNAnexus platform.</p>
-<p>The <code>-y</code> option switches you over into that new project.</p>
-</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> new project <span class="at">-y</span> my_project </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="copying-files-to-project-storage" class="level2" data-number="2.11">
-<h2 data-number="2.11" class="anchored" data-anchor-id="copying-files-to-project-storage"><span class="header-section-number">2.11</span> Copying Files to Project Storage</h2>
-<p>Our worker scripts live in the the <code>bash_for_bioinformatics/</code> folder on our machine.</p>
-<p>Let’s copy our files from the public project into our newly created DNAnexus project.</p>
-<pre class="{bash}"><code>#| eval: false
-dx cp -r "project-BQbJpBj0bvygyQxgQ1800Jkk:/Developer Quickstart" .
-dx mv "Developer Quickstart/" "data/"</code></pre>
-<p>Confirm that your file system on your machine is similiar to the following output:</p>
-<pre class="{bash}"><code>#| eval: false
-tree</code></pre>
-<pre><code>├── JSON
-│&nbsp;&nbsp; └── json_data
-│&nbsp;&nbsp;     ├── dxapp.json
-│&nbsp;&nbsp;     ├── example.json
-│&nbsp;&nbsp;     ├── fastqc.json
-│&nbsp;&nbsp;     ├── job.json
-│&nbsp;&nbsp;     └── rap-jobs.json
-├── batch-processing
-│&nbsp;&nbsp; ├── batch-on-worker.sh
-│&nbsp;&nbsp; ├── dx-find-data-class.sh
-│&nbsp;&nbsp; ├── dx-find-data-field.sh
-│&nbsp;&nbsp; ├── dx-find-data-name.sh
-│&nbsp;&nbsp; ├── dx-find-path.sh
-│&nbsp;&nbsp; └── dx-find-xargs.sh</code></pre>
-<p>And the file system in your project should look similar to this when you run <code>dx tree</code>:</p>
-<pre class="{bash}"><code>#| eval: false
-
-dx tree</code></pre>
-<pre><code>├── data
-│   ├── NA12878.bai
-│   ├── NA12878.bam
-│   ├── NC_000868.fasta
-│   ├── NC_001422.fasta
-│   ├── small-celegans-sample.fastq
-│   ├── SRR100022_chrom20_mapped_to_b37.bam
-│   ├── SRR100022_chrom21_mapped_to_b37.bam
-│   └── SRR100022_chrom22_mapped_to_b37.bam</code></pre>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="transferring-files-from-our-shell-to-project-storage" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="transferring-files-from-our-shell-to-project-storage"><span class="header-section-number">2.8</span> Transferring files from our shell to Project Storage</h2>
+<p>Our worker scripts live in the the <code>bash_for_bioinformatics/</code> folder on our machine. We’ll need to transfer these scripts, because some of them will be run directly on the DNAnexus workers.</p>
+<p>From your machine, type the following to get the “scripts/” folder</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> upload <span class="at">-r</span> <span class="st">"worker_scripts/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-caption-container flex-fill">
-Why are there two file systems?
+<p>Let’s copy our files from our shell into our DNAnexus project.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> cp <span class="at">-r</span> <span class="st">"project-BQbJpBj0bvygyQxgQ1800Jkk:/Developer Quickstart"</span> .</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> mv <span class="st">"Developer Quickstart/"</span> <span class="st">"data/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<p>When we do cloud computing, there are two file systems we’ll have to be familiar with:</p>
-<ol type="1">
-<li>The file system on our own machine</li>
-<li>The file system in our DNAnexus project</li>
-</ol>
-<p>The <code>tree</code> command shows you the contents of your local machine.</p>
-<p><code>dx tree</code> on the other hand, shows you the contents of your project storage. Remember that anything that begins with <code>dx</code> is a command that interacts with the platform!</p>
-<p>Ok, I lied. There are technically 3 filesystems we need to be familar with. The last one is the working directory on the worker machine. We’ll talk more about this in the cloud computing basics (<a href="03-cloud-computing-basics.html"><span>Chapter&nbsp;4</span></a>) section.</p>
-</div>
+<p>Confirm that the projects match the following output:</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tree</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> tree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="full-script" class="level2" data-number="2.12">
-<h2 data-number="2.12" class="anchored" data-anchor-id="full-script"><span class="header-section-number">2.12</span> Full Script</h2>
-<p>The full script for setting up is in the <code>setup-course/project_setup.sh</code></p>
-<pre class="{bash}"><code>#| eval: false
-#| filename: setup-course/project_setup.sh
-
-## Login
-dx login
-
-## Create your new project
-dx new project -y my_project
-
-## Clone this repository onto your computer
-git clone https://github.com/laderast/bash_bioinfo_scripts
-
-## Upload the scripts into the scripts folder
-cd bash_bioinfo_scripts
-dx upload -r worker_scripts/
-
-## Copy the data over
-dx cp -r "project-BQbJpBj0bvygyQxgQ1800Jkk:/Developer Quickstart" .
-dx mv "Developer Quickstart/" "data/"
-
-## Confirm your project matches
-dx tree
-tree</code></pre>
+<section id="full-script" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="full-script"><span class="header-section-number">2.9</span> Full Script</h2>
+<p>The full script for setting up is in the <code>01-setup-course/project_setup.sh</code></p>
+<div class="cell" data-execution_count="8">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>01-setup-course/project_setup.sh</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Login</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> login</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Create your new project</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> new project <span class="at">-y</span> my_project</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">## Clone this repository onto your computer</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/laderast/bash_bioinfo_scripts</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">## Upload the scripts into the scripts folder</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> bash_bioinfo_scripts</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> upload <span class="at">-r</span> worker_scripts/</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">## Copy the data over</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> cp <span class="at">-r</span> <span class="st">"project-BQbJpBj0bvygyQxgQ1800Jkk:/Developer Quickstart"</span> .</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> mv <span class="st">"Developer Quickstart/"</span> <span class="st">"data/"</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">## Confirm your project matches</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> tree</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="ex">tree</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 
 
 </section>
