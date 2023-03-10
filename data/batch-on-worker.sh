@@ -1,4 +1,4 @@
-#!/bash/bin
+#!/bin/bash
 
 cmd_to_run="ls *.vcf.gz | xargs -I% sh -c "bcftools stats % > %.stats.txt"
 
