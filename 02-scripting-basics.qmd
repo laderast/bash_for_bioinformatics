@@ -443,6 +443,14 @@ echo "there are $(ls -l | wc -l) files in this directory"
 ```
 :::
 
+:::{.callout-note}
+## What X use case?
+
+There are a lot of rules for Bash variable expansion and quoting that I don't cover here. I try to show you a way to do things that work in multiple situations on the platform.
+
+That's why I focus on double quotes for filenames and `${}` for variable expansion in general. They will work whether your Bash script is on the command line or in an App, or in WDL. 
+
+:::
 
 ## Running a R script on the command line
 
