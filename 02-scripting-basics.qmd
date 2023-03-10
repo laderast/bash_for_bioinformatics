@@ -367,8 +367,6 @@ Which can be really handy when we name our outputs.
 
 ## Quoting and Escaping Filenames in Bash
 
-<https://www.grymoire.com/Unix/Quote.html#uh-3>
-
 One point of confusion is when do you quote things in Bash? When do you use single quotes (`'`) versus double-quotes (`"`)? When do you use `\` to escape characters?
 
 Let's talk about some quoting rules in Bash. I've tried to make things as simplified and  generalized as possible, rather than stating all of the rules for each quote.
@@ -421,6 +419,9 @@ samtools view -c 'Thi\$file.bam`
 
 Again, hopefully you won't need this.
 
+### For More Info
+
+<https://www.grymoire.com/Unix/Quote.html#uh-3>
 
 :::{.callout-note}
 ## What about backticks?
@@ -444,7 +445,7 @@ echo "there are $(ls -l | wc -l) files in this directory"
 :::
 
 :::{.callout-note}
-## What X use case?
+## What about X use case?
 
 There are a lot of rules for Bash variable expansion and quoting that I don't cover here. I try to show you a way to do things that work in multiple situations on the platform.
 
@@ -454,7 +455,7 @@ That's why I focus on double quotes for filenames and `${}` for variable expansi
 
 ## Running a R script on the command line
 
-Let's end this chapter with wrapping R scripts in a bash script. Say you have an R Script you need to run on the command line. In our bash script, we can do the following:
+Let's end this chapter with wrapping R scripts in a Bash script. Say you have an R Script you need to run on the command line. In our bash script, we can do the following:
 
 ```{bash}
 #| filename: "scripting-basics/wrap_r_script.sh"
@@ -463,7 +464,7 @@ Let's end this chapter with wrapping R scripts in a bash script. Say you have an
 Rscript my_script.R CSVFILE="${1}"
 ```
 
-This calls `Rscript`, which is the command line executable to run our R script. Note that we have a named argument called `CSVFILE` and it is done differently than in Bash - how do we use this in our R Script?
+This calls `Rscript`, which is the command line executable, to run our R script. Note that we have a named argument called `CSVFILE` and it is done differently than in Bash - how do we use this in our R Script?
 
 ### Using Named Arguments in an R script
 
