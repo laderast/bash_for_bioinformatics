@@ -20,69 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -231,17 +168,25 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#starting-ttyd" id="toc-starting-ttyd" class="nav-link active" data-scroll-target="#starting-ttyd"><span class="toc-section-number">9.1</span>  Starting ttyd</a></li>
-  <li><a href="#sec-named" id="toc-sec-named" class="nav-link" data-scroll-target="#sec-named"><span class="toc-section-number">9.2</span>  Named Arguments</a>
+  <li><a href="#other-useful-dx-toolkit-commands" id="toc-other-useful-dx-toolkit-commands" class="nav-link active" data-scroll-target="#other-useful-dx-toolkit-commands"><span class="toc-section-number">9.1</span>  Other Useful <code>dx-toolkit</code> commands</a>
   <ul class="collapse">
-  <li><a href="#running-our-script-with-named-arguments" id="toc-running-our-script-with-named-arguments" class="nav-link" data-scroll-target="#running-our-script-with-named-arguments"><span class="toc-section-number">9.2.1</span>  Running our script with named arguments</a></li>
-  <li><a href="#for-more-info" id="toc-for-more-info" class="nav-link" data-scroll-target="#for-more-info"><span class="toc-section-number">9.2.2</span>  For more info</a></li>
+  <li><a href="#dx-api" id="toc-dx-api" class="nav-link" data-scroll-target="#dx-api"><span class="toc-section-number">9.1.1</span>  <code>dx api</code></a></li>
+  <li><a href="#dx-cp" id="toc-dx-cp" class="nav-link" data-scroll-target="#dx-cp"><span class="toc-section-number">9.1.2</span>  <code>dx cp</code></a></li>
+  <li><a href="#dx-pwddx-cddx-lsdx-tree" id="toc-dx-pwddx-cddx-lsdx-tree" class="nav-link" data-scroll-target="#dx-pwddx-cddx-lsdx-tree"><span class="toc-section-number">9.1.3</span>  <code>dx pwd</code>/<code>dx cd</code>/<code>dx ls</code>/<code>dx tree</code></a></li>
+  <li><a href="#dx-mkdirdx-uploaddx-downloaddx-head" id="toc-dx-mkdirdx-uploaddx-downloaddx-head" class="nav-link" data-scroll-target="#dx-mkdirdx-uploaddx-downloaddx-head"><span class="toc-section-number">9.1.4</span>  <code>dx mkdir</code>/<code>dx upload</code>/<code>dx download</code>/<code>dx head</code></a></li>
+  <li><a href="#dx-env" id="toc-dx-env" class="nav-link" data-scroll-target="#dx-env"><span class="toc-section-number">9.1.5</span>  <code>dx env</code></a></li>
   </ul></li>
-  <li><a href="#sec-environment" id="toc-sec-environment" class="nav-link" data-scroll-target="#sec-environment"><span class="toc-section-number">9.3</span>  Environment Variables</a>
+  <li><a href="#starting-ttyd" id="toc-starting-ttyd" class="nav-link" data-scroll-target="#starting-ttyd"><span class="toc-section-number">9.2</span>  Starting ttyd</a></li>
+  <li><a href="#sec-named" id="toc-sec-named" class="nav-link" data-scroll-target="#sec-named"><span class="toc-section-number">9.3</span>  Named Arguments</a>
   <ul class="collapse">
-  <li><a href="#path" id="toc-path" class="nav-link" data-scroll-target="#path"><span class="toc-section-number">9.3.1</span>  <code>$PATH</code></a></li>
-  <li><a href="#maclinux" id="toc-maclinux" class="nav-link" data-scroll-target="#maclinux"><span class="toc-section-number">9.3.2</span>  Mac/Linux</a></li>
-  <li><a href="#other-environment-variables" id="toc-other-environment-variables" class="nav-link" data-scroll-target="#other-environment-variables"><span class="toc-section-number">9.3.3</span>  Other Environment Variables</a></li>
+  <li><a href="#running-our-script-with-named-arguments" id="toc-running-our-script-with-named-arguments" class="nav-link" data-scroll-target="#running-our-script-with-named-arguments"><span class="toc-section-number">9.3.1</span>  Running our script with named arguments</a></li>
+  <li><a href="#for-more-info" id="toc-for-more-info" class="nav-link" data-scroll-target="#for-more-info"><span class="toc-section-number">9.3.2</span>  For more info</a></li>
+  </ul></li>
+  <li><a href="#sec-environment" id="toc-sec-environment" class="nav-link" data-scroll-target="#sec-environment"><span class="toc-section-number">9.4</span>  Environment Variables</a>
+  <ul class="collapse">
+  <li><a href="#path" id="toc-path" class="nav-link" data-scroll-target="#path"><span class="toc-section-number">9.4.1</span>  <code>$PATH</code></a></li>
+  <li><a href="#maclinux" id="toc-maclinux" class="nav-link" data-scroll-target="#maclinux"><span class="toc-section-number">9.4.2</span>  Mac/Linux</a></li>
+  <li><a href="#other-environment-variables" id="toc-other-environment-variables" class="nav-link" data-scroll-target="#other-environment-variables"><span class="toc-section-number">9.4.3</span>  Other Environment Variables</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -267,8 +212,37 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 </header>
 
 <p>The appendix contains multiple sections that I wanted to refer to, but there’s not a really good place for them.</p>
-<section id="starting-ttyd" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="starting-ttyd"><span class="header-section-number">9.1</span> Starting ttyd</h2>
+<section id="other-useful-dx-toolkit-commands" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="other-useful-dx-toolkit-commands"><span class="header-section-number">9.1</span> Other Useful <code>dx-toolkit</code> commands</h2>
+<p>The link to the <a href="https://documentation.dnanexus.com/user/helpstrings-of-sdk-command-line-utilities"><code>dx</code> commands</a> page is your friend for understanding everything that you do on the platform. We’ll talk about some of the most important commands.</p>
+<section id="dx-api" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="dx-api"><span class="header-section-number">9.1.1</span> <code>dx api</code></h3>
+<p>Sometimes there are <a href="https://documentation.dnanexus.com/developer/api/api-directory">actually API calls</a> that you will need to run directly with <code>dx api</code>, since they don’t have a <code>dx-toolkit</code> equivalent.</p>
+<p>You’ll use <code>dx api</code> to run these.</p>
+<p>For example, there are some flags you can set within a project, and you can set them with <code>dx api</code>:</p>
+<pre><code>dx api project-B0VK6F6gpqG6z7JGkbqQ000Q update '{"description": "desc"}'</code></pre>
+</section>
+<section id="dx-cp" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="dx-cp"><span class="header-section-number">9.1.2</span> <code>dx cp</code></h3>
+<p>We used this when we set up our project, to copy from the public project into our own project. Copying has a specific definition on the platform: it means <em>copying files from one project to another project</em>.</p>
+</section>
+<section id="dx-pwddx-cddx-lsdx-tree" class="level3" data-number="9.1.3">
+<h3 data-number="9.1.3" class="anchored" data-anchor-id="dx-pwddx-cddx-lsdx-tree"><span class="header-section-number">9.1.3</span> <code>dx pwd</code>/<code>dx cd</code>/<code>dx ls</code>/<code>dx tree</code></h3>
+<p>These commands are for navigating the project. <code>dx pwd</code> will give the present working directory of the project. <code>dx cd</code> lets us change directories, <code>dx ls</code> will list the contents of your current folder, and <code>dx tree</code> will show the overall file structure of your current folder.</p>
+<p>Be really careful when running <code>dx tree</code> on UKB RAP, especially the bulk folder. It is a big ask of the metadata server.</p>
+</section>
+<section id="dx-mkdirdx-uploaddx-downloaddx-head" class="level3" data-number="9.1.4">
+<h3 data-number="9.1.4" class="anchored" data-anchor-id="dx-mkdirdx-uploaddx-downloaddx-head"><span class="header-section-number">9.1.4</span> <code>dx mkdir</code>/<code>dx upload</code>/<code>dx download</code>/<code>dx head</code></h3>
+<p>These are the file manipulation and creation commands.</p>
+</section>
+<section id="dx-env" class="level3" data-number="9.1.5">
+<h3 data-number="9.1.5" class="anchored" data-anchor-id="dx-env"><span class="header-section-number">9.1.5</span> <code>dx env</code></h3>
+<p>When you run this by itself, it will give you the environment variables associated with your project.</p>
+<p>There are some times when you’ll need to change some environment variables</p>
+</section>
+</section>
+<section id="starting-ttyd" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="starting-ttyd"><span class="header-section-number">9.2</span> Starting ttyd</h2>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -285,36 +259,31 @@ Why not just use <code>ttyd</code> for the entire course?
 </div>
 </div>
 </section>
-<section id="sec-named" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="sec-named"><span class="header-section-number">9.2</span> Named Arguments</h2>
+<section id="sec-named" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="sec-named"><span class="header-section-number">9.3</span> Named Arguments</h2>
 <p>In general, ordered arguments can be difficult to remember, and sometimes you have way too many parameters.</p>
 <p>What about named arguments? Let’s modify <code>sam_run.sh</code> to use named arguments.</p>
-<div class="cell" data-execution_count="1">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>sam_run_named.sh</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="bu">[</span> <span class="va">$#</span> <span class="ot">-gt</span> 0 <span class="bu">]</span><span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="va">$1</span> <span class="ot">==</span> <span class="st">"--"</span><span class="pp">*</span> <span class="kw">]];</span> <span class="cf">then</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">v</span><span class="op">=</span><span class="st">"</span><span class="va">${1</span><span class="op">/</span><span class="ss">--</span><span class="op">/</span><span class="va">}</span><span class="st">"</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">declare</span> <span class="st">"</span><span class="va">$v</span><span class="st">"</span>=<span class="st">"</span><span class="va">$2</span><span class="st">"</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">shift</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">shift</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> <span class="va">${input_file}</span> <span class="op">&gt;</span> <span class="va">${output_file}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
+<pre class="{bash}"><code>#| filename: "sam_run_named.sh"
+#| eval: false
+#!/bin/bash
+
+while [ $# -gt 0 ]; do
+    if [[ $1 == "--"* ]]; then
+        v="${1/--/}"
+        declare "$v"="$2"
+        shift
+    fi
+    shift
+done
+
+samtools ${input_file} &gt; ${output_file}</code></pre>
 <p>The magic of setting up the positional arguments happens in the <code>while</code> block above. It looks for any string arguments that follow our script name that begin with <code>--</code> - then it puts the value of that into the named variables.</p>
 <p>In this case, our script is expecting an <code>--input-file</code> and an <code>--output_file</code> arguments.</p>
-<section id="running-our-script-with-named-arguments" class="level3" data-number="9.2.1">
-<h3 data-number="9.2.1" class="anchored" data-anchor-id="running-our-script-with-named-arguments"><span class="header-section-number">9.2.1</span> Running our script with named arguments</h3>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./sam_run_named.sh</span> <span class="at">--input_file</span> <span class="st">""</span> <span class="at">--output_file</span> <span class="st">""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="running-our-script-with-named-arguments" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="running-our-script-with-named-arguments"><span class="header-section-number">9.3.1</span> Running our script with named arguments</h3>
+<pre class="{bash}"><code>#| eval: false
+
+./sam_run_named.sh --input_file "" --output_file ""</code></pre>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -346,26 +315,26 @@ Answer
 </div>
 </div>
 </section>
-<section id="for-more-info" class="level3" data-number="9.2.2">
-<h3 data-number="9.2.2" class="anchored" data-anchor-id="for-more-info"><span class="header-section-number">9.2.2</span> For more info</h3>
+<section id="for-more-info" class="level3" data-number="9.3.2">
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="for-more-info"><span class="header-section-number">9.3.2</span> For more info</h3>
 <p><a href="https://keestalkstech.com/2022/03/named-arguments-in-a-bash-script/" class="uri">https://keestalkstech.com/2022/03/named-arguments-in-a-bash-script/</a></p>
 </section>
 </section>
-<section id="sec-environment" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="sec-environment"><span class="header-section-number">9.3</span> Environment Variables</h2>
-<section id="path" class="level3" data-number="9.3.1">
-<h3 data-number="9.3.1" class="anchored" data-anchor-id="path"><span class="header-section-number">9.3.1</span> <code>$PATH</code></h3>
+<section id="sec-environment" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="sec-environment"><span class="header-section-number">9.4</span> Environment Variables</h2>
+<section id="path" class="level3" data-number="9.4.1">
+<h3 data-number="9.4.1" class="anchored" data-anchor-id="path"><span class="header-section-number">9.4.1</span> <code>$PATH</code></h3>
 <p>The <code>$PATH</code> variable is one of the most important environment variables we’ll set on your local machine. It specifies the directories where executables and binaries can be found. This is important when you install dx-toolkit to interact with the DNAnexus platform.</p>
 <p>In general, you want to append paths to the <code>$PATH</code> variable, rather than overwriting it. This is because other processes may add to the <code>$PATH</code> variable as well, so you don’t want to interfere with those processes. Adding to our <code>$PATH</code> variable depends on the different operating systems.</p>
 </section>
-<section id="maclinux" class="level3" data-number="9.3.2">
-<h3 data-number="9.3.2" class="anchored" data-anchor-id="maclinux"><span class="header-section-number">9.3.2</span> Mac/Linux</h3>
+<section id="maclinux" class="level3" data-number="9.4.2">
+<h3 data-number="9.4.2" class="anchored" data-anchor-id="maclinux"><span class="header-section-number">9.4.2</span> Mac/Linux</h3>
 <p>The fastest way to add a directory to your path is to use the <code>export</code> command in your <code>.bash_profile</code>, or <code>.bashrc</code> file. For example, if the directory you want to add is <code>/opt/homebrew/bin/</code>, you’d edit your <code>.bash_profile</code> file and add the following line:</p>
 <pre><code>export PATH=$PATH:/opt/homebrew/bin/</code></pre>
 <p>Note that spacing matters in Bash scripting, especially in assigning variable names.</p>
 </section>
-<section id="other-environment-variables" class="level3" data-number="9.3.3">
-<h3 data-number="9.3.3" class="anchored" data-anchor-id="other-environment-variables"><span class="header-section-number">9.3.3</span> Other Environment Variables</h3>
+<section id="other-environment-variables" class="level3" data-number="9.4.3">
+<h3 data-number="9.4.3" class="anchored" data-anchor-id="other-environment-variables"><span class="header-section-number">9.4.3</span> Other Environment Variables</h3>
 <p>We’ll see that <code>dx-toolkit</code> defines a certain number of environmental variables and we can view them using <code>dx env</code>. These include:</p>
 <ul>
 <li>Current Project</li>
