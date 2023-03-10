@@ -260,6 +260,7 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
   <li><a href="#if-you-have-a-single-quote-in-the-name-use-double-quotes-to-wrap-it-less-common" id="toc-if-you-have-a-single-quote-in-the-name-use-double-quotes-to-wrap-it-less-common" class="nav-link" data-scroll-target="#if-you-have-a-single-quote-in-the-name-use-double-quotes-to-wrap-it-less-common"><span class="toc-section-number">3.7.2</span>  If you have a single quote in the name, use double quotes to wrap it (less common)</a></li>
   <li><a href="#only-escape-characters-when-necessary-less-common" id="toc-only-escape-characters-when-necessary-less-common" class="nav-link" data-scroll-target="#only-escape-characters-when-necessary-less-common"><span class="toc-section-number">3.7.3</span>  Only escape characters when necessary (less common)</a></li>
   <li><a href="#if-you-need-to-preserve-an-escaped-character-use-single-quotes-least-common" id="toc-if-you-need-to-preserve-an-escaped-character-use-single-quotes-least-common" class="nav-link" data-scroll-target="#if-you-need-to-preserve-an-escaped-character-use-single-quotes-least-common"><span class="toc-section-number">3.7.4</span>  If you need to preserve an escaped character, use single quotes (least common)</a></li>
+  <li><a href="#for-more-info" id="toc-for-more-info" class="nav-link" data-scroll-target="#for-more-info"><span class="toc-section-number">3.7.5</span>  For More Info</a></li>
   </ul></li>
   <li><a href="#running-a-r-script-on-the-command-line" id="toc-running-a-r-script-on-the-command-line" class="nav-link" data-scroll-target="#running-a-r-script-on-the-command-line"><span class="toc-section-number">3.8</span>  Running a R script on the command line</a>
   <ul class="collapse">
@@ -682,7 +683,6 @@ Why this is important on the platform
 </section>
 <section id="quoting-and-escaping-filenames-in-bash" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="quoting-and-escaping-filenames-in-bash"><span class="header-section-number">3.7</span> Quoting and Escaping Filenames in Bash</h2>
-<p><a href="https://www.grymoire.com/Unix/Quote.html#uh-3" class="uri">https://www.grymoire.com/Unix/Quote.html#uh-3</a></p>
 <p>One point of confusion is when do you quote things in Bash? When do you use single quotes (<code>'</code>) versus double-quotes (<code>"</code>)? When do you use <code>\</code> to escape characters?</p>
 <p>Let’s talk about some quoting rules in Bash. I’ve tried to make things as simplified and generalized as possible, rather than stating all of the rules for each quote.</p>
 <ol type="1">
@@ -716,6 +716,10 @@ Why this is important on the platform
 <p>This is rarely used, but if you need to keep an escaped character in your filename, you can use single quotes. Say we have a filename called <code>Thi\$file.bam</code> and you need that backslash in the file name (btw, please don’t do this), you can use single quotes to preserve that backslash:</p>
 <pre><code>samtools view -c 'Thi\$file.bam`</code></pre>
 <p>Again, hopefully you won’t need this.</p>
+</section>
+<section id="for-more-info" class="level3" data-number="3.7.5">
+<h3 data-number="3.7.5" class="anchored" data-anchor-id="for-more-info"><span class="header-section-number">3.7.5</span> For More Info</h3>
+<p><a href="https://www.grymoire.com/Unix/Quote.html#uh-3" class="uri">https://www.grymoire.com/Unix/Quote.html#uh-3</a></p>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -740,7 +744,7 @@ What about backticks?
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-What X use case?
+What about X use case?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -752,7 +756,7 @@ What X use case?
 </section>
 <section id="running-a-r-script-on-the-command-line" class="level2" data-number="3.8">
 <h2 data-number="3.8" class="anchored" data-anchor-id="running-a-r-script-on-the-command-line"><span class="header-section-number">3.8</span> Running a R script on the command line</h2>
-<p>Let’s end this chapter with wrapping R scripts in a bash script. Say you have an R Script you need to run on the command line. In our bash script, we can do the following:</p>
+<p>Let’s end this chapter with wrapping R scripts in a Bash script. Say you have an R Script you need to run on the command line. In our bash script, we can do the following:</p>
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -762,7 +766,7 @@ What X use case?
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> my_script.R CSVFILE=<span class="st">"</span><span class="va">${1}</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<p>This calls <code>Rscript</code>, which is the command line executable to run our R script. Note that we have a named argument called <code>CSVFILE</code> and it is done differently than in Bash - how do we use this in our R Script?</p>
+<p>This calls <code>Rscript</code>, which is the command line executable, to run our R script. Note that we have a named argument called <code>CSVFILE</code> and it is done differently than in Bash - how do we use this in our R Script?</p>
 <section id="using-named-arguments-in-an-r-script" class="level3" data-number="3.8.1">
 <h3 data-number="3.8.1" class="anchored" data-anchor-id="using-named-arguments-in-an-r-script"><span class="header-section-number">3.8.1</span> Using Named Arguments in an R script</h3>
 <p>We can pass arguments from our bash script to our R script by using <code>commandArgs()</code> - this will populate a list of named arguments (such as <code>CSVFILE</code>) that are passed into the R Script. We assign the output of <code>commandArgs()</code> into the <code>args</code> object.</p>
