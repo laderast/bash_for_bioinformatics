@@ -111,6 +111,8 @@ bash sam_run.sh my_file.bam out_stats.txt
 See @sec-named for more info.
 
 
+
+
 ## Using pipes: STDIN, STDOUT, STDERR
 
 We will need to use pipes to chain our commands together. Specifically, we need to take a command that generates a list of files on the platform, and then spawns individual jobs to process each file. For this reason, understanding a little bit more about how pipes (`|`) work in Bash is helpful.
@@ -362,6 +364,85 @@ dx-run-script.sh
 ```
 
 Which can be really handy when we name our outputs. 
+
+## Quoting and Escaping Filenames in Bash
+
+<https://www.grymoire.com/Unix/Quote.html#uh-3>
+
+One point of confusion is when do you quote things in Bash? When do you use single quotes (`'`) versus double-quotes (`"`)? When do you use `\` to escape characters?
+
+Let's talk about some quoting rules in Bash. I've tried to make things as simplified and  generalized as possible, rather than stating all of the rules for each quote.
+
+1. If you have spaces in a filename, use double quotes (`"chr 1.bam"`)
+1. If you have a single quote in the filename, use double quotes to wrap it (`"ted's file.bam"`)
+1. Only escape characters when necessary - if you can solve a problem with quotes, use them
+1. If you need to preserve an escaped character, use single quotes
+
+Let's go over each of these with an example.
+
+### If you have spaces in a filename, use double quotes (Most common)
+
+For example, if your filename is `chr 1 file.bam`, then use double quotes in your argument
+
+```
+samtools view -c "chr 1 file.bam"
+```
+
+### If you have a single quote in the name, use double quotes to wrap it (less common)
+
+Say you have a file called `ted's new file.bam`. This can be a problem when you are calling it, especially because of the single quote.
+
+In this case, you can do this:
+
+```
+samtools view -c "ted's new file.bam"
+```
+
+### Only escape characters when necessary (less common)
+
+There are a number of special characters (such as Tab, and Newline) that can be specified as escape characters. In double quotes, characters such as `$` are signals to Bash to expand or evaluate code. 
+
+Say that someone had a `$` in their file name such as `Thi$file is money.bam`
+
+How do we refer to it? We can escape the character with a backslash `\`:
+
+```
+samtools view -c "Thi\$file is money.bam"
+```
+The backslash is a clue to Bash that we don't want variable expansion in this case. Without it, bash would look for a variable called `$file`. 
+
+### If you need to preserve an escaped character, use single quotes (least common)
+
+This is rarely used, but if you need to keep an escaped character in your filename, you can use single quotes. Say we have a filename called `Thi\$file.bam` and you need that backslash in the file name (btw, please don't do this), you can use single quotes to preserve that backslash:
+
+```
+samtools view -c 'Thi\$file.bam`
+```
+
+Again, hopefully you won't need this.
+
+
+:::{.callout-note}
+## What about backticks?
+
+Backticks (`` ` ``) are an old way to do command evaluation in Bash. For example, if we run the following on the command-line:
+
+```
+echo "there are `ls -l | wc -l` files in this directory"
+```
+Will produce:
+
+```
+there are       36 files in this directory
+```
+
+Their use is deprecated, so you should be using `$()` in your command evaluations instead:
+
+```
+echo "there are $(ls -l | wc -l) files in this directory"
+```
+:::
+
 
 ## Running a R script on the command line
 
