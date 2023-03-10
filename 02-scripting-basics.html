@@ -632,7 +632,7 @@ Why this is important on the platform
 <section id="sec-bash-variables" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="sec-bash-variables"><span class="header-section-number">3.6</span> Variables in Bash Scripts</h2>
 <p>We’ve already encountered a placeholder variable, <code>%</code>, that we used in running <code>xargs</code>. Let’s talk about declaring variables in bash scripts and using them using variable expansion.</p>
-<p>In Bash, we can declare a variable by using <code>&lt;variable_name&gt;=&lt;value&gt;</code>. Note there are no spaces between the variable.</p>
+<p>In Bash, we can declare a variable by using <code>&lt;variable_name&gt;=&lt;value&gt;</code>. Note there are no spaces between the variable (<code>my_variable</code>), equals sign, and the value (<code>"ggplot2"</code>).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="va">my_variable</span><span class="op">=</span><span class="st">"ggplot2"</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -645,12 +645,14 @@ Why this is important on the platform
 <p>In general, when expanding a variable in a quoted string, it is better to use <code>${my_variable}</code> (the variable name in curly brackets). This is especially important when using the variable name as part of a string:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="va">my_var</span><span class="op">=</span><span class="st">"chr1"</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"</span><span class="va">${my_var}</span><span class="st">.vcf.gz"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"</span><span class="va">${my_var}</span><span class="st">_1.vcf.gz"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>chr1.vcf.gz</code></pre>
+<pre><code>chr1_1.vcf.gz</code></pre>
 </div>
 </div>
-<p>If we didn’t use the braces, bash would interpret the string as <code>$my_var.vcf.gz</code>, which isn’t what we want. So use the curly braces <code>{}</code> when you expand variables.</p>
+<p>If we didn’t use the braces here, like this:</p>
+<pre><code>echo "$my_var_1.vcf.gz"</code></pre>
+<p>Bash would look for the variable <code>$my_var_1</code>, which doesn’t exist. So use the curly braces <code>{}</code> when you expand variables. It’s safer overall.</p>
 <p>There is an alternate method for variable expansion which we will use when we call a <em>sub-shell</em> - a shell within a shell, much like in our <code>xargs</code> command above. We need to use parentheses <code>()</code> to expand them within the sub-shell, but not the top-shell. We’ll use this when we process multiple files within a single worker.</p>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -665,8 +667,8 @@ Why this is important on the platform
 <p>On the DNAnexus platform, there are special helper variables that are available to us, such as <code>$in_prefix</code>, which will give us the prefix of a file name input. This is essential when running commands within an app, as it allows us to generalize inputs and outputs in our app.</p>
 <p>Here’s a practical example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="va">my_cmd</span><span class="op">=</span><span class="st">"papermill notebook.ipynb output_notebook.ipynb"</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> run dxjupyterlab <span class="at">-icmd</span><span class="op">=</span><span class="st">"</span><span class="va">${my_cmd}</span><span class="st">"</span> <span class="at">-iin</span><span class="op">=</span><span class="st">"notebook.ipynb"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="va">my_cmd</span><span class="op">=</span><span class="st">"papermill notebook.ipynb output_notebook.ipynb"</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> run dxjupyterlab <span class="at">-icmd</span><span class="op">=</span><span class="st">"</span><span class="va">${my_cmd}</span><span class="st">"</span> <span class="at">-iin</span><span class="op">=</span><span class="st">"notebook.ipynb"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We’re storing the command we want to run in the <code>${my_cmd}</code> variable. Here we’re mostly using it to break up the <code>dx run</code> statement on the next line.</p>
 </div>
@@ -762,8 +764,8 @@ What about X use case?
 <div class="code-with-filename-file">
 <pre><strong>scripting-basics/wrap_r_script.sh</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> my_script.R CSVFILE=<span class="st">"</span><span class="va">${1}</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> my_script.R CSVFILE=<span class="st">"</span><span class="va">${1}</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>This calls <code>Rscript</code>, which is the command line executable, to run our R script. Note that we have a named argument called <code>CSVFILE</code> and it is done differently than in Bash - how do we use this in our R Script?</p>
@@ -776,17 +778,17 @@ What about X use case?
 <div class="code-with-filename-file">
 <pre><strong>scripting-basics/r_script.R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>args <span class="ot">&lt;-</span> <span class="fu">commandArgs</span>()</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use arg$CSVFILE in read.csv</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>csv_file <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file=</span>args<span class="sc">$</span>CSVFILE)</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Do some work with csv_file</span></span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>csv_filtered <span class="ot">&lt;-</span> csv_file <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>()</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Write output</span></span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(csv_filtered, <span class="at">file =</span> <span class="fu">paste0</span>(args<span class="sc">$</span>CSVFILE, <span class="st">"_filtered.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>args <span class="ot">&lt;-</span> <span class="fu">commandArgs</span>()</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use arg$CSVFILE in read.csv</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>csv_file <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file=</span>args<span class="sc">$</span>CSVFILE)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Do some work with csv_file</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>csv_filtered <span class="ot">&lt;-</span> csv_file <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>()</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Write output</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(csv_filtered, <span class="at">file =</span> <span class="fu">paste0</span>(args<span class="sc">$</span>CSVFILE, <span class="st">"_filtered.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -794,7 +796,7 @@ What about X use case?
 <h3 data-number="3.8.2" class="anchored" data-anchor-id="running-our-r-script"><span class="header-section-number">3.8.2</span> Running our R Script</h3>
 <p>Now that we’ve set it up, we can run the R script from the command line as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> my_bash_script.sh my_csvfile.csv </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> my_bash_script.sh my_csvfile.csv </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In our bash script, <code>my_bash_script.sh</code>, we’re using positional argument (for simplicity) to specify our csvfile, and then passing the positional argument to named ones (<code>CSVFILE</code>) for <code>my_r_script.R</code>.</p>
 <div class="callout-note callout callout-style-default callout-captioned">
