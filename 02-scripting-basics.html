@@ -714,7 +714,7 @@ Why this is important on the platform
 <section id="if-you-need-to-preserve-an-escaped-character-use-single-quotes-least-common" class="level3" data-number="3.7.4">
 <h3 data-number="3.7.4" class="anchored" data-anchor-id="if-you-need-to-preserve-an-escaped-character-use-single-quotes-least-common"><span class="header-section-number">3.7.4</span> If you need to preserve an escaped character, use single quotes (least common)</h3>
 <p>This is rarely used, but if you need to keep an escaped character in your filename, you can use single quotes. Say we have a filename called <code>Thi\$file.bam</code> and you need that backslash in the file name (btw, please don’t do this), you can use single quotes to preserve that backslash:</p>
-<pre><code>samtools view -c 'Thi\$file.bam`</code></pre>
+<pre><code>samtools view -c 'Thi\$file.bam'</code></pre>
 <p>Again, hopefully you won’t need this.</p>
 </section>
 <section id="for-more-info" class="level3" data-number="3.7.5">
