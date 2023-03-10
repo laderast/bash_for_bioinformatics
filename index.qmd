@@ -76,6 +76,11 @@ No one writes a book alone. This book comes from a lot of conversations with eve
 -   David Stanek
 -   Chai Fungtammasan
 
+Thanks to the following readers for their corrections:
+
+- Joshua Shapiro (found errors in variable expansion text)
+- Alexander Moersburg (found error in cloud computing section)
+
 ## Want to be a Contributor?
 
 This is the first draft of this book. It's not going to be perfect, and we need help. Specifically, we need help with testing the setup and the exercises.

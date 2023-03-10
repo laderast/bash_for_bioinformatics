@@ -309,7 +309,7 @@ We'll use this to execute batch jobs using `dx run`. This especially becomes pow
 
 We've already encountered a placeholder variable, `%`, that we used in running `xargs`. Let's talk about declaring variables in bash scripts and using them using variable expansion. 
 
-In Bash, we can declare a variable by using `<variable_name>=<value>`. Note there are no spaces between the variable.
+In Bash, we can declare a variable by using `<variable_name>=<value>`. Note there are no spaces between the variable (`my_variable`), equals sign, and the value (`"ggplot2"`).
 
 ```{bash}
 my_variable="ggplot2"
@@ -323,10 +323,16 @@ In general, when expanding a variable in a quoted string, it is better to use `$
 
 ```{bash}
 my_var="chr1"
-echo "${my_var}.vcf.gz"
+echo "${my_var}_1.vcf.gz"
 ```
 
-If we didn't use the braces, bash would interpret the string as `$my_var.vcf.gz`, which isn't what we want. So use the curly braces `{}` when you expand variables.
+If we didn't use the braces here, like this:
+
+```
+echo "$my_var_1.vcf.gz"
+```
+
+Bash would look for the variable `$my_var_1`, which doesn't exist. So use the curly braces `{}` when you expand variables. It's safer overall. 
 
 There is an alternate method for variable expansion which we will use when we call a *sub-shell* - a shell within a shell, much like in our `xargs` command above. We need to use parentheses `()` to expand them within the sub-shell, but not the top-shell. We'll use this when we process multiple files within a single worker.
 
