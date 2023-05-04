@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -84,11 +84,16 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with files using <code>dx run</code></span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-doing-work-with-dx-run.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with files using `dx run`</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -96,109 +101,120 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Bash for Bioinformatics</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-setup-course.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setup for the Course / dx-toolkit basics</span></a>
+  <a href="./01-setup-course.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setup for the Course / dx-toolkit basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-scripting-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Shell Scripting Basics</span></a>
+  <a href="./02-scripting-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Shell Scripting Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-cloud-computing-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Cloud Computing Basics</span></a>
+  <a href="./03-cloud-computing-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Cloud Computing Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-doing-work-with-dx-run.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with files using <code>dx run</code></span></a>
+  <a href="./04-doing-work-with-dx-run.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with files using <code>dx run</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-batch-processing.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Batch Processing on the Cloud</span></a>
+  <a href="./05-batch-processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Batch Processing on the Cloud</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-JSON.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with JSON on the DNAnexus Platform</span></a>
+  <a href="./06-JSON.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with JSON on the DNAnexus Platform</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-containers.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containers and Reproducibility</span></a>
+  <a href="./07-containers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containers and Reproducibility</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Appendix</span></a>
+  <a href="./appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Appendix</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="toc-section-number">5.1</span>  Learning Objectives</a></li>
-  <li><a href="#doing-bioinformatics-with-the-swiss-army-knife-sak-app" id="toc-doing-bioinformatics-with-the-swiss-army-knife-sak-app" class="nav-link" data-scroll-target="#doing-bioinformatics-with-the-swiss-army-knife-sak-app"><span class="toc-section-number">5.2</span>  Doing Bioinformatics with the Swiss Army Knife (SAK) App</a></li>
-  <li><a href="#running-jobs-on-the-dnanexus-platform-using-dx-run" id="toc-running-jobs-on-the-dnanexus-platform-using-dx-run" class="nav-link" data-scroll-target="#running-jobs-on-the-dnanexus-platform-using-dx-run"><span class="toc-section-number">5.3</span>  Running Jobs on the DNAnexus platform using <code>dx run</code></a></li>
-  <li><a href="#try-out-your-first-job" id="toc-try-out-your-first-job" class="nav-link" data-scroll-target="#try-out-your-first-job"><span class="toc-section-number">5.4</span>  Try out your first job</a>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">5.1</span> Learning Objectives</a></li>
+  <li><a href="#doing-bioinformatics-with-the-swiss-army-knife-sak-app" id="toc-doing-bioinformatics-with-the-swiss-army-knife-sak-app" class="nav-link" data-scroll-target="#doing-bioinformatics-with-the-swiss-army-knife-sak-app"><span class="header-section-number">5.2</span> Doing Bioinformatics with the Swiss Army Knife (SAK) App</a></li>
+  <li><a href="#running-jobs-on-the-dnanexus-platform-using-dx-run" id="toc-running-jobs-on-the-dnanexus-platform-using-dx-run" class="nav-link" data-scroll-target="#running-jobs-on-the-dnanexus-platform-using-dx-run"><span class="header-section-number">5.3</span> Running Jobs on the DNAnexus platform using <code>dx run</code></a></li>
+  <li><a href="#try-out-your-first-job" id="toc-try-out-your-first-job" class="nav-link" data-scroll-target="#try-out-your-first-job"><span class="header-section-number">5.4</span> Try out your first job</a>
   <ul class="collapse">
-  <li><a href="#what-about-the-outputs" id="toc-what-about-the-outputs" class="nav-link" data-scroll-target="#what-about-the-outputs"><span class="toc-section-number">5.4.1</span>  What about the outputs?</a></li>
+  <li><a href="#what-about-the-outputs" id="toc-what-about-the-outputs" class="nav-link" data-scroll-target="#what-about-the-outputs"><span class="header-section-number">5.4.1</span> What about the outputs?</a></li>
   </ul></li>
-  <li><a href="#building-on-our-first-dx-run-job" id="toc-building-on-our-first-dx-run-job" class="nav-link" data-scroll-target="#building-on-our-first-dx-run-job"><span class="toc-section-number">5.5</span>  Building on our first <code>dx run</code> job</a>
+  <li><a href="#building-on-our-first-dx-run-job" id="toc-building-on-our-first-dx-run-job" class="nav-link" data-scroll-target="#building-on-our-first-dx-run-job"><span class="header-section-number">5.5</span> Building on our first <code>dx run</code> job</a>
   <ul class="collapse">
-  <li><a href="#sec-worker-script" id="toc-sec-worker-script" class="nav-link" data-scroll-target="#sec-worker-script"><span class="toc-section-number">5.5.1</span>  Submitting a script to the worker</a></li>
-  <li><a href="#bash-helper-variables" id="toc-bash-helper-variables" class="nav-link" data-scroll-target="#bash-helper-variables"><span class="toc-section-number">5.5.2</span>  Bash Helper Variables</a></li>
+  <li><a href="#sec-worker-script" id="toc-sec-worker-script" class="nav-link" data-scroll-target="#sec-worker-script"><span class="header-section-number">5.5.1</span> Submitting a script to the worker</a></li>
+  <li><a href="#bash-helper-variables" id="toc-bash-helper-variables" class="nav-link" data-scroll-target="#bash-helper-variables"><span class="header-section-number">5.5.2</span> Bash Helper Variables</a></li>
   </ul></li>
-  <li><a href="#more-swiss-army-knife" id="toc-more-swiss-army-knife" class="nav-link" data-scroll-target="#more-swiss-army-knife"><span class="toc-section-number">5.6</span>  More Swiss Army Knife</a>
+  <li><a href="#more-swiss-army-knife" id="toc-more-swiss-army-knife" class="nav-link" data-scroll-target="#more-swiss-army-knife"><span class="header-section-number">5.6</span> More Swiss Army Knife</a>
   <ul class="collapse">
-  <li><a href="#multiple-file-inputs-to-swiss-army-knife" id="toc-multiple-file-inputs-to-swiss-army-knife" class="nav-link" data-scroll-target="#multiple-file-inputs-to-swiss-army-knife"><span class="toc-section-number">5.6.1</span>  Multiple file inputs to Swiss Army Knife</a></li>
-  <li><a href="#sec-plink" id="toc-sec-plink" class="nav-link" data-scroll-target="#sec-plink"><span class="toc-section-number">5.6.2</span>  Using PLINK triplets</a></li>
+  <li><a href="#multiple-file-inputs-to-swiss-army-knife" id="toc-multiple-file-inputs-to-swiss-army-knife" class="nav-link" data-scroll-target="#multiple-file-inputs-to-swiss-army-knife"><span class="header-section-number">5.6.1</span> Multiple file inputs to Swiss Army Knife</a></li>
+  <li><a href="#sec-plink" id="toc-sec-plink" class="nav-link" data-scroll-target="#sec-plink"><span class="header-section-number">5.6.2</span> Using PLINK triplets</a></li>
   </ul></li>
-  <li><a href="#dx-run-runs-deep" id="toc-dx-run-runs-deep" class="nav-link" data-scroll-target="#dx-run-runs-deep"><span class="toc-section-number">5.7</span>  <code>dx run</code> runs deep</a>
+  <li><a href="#dx-run-runs-deep" id="toc-dx-run-runs-deep" class="nav-link" data-scroll-target="#dx-run-runs-deep"><span class="header-section-number">5.7</span> <code>dx run</code> runs deep</a>
   <ul class="collapse">
-  <li><a href="#save-our-output-files-into-a-different-folder" id="toc-save-our-output-files-into-a-different-folder" class="nav-link" data-scroll-target="#save-our-output-files-into-a-different-folder"><span class="toc-section-number">5.7.1</span>  Save our output files into a different folder</a></li>
-  <li><a href="#run-our-job-on-a-different-instance-type" id="toc-run-our-job-on-a-different-instance-type" class="nav-link" data-scroll-target="#run-our-job-on-a-different-instance-type"><span class="toc-section-number">5.7.2</span>  Run our job on a different instance type</a></li>
-  <li><a href="#tag-and-rename-our-job" id="toc-tag-and-rename-our-job" class="nav-link" data-scroll-target="#tag-and-rename-our-job"><span class="toc-section-number">5.7.3</span>  Tag and rename our job</a></li>
-  <li><a href="#clone-an-failed-job" id="toc-clone-an-failed-job" class="nav-link" data-scroll-target="#clone-an-failed-job"><span class="toc-section-number">5.7.4</span>  Clone an failed job</a></li>
+  <li><a href="#save-our-output-files-into-a-different-folder" id="toc-save-our-output-files-into-a-different-folder" class="nav-link" data-scroll-target="#save-our-output-files-into-a-different-folder"><span class="header-section-number">5.7.1</span> Save our output files into a different folder</a></li>
+  <li><a href="#run-our-job-on-a-different-instance-type" id="toc-run-our-job-on-a-different-instance-type" class="nav-link" data-scroll-target="#run-our-job-on-a-different-instance-type"><span class="header-section-number">5.7.2</span> Run our job on a different instance type</a></li>
+  <li><a href="#tag-and-rename-our-job" id="toc-tag-and-rename-our-job" class="nav-link" data-scroll-target="#tag-and-rename-our-job"><span class="header-section-number">5.7.3</span> Tag and rename our job</a></li>
+  <li><a href="#clone-an-failed-job" id="toc-clone-an-failed-job" class="nav-link" data-scroll-target="#clone-an-failed-job"><span class="header-section-number">5.7.4</span> Clone an failed job</a></li>
   </ul></li>
-  <li><a href="#sec-dxfuse" id="toc-sec-dxfuse" class="nav-link" data-scroll-target="#sec-dxfuse"><span class="toc-section-number">5.8</span>  dxFUSE: Simplify your scripts with multiple inputs</a>
+  <li><a href="#sec-dxfuse" id="toc-sec-dxfuse" class="nav-link" data-scroll-target="#sec-dxfuse"><span class="header-section-number">5.8</span> dxFUSE: Simplify your scripts with multiple inputs</a>
   <ul class="collapse">
-  <li><a href="#advantages-of-dxfuse" id="toc-advantages-of-dxfuse" class="nav-link" data-scroll-target="#advantages-of-dxfuse"><span class="toc-section-number">5.8.1</span>  Advantages of dxFUSE</a></li>
-  <li><a href="#disadvantages-of-dxfuse" id="toc-disadvantages-of-dxfuse" class="nav-link" data-scroll-target="#disadvantages-of-dxfuse"><span class="toc-section-number">5.8.2</span>  Disadvantages of dxFUSE</a></li>
+  <li><a href="#advantages-of-dxfuse" id="toc-advantages-of-dxfuse" class="nav-link" data-scroll-target="#advantages-of-dxfuse"><span class="header-section-number">5.8.1</span> Advantages of dxFUSE</a></li>
+  <li><a href="#disadvantages-of-dxfuse" id="toc-disadvantages-of-dxfuse" class="nav-link" data-scroll-target="#disadvantages-of-dxfuse"><span class="header-section-number">5.8.2</span> Disadvantages of dxFUSE</a></li>
   </ul></li>
-  <li><a href="#using-a-docker-image-with-dx-runswiss-army-knife" id="toc-using-a-docker-image-with-dx-runswiss-army-knife" class="nav-link" data-scroll-target="#using-a-docker-image-with-dx-runswiss-army-knife"><span class="toc-section-number">5.9</span>  Using a Docker Image with <code>dx run</code>/Swiss Army Knife</a></li>
-  <li><a href="#what-you-learned-in-this-chapter" id="toc-what-you-learned-in-this-chapter" class="nav-link" data-scroll-target="#what-you-learned-in-this-chapter"><span class="toc-section-number">5.10</span>  What you learned in this chapter</a></li>
+  <li><a href="#using-a-docker-image-with-dx-runswiss-army-knife" id="toc-using-a-docker-image-with-dx-runswiss-army-knife" class="nav-link" data-scroll-target="#using-a-docker-image-with-dx-runswiss-army-knife"><span class="header-section-number">5.9</span> Using a Docker Image with <code>dx run</code>/Swiss Army Knife</a></li>
+  <li><a href="#what-you-learned-in-this-chapter" id="toc-what-you-learned-in-this-chapter" class="nav-link" data-scroll-target="#what-you-learned-in-this-chapter"><span class="header-section-number">5.10</span> What you learned in this chapter</a></li>
   </ul>
 </nav>
     </div>
@@ -207,7 +223,7 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-dxrun" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with files using <code>dx run</code></span></span></h1>
+<h1 class="title"><span id="sec-dxrun" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with files using <code>dx run</code></span></span></h1>
 </div>
 
 
@@ -222,12 +238,12 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 
 </header>
 
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Prep for Exercises
 </div>
 </div>
@@ -318,12 +334,12 @@ Watch launched job now? [Y/n] Y</code></pre>
 <p><code>Confirm executable with this input [Y/n]:</code></p>
 <p>And when it asks you</p>
 <p><code>Watch launched job now? [Y/n]</code></p>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Try it out!
 </div>
 </div>
@@ -332,12 +348,12 @@ Try it out!
 <p>What file does it create? Where does it create that file?</p>
 </div>
 </div>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Answer
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -373,12 +389,12 @@ dx run app-swiss-army-knife \
   -icmd="sambamba index *" \
   --destination "data/"</code></pre>
 <p>Another nice thing about <code>dx run</code> is that it will automatically create the folder we specify with <code>--destination</code> if it doesn’t exist in project storage.</p>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 What if we run our statement multiple times?
 </div>
 </div>
@@ -411,12 +427,12 @@ dx run app-swiss-army-knife \
   -icmd="bash run-on-worker.sh $in_path"</code></pre>
 <p>The magic here is that we’re using <code>bash</code> in our <code>cmd</code> input to run the script <code>run-on-worker.sh</code>. Notice this script is already in our project in the <code>worker_scripts/</code> folder, so we can submit it as a file input:</p>
 <pre><code>-iin="worker_scripts/run-on-worker.sh"</code></pre>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Why this is important on the platform
 </div>
 </div>
@@ -472,12 +488,12 @@ Why this is important on the platform
   -icmd="samtools view -c ${in_path} &gt; ${in_prefix}.counts.txt"</code></pre>
 <p>What happens when the command is run on the worker is that the variables are expanded like this:</p>
 <pre><code>samtools view -c ~/NA12878.bam &gt; NA12878.counts.txt</code></pre>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 What is the difference between <code>$in</code> and <code>$in_path</code>?
 </div>
 </div>
@@ -487,12 +503,12 @@ What is the difference between <code>$in</code> and <code>$in_path</code>?
 <p>When writing scripts that run on the worker with the <code>-icmd</code> input, <code>$in_path</code> is much more useful.</p>
 </div>
 </div>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Why are we learning about helper variables?
 </div>
 </div>
@@ -698,9 +714,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -765,6 +795,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

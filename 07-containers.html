@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -87,11 +87,16 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containers and Reproducibility</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07-containers.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containers and Reproducibility</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -99,104 +104,117 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Bash for Bioinformatics</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-setup-course.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setup for the Course / dx-toolkit basics</span></a>
+  <a href="./01-setup-course.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setup for the Course / dx-toolkit basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-scripting-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Shell Scripting Basics</span></a>
+  <a href="./02-scripting-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Shell Scripting Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-cloud-computing-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Cloud Computing Basics</span></a>
+  <a href="./03-cloud-computing-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Cloud Computing Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-doing-work-with-dx-run.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with files using <code>dx run</code></span></a>
+  <a href="./04-doing-work-with-dx-run.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with files using <code>dx run</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-batch-processing.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Batch Processing on the Cloud</span></a>
+  <a href="./05-batch-processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Batch Processing on the Cloud</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-JSON.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with JSON on the DNAnexus Platform</span></a>
+  <a href="./06-JSON.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with JSON on the DNAnexus Platform</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-containers.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containers and Reproducibility</span></a>
+  <a href="./07-containers.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containers and Reproducibility</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Appendix</span></a>
+  <a href="./appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Appendix</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="toc-section-number">8.1</span>  Learning Objectives</a></li>
-  <li><a href="#why-containers" id="toc-why-containers" class="nav-link" data-scroll-target="#why-containers"><span class="toc-section-number">8.2</span>  Why Containers?</a></li>
-  <li><a href="#terminology" id="toc-terminology" class="nav-link" data-scroll-target="#terminology"><span class="toc-section-number">8.3</span>  Terminology</a></li>
-  <li><a href="#building-docker-snapshot-files-on-the-the-dnanexus-platform" id="toc-building-docker-snapshot-files-on-the-the-dnanexus-platform" class="nav-link" data-scroll-target="#building-docker-snapshot-files-on-the-the-dnanexus-platform"><span class="toc-section-number">8.4</span>  Building Docker Snapshot Files on the the DNAnexus platform</a>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">8.1</span> Learning Objectives</a></li>
+  <li><a href="#why-containers" id="toc-why-containers" class="nav-link" data-scroll-target="#why-containers"><span class="header-section-number">8.2</span> Why Containers?</a></li>
+  <li><a href="#terminology" id="toc-terminology" class="nav-link" data-scroll-target="#terminology"><span class="header-section-number">8.3</span> Terminology</a></li>
+  <li><a href="#building-docker-snapshot-files-on-the-the-dnanexus-platform" id="toc-building-docker-snapshot-files-on-the-the-dnanexus-platform" class="nav-link" data-scroll-target="#building-docker-snapshot-files-on-the-the-dnanexus-platform"><span class="header-section-number">8.4</span> Building Docker Snapshot Files on the the DNAnexus platform</a>
   <ul class="collapse">
-  <li><a href="#the-golden-rule-of-docker-and-batch-analysis" id="toc-the-golden-rule-of-docker-and-batch-analysis" class="nav-link" data-scroll-target="#the-golden-rule-of-docker-and-batch-analysis"><span class="toc-section-number">8.4.1</span>  The Golden Rule of Docker and Batch Analysis</a></li>
-  <li><a href="#be-secure" id="toc-be-secure" class="nav-link" data-scroll-target="#be-secure"><span class="toc-section-number">8.4.2</span>  Be Secure</a></li>
-  <li><a href="#the-basic-snapshot-building-process" id="toc-the-basic-snapshot-building-process" class="nav-link" data-scroll-target="#the-basic-snapshot-building-process"><span class="toc-section-number">8.4.3</span>  The Basic Snapshot Building Process</a></li>
-  <li><a href="#sec-ttyd" id="toc-sec-ttyd" class="nav-link" data-scroll-target="#sec-ttyd"><span class="toc-section-number">8.4.4</span>  Building Snapshot Files in <code>ttyd</code></a></li>
-  <li><a href="#pull-your-image-from-a-registry" id="toc-pull-your-image-from-a-registry" class="nav-link" data-scroll-target="#pull-your-image-from-a-registry"><span class="toc-section-number">8.4.5</span>  Pull your image from a registry</a></li>
-  <li><a href="#save-your-docker-image-as-a-snapshot" id="toc-save-your-docker-image-as-a-snapshot" class="nav-link" data-scroll-target="#save-your-docker-image-as-a-snapshot"><span class="toc-section-number">8.4.6</span>  Save your docker image as a snapshot</a></li>
-  <li><a href="#upload-your-snapshot" id="toc-upload-your-snapshot" class="nav-link" data-scroll-target="#upload-your-snapshot"><span class="toc-section-number">8.4.7</span>  Upload your snapshot</a></li>
-  <li><a href="#important-make-sure-to-terminate-your-ttyd-instance" id="toc-important-make-sure-to-terminate-your-ttyd-instance" class="nav-link" data-scroll-target="#important-make-sure-to-terminate-your-ttyd-instance"><span class="toc-section-number">8.4.8</span>  Important: make sure to terminate your ttyd instance!</a></li>
+  <li><a href="#the-golden-rule-of-docker-and-batch-analysis" id="toc-the-golden-rule-of-docker-and-batch-analysis" class="nav-link" data-scroll-target="#the-golden-rule-of-docker-and-batch-analysis"><span class="header-section-number">8.4.1</span> The Golden Rule of Docker and Batch Analysis</a></li>
+  <li><a href="#be-secure" id="toc-be-secure" class="nav-link" data-scroll-target="#be-secure"><span class="header-section-number">8.4.2</span> Be Secure</a></li>
+  <li><a href="#the-basic-snapshot-building-process" id="toc-the-basic-snapshot-building-process" class="nav-link" data-scroll-target="#the-basic-snapshot-building-process"><span class="header-section-number">8.4.3</span> The Basic Snapshot Building Process</a></li>
+  <li><a href="#sec-ttyd" id="toc-sec-ttyd" class="nav-link" data-scroll-target="#sec-ttyd"><span class="header-section-number">8.4.4</span> Building Snapshot Files in <code>ttyd</code></a></li>
+  <li><a href="#pull-your-image-from-a-registry" id="toc-pull-your-image-from-a-registry" class="nav-link" data-scroll-target="#pull-your-image-from-a-registry"><span class="header-section-number">8.4.5</span> Pull your image from a registry</a></li>
+  <li><a href="#try-your-docker-image-out" id="toc-try-your-docker-image-out" class="nav-link" data-scroll-target="#try-your-docker-image-out"><span class="header-section-number">8.4.6</span> Try your docker image out</a></li>
+  <li><a href="#save-your-docker-image-as-a-snapshot" id="toc-save-your-docker-image-as-a-snapshot" class="nav-link" data-scroll-target="#save-your-docker-image-as-a-snapshot"><span class="header-section-number">8.4.7</span> Save your docker image as a snapshot</a></li>
+  <li><a href="#upload-your-snapshot" id="toc-upload-your-snapshot" class="nav-link" data-scroll-target="#upload-your-snapshot"><span class="header-section-number">8.4.8</span> Upload your snapshot</a></li>
+  <li><a href="#important-make-sure-to-terminate-your-ttyd-instance" id="toc-important-make-sure-to-terminate-your-ttyd-instance" class="nav-link" data-scroll-target="#important-make-sure-to-terminate-your-ttyd-instance"><span class="header-section-number">8.4.9</span> Important: make sure to terminate your ttyd instance!</a></li>
   </ul></li>
-  <li><a href="#sec-docker-sak" id="toc-sec-docker-sak" class="nav-link" data-scroll-target="#sec-docker-sak"><span class="toc-section-number">8.5</span>  Using Docker with Swiss Army Knife</a></li>
-  <li><a href="#extending-a-docker-image" id="toc-extending-a-docker-image" class="nav-link" data-scroll-target="#extending-a-docker-image"><span class="toc-section-number">8.6</span>  Extending a Docker Image</a>
+  <li><a href="#sec-docker-sak" id="toc-sec-docker-sak" class="nav-link" data-scroll-target="#sec-docker-sak"><span class="header-section-number">8.5</span> Using Docker with Swiss Army Knife</a></li>
+  <li><a href="#extending-a-docker-image" id="toc-extending-a-docker-image" class="nav-link" data-scroll-target="#extending-a-docker-image"><span class="header-section-number">8.6</span> Extending a Docker Image</a>
   <ul class="collapse">
-  <li><a href="#pulling-a-base-image" id="toc-pulling-a-base-image" class="nav-link" data-scroll-target="#pulling-a-base-image"><span class="toc-section-number">8.6.1</span>  Pulling a Base Image</a></li>
-  <li><a href="#open-up-interactive-mode" id="toc-open-up-interactive-mode" class="nav-link" data-scroll-target="#open-up-interactive-mode"><span class="toc-section-number">8.6.2</span>  Open up interactive mode</a></li>
-  <li><a href="#install-software" id="toc-install-software" class="nav-link" data-scroll-target="#install-software"><span class="toc-section-number">8.6.3</span>  Install Software</a></li>
-  <li><a href="#exit-container" id="toc-exit-container" class="nav-link" data-scroll-target="#exit-container"><span class="toc-section-number">8.6.4</span>  Exit Container</a></li>
-  <li><a href="#docker-commitdocker-save-your-new-snapshot-file" id="toc-docker-commitdocker-save-your-new-snapshot-file" class="nav-link" data-scroll-target="#docker-commitdocker-save-your-new-snapshot-file"><span class="toc-section-number">8.6.5</span>  <code>docker commit</code>/<code>docker save</code> your new snapshot file</a></li>
+  <li><a href="#pulling-a-base-image" id="toc-pulling-a-base-image" class="nav-link" data-scroll-target="#pulling-a-base-image"><span class="header-section-number">8.6.1</span> Pulling a Base Image</a></li>
+  <li><a href="#open-up-interactive-mode" id="toc-open-up-interactive-mode" class="nav-link" data-scroll-target="#open-up-interactive-mode"><span class="header-section-number">8.6.2</span> Open up interactive mode</a></li>
+  <li><a href="#install-software" id="toc-install-software" class="nav-link" data-scroll-target="#install-software"><span class="header-section-number">8.6.3</span> Install Software</a></li>
+  <li><a href="#exit-container" id="toc-exit-container" class="nav-link" data-scroll-target="#exit-container"><span class="header-section-number">8.6.4</span> Exit Container</a></li>
+  <li><a href="#docker-commitdocker-save-your-new-snapshot-file" id="toc-docker-commitdocker-save-your-new-snapshot-file" class="nav-link" data-scroll-target="#docker-commitdocker-save-your-new-snapshot-file"><span class="header-section-number">8.6.5</span> <code>docker commit</code>/<code>docker save</code> your new snapshot file</a></li>
+  <li><a href="#other-uses-of-interactive-mode" id="toc-other-uses-of-interactive-mode" class="nav-link" data-scroll-target="#other-uses-of-interactive-mode"><span class="header-section-number">8.6.6</span> Other uses of Interactive Mode</a></li>
   </ul></li>
-  <li><a href="#other-uses-of-interactive-mode" id="toc-other-uses-of-interactive-mode" class="nav-link" data-scroll-target="#other-uses-of-interactive-mode"><span class="toc-section-number">8.7</span>  Other uses of Interactive Mode</a></li>
-  <li><a href="#going-further-with-docker" id="toc-going-further-with-docker" class="nav-link" data-scroll-target="#going-further-with-docker"><span class="toc-section-number">8.8</span>  Going Further with Docker</a></li>
-  <li><a href="#what-you-learned-in-this-chapter" id="toc-what-you-learned-in-this-chapter" class="nav-link" data-scroll-target="#what-you-learned-in-this-chapter"><span class="toc-section-number">8.9</span>  What you learned in this chapter</a></li>
+  <li><a href="#making-dockerfiles" id="toc-making-dockerfiles" class="nav-link" data-scroll-target="#making-dockerfiles"><span class="header-section-number">8.7</span> Making Dockerfiles</a></li>
+  <li><a href="#going-further-with-docker" id="toc-going-further-with-docker" class="nav-link" data-scroll-target="#going-further-with-docker"><span class="header-section-number">8.8</span> Going Further with Docker</a></li>
+  <li><a href="#what-you-learned-in-this-chapter" id="toc-what-you-learned-in-this-chapter" class="nav-link" data-scroll-target="#what-you-learned-in-this-chapter"><span class="header-section-number">8.9</span> What you learned in this chapter</a></li>
   </ul>
 </nav>
     </div>
@@ -205,7 +223,7 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-containers" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containers and Reproducibility</span></span></h1>
+<h1 class="title"><span id="sec-containers" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containers and Reproducibility</span></span></h1>
 </div>
 
 
@@ -220,12 +238,12 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 
 </header>
 
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Prep for Exercises
 </div>
 </div>
@@ -243,6 +261,7 @@ Prep for Exercises
 <li><strong>Create</strong> snapshots on RAP using <code>docker pull</code> and <code>docker save</code> with the ttyd app</li>
 <li><strong>Utilize</strong> containers to batch process files on RAP</li>
 <li><strong>Extend</strong> a docker image by installing within interactive mode</li>
+<li><strong>Build</strong> a docker image using Dockerfiles</li>
 </ol>
 </section>
 <section id="why-containers" class="level2" data-number="8.2">
@@ -257,7 +276,7 @@ Prep for Exercises
 <div id="fig-docker1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/docker_terminology.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;8.1: Docker Terms 1</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;8.1: Docker Terms 1</figcaption>
 </figure>
 </div>
 <ul>
@@ -277,7 +296,7 @@ Prep for Exercises
 </section>
 <section id="be-secure" class="level3" data-number="8.4.2">
 <h3 data-number="8.4.2" class="anchored" data-anchor-id="be-secure"><span class="header-section-number">8.4.2</span> Be Secure</h3>
-<p>Security is always a concern when running Docker images. The <code>docker</code> group has elevated status on a system, so we need to be careful that when we’re running them, they aren’t introducing any system vulnerabilities.</p>
+<p>Before we get started, security is always a concern when running Docker images. The <code>docker</code> group has elevated status on a system, so we need to be careful that when we’re running them, they aren’t introducing any system vulnerabilities.</p>
 <p>These are mostly important when running containers that are web-servers or part of a web stack, but it is also important to think about when running jobs on the cloud.</p>
 <p>Here are some guidelines to think about when you are working with a container.</p>
 <ul>
@@ -293,21 +312,18 @@ Prep for Exercises
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">flowchart TD
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
   A[start ttyd] --&gt; B[docker pull &lt;br&gt; from registry]
   B --&gt; C[docker save to &lt;br&gt; snapshot file]
   C --&gt; D[dx upload &lt;br&gt; snapshot to &lt;br&gt; project storage]
   D --&gt; E[terminate ttyd]
 </pre>
-<div id="mermaid-tooltip-1" class="mermaidTooltip">
-
-</div>
-<p></p>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;8.2: Building a docker snapshot on the DNAnexus platform.</figcaption><p></p>
+</div>
+<figcaption class="figure-caption">Figure&nbsp;8.2: Building a docker snapshot on the DNAnexus platform.</figcaption>
 </figure>
 </div>
 </section>
@@ -317,13 +333,13 @@ Prep for Exercises
 <p>We’re going to pull up a web-enabled shell on a DNAnexus worker with the <code>ttyd</code> app. <code>ttyd</code> is useful because:</p>
 <ol type="1">
 <li><code>docker</code> is already installed, so we can <code>docker pull</code> our container and <code>docker save</code> our snapshot to the ttyd instance.</li>
-<li>It’s much faster to transfer our snapshot file back into project storage..</li>
+<li>It’s much faster to transfer our snapshot file back into project storage with <code>dx upload</code>.</li>
 </ol>
 <p>To open ttyd, open the <strong>Tool Library</strong> under <strong>Tools</strong> and select your project.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src=".png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Opening ttyd</figcaption><p></p>
+<figcaption class="figure-caption">Opening ttyd</figcaption>
 </figure>
 </div>
 </section>
@@ -337,22 +353,29 @@ docker pull quay.io/biocontainers/samtools:1.15.1--h1170115_0</code></pre>
 <p>When you’re done pulling the docker image, try out the <code>docker images</code> command.</p>
 <pre><code>docker images</code></pre>
 </section>
-<section id="save-your-docker-image-as-a-snapshot" class="level3" data-number="8.4.6">
-<h3 data-number="8.4.6" class="anchored" data-anchor-id="save-your-docker-image-as-a-snapshot"><span class="header-section-number">8.4.6</span> Save your docker image as a snapshot</h3>
+<section id="try-your-docker-image-out" class="level3" data-number="8.4.6">
+<h3 data-number="8.4.6" class="anchored" data-anchor-id="try-your-docker-image-out"><span class="header-section-number">8.4.6</span> Try your docker image out</h3>
+<p>Now that we have our docker image downloaded, we can test it out by running <code>samtools --help</code>. This should give us the help message.</p>
+<pre class="{bash}"><code>#| eval: false
+
+docker run biocontainers/samtools samtools --help</code></pre>
+</section>
+<section id="save-your-docker-image-as-a-snapshot" class="level3" data-number="8.4.7">
+<h3 data-number="8.4.7" class="anchored" data-anchor-id="save-your-docker-image-as-a-snapshot"><span class="header-section-number">8.4.7</span> Save your docker image as a snapshot</h3>
+<p>Now that we’ve pulled the container, we are now going to save it as a snapshot file using <code>docker save</code>. We pipe the output of <code>docker save</code> into <code>gzip</code> to save it as <code>samtools_image.tar.gz</code>.</p>
 <pre class="{bash}"><code>#| eval: false
 
 docker save quay.io/biocontainers/samtools | gzip &gt; samtools_image.tar.gz </code></pre>
-<p>Now that we’ve pulled the container, we are now going to save it as a snapshot file using <code>docker save</code>. We pipe the output of <code>docker save</code> into <code>gzip</code> to save it as <code>samtools_image.tar.gz</code></p>
 </section>
-<section id="upload-your-snapshot" class="level3" data-number="8.4.7">
-<h3 data-number="8.4.7" class="anchored" data-anchor-id="upload-your-snapshot"><span class="header-section-number">8.4.7</span> Upload your snapshot</h3>
+<section id="upload-your-snapshot" class="level3" data-number="8.4.8">
+<h3 data-number="8.4.8" class="anchored" data-anchor-id="upload-your-snapshot"><span class="header-section-number">8.4.8</span> Upload your snapshot</h3>
+<p>Now we can get our image back into project storage. We’ll create a folder called <code>images/</code> with <code>dx mkdir</code> and then use <code>dx upload</code> to get our snapshot file into the <code>images/</code> folder.</p>
 <pre class="{bash}"><code>#| eval: false
 dx mkdir images/
 dx upload samtools_image.tar.gz --destination images/</code></pre>
-<p>Now we can get our image back into project storage. We’ll create a folder called <code>images/</code> with <code>dx mkdir</code> and then use <code>dx upload</code> to get our snapshot file into the <code>images/</code> folder.</p>
 </section>
-<section id="important-make-sure-to-terminate-your-ttyd-instance" class="level3" data-number="8.4.8">
-<h3 data-number="8.4.8" class="anchored" data-anchor-id="important-make-sure-to-terminate-your-ttyd-instance"><span class="header-section-number">8.4.8</span> Important: make sure to terminate your ttyd instance!</h3>
+<section id="important-make-sure-to-terminate-your-ttyd-instance" class="level3" data-number="8.4.9">
+<h3 data-number="8.4.9" class="anchored" data-anchor-id="important-make-sure-to-terminate-your-ttyd-instance"><span class="header-section-number">8.4.9</span> Important: make sure to terminate your ttyd instance!</h3>
 <p>One thing to remember is that there is no timeout associated with <code>ttyd</code>. You will get a reminder email after it’s been open after 24 hours, but you will get no warning after that.</p>
 <p>So make sure to use <code>dx terminate</code> or terminate the ttyd job under the <code>Manage</code> tab.</p>
 </section>
@@ -423,11 +446,38 @@ docker commit &lt;container_id&gt; emboss:6.6.0
 docker save emboss:6.6.0 | gzip &gt; emboss.tar.gz
 dx upload emboss.tar.gz --destination images/</code></pre>
 </section>
-</section>
-<section id="other-uses-of-interactive-mode" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="other-uses-of-interactive-mode"><span class="header-section-number">8.7</span> Other uses of Interactive Mode</h2>
+<section id="other-uses-of-interactive-mode" class="level3" data-number="8.6.6">
+<h3 data-number="8.6.6" class="anchored" data-anchor-id="other-uses-of-interactive-mode"><span class="header-section-number">8.6.6</span> Other uses of Interactive Mode</h3>
 <p>Docker’s interactive mode is really helpful for testing out scripts and making sure they are reproducible.</p>
 <p>If I have a one-off analysis, it may be faster for me to just open up <code>ttyd</code> and use <code>docker run</code> to open up interactive mode, and do work with a container.</p>
+</section>
+</section>
+<section id="making-dockerfiles" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="making-dockerfiles"><span class="header-section-number">8.7</span> Making Dockerfiles</h2>
+<p>The other way to build image files is to use a Dockerfile. A Dockerfile is a recipe for installing software and its dependencies.</p>
+<p>Let’s take a look at a Dockerfile. By default, it is contained within a folder and is called <code>Dockerfile</code>:</p>
+<pre><code>FROM ubuntu:18.04
+
+RUN apt-get update &amp;&amp; \
+    apt-get install -y build-essential  &amp;&amp; \
+    apt-get install -y wget &amp;&amp; \
+    apt-get clean &amp;&amp; \
+    rm -rf /var/lib/apt/lists/*
+
+ENV CONDA_DIR /opt/conda
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh &amp;&amp; \
+     /bin/bash ~/miniconda.sh -b -p /opt/conda
+
+ENV PATH=$CONDA_DIR/bin:$PATH
+
+#install plink with conda
+RUN conda install -c "bioconda/label/cf201901" plink
+RUN conda install -c "bioconda/label/cf201901" samtools</code></pre>
+<p>We can build the Docker image in our directory using:</p>
+<pre><code>docker build . -t gatk_sam_plink:0.0.1</code></pre>
+<p>When it’s done, we can then make sure it’s been built by using</p>
+<pre><code>docker images</code></pre>
+<p>And we can use it like any other image.</p>
 </section>
 <section id="going-further-with-docker" class="level2" data-number="8.8">
 <h2 data-number="8.8" class="anchored" data-anchor-id="going-further-with-docker"><span class="header-section-number">8.8</span> Going Further with Docker</h2>
@@ -475,9 +525,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -542,6 +606,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

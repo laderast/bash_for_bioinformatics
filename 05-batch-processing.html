@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -87,11 +87,16 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Batch Processing on the Cloud</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-batch-processing.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Batch Processing on the Cloud</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -99,102 +104,113 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Bash for Bioinformatics</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-setup-course.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setup for the Course / dx-toolkit basics</span></a>
+  <a href="./01-setup-course.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setup for the Course / dx-toolkit basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-scripting-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Shell Scripting Basics</span></a>
+  <a href="./02-scripting-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Shell Scripting Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-cloud-computing-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Cloud Computing Basics</span></a>
+  <a href="./03-cloud-computing-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Cloud Computing Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-doing-work-with-dx-run.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with files using <code>dx run</code></span></a>
+  <a href="./04-doing-work-with-dx-run.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with files using <code>dx run</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-batch-processing.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Batch Processing on the Cloud</span></a>
+  <a href="./05-batch-processing.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Batch Processing on the Cloud</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-JSON.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with JSON on the DNAnexus Platform</span></a>
+  <a href="./06-JSON.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with JSON on the DNAnexus Platform</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-containers.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containers and Reproducibility</span></a>
+  <a href="./07-containers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containers and Reproducibility</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Appendix</span></a>
+  <a href="./appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Appendix</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="toc-section-number">6.1</span>  Learning Objectives</a></li>
-  <li><a href="#two-ways-of-batching" id="toc-two-ways-of-batching" class="nav-link" data-scroll-target="#two-ways-of-batching"><span class="toc-section-number">6.2</span>  Two Ways of Batching</a></li>
-  <li><a href="#sec-dx-find" id="toc-sec-dx-find" class="nav-link" data-scroll-target="#sec-dx-find"><span class="toc-section-number">6.3</span>  Finding files using <code>dx find data</code></a></li>
-  <li><a href="#helpful-dx-find-data-examples" id="toc-helpful-dx-find-data-examples" class="nav-link" data-scroll-target="#helpful-dx-find-data-examples"><span class="toc-section-number">6.4</span>  Helpful <code>dx find data</code> examples</a>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">6.1</span> Learning Objectives</a></li>
+  <li><a href="#two-ways-of-batching" id="toc-two-ways-of-batching" class="nav-link" data-scroll-target="#two-ways-of-batching"><span class="header-section-number">6.2</span> Two Ways of Batching</a></li>
+  <li><a href="#sec-dx-find" id="toc-sec-dx-find" class="nav-link" data-scroll-target="#sec-dx-find"><span class="header-section-number">6.3</span> Finding files using <code>dx find data</code></a></li>
+  <li><a href="#helpful-dx-find-data-examples" id="toc-helpful-dx-find-data-examples" class="nav-link" data-scroll-target="#helpful-dx-find-data-examples"><span class="header-section-number">6.4</span> Helpful <code>dx find data</code> examples</a>
   <ul class="collapse">
-  <li><a href="#find-all-.bam-files-in-a-project" id="toc-find-all-.bam-files-in-a-project" class="nav-link" data-scroll-target="#find-all-.bam-files-in-a-project"><span class="toc-section-number">6.4.1</span>  Find all *.bam files in a project</a></li>
-  <li><a href="#searching-within-a-folder" id="toc-searching-within-a-folder" class="nav-link" data-scroll-target="#searching-within-a-folder"><span class="toc-section-number">6.4.2</span>  Searching within a folder</a></li>
-  <li><a href="#find-all-files-with-a-field-id" id="toc-find-all-files-with-a-field-id" class="nav-link" data-scroll-target="#find-all-files-with-a-field-id"><span class="toc-section-number">6.4.3</span>  Find all files with a field id</a></li>
-  <li><a href="#find-all-files-that-are-of-class-file" id="toc-find-all-files-that-are-of-class-file" class="nav-link" data-scroll-target="#find-all-files-that-are-of-class-file"><span class="toc-section-number">6.4.4</span>  Find all files that are of class <code>file</code></a></li>
-  <li><a href="#in-general-think-about-leveraging-metadata" id="toc-in-general-think-about-leveraging-metadata" class="nav-link" data-scroll-target="#in-general-think-about-leveraging-metadata"><span class="toc-section-number">6.4.5</span>  In General: Think about leveraging metadata</a></li>
+  <li><a href="#find-all-.bam-files-in-a-project" id="toc-find-all-.bam-files-in-a-project" class="nav-link" data-scroll-target="#find-all-.bam-files-in-a-project"><span class="header-section-number">6.4.1</span> Find all *.bam files in a project</a></li>
+  <li><a href="#searching-within-a-folder" id="toc-searching-within-a-folder" class="nav-link" data-scroll-target="#searching-within-a-folder"><span class="header-section-number">6.4.2</span> Searching within a folder</a></li>
+  <li><a href="#find-all-files-with-a-field-id" id="toc-find-all-files-with-a-field-id" class="nav-link" data-scroll-target="#find-all-files-with-a-field-id"><span class="header-section-number">6.4.3</span> Find all files with a field id</a></li>
+  <li><a href="#find-all-files-that-are-of-class-file" id="toc-find-all-files-that-are-of-class-file" class="nav-link" data-scroll-target="#find-all-files-that-are-of-class-file"><span class="header-section-number">6.4.4</span> Find all files that are of class <code>file</code></a></li>
+  <li><a href="#in-general-think-about-leveraging-metadata" id="toc-in-general-think-about-leveraging-metadata" class="nav-link" data-scroll-target="#in-general-think-about-leveraging-metadata"><span class="header-section-number">6.4.5</span> In General: Think about leveraging metadata</a></li>
   </ul></li>
-  <li><a href="#sec-xargs2" id="toc-sec-xargs2" class="nav-link" data-scroll-target="#sec-xargs2"><span class="toc-section-number">6.5</span>  Using <code>xargs</code> to Batch Multiple Files</a>
+  <li><a href="#sec-xargs2" id="toc-sec-xargs2" class="nav-link" data-scroll-target="#sec-xargs2"><span class="header-section-number">6.5</span> Using <code>xargs</code> to Batch Multiple Files</a>
   <ul class="collapse">
-  <li><a href="#when-batching-tag-your-jobs" id="toc-when-batching-tag-your-jobs" class="nav-link" data-scroll-target="#when-batching-tag-your-jobs"><span class="toc-section-number">6.5.1</span>  When batching, tag your jobs</a></li>
-  <li><a href="#sec-terminate" id="toc-sec-terminate" class="nav-link" data-scroll-target="#sec-terminate"><span class="toc-section-number">6.5.2</span>  Using tags to <code>dx terminate</code> jobs</a></li>
+  <li><a href="#when-batching-tag-your-jobs" id="toc-when-batching-tag-your-jobs" class="nav-link" data-scroll-target="#when-batching-tag-your-jobs"><span class="header-section-number">6.5.1</span> When batching, tag your jobs</a></li>
+  <li><a href="#sec-terminate" id="toc-sec-terminate" class="nav-link" data-scroll-target="#sec-terminate"><span class="header-section-number">6.5.2</span> Using tags to <code>dx terminate</code> jobs</a></li>
   </ul></li>
-  <li><a href="#sec-mult-worker" id="toc-sec-mult-worker" class="nav-link" data-scroll-target="#sec-mult-worker"><span class="toc-section-number">6.6</span>  Submitting Multiple Files to a Single Worker</a></li>
-  <li><a href="#batching-multiple-inputs-dx-generate_batch_inputs" id="toc-batching-multiple-inputs-dx-generate_batch_inputs" class="nav-link" data-scroll-target="#batching-multiple-inputs-dx-generate_batch_inputs"><span class="toc-section-number">6.7</span>  Batching multiple inputs: <code>dx generate_batch_inputs</code></a>
+  <li><a href="#sec-mult-worker" id="toc-sec-mult-worker" class="nav-link" data-scroll-target="#sec-mult-worker"><span class="header-section-number">6.6</span> Submitting Multiple Files to a Single Worker</a></li>
+  <li><a href="#batching-multiple-inputs-dx-generate_batch_inputs" id="toc-batching-multiple-inputs-dx-generate_batch_inputs" class="nav-link" data-scroll-target="#batching-multiple-inputs-dx-generate_batch_inputs"><span class="header-section-number">6.7</span> Batching multiple inputs: <code>dx generate_batch_inputs</code></a>
   <ul class="collapse">
-  <li><a href="#drawbacks-to-dx-generate_batch_inputsdx-run---batch-tsv" id="toc-drawbacks-to-dx-generate_batch_inputsdx-run---batch-tsv" class="nav-link" data-scroll-target="#drawbacks-to-dx-generate_batch_inputsdx-run---batch-tsv"><span class="toc-section-number">6.7.1</span>  Drawbacks to <code>dx generate_batch_inputs</code>/<code>dx run --batch-tsv</code></a></li>
-  <li><a href="#for-more-information" id="toc-for-more-information" class="nav-link" data-scroll-target="#for-more-information"><span class="toc-section-number">6.7.2</span>  For More Information</a></li>
+  <li><a href="#drawbacks-to-dx-generate_batch_inputsdx-run---batch-tsv" id="toc-drawbacks-to-dx-generate_batch_inputsdx-run---batch-tsv" class="nav-link" data-scroll-target="#drawbacks-to-dx-generate_batch_inputsdx-run---batch-tsv"><span class="header-section-number">6.7.1</span> Drawbacks to <code>dx generate_batch_inputs</code>/<code>dx run --batch-tsv</code></a></li>
+  <li><a href="#for-more-information" id="toc-for-more-information" class="nav-link" data-scroll-target="#for-more-information"><span class="header-section-number">6.7.2</span> For More Information</a></li>
   </ul></li>
-  <li><a href="#programatically-submitting-arrays-of-files-for-a-job" id="toc-programatically-submitting-arrays-of-files-for-a-job" class="nav-link" data-scroll-target="#programatically-submitting-arrays-of-files-for-a-job"><span class="toc-section-number">6.8</span>  Programatically Submitting Arrays of Files for a job</a></li>
-  <li><a href="#what-you-learned-in-this-chapter" id="toc-what-you-learned-in-this-chapter" class="nav-link" data-scroll-target="#what-you-learned-in-this-chapter"><span class="toc-section-number">6.9</span>  What you learned in this chapter</a></li>
+  <li><a href="#programatically-submitting-arrays-of-files-for-a-job" id="toc-programatically-submitting-arrays-of-files-for-a-job" class="nav-link" data-scroll-target="#programatically-submitting-arrays-of-files-for-a-job"><span class="header-section-number">6.8</span> Programatically Submitting Arrays of Files for a job</a></li>
+  <li><a href="#what-you-learned-in-this-chapter" id="toc-what-you-learned-in-this-chapter" class="nav-link" data-scroll-target="#what-you-learned-in-this-chapter"><span class="header-section-number">6.9</span> What you learned in this chapter</a></li>
   </ul>
 </nav>
     </div>
@@ -203,7 +219,7 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-batch" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Batch Processing on the Cloud</span></span></h1>
+<h1 class="title"><span id="sec-batch" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Batch Processing on the Cloud</span></span></h1>
 </div>
 
 
@@ -219,12 +235,12 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 </header>
 
 <p>Now we’re prepared for the big one: batch processing on the DNAnexus platform. All of the shell and DNAnexus skills we’ve learned will be leveraged in this chapter.</p>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Prep for Exercises
 </div>
 </div>
@@ -251,22 +267,19 @@ Prep for Exercises
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">graph LR;
+<div>
+<pre class="mermaid mermaid-js">graph LR;
   A[List files &lt;/br&gt; using `dx data`] --&gt; F{"|"}
   F --&gt; E[`xargs` sh -c]
   E --&gt; B[`dx run` &lt;/br&gt; on file1];
   E --&gt; C[`dx run` &lt;/br&gt; on file2];
   E --&gt; D[`dx run` &lt;/br&gt; on file3];
 </pre>
-<div id="mermaid-tooltip-1" class="mermaidTooltip">
-
-</div>
-<p></p>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;6.1: Batch method 1. We list files and then pipe them into <code>xargs</code>, which generates individual dx-run statements.</figcaption><p></p>
+</div>
+<figcaption class="figure-caption">Figure&nbsp;6.1: Batch method 1. We list files and then pipe them into <code>xargs</code>, which generates individual dx-run statements.</figcaption>
 </figure>
 </div>
 <div id="fig-batch2" class="quarto-figure quarto-figure-center anchored">
@@ -274,18 +287,15 @@ Prep for Exercises
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-2">graph LR;
+<div>
+<pre class="mermaid mermaid-js">graph LR;
   A[Submit array &lt;/br&gt; of files &lt;/br&gt; in `dx run`] --&gt; B[Loop over array &lt;/br&gt; of files &lt;/br&gt; in worker];
 </pre>
-<div id="mermaid-tooltip-2" class="mermaidTooltip">
-
-</div>
-<p></p>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;6.2: Batch method 2. We first get our files onto the worker through a single dx run command, and then use <code>xargs</code> on the worker to cycle through them.</figcaption><p></p>
+</div>
+<figcaption class="figure-caption">Figure&nbsp;6.2: Batch method 2. We first get our files onto the worker through a single dx run command, and then use <code>xargs</code> on the worker to cycle through them.</figcaption>
 </figure>
 </div>
 <p>We actually have two methods of batching jobs using Swiss Army Knife:</p>
@@ -518,9 +528,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -585,6 +609,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
