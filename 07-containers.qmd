@@ -21,6 +21,7 @@ cd containers/
 1. **Create** snapshots on RAP using `docker pull` and `docker save` with the ttyd app
 1. **Utilize** containers to batch process files on RAP
 1. **Extend** a docker image by installing within interactive mode
+1. **Build** a docker image using Dockerfiles
 
 ## Why Containers?
 
@@ -53,7 +54,7 @@ Let's talk about the basic snapshot building process.
 
 ### Be Secure
 
-Security is always a concern when running Docker images. The `docker` group has elevated status on a system, so we need to be careful that when we're running them, they aren't introducing any system vulnerabilities.
+Before we get started, security is always a concern when running Docker images. The `docker` group has elevated status on a system, so we need to be careful that when we're running them, they aren't introducing any system vulnerabilities.
 
 These are mostly important when running containers that are web-servers or part of a web stack, but it is also important to think about when running jobs on the cloud.
 
@@ -83,7 +84,7 @@ Up until now, we have been using our own machine or the binder shell for doing o
 We're going to pull up a web-enabled shell on a DNAnexus worker with the `ttyd` app. `ttyd` is useful because:
 
 1. `docker` is already installed, so we can `docker pull` our container and `docker save` our snapshot to the ttyd instance.
-1. It's much faster to transfer our snapshot file back into project storage..
+1. It's much faster to transfer our snapshot file back into project storage with `dx upload`.
 
 To open ttyd, open the **Tool Library** under **Tools** and select your project.
 
@@ -107,7 +108,20 @@ When you're done pulling the docker image, try out the `docker images` command.
 docker images
 ```
 
+### Try your docker image out
+
+Now that we have our docker image downloaded, we can test it out by running `samtools --help`. This should give us the help message.
+
+```{bash}
+#| eval: false
+
+docker run biocontainers/samtools samtools --help
+```
+
+
 ### Save your docker image as a snapshot
+
+Now that we've pulled the container, we are now going to save it as a snapshot file using `docker save`. We pipe the output of `docker save` into `gzip` to save it as `samtools_image.tar.gz`.
 
 ```{bash}
 #| eval: false
@@ -115,17 +129,15 @@ docker images
 docker save quay.io/biocontainers/samtools | gzip > samtools_image.tar.gz 
 ```
 
-Now that we've pulled the container, we are now going to save it as a snapshot file using `docker save`. We pipe the output of `docker save` into `gzip` to save it as `samtools_image.tar.gz`
-
 ### Upload your snapshot 
+
+Now we can get our image back into project storage. We'll create a folder called `images/` with `dx mkdir` and then use `dx upload` to get our snapshot file into the `images/` folder.
 
 ```{bash}
 #| eval: false
 dx mkdir images/
 dx upload samtools_image.tar.gz --destination images/
 ```
-
-Now we can get our image back into project storage. We'll create a folder called `images/` with `dx mkdir` and then use `dx upload` to get our snapshot file into the `images/` folder.
 
 ### Important: make sure to terminate your ttyd instance!
 
@@ -232,11 +244,51 @@ docker save emboss:6.6.0 | gzip > emboss.tar.gz
 dx upload emboss.tar.gz --destination images/
 ```
 
-## Other uses of Interactive Mode
+### Other uses of Interactive Mode
 
 Docker's interactive mode is really helpful for testing out scripts and making sure they are reproducible. 
 
 If I have a one-off analysis, it may be faster for me to just open up `ttyd` and use `docker run` to open up interactive mode, and do work with a container.
+
+## Making Dockerfiles
+
+The other way to build image files is to use a Dockerfile. A Dockerfile is a recipe for installing software and its dependencies.
+
+Let's take a look at a Dockerfile. By default, it is contained within a folder and is called `Dockerfile`:
+
+```
+FROM ubuntu:18.04
+
+RUN apt-get update && \
+    apt-get install -y build-essential  && \
+    apt-get install -y wget && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+ENV CONDA_DIR /opt/conda
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+     /bin/bash ~/miniconda.sh -b -p /opt/conda
+
+ENV PATH=$CONDA_DIR/bin:$PATH
+
+#install plink with conda
+RUN conda install -c "bioconda/label/cf201901" plink
+RUN conda install -c "bioconda/label/cf201901" samtools
+```
+
+We can build the Docker image in our directory using:
+
+```
+docker build . -t gatk_sam_plink:0.0.1
+```
+
+When it's done, we can then make sure it's been built by using
+
+```
+docker images
+```
+
+And we can use it like any other image. 
 
 ## Going Further with Docker
 
