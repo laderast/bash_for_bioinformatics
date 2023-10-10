@@ -249,7 +249,7 @@
     "href": "04-doing-work-with-dx-run.html#running-jobs-on-the-dnanexus-platform-using-dx-run",
     "title": "5  Working with files using dx run",
     "section": "5.3 Running Jobs on the DNAnexus platform using dx run",
-    "text": "5.3 Running Jobs on the DNAnexus platform using dx run\nOur main command for running jobs is dx run. dx run lets us submit jobs to be run on the platform. These jobs can be to process files (such as aligning FASTQ files to a genome), or they can be for web apps, such as LocusZoom (for visualizing)\nIf you have used SLURM on an on-premise HPC system, the equivalent command would be srun, and if you have used PBS, the equivalent command would be sbatch."
+    "text": "5.3 Running Jobs on the DNAnexus platform using dx run\nOur main command for running jobs is dx run. dx run lets us submit jobs to be run on the platform. These jobs can be to process files (such as aligning FASTQ files to a genome), or they can be for web apps, such as LocusZoom (for visualizing).\nIf you have used SLURM on an on-premise HPC system, the equivalent command would be srun, and if you have used PBS, the equivalent command would be sbatch."
   },
   {
     "objectID": "04-doing-work-with-dx-run.html#try-out-your-first-job",
