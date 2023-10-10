@@ -25,4 +25,8 @@ book:
 
 bibliography: references.bib
 
-format: html
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt

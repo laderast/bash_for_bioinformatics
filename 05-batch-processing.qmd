@@ -152,7 +152,7 @@ The key piece of code we're doing the variable expansion in is here:
 ```{bash}
 #| eval: false
 sh -c 'dx run app-swiss-army-knife -iin="%" \ 
-  -icmd="samtools view -c \${in_name}\ > \${in_prefix}-counts.txt" \
+  -icmd="samtools view -c \${in_name} > \${in_prefix}-counts.txt" \
   --tag samjob --destination results/'
 ```
 

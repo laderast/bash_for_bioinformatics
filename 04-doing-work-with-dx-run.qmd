@@ -316,7 +316,7 @@ We will output the QC'ed and filtered files as `chr1_qc.bed`, `chr1_qc.bim`, and
 
 If you've looked at the `dx run` help page, you'll notice it is quite long. There are a lot of options. Let's look at a few of them that are really helpful when you're getting started.
 
-  - `--tag` - please use these. 
+  - `--tag` - please use these. Your jobs will be findable with a tag.
   - `--destination` - destination folder in project. If the path doesn't exist, it will be created.
   - `--instance-type` - Instance types used in the job.
   - `--watch` - run `dx watch` for the job id that is generated
@@ -388,6 +388,13 @@ dx run app-swiss-army-knife --clone <job-id>
 ```
 
 When we learn about JSON (#sec-json), we'll learn a recipe for restarting a list of these failed jobs.
+
+:::{.callout-note}
+## Keep in Mind: `dx run --tag`
+
+Keep in mind when you are using the `--tag` option with `dx run`, it does not tag the *outputs* of your jobs with that tag. It only tags the jobs.
+
+:::
 
 ## dxFUSE: Simplify your scripts with multiple inputs {#sec-dxfuse}
 
