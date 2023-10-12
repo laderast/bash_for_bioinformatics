@@ -74,56 +74,77 @@
     "href": "01-setup-course.html#terminal-setup-dx-toolkit-setup",
     "title": "2  Setup for the Course / dx-toolkit basics",
     "section": "2.2 Terminal setup / dx-toolkit setup",
-    "text": "2.2 Terminal setup / dx-toolkit setup\nWe’ll be running all of these scripts on our own machine. We’ll be using the command-line for most of these.\nIf you are on Linux/Mac, you’ll be working with the terminal. If you are on Windows, I recommend you install Windows Subsystem for Linux, and specifically the Ubuntu distribution. That will give you a command-line shell that you can use to interact with the DNAnexus platform.\nOn your machine, I recommend using a text editor to edit the scripts in your terminal. Good ones include VS Code, or built in ones such as nano.\nNow that we have a terminal and code editor, we can install the dx-toolkit onto our machine. In your terminal, you’ll first need to make sure that python 3 is installed, and the pip installer is installed as well.\nsudo apt-get install python3\nsudo apt-get install pip3\nOnce you have access to Python 3 and pip3, you can install the dx-toolkit using the following:\npip3 install dxpy\nThat last command will install the dx-toolkit to your machine, which are the command line tools you’ll need to work on the DNAnexus cloud."
+    "text": "2.2 Terminal setup / dx-toolkit setup\nWe’ll be running all of these scripts on our own machine. We’ll be using the command-line for most of these.\nIf you are on Linux/Mac, you’ll be working with the terminal. If you are on Windows, I recommend you install Windows Subsystem for Linux, and specifically the Ubuntu distribution. That will give you a command-line shell that you can use to interact with the DNAnexus platform.\nOn your machine, I recommend using a text editor to edit the scripts in your terminal. Good ones include VS Code, or built in ones such as nano.\nNow that we have a terminal and code editor, we can install the dx-toolkit onto our machine. In your terminal, you’ll first need to make sure that python 3 is installed, and the pip installer is installed as well."
+  },
+  {
+    "objectID": "01-setup-course.html#on-ubuntu",
+    "href": "01-setup-course.html#on-ubuntu",
+    "title": "2  Setup for the Course / dx-toolkit basics",
+    "section": "2.3 On Ubuntu",
+    "text": "2.3 On Ubuntu\nYou should have a python3 installation - check by typing in:\nwhich python3\nIf you get a blank response, then you’ll need to install it.\nsudo apt-get install python3 ## If python is not yet installed\nsudo apt-get install pip3\nsudo apt-get install git\nsudo apt-get install jq\n\n\n\n\n\n\nWhat about miniconda?\n\n\n\nInstalling miniconda (the minimal Anaconda installer) has some advantages, but does require some learning, especially about conda environments.\nHere’s a link that discusses using conda environments and how you can use them to install software on your computer: https://towardsdatascience.com/a-guide-to-conda-environments-bc6180fc533\nThe short of it is that you define a conda environment, which is a space that lets you install R or Python packages and other software dependencies. For example, I could have an environment that uses Python 2.8, and another one that uses Python 3.9, and I could switch between them using a command called conda activate."
+  },
+  {
+    "objectID": "01-setup-course.html#on-macs",
+    "href": "01-setup-course.html#on-macs",
+    "title": "2  Setup for the Course / dx-toolkit basics",
+    "section": "2.4 On Macs",
+    "text": "2.4 On Macs\nInstall homebrew to your mac and install python3 and pip3:\nbrew install python3\nbrew install pip3\nbrew install git\nbrew install jq"
+  },
+  {
+    "objectID": "01-setup-course.html#for-both-machines",
+    "href": "01-setup-course.html#for-both-machines",
+    "title": "2  Setup for the Course / dx-toolkit basics",
+    "section": "2.5 For both machines",
+    "text": "2.5 For both machines\nOnce you have access to Python 3 and pip3, you can install the dx-toolkit using the following command:\npip3 install dxpy\nThat last command will install the dx-toolkit to your machine, which are the command line tools you’ll need to work on the DNAnexus cloud.\nTest it out by typing:\ndx -h\nYou should get similar output:\nusage: dx [-h] [--version] command ...\n\nDNAnexus Command-Line Client, API v1.0.0, client v0.330.0\n\ndx is a command-line client for interacting with the DNAnexus platform.  You can log in,\nnavigate, upload, organize and share your data, launch analyses, and more.  For a quick tour\nof what the tool can do, see\n\n  https://documentation.dnanexus.com/getting-started/tutorials/cli-quickstart#quickstart-for-&gt;\n\nFor a breakdown of dx commands by category, run \"dx help\"."
   },
   {
     "objectID": "01-setup-course.html#alternative-setup-binder.org",
     "href": "01-setup-course.html#alternative-setup-binder.org",
     "title": "2  Setup for the Course / dx-toolkit basics",
-    "section": "2.3 Alternative Setup: binder.org",
-    "text": "2.3 Alternative Setup: binder.org\nIf you aren’t able to install the dx-toolkit to your machine, you can use this Binder link to try out the commands. Binder opens a preinstalled image with a shell that has dxpy preinstalled on one of the https://mybinder.org servers.\nhttps://mybinder.org/v2/gh/laderast/minimal_dxpy/HEAD?urlpath=lab\nJust keep in mind that this shell is ephemeral - it will disappear. So make sure that any files you create that you want to save are either uploaded back to your project with dx upload or you’ve downloaded them using the file explorer.\nThis shell includes the following utilities:\n\ngit (needed to download course materials)\nnano (needed to edit files)\npython/pip (needed to install dx-toolkit)\njq (needed to work with JSON files)"
+    "section": "2.6 Alternative Setup: binder.org",
+    "text": "2.6 Alternative Setup: binder.org\nIf you aren’t able to install the dx-toolkit to your machine, you can use this Binder link to try out the commands. Binder opens a preinstalled image with a shell that has dxpy preinstalled on one of the https://mybinder.org servers.\nhttps://mybinder.org/v2/gh/laderast/bash_bioinfo_scripts/HEAD?urlpath=lab\nWhen you launch it, you will first see this page:\n\n\n\nLaunch Binder Screen\n\n\nThen after a few moments (hopefully no more than 5 minutes), the JupyterLab interface should launch. Select the “Terminal” from the bottom of the launcher:\n\n\n\nJupyterLab Interface\n\n\nOnce you select the terminal, this is what you should see:\n\n\n\nJupyterLab Terminal\n\n\nNow you’re ready to get started. Login (Section 2.8) and proceed from there.\nJust keep in mind that this shell is ephemeral - it will disappear. So make sure that any files you create that you want to save are either uploaded back to your project with dx upload or you’ve downloaded them using the file explorer.\nThis shell includes the following utilities:\n\ngit (needed to download course materials)\nnano (needed to edit files)\ndxpy (the dx-toolkit)\npython/pip (needed to install dx-toolkit)\njq (needed to work with JSON files)"
   },
   {
     "objectID": "01-setup-course.html#clone-the-files-and-scripts-using-git",
     "href": "01-setup-course.html#clone-the-files-and-scripts-using-git",
     "title": "2  Setup for the Course / dx-toolkit basics",
-    "section": "2.4 Clone the files and scripts using git",
-    "text": "2.4 Clone the files and scripts using git\n\ngit clone https://"
+    "section": "2.7 Clone the files and scripts using git",
+    "text": "2.7 Clone the files and scripts using git\n\n2.7.1 On Your Own Computer\nOn your own computer, clone the repo (it will already be cloned if you’re in the binder version).\n\ngit clone https://github.com/laderast/bash_bioinfo_scripts/\n\nThis will create a folder called /bash_bioinfo_scripts/ in your current directory. Change to it:\ncd bash_bioinfo_scripts\n\n\n2.7.2 In the binder\nYou will already be in the bash_bioinfo_scripts/ folder."
   },
   {
-    "objectID": "01-setup-course.html#try-logging-in",
-    "href": "01-setup-course.html#try-logging-in",
+    "objectID": "01-setup-course.html#sec-login",
+    "href": "01-setup-course.html#sec-login",
     "title": "2  Setup for the Course / dx-toolkit basics",
-    "section": "2.5 Try logging in",
-    "text": "2.5 Try logging in\nNow that you have an account and a way to run the dx-toolkit, try logging in with dx login:\n\ndx login\n\nThe platform will then ask you for your username and password. Enter them.\nIf you are successful, you will see either the select screen or, if you only have one project, that project will be selected for you."
+    "section": "2.8 Try logging in",
+    "text": "2.8 Try logging in\nNow that you have an account and the dx-toolkit installed, try logging in with dx login:\n\ndx login\n\nThe platform will then ask you for your username and password. Enter them.\nIf you are successful, you will see either the select screen or, if you only have one project, that project will be selected for you."
   },
   {
     "objectID": "01-setup-course.html#super-quick-intro-to-dx-toolkit",
     "href": "01-setup-course.html#super-quick-intro-to-dx-toolkit",
     "title": "2  Setup for the Course / dx-toolkit basics",
-    "section": "2.6 Super Quick Intro to dx-toolkit",
-    "text": "2.6 Super Quick Intro to dx-toolkit\nThe dx-toolkit is our main tool for interacting with the DNAnexus platform on the command-line. It handles the following:\n\nCreating a project and managing membership (dx new project/dx invite/dx uninvite).\nFile transfer to and from project storage (dx upload/dx download)\nStarting up computational jobs on the platform with apps and workflows (dx run)\nMonitoring/Terminating jobs on the platform (dx watch/dx describe/dx terminate)\nBuilding Apps, which are executables on the platform (dx-app-wizard, dx build)\nBuilding Workflows, which string together apps on the platform (dx build)\n\nHow do you know a command belongs to the dx-toolkit? They all begin with dx. For example, to list the contents of your current project, you’ll use something like ls:\n\ndx ls"
+    "section": "2.9 Super Quick Intro to dx-toolkit",
+    "text": "2.9 Super Quick Intro to dx-toolkit\nThe dx-toolkit is our main tool for interacting with the DNAnexus platform on the command-line. It handles the following:\n\nCreating a project and managing membership (dx new project/dx invite/dx uninvite).\nFile transfer to and from project storage (dx upload/dx download)\nStarting up computational jobs on the platform with apps and workflows (dx run)\nMonitoring/Terminating jobs on the platform (dx watch/dx describe/dx terminate)\nBuilding Apps, which are executables on the platform (dx-app-wizard, dx build)\nBuilding Workflows, which string together apps on the platform (dx build)\n\nHow do you know a command belongs to the dx-toolkit? They all begin with dx. For example, to list the contents of your current project, you’ll use something like ls:\n\ndx ls"
   },
   {
     "objectID": "01-setup-course.html#create-project-for-course",
     "href": "01-setup-course.html#create-project-for-course",
     "title": "2  Setup for the Course / dx-toolkit basics",
-    "section": "2.7 Create Project for Course",
-    "text": "2.7 Create Project for Course\nLet’s create a project on the platform, and then we will get files into it to prepare for the online work with the platform.\nThe first command we’ll run is dx new project in order to create our project.\n\ndx new project -y my_project"
+    "section": "2.10 Create Project for Course",
+    "text": "2.10 Create Project for Course\nLet’s create a project on the platform, and then we will get files into it to prepare for the online work with the platform.\nThe first command we’ll run is dx new project in order to create our project.\n\ndx new project -y my_project \n\n\n\n\n\n\n\nWhat’s happening here?\n\n\n\nWhen you call dx new project, that creates a project on the platform with the name my_project. This project lives in the cloud, within the DNAnexus platform.\nThe -y option switches you over into that new project."
   },
   {
-    "objectID": "01-setup-course.html#transferring-files-from-our-shell-to-project-storage",
-    "href": "01-setup-course.html#transferring-files-from-our-shell-to-project-storage",
+    "objectID": "01-setup-course.html#copying-files-to-project-storage",
+    "href": "01-setup-course.html#copying-files-to-project-storage",
     "title": "2  Setup for the Course / dx-toolkit basics",
-    "section": "2.8 Transferring files from our shell to Project Storage",
-    "text": "2.8 Transferring files from our shell to Project Storage\nOur worker scripts live in the the bash_for_bioinformatics/ folder on our machine. We’ll need to transfer these scripts, because some of them will be run directly on the DNAnexus workers.\nFrom your machine, type the following to get the “scripts/” folder\n\ndx upload -r \"worker_scripts/\"\n\nLet’s copy our files from our shell into our DNAnexus project.\n\ndx cp -r \"project-BQbJpBj0bvygyQxgQ1800Jkk:/Developer Quickstart\" .\ndx mv \"Developer Quickstart/\" \"data/\"\n\nConfirm that the projects match the following output:\n\ntree\ndx tree"
+    "section": "2.11 Copying Files to Project Storage",
+    "text": "2.11 Copying Files to Project Storage\nOur worker scripts live in the the bash_for_bioinformatics/ folder on our machine.\nLet’s copy our files from the public project into our newly created DNAnexus project.\n\ndx cp -r \"project-BQbJpBj0bvygyQxgQ1800Jkk:/Developer Quickstart\" .\ndx mv \"Developer Quickstart/\" \"data/\"\n\nConfirm that your file system on your machine is similiar to the following output:\n\ntree\n\n├── JSON\n│   └── json_data\n│       ├── dxapp.json\n│       ├── example.json\n│       ├── fastqc.json\n│       ├── job.json\n│       └── rap-jobs.json\n├── batch-processing\n│   ├── batch-on-worker.sh\n│   ├── dx-find-data-class.sh\n│   ├── dx-find-data-field.sh\n│   ├── dx-find-data-name.sh\n│   ├── dx-find-path.sh\n│   └── dx-find-xargs.sh\nAnd the file system in your project should look similar to this when you run dx tree:\n\ndx tree\n\n├── data\n│   ├── NA12878.bai\n│   ├── NA12878.bam\n│   ├── NC_000868.fasta\n│   ├── NC_001422.fasta\n│   ├── small-celegans-sample.fastq\n│   ├── SRR100022_chrom20_mapped_to_b37.bam\n│   ├── SRR100022_chrom21_mapped_to_b37.bam\n│   └── SRR100022_chrom22_mapped_to_b37.bam\n\n\n\n\n\n\nWhy are there two file systems?\n\n\n\nWhen we do cloud computing, there are two file systems we’ll have to be familiar with:\n\nThe file system on our own machine\nThe file system in our DNAnexus project\n\nThe tree command shows you the contents of your local machine.\ndx tree on the other hand, shows you the contents of your project storage. Remember that anything that begins with dx is a command that interacts with the platform!\nOk, I lied. There are technically 3 filesystems we need to be familar with. The last one is the working directory on the worker machine. We’ll talk more about this in the cloud computing basics (Chapter 4) section."
   },
   {
     "objectID": "01-setup-course.html#full-script",
     "href": "01-setup-course.html#full-script",
     "title": "2  Setup for the Course / dx-toolkit basics",
-    "section": "2.9 Full Script",
-    "text": "2.9 Full Script\nThe full script for setting up is in the 01-setup-course/project_setup.sh\n\n\n\n01-setup-course/project_setup.sh\n\n## Login\ndx login\n\n## Create your new project\ndx new project -y my_project\n\n## Clone this repository onto your computer\ngit clone https://github.com/laderast/bash_bioinfo_scripts\n\n## Upload the scripts into the scripts folder\ncd bash_bioinfo_scripts\ndx upload -r worker_scripts/\n\n## Copy the data over\ndx cp -r \"project-BQbJpBj0bvygyQxgQ1800Jkk:/Developer Quickstart\" .\ndx mv \"Developer Quickstart/\" \"data/\"\n\n## Confirm your project matches\ndx tree\ntree"
+    "section": "2.12 Full Script",
+    "text": "2.12 Full Script\nThe full script for setting up is in the setup-course/project_setup.sh\n\n\n\nsetup-course/project_setup.sh\n\n## Login\ndx login\n\n## Create your new project\ndx new project -y my_project\n\n## Clone this repository onto your computer\ngit clone https://github.com/laderast/bash_bioinfo_scripts\n\n## Upload the scripts into the scripts folder\ncd bash_bioinfo_scripts\ndx upload -r worker_scripts/\n\n## Copy the data over\ndx cp -r \"project-BQbJpBj0bvygyQxgQ1800Jkk:/Developer Quickstart\" .\ndx mv \"Developer Quickstart/\" \"data/\"\n\n## Confirm your project matches\ndx tree\ntree"
   },
   {
     "objectID": "02-scripting-basics.html#learning-objectives",
