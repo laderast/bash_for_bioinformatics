@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Bash for Bioinformatics - 7&nbsp; Working with JSON on the DNAnexus Platform</title>
+<title>Bash for Bioinformatics - 8&nbsp; Working with JSON on the DNAnexus Platform</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./07-containers.html" rel="next">
+<link href="./building-apps.html" rel="next">
 <link href="./05-batch-processing.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -127,7 +127,7 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-JSON.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with JSON on the DNAnexus Platform</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-JSON.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Working with JSON on the DNAnexus Platform</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -178,32 +178,44 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./using-jupyterlabs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Using JupyterLab on DNAnexus</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./04-doing-work-with-dx-run.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with files using <code>dx run</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Working with files using <code>dx run</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-batch-processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Batch Processing on the Cloud</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Batch Processing on the Cloud</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-JSON.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with JSON on the DNAnexus Platform</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Working with JSON on the DNAnexus Platform</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./building-apps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Building Apps</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-containers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containers and Reproducibility</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Containers and Reproducibility</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Appendix</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Appendix</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -222,22 +234,22 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">7.1</span> Learning Objectives</a></li>
-  <li><a href="#what-is-json" id="toc-what-is-json" class="nav-link" data-scroll-target="#what-is-json"><span class="header-section-number">7.2</span> What is JSON?</a></li>
-  <li><a href="#how-is-json-used-on-the-dnanexus-platform" id="toc-how-is-json-used-on-the-dnanexus-platform" class="nav-link" data-scroll-target="#how-is-json-used-on-the-dnanexus-platform"><span class="header-section-number">7.3</span> How is JSON used on the DNAnexus Platform?</a></li>
-  <li><a href="#writing-and-modifying-json" id="toc-writing-and-modifying-json" class="nav-link" data-scroll-target="#writing-and-modifying-json"><span class="header-section-number">7.4</span> Writing and modifying JSON</a></li>
-  <li><a href="#elements-of-a-json-file" id="toc-elements-of-a-json-file" class="nav-link" data-scroll-target="#elements-of-a-json-file"><span class="header-section-number">7.5</span> Elements of a JSON file</a></li>
-  <li><a href="#nestedness" id="toc-nestedness" class="nav-link" data-scroll-target="#nestedness"><span class="header-section-number">7.6</span> Nestedness</a></li>
-  <li><a href="#outputting-json-with-dx-find-commands" id="toc-outputting-json-with-dx-find-commands" class="nav-link" data-scroll-target="#outputting-json-with-dx-find-commands"><span class="header-section-number">7.7</span> Outputting JSON with <code>dx find</code> commands</a></li>
-  <li><a href="#learning-jq-gradually" id="toc-learning-jq-gradually" class="nav-link" data-scroll-target="#learning-jq-gradually"><span class="header-section-number">7.8</span> Learning <code>jq</code> gradually</a></li>
-  <li><a href="#our-simplest-filter-." id="toc-our-simplest-filter-." class="nav-link" data-scroll-target="#our-simplest-filter-."><span class="header-section-number">7.9</span> Our simplest filter: <code>.</code></a></li>
-  <li><a href="#getting-the-keys" id="toc-getting-the-keys" class="nav-link" data-scroll-target="#getting-the-keys"><span class="header-section-number">7.10</span> Getting the keys</a></li>
-  <li><a href="#extracting-a-value-from-a-container-jq-.report_html" id="toc-extracting-a-value-from-a-container-jq-.report_html" class="nav-link" data-scroll-target="#extracting-a-value-from-a-container-jq-.report_html"><span class="header-section-number">7.11</span> Extracting a value from a container: <code>jq .report_html</code></a>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">8.1</span> Learning Objectives</a></li>
+  <li><a href="#what-is-json" id="toc-what-is-json" class="nav-link" data-scroll-target="#what-is-json"><span class="header-section-number">8.2</span> What is JSON?</a></li>
+  <li><a href="#how-is-json-used-on-the-dnanexus-platform" id="toc-how-is-json-used-on-the-dnanexus-platform" class="nav-link" data-scroll-target="#how-is-json-used-on-the-dnanexus-platform"><span class="header-section-number">8.3</span> How is JSON used on the DNAnexus Platform?</a></li>
+  <li><a href="#writing-and-modifying-json" id="toc-writing-and-modifying-json" class="nav-link" data-scroll-target="#writing-and-modifying-json"><span class="header-section-number">8.4</span> Writing and modifying JSON</a></li>
+  <li><a href="#elements-of-a-json-file" id="toc-elements-of-a-json-file" class="nav-link" data-scroll-target="#elements-of-a-json-file"><span class="header-section-number">8.5</span> Elements of a JSON file</a></li>
+  <li><a href="#nestedness" id="toc-nestedness" class="nav-link" data-scroll-target="#nestedness"><span class="header-section-number">8.6</span> Nestedness</a></li>
+  <li><a href="#outputting-json-with-dx-find-commands" id="toc-outputting-json-with-dx-find-commands" class="nav-link" data-scroll-target="#outputting-json-with-dx-find-commands"><span class="header-section-number">8.7</span> Outputting JSON with <code>dx find</code> commands</a></li>
+  <li><a href="#learning-jq-gradually" id="toc-learning-jq-gradually" class="nav-link" data-scroll-target="#learning-jq-gradually"><span class="header-section-number">8.8</span> Learning <code>jq</code> gradually</a></li>
+  <li><a href="#our-simplest-filter-." id="toc-our-simplest-filter-." class="nav-link" data-scroll-target="#our-simplest-filter-."><span class="header-section-number">8.9</span> Our simplest filter: <code>.</code></a></li>
+  <li><a href="#getting-the-keys" id="toc-getting-the-keys" class="nav-link" data-scroll-target="#getting-the-keys"><span class="header-section-number">8.10</span> Getting the keys</a></li>
+  <li><a href="#extracting-a-value-from-a-container-jq-.report_html" id="toc-extracting-a-value-from-a-container-jq-.report_html" class="nav-link" data-scroll-target="#extracting-a-value-from-a-container-jq-.report_html"><span class="header-section-number">8.11</span> Extracting a value from a container: <code>jq .report_html</code></a>
   <ul class="collapse">
-  <li><a href="#going-one-level-deeper" id="toc-going-one-level-deeper" class="nav-link" data-scroll-target="#going-one-level-deeper"><span class="header-section-number">7.11.1</span> Going one level deeper</a></li>
+  <li><a href="#going-one-level-deeper" id="toc-going-one-level-deeper" class="nav-link" data-scroll-target="#going-one-level-deeper"><span class="header-section-number">8.11.1</span> Going one level deeper</a></li>
   </ul></li>
-  <li><a href="#conditional-filters-using-jq" id="toc-conditional-filters-using-jq" class="nav-link" data-scroll-target="#conditional-filters-using-jq"><span class="header-section-number">7.12</span> Conditional Filters using <code>jq</code></a></li>
-  <li><a href="#using-json-as-an-input" id="toc-using-json-as-an-input" class="nav-link" data-scroll-target="#using-json-as-an-input"><span class="header-section-number">7.13</span> Using JSON as an Input</a></li>
+  <li><a href="#conditional-filters-using-jq" id="toc-conditional-filters-using-jq" class="nav-link" data-scroll-target="#conditional-filters-using-jq"><span class="header-section-number">8.12</span> Conditional Filters using <code>jq</code></a></li>
+  <li><a href="#using-json-as-an-input" id="toc-using-json-as-an-input" class="nav-link" data-scroll-target="#using-json-as-an-input"><span class="header-section-number">8.13</span> Using JSON as an Input</a></li>
   </ul>
 </nav>
     </div>
@@ -246,7 +258,7 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-json" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with JSON on the DNAnexus Platform</span></span></h1>
+<h1 class="title"><span id="sec-json" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Working with JSON on the DNAnexus Platform</span></span></h1>
 </div>
 
 
@@ -278,8 +290,8 @@ Preparing for this Chapter
 <p><code>which jq</code></p>
 </div>
 </div>
-<section id="learning-objectives" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">7.1</span> Learning Objectives</h2>
+<section id="learning-objectives" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">8.1</span> Learning Objectives</h2>
 <p>By the end of this chapter, you should be able to:</p>
 <ul>
 <li><strong>Define</strong> and <strong>Explain</strong> what JSON is and its elements and structures</li>
@@ -290,12 +302,12 @@ Preparing for this Chapter
 <li><strong>Execute</strong> advanced <code>jq</code> filters using conditionals to process output from <code>dx find files</code> or <code>dx find jobs</code>.</li>
 </ul>
 </section>
-<section id="what-is-json" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="what-is-json"><span class="header-section-number">7.2</span> What is JSON?</h2>
+<section id="what-is-json" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="what-is-json"><span class="header-section-number">8.2</span> What is JSON?</h2>
 <p>JSON is short for <strong>J</strong>ava<strong>S</strong>cript <strong>O</strong>bject <strong>N</strong>otation. It is a format used for storing information on the web and for interacting with APIs.</p>
 </section>
-<section id="how-is-json-used-on-the-dnanexus-platform" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="how-is-json-used-on-the-dnanexus-platform"><span class="header-section-number">7.3</span> How is JSON used on the DNAnexus Platform?</h2>
+<section id="how-is-json-used-on-the-dnanexus-platform" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="how-is-json-used-on-the-dnanexus-platform"><span class="header-section-number">8.3</span> How is JSON used on the DNAnexus Platform?</h2>
 <p>JSON is used in multiple ways on the DNAnexus Platform, including:</p>
 <ul>
 <li>Submitting Jobs with complex parameters/inputs</li>
@@ -306,14 +318,14 @@ Preparing for this Chapter
 <p>Underneath it all, all interactions with the DNAnexus API server are JSON submissions.</p>
 <p>You can see that JSON is used in many places on the DNAnexus platforms, and for many purposes. So having basic knowledge of JSON can be really helpful.</p>
 </section>
-<section id="writing-and-modifying-json" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="writing-and-modifying-json"><span class="header-section-number">7.4</span> Writing and modifying JSON</h2>
+<section id="writing-and-modifying-json" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="writing-and-modifying-json"><span class="header-section-number">8.4</span> Writing and modifying JSON</h2>
 <p>I know that JSON is supposed to be human readable. However, there are a lot of little quibbles that don’t make it easily human writable.</p>
 <p>I highly recommend using an editor such as <a href="https://code.visualstudio.com/">VS Code</a>, with the appropriate <a href="https://code.visualstudio.com/docs/languages/json">JSON plugin</a>.</p>
 <p>Using the plugin and this tutorial will help you write well formed JSON, and point out any issues you might have. It’s easy to misplace a comma, or a bracket, and this tool helps you write well-formed JSON.</p>
 </section>
-<section id="elements-of-a-json-file" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="elements-of-a-json-file"><span class="header-section-number">7.5</span> Elements of a JSON file</h2>
+<section id="elements-of-a-json-file" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="elements-of-a-json-file"><span class="header-section-number">8.5</span> Elements of a JSON file</h2>
 <p>Here are the main elements of a JSON file:</p>
 <ul>
 <li><strong>Key:Value Pair</strong>. Example: <code>"name": "Ted Laderas"</code>. In this example, our key is “name” and our value is “Ted Laderas”</li>
@@ -373,8 +385,8 @@ Answer
 </div>
 </div>
 </section>
-<section id="nestedness" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="nestedness"><span class="header-section-number">7.6</span> Nestedness</h2>
+<section id="nestedness" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="nestedness"><span class="header-section-number">8.6</span> Nestedness</h2>
 <p>JSON wouldn’t be helpful if it were only limited to a single level or key:values. Values can be lists or objects as well. For example, in our example JSON, we can see that the value of <code>report_html</code> is a JSON object:</p>
 <pre><code>"report_html": {
     "dnanexus_link": "file-G4x7GX80VBzQy64k4jzgjqgY"
@@ -385,8 +397,8 @@ Answer
   }</code></pre>
 <p>When we work with extracting information, we’ll have to take this nested structure in mind.</p>
 </section>
-<section id="outputting-json-with-dx-find-commands" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="outputting-json-with-dx-find-commands"><span class="header-section-number">7.7</span> Outputting JSON with <code>dx find</code> commands</h2>
+<section id="outputting-json-with-dx-find-commands" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="outputting-json-with-dx-find-commands"><span class="header-section-number">8.7</span> Outputting JSON with <code>dx find</code> commands</h2>
 <p>We already encountered the <code>dx find data</code> command, which we used in the batch processing chapter.</p>
 <p>If we use the <code>--json</code> option, then the file information will be outputted in json format. This command will return a list of JSON file objects.</p>
 <p>For example:</p>
@@ -468,8 +480,8 @@ Answer
 </div>
 </div>
 </section>
-<section id="learning-jq-gradually" class="level2" data-number="7.8">
-<h2 data-number="7.8" class="anchored" data-anchor-id="learning-jq-gradually"><span class="header-section-number">7.8</span> Learning <code>jq</code> gradually</h2>
+<section id="learning-jq-gradually" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="learning-jq-gradually"><span class="header-section-number">8.8</span> Learning <code>jq</code> gradually</h2>
 <p>As you can see, JSON can be a very complicated to process, depending on how many levels you go deep in a J</p>
 <p><code>jq</code> is a utility that is made to process JSON. All <code>jq</code> commands have this format:</p>
 <div class="cell" data-execution_count="4">
@@ -483,8 +495,8 @@ Answer
 <p>You can see how <code>jq</code> can be extremely powerful.</p>
 <p>You can also pipe JSON from standard output into <code>jq</code>. This will be really helpful for us when we start using pipes of datafiles from <code>dx find data</code>.</p>
 </section>
-<section id="our-simplest-filter-." class="level2" data-number="7.9">
-<h2 data-number="7.9" class="anchored" data-anchor-id="our-simplest-filter-."><span class="header-section-number">7.9</span> Our simplest filter: <code>.</code></h2>
+<section id="our-simplest-filter-." class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="our-simplest-filter-."><span class="header-section-number">8.9</span> Our simplest filter: <code>.</code></h2>
 <p>One of the biggest uses for <code>jq</code> is for more readable formatting. Oftentimes, the JSON spit out of an API is really hard to read.</p>
 <p>It lacks indents, and it is really hard to see the actual structure of the JSON response.</p>
 <p>If we run <code>jq .</code> on a JSON file, we’ll see that it makes it much more readable.</p>
@@ -497,8 +509,8 @@ Answer
 </div>
 </div>
 </section>
-<section id="getting-the-keys" class="level2" data-number="7.10">
-<h2 data-number="7.10" class="anchored" data-anchor-id="getting-the-keys"><span class="header-section-number">7.10</span> Getting the keys</h2>
+<section id="getting-the-keys" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="getting-the-keys"><span class="header-section-number">8.10</span> Getting the keys</h2>
 <p>We can extract the keys from the top level JSON by using <code>'keys'</code> as our filter.</p>
 <div class="cell" data-execution_count="6">
 <div class="code-with-filename">
@@ -509,8 +521,8 @@ Answer
 </div>
 </div>
 </section>
-<section id="extracting-a-value-from-a-container-jq-.report_html" class="level2" data-number="7.11">
-<h2 data-number="7.11" class="anchored" data-anchor-id="extracting-a-value-from-a-container-jq-.report_html"><span class="header-section-number">7.11</span> Extracting a value from a container: <code>jq .report_html</code></h2>
+<section id="extracting-a-value-from-a-container-jq-.report_html" class="level2" data-number="8.11">
+<h2 data-number="8.11" class="anchored" data-anchor-id="extracting-a-value-from-a-container-jq-.report_html"><span class="header-section-number">8.11</span> Extracting a value from a container: <code>jq .report_html</code></h2>
 <p>So, say we want to extract the value from the <code>report_html</code> key in the above.</p>
 <p>We can specify the key that we’re interested in to extract the value from that key.</p>
 <div class="cell" data-execution_count="7">
@@ -575,8 +587,8 @@ Note
 </div>
 </div>
 </div>
-<section id="going-one-level-deeper" class="level3" data-number="7.11.1">
-<h3 data-number="7.11.1" class="anchored" data-anchor-id="going-one-level-deeper"><span class="header-section-number">7.11.1</span> Going one level deeper</h3>
+<section id="going-one-level-deeper" class="level3" data-number="8.11.1">
+<h3 data-number="8.11.1" class="anchored" data-anchor-id="going-one-level-deeper"><span class="header-section-number">8.11.1</span> Going one level deeper</h3>
 <p>We can extract the actual value associated with the <code>dnanexus_link</code> key within <code>report_html</code> by chaining onto our filter:</p>
 <div class="cell" data-execution_count="10">
 <div class="code-with-filename">
@@ -617,8 +629,8 @@ Answer
 </div>
 </section>
 </section>
-<section id="conditional-filters-using-jq" class="level2" data-number="7.12">
-<h2 data-number="7.12" class="anchored" data-anchor-id="conditional-filters-using-jq"><span class="header-section-number">7.12</span> Conditional Filters using <code>jq</code></h2>
+<section id="conditional-filters-using-jq" class="level2" data-number="8.12">
+<h2 data-number="8.12" class="anchored" data-anchor-id="conditional-filters-using-jq"><span class="header-section-number">8.12</span> Conditional Filters using <code>jq</code></h2>
 <p>One natural use case for this is to rerun failed jobs.</p>
 <p>Failed jobs can occur when using normal priority, which focuses on using spot instances. So, if we ran a series of jobs, we would want to restart these failed jobs.</p>
 <p>This is a bit of code that would allow us to select those jobs that have failed.</p>
@@ -634,7 +646,7 @@ Answer
 </div>
 <p>The second line contains the <code>jq</code> filter that does the magic. Remember, the filter is contained within the single quotes (<code>''</code>).</p>
 <p>The last line contains <code>"dx run --clone %"</code>.</p>
-<p>Let’s take apart the different parts of the <code>jq</code> filter (<a href="#fig-jq-filter">Figure&nbsp;<span>7.1</span></a>):</p>
+<p>Let’s take apart the different parts of the <code>jq</code> filter (<a href="#fig-jq-filter">Figure&nbsp;<span>8.1</span></a>):</p>
 <div id="fig-jq-filter" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <div class="cell">
@@ -651,7 +663,7 @@ Answer
 </div>
 </div>
 </div>
-<figcaption class="figure-caption">Figure&nbsp;7.1: Taking apart the <code>jq</code> filter.</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;8.1: Taking apart the <code>jq</code> filter.</figcaption>
 </figure>
 </div>
 <p>Note that the pipes in this filter apply only to the <code>jq</code> filter, so don’t mix them up with the other pipes in our overall Bash statement.</p>
@@ -698,8 +710,8 @@ Answer
 </div>
 </div>
 </section>
-<section id="using-json-as-an-input" class="level2" data-number="7.13">
-<h2 data-number="7.13" class="anchored" data-anchor-id="using-json-as-an-input"><span class="header-section-number">7.13</span> Using JSON as an Input</h2>
+<section id="using-json-as-an-input" class="level2" data-number="8.13">
+<h2 data-number="8.13" class="anchored" data-anchor-id="using-json-as-an-input"><span class="header-section-number">8.13</span> Using JSON as an Input</h2>
 <p>Coming soon.</p>
 
 
@@ -942,12 +954,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./05-batch-processing.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Batch Processing on the Cloud</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Batch Processing on the Cloud</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./07-containers.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containers and Reproducibility</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./building-apps.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Building Apps</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

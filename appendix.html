@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Bash for Bioinformatics - 9&nbsp; Appendix</title>
+<title>Bash for Bioinformatics - 11&nbsp; Appendix</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -124,7 +124,7 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Appendix</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Appendix</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -175,32 +175,44 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./using-jupyterlabs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Using JupyterLab on DNAnexus</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./04-doing-work-with-dx-run.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with files using <code>dx run</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Working with files using <code>dx run</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-batch-processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Batch Processing on the Cloud</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Batch Processing on the Cloud</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-JSON.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with JSON on the DNAnexus Platform</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Working with JSON on the DNAnexus Platform</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./building-apps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Building Apps</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-containers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containers and Reproducibility</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Containers and Reproducibility</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Appendix</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Appendix</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -219,17 +231,17 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#starting-ttyd" id="toc-starting-ttyd" class="nav-link active" data-scroll-target="#starting-ttyd"><span class="header-section-number">9.1</span> Starting ttyd</a></li>
-  <li><a href="#sec-named" id="toc-sec-named" class="nav-link" data-scroll-target="#sec-named"><span class="header-section-number">9.2</span> Named Arguments</a>
+  <li><a href="#starting-ttyd" id="toc-starting-ttyd" class="nav-link active" data-scroll-target="#starting-ttyd"><span class="header-section-number">11.1</span> Starting ttyd</a></li>
+  <li><a href="#sec-named" id="toc-sec-named" class="nav-link" data-scroll-target="#sec-named"><span class="header-section-number">11.2</span> Named Arguments</a>
   <ul class="collapse">
-  <li><a href="#running-our-script-with-named-arguments" id="toc-running-our-script-with-named-arguments" class="nav-link" data-scroll-target="#running-our-script-with-named-arguments"><span class="header-section-number">9.2.1</span> Running our script with named arguments</a></li>
-  <li><a href="#for-more-info" id="toc-for-more-info" class="nav-link" data-scroll-target="#for-more-info"><span class="header-section-number">9.2.2</span> For more info</a></li>
+  <li><a href="#running-our-script-with-named-arguments" id="toc-running-our-script-with-named-arguments" class="nav-link" data-scroll-target="#running-our-script-with-named-arguments"><span class="header-section-number">11.2.1</span> Running our script with named arguments</a></li>
+  <li><a href="#for-more-info" id="toc-for-more-info" class="nav-link" data-scroll-target="#for-more-info"><span class="header-section-number">11.2.2</span> For more info</a></li>
   </ul></li>
-  <li><a href="#sec-environment" id="toc-sec-environment" class="nav-link" data-scroll-target="#sec-environment"><span class="header-section-number">9.3</span> Environment Variables</a>
+  <li><a href="#sec-environment" id="toc-sec-environment" class="nav-link" data-scroll-target="#sec-environment"><span class="header-section-number">11.3</span> Environment Variables</a>
   <ul class="collapse">
-  <li><a href="#path" id="toc-path" class="nav-link" data-scroll-target="#path"><span class="header-section-number">9.3.1</span> <code>$PATH</code></a></li>
-  <li><a href="#maclinux" id="toc-maclinux" class="nav-link" data-scroll-target="#maclinux"><span class="header-section-number">9.3.2</span> Mac/Linux</a></li>
-  <li><a href="#other-environment-variables" id="toc-other-environment-variables" class="nav-link" data-scroll-target="#other-environment-variables"><span class="header-section-number">9.3.3</span> Other Environment Variables</a></li>
+  <li><a href="#path" id="toc-path" class="nav-link" data-scroll-target="#path"><span class="header-section-number">11.3.1</span> <code>$PATH</code></a></li>
+  <li><a href="#maclinux" id="toc-maclinux" class="nav-link" data-scroll-target="#maclinux"><span class="header-section-number">11.3.2</span> Mac/Linux</a></li>
+  <li><a href="#other-environment-variables" id="toc-other-environment-variables" class="nav-link" data-scroll-target="#other-environment-variables"><span class="header-section-number">11.3.3</span> Other Environment Variables</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -239,7 +251,7 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Appendix</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Appendix</span></h1>
 </div>
 
 
@@ -255,8 +267,8 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 </header>
 
 <p>The appendix contains multiple sections that I wanted to refer to, but there’s not a really good place for them.</p>
-<section id="starting-ttyd" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="starting-ttyd"><span class="header-section-number">9.1</span> Starting ttyd</h2>
+<section id="starting-ttyd" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="starting-ttyd"><span class="header-section-number">11.1</span> Starting ttyd</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -273,8 +285,8 @@ Why not just use <code>ttyd</code> for the entire course?
 </div>
 </div>
 </section>
-<section id="sec-named" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="sec-named"><span class="header-section-number">9.2</span> Named Arguments</h2>
+<section id="sec-named" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="sec-named"><span class="header-section-number">11.2</span> Named Arguments</h2>
 <p>In general, ordered arguments can be difficult to remember, and sometimes you have way too many parameters.</p>
 <p>What about named arguments? Let’s modify <code>sam_run.sh</code> to use named arguments.</p>
 <div class="cell" data-execution_count="1">
@@ -298,8 +310,8 @@ Why not just use <code>ttyd</code> for the entire course?
 </div>
 <p>The magic of setting up the positional arguments happens in the <code>while</code> block above. It looks for any string arguments that follow our script name that begin with <code>--</code> - then it puts the value of that into the named variables.</p>
 <p>In this case, our script is expecting an <code>--input-file</code> and an <code>--output_file</code> arguments.</p>
-<section id="running-our-script-with-named-arguments" class="level3" data-number="9.2.1">
-<h3 data-number="9.2.1" class="anchored" data-anchor-id="running-our-script-with-named-arguments"><span class="header-section-number">9.2.1</span> Running our script with named arguments</h3>
+<section id="running-our-script-with-named-arguments" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="running-our-script-with-named-arguments"><span class="header-section-number">11.2.1</span> Running our script with named arguments</h3>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./sam_run_named.sh</span> <span class="at">--input_file</span> <span class="st">""</span> <span class="at">--output_file</span> <span class="st">""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -334,26 +346,26 @@ Answer
 </div>
 </div>
 </section>
-<section id="for-more-info" class="level3" data-number="9.2.2">
-<h3 data-number="9.2.2" class="anchored" data-anchor-id="for-more-info"><span class="header-section-number">9.2.2</span> For more info</h3>
+<section id="for-more-info" class="level3" data-number="11.2.2">
+<h3 data-number="11.2.2" class="anchored" data-anchor-id="for-more-info"><span class="header-section-number">11.2.2</span> For more info</h3>
 <p><a href="https://keestalkstech.com/2022/03/named-arguments-in-a-bash-script/" class="uri">https://keestalkstech.com/2022/03/named-arguments-in-a-bash-script/</a></p>
 </section>
 </section>
-<section id="sec-environment" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="sec-environment"><span class="header-section-number">9.3</span> Environment Variables</h2>
-<section id="path" class="level3" data-number="9.3.1">
-<h3 data-number="9.3.1" class="anchored" data-anchor-id="path"><span class="header-section-number">9.3.1</span> <code>$PATH</code></h3>
+<section id="sec-environment" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="sec-environment"><span class="header-section-number">11.3</span> Environment Variables</h2>
+<section id="path" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="path"><span class="header-section-number">11.3.1</span> <code>$PATH</code></h3>
 <p>The <code>$PATH</code> variable is one of the most important environment variables we’ll set on your local machine. It specifies the directories where executables and binaries can be found. This is important when you install dx-toolkit to interact with the DNAnexus platform.</p>
 <p>In general, you want to append paths to the <code>$PATH</code> variable, rather than overwriting it. This is because other processes may add to the <code>$PATH</code> variable as well, so you don’t want to interfere with those processes. Adding to our <code>$PATH</code> variable depends on the different operating systems.</p>
 </section>
-<section id="maclinux" class="level3" data-number="9.3.2">
-<h3 data-number="9.3.2" class="anchored" data-anchor-id="maclinux"><span class="header-section-number">9.3.2</span> Mac/Linux</h3>
+<section id="maclinux" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="maclinux"><span class="header-section-number">11.3.2</span> Mac/Linux</h3>
 <p>The fastest way to add a directory to your path is to use the <code>export</code> command in your <code>.bash_profile</code>, or <code>.bashrc</code> file. For example, if the directory you want to add is <code>/opt/homebrew/bin/</code>, you’d edit your <code>.bash_profile</code> file and add the following line:</p>
 <pre><code>export PATH=$PATH:/opt/homebrew/bin/</code></pre>
 <p>Note that spacing matters in Bash scripting, especially in assigning variable names.</p>
 </section>
-<section id="other-environment-variables" class="level3" data-number="9.3.3">
-<h3 data-number="9.3.3" class="anchored" data-anchor-id="other-environment-variables"><span class="header-section-number">9.3.3</span> Other Environment Variables</h3>
+<section id="other-environment-variables" class="level3" data-number="11.3.3">
+<h3 data-number="11.3.3" class="anchored" data-anchor-id="other-environment-variables"><span class="header-section-number">11.3.3</span> Other Environment Variables</h3>
 <p>We’ll see that <code>dx-toolkit</code> defines a certain number of environmental variables and we can view them using <code>dx env</code>. These include:</p>
 <ul>
 <li>Current Project</li>
@@ -605,7 +617,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./07-containers.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containers and Reproducibility</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Containers and Reproducibility</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
