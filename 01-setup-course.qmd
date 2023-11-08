@@ -275,7 +275,6 @@ The full script for setting up is in the `setup-course/project_setup.sh`
 ```{bash}
 #| eval: false
 #| filename: setup-course/project_setup.sh
-
 ## Login
 dx login
 

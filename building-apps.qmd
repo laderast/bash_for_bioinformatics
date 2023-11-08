@@ -1,0 +1,280 @@
+---
+title: "Building Apps"
+---
+
+Now that we've learned about running apps using `dx run` and about what we can do with JSON, we can now tackle building our own apps on the platform.
+
+:::{.callout}
+## It's all about scale
+
+There is a fine line between what we should do within an app and what we should do within a workflow. 
+
+It helps to think of the workflow as being composed of modular apps that can be reused.
+
+If you have a complex workflow that can run on a single worker,
+
+Otherwise, it is also worth learning more about WDL (Workflow Description Language) which will help you customize your workflow and specify app componenets at the same time, or learning about running Nextflow workflows on the platform.
+:::
+
+## What is an Applet/App?
+
+Both applets and apps are executables that can be run on the DNAnexus platform. These executables might be well known bioinformatics software (such as samtools or PLINK), or they can also be a web app, such as a Plotly Dash app or a Shiny App. One example of this is the LocusZoom app, which takes a GWAS result file as input and makes an explorable visualization of the results.
+
+
+## The Applet Build Process
+
+The applet build process is below (@fig-build)
+
+:::
+![Applet Building Process.](images/applet-build-process.png){#fig-build}
+:::
+
+In Short:
+
+A. Build Applet Skeleton using `dx-app-wizard`. Specify inputs and outputs.
+B. Add more details to Applet skeleton, including software environment and shell script.
+C. Build applet in your project using `dx build`.
+
+## The Applet Specification
+
+A minimal applet on the platform needs the following:
+
+1. An binary executable, or a Docker image that contains the software we want to run.
+2. A JSON document (`dxapp.json`) that contains the input/output specifications, the instance specification, and the source of the software 
+3. A script (in either bash or python) that executes the software on the inputs, and contains instructions for registering outputs.
+
+Applets have a special structure, as you can see below. When you create them via the `dx-app-wizard` (a dx-toolkit utility), they will have the following directory structure (@fig-directory):
+
+::: {#fig-directory}
+```.
+└── my_app
+    ├── Readme.developer.md
+    ├── Readme.md
+    ├── dxapp.json **
+    ├── resources
+    ├── src
+    │   └── my_app.sh **
+    └── test
+```
+
+Directory structure of an app. The two starred files (`dxapp.json` and `src/my_app`) are the bare minimum needed for an app. Generated automatically when you run `dx-app-wizard`.
+:::
+
+
+## Visualizing the Pieces of an App
+
+
+:::{}
+![The multiple parts of an applet. Note the arrows connect the `inputSpec` and `outputSpec` specifications in `dxapp.json` with inputs and outputs used in `samtools_subset.sh`](images/app_structure.png){#fig-appstructure}
+:::
+
+In @fig-appstructure, we can see the multiple parts of the app. In short, we will need to decide on our inputs and outputs and their required data types. 
+
+That means when we specify our app we need to do the following things:
+
+1. Specify a software environment by either including an executable or using a Docker Image
+2. Specify both inputs and outputs and their datatypes in `dxapp.json`
+3. Process the inputs from `dxapp.json` in our shell script to generate outputs.
+4. In our shell script, upload output files and register as outputs
+
+
+## Part A: Jumpstarting our app using `dx-app-wizard` 
+
+When we call `dx-app-wizard`, we'll get an interactive wizard that will help us specify the basics of our app. Specifically, it will let us specify inputs, outputs, and options such as instance type.
+
+We can run `dx-app-wizard` on the command line:
+
+```bash
+$ dx-app-wizard
+
+DNAnexus App Wizard, API v1.0.0
+[...]
+
+The name of your app must be unique on the DNAnexus platform. After creating your app for the
+first time, you will be able to publish new versions using the same app name. App names are
+restricted to alphanumeric characters (a-z, A-Z, 0-9), and the characters ".", "\_", and "-".
+
+App Name: samtools_subset # <1>
+
+The title, if provided, is what is shown as the name of your app on the website.  It can be
+any valid UTF-8 string.
+Title []:  Samtools Subset # <2>
+
+The summary of your app is a short phrase or one-line description of what your app does.  It
+can be any UTF-8 human-readable string.
+Summary []: Subsets a bam file. # <3>
+
+You can publish multiple versions of your app, and the version of your app is a string with
+which to tag a particular version.  We encourage the use of Semantic Versioning for labeling your
+apps (see http://semver.org/ for more details).
+Version [0.0.1]: # <4>
+```
+1. Unique applet name here. 
+2. Human readable name here.
+3. Description of what the applet does
+4. Put a version number here.
+
+
+### Input Specification in  `dx-app-wizard`
+
+Here's a walkthrough of setting up inputs for an app:
+
+```bash
+Input Specification
+
+You will now be prompted for each input parameter to your app.  Each parameter should have a unique
+name that uses only the underscore "_" and alphanumeric characters, and does not start with a
+number.
+
+1st input name (<ENTER> to finish): mappings_bam #<1>
+Label (optional human-readable name) []: BAM file #<2>
+Your input parameter must be of one of the following classes:
+applet         array:file     array:record   file           int
+array:applet   array:float    array:string   float          record
+array:boolean  array:int      boolean        hash           string
+
+Choose a class (<TAB> twice for choices): file #<3>
+This is an optional parameter [y/n]: n #<4>
+
+2nd input name (<ENTER> to finish): mappings_bai
+Label (optional human-readable name) []: Bam Index file
+Choose a class (<TAB> twice for choices): file
+This is an optional parameter [y/n]: n
+
+3rd input name (<ENTER> to finish): region
+Label (optional human-readable name) []: 
+Choose a class (<TAB> twice for choices): string
+This is an optional parameter [y/n]: n
+
+4th input name (<ENTER> to finish): # <5>
+```
+1. Input name
+2. Human readable name
+3. Use the `file` class as input type
+4. Optional parameter?
+5. Hit <enter> when done with inputs
+
+::: {.callout}
+## Datatypes used in `inputSpec` and `outputSpec`
+
+The datatypes used in an app are listed below.
+
+```
+applet         array:file     array:record   file           int
+array:applet   array:float    array:string   float          record
+array:boolean  array:int      boolean        hash           string
+```
+
+A couple of data types of note: `record` type is used for referring to pheno Datasets. 
+
+The `array` types work as you might expect, but remember when you specifying an array of inputs, you'll need multiple input lines.
+:::
+
+### Output Specification
+
+We can fill the output specification similarly:
+
+``` bash
+Output Specification
+
+You will now be prompted for each output parameter of your app.  Each parameter should have a unique
+name that uses only the underscore "_" and alphanumeric characters, and does not start with a
+number.
+
+1st output name (<ENTER> to finish): out_bam #<1>
+Label (optional human-readable name) []: Out BAM#<2>
+Choose a class (<TAB> twice for choices): file #<3>
+
+2nd output name (<ENTER> to finish): #<4>
+```
+1. Output name
+2. Human readable name
+3. Class of output (see above)
+4. `<Enter>` when finished
+
+### The Rest
+
+
+
+```bash
+Timeout Policy
+
+Set a timeout policy for your app. Any single entry point of the app that runs longer than
+the specified timeout will fail with a TimeoutExceeded error. Enter an int greater than 0 with a
+single-letter suffix (m=minutes, h=hours, d=days) (e.g. "48h").
+Timeout policy [48h]: #<1>
+
+Template Options
+
+You can write your app in any programming language, but we provide templates for the
+following supported languages: Python, bash
+Programming language: 
+Programming language: bash #<2>
+
+Access Permissions
+If you request these extra permissions for your app, users will see this fact when launching your
+app, and certain other restrictions will apply. For more information, see
+https://documentation.dnanexus.com/developer/apps/app-permissions.
+
+Access to the Internet (other than accessing the DNAnexus API).
+Will this app need access to the Internet? [y/N]: # <3>
+
+Direct access to the parent project. This is not needed if your app specifies outputs,
+which will be copied into the project after it's done running.
+Will this app need access to the parent project? [y/N]: # <4> 
+```
+1. Timeout before the app quits.
+2. You have the option of `bash` or `python` here. All other languages (such as R) will need to be wrapped in a bash script.
+3. Does your app need permission to access external internet? One example would be if your app accessed an external annotation server.
+4. Usually you will not need this access, since the inputs/outputs are handled by the apps.
+
+```bash
+Default instance type: The instance type you select here will apply to all entry points in
+your app unless you override it. See
+https://documentation.dnanexus.com/developer/api/running-analyses/instance-types for more
+information.
+Choose an instance type for your app [mem1_ssd1_v2_x4]: # <1>
+
+*** Generating DNAnexus App Template... ***
+
+Your app specification has been written to the dxapp.json file. You can specify more app options by
+editing this file directly (see https://documentation.dnanexus.com/developer for complete
+documentation).
+
+Created files:
+	 samtools-subset-test/Readme.developer.md
+	 samtools-subset-test/Readme.md
+	 samtools-subset-test/dxapp.json
+	 samtools-subset-test/resources/
+	 samtools-subset-test/src/
+	 samtools-subset-test/src/samtools-subset-test.sh
+	 samtools-subset-test/test/
+
+App directory created!  See https://documentation.dnanexus.com/developer for tutorials on how to
+modify these files, or run "dx build samtools-subset-test" or "dx build --create-app
+samtools-subset-test" while logged in with dx
+```
+1. This is the default instance type that is used when the `--instance-type` option is not set by the user. Much more about instance types [here](https://documentation.dnanexus.com/developer/api/running-analyses/instance-types). 
+
+## Part B: Specifying our script and environment
+
+Now that our skeleton is built, we can modify our script. If we look at the `inputSpec` portion of our `dxapp.json` file, we'll see this:
+
+```bash
+ "inputSpec": [
+    {
+      "name": "mappings_bam", #<1>
+      "label": "BAM file",
+      "class": "file",
+      "optional": false,
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    },
+    ...
+  ]
+```
+1. The name of our BAM file input. We'll use this variable (`$mappings_bam`) directly in our shell script file
+
+

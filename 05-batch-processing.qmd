@@ -94,8 +94,7 @@ You can add the `--path` command to search in a specific folder.
 ```{bash}
 #| eval: false
 #| filename: batch-processing/dx-find-path.sh
-
-dx find data --name "*bam" --path "data/"
+dx find data --name "*.bam" --path "data/"
 ```
 
 ### Find all files with a field id
@@ -107,8 +106,7 @@ Note: be careful with this one, especially if you are working on UK Biobank RAP.
 ```{bash}
 #| eval: false
 #| filename: batch-processing/dx-find-data-field.sh
-
-dx find data --property field_id=23148 --brief
+dx find data --property field_id="23148" --brief
 ```
 
 ### Find all files that are of class `file`
@@ -120,7 +118,6 @@ Search for all files in your project that have a `file` class.
 ```{bash}
 #| eval: false
 #| filename: batch-processing/dx-find-data-class.sh
-
 dx find data --class file --brief
 ```
 
@@ -212,7 +209,6 @@ Why? You will at some point start up a bunch of batch jobs that might have some 
 
 ```{bash}
 #| eval: false
-
 dx find jobs --tag "samjob"
 ```
 
@@ -262,11 +258,10 @@ Again, this is possible, but it may be easier to have a separate script that con
 
 What if you have multiple inputs that you need to batch with? This is where the [`dx generate_batch_inputs`](https://documentation.dnanexus.com/user/running-apps-and-workflows/running-batch-jobs) comes in.
 
-For each input for an app, we can specify it using wildcard characters.
+For each input for an app, we can specify it using wildcard characters with regular expressions.
 
 ```{bash}
 # | eval: false
-
 dx generate_batch_inputs \
   --path "data/"\
   -iin="(.*)\.bam$"
@@ -287,7 +282,6 @@ If we have many more input files, say 3000 files, it would generate 3 `.tsv` fil
 
 ```{bash}
 #| eval: false
-
 dx run swiss-army-knife --batch-tsv dx_batch.0000.tsv \
    -icmd='samtools stats ${in_name} > ${in_prefix}.stats.txt ' \
    --destination "/Results/" \

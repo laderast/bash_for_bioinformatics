@@ -1,0 +1,229 @@
+---
+title: "Using JupyterLab on DNAnexus"
+---
+
+## Learning Objectives
+
+1. **Explain** the relationship between JupyterLab and a DNAnexus project 
+2. **Request** the appropriate JupyterLab instance given your workflow requirements
+3. **Download** files and Jupyter Notebooks from a project into the JupyterLab environment
+4. **Run a Jupyter Notebook** in the JupyterLab environment and upload it back into the project storage
+5. **Utilize** and **install** software dependencies into the JupyterLab environment
+
+## Why JupyterLabs?
+
+If you are reading this, you are probably familiar with *literate programming* and notebook based analyses.
+
+Oftentimes, when building a data processing pipeline, training a machine learner, or exploring datasets, it really only makes sense in an interactive manner. Transform data, visualize, repeat.
+
+## Use Cases for JupyterLab
+
+:::{#fig-jupyter}
+```{mermaid}
+flowchart TD
+    A{Large Scale\nAnalysis?\n} -->|no|B[Single JupyterLab]
+    A --->|yes|C[Spark JupyterLab]
+```
+The use cases for Jupyter Lab.
+:::
+
+:::{#fig-single}
+```{mermaid}
+flowchart TD
+    B[Single JupyterLab]
+    B --->D[Python/R]
+    B --->E[Stata]
+    B --->F[Machine Learning\nGPU]
+    B --->G[Image Processing\nGPU]
+```
+The use cases for single-node Jupyter Lab.
+:::
+
+:::{#fig-spark}
+```{mermaid}
+flowchart TD
+    C[Spark JupyterLab]
+    C --->H[HAIL]
+    C --->I[GLOW]
+    C --->J[HAIL/VEP]
+```
+The use cases for Spark Jupyter Lab.
+:::
+
+It should be noted that these configurations are just starting points. When you have access to the worker, you're able to install most software packages via Ubuntu methods (such as `apt install`) or by package installers such as `pip` (Python) or `install.packages()` (R). 
+
+We'll learn in a little bit about *Snapshotting*, which will let you install packages once, save it as a JupyterLab image file, and launch future instances of JupyterLab with your software environment already installed.
+
+## Launching JupyterLab
+
+From the command line, we can launch JupyterLab using the following command:
+
+```bash
+dx run dxjupyterlab -y -brief -ifeature="PYTHON_R"
+```
+
+If we have a snapshot in our project (@sec-snapshot), we can specify it with the `-isnapshot` argument:
+
+```bash
+dx run dxjupyterlab -y -brief -ifeature="PYTHON_R" -isnapshot=project-YYYYYY:file-XXXXXX
+```
+
+Take a note of the job-id that is returned when you start your job. That's going to be the basis for the URL you'll use to access the JupyterLab instance: job-ZZZZZZZ.dnanexus.cloud.
+
+It will take a few minutes for JupyterLab to start up, even after the status of our job is Running. I usually grab a snack and then come back.
+
+## Two kinds of Storage
+
+We have talked about the multiple storage systems we need to contend with to be successful on the platform. 
+
+Let's focus on the *Project Storage* and the *temporary worker storage*. When we work with JupyterLabs, we need to contend with both.
+
+```{mermaid}
+flowchart LR
+    A[1. Project Storage\nInput files] -->|dx download\n dxFUSE|C[2.Worker Storage\nOutput files]
+    C --->|dx upload|A
+```
+
+1. Project Storage (permanent). This is where our input files (such as VCF or BAM files) live. They are transferred to the Worker Storage with two methods: `dx download` or using the `dxFUSE` file system.
+2. Worker Storage (temporary). We take our input files and process them here to produce output files. We can only use `dx upload` to transfer our output files.
+
+## The two filesystems
+
+The two filesystems are accessed with the two tabs on the left sidebar. The first is indicated by the folder icon, which represents the temporary storage.
+
+The other tab represents the project storage where you currently running your instance of JupyterLab.
+
+## How to not lose your work
+
+The main reason I bring up these two filesystems is because of this: **If you have started a notebook on the temporary worker, you need to upload it back into the project using `dx upload`.**
+
+In the words of Nintendo: *Everything not saved will be lost*.
+
+The much safer way to work in a project is to use **DNAnexus >> New Notebook** in the JupyterLab menu which will create a new notebook in project storage. There is an autosave feature for these notebooks, but when in doubt, *save often*.
+
+You can identify in the JupyterLab interface which notebooks are being accessed from project storage by the `[DX]` in their title. 
+
+:::{.callout}
+## Wait, I thought that files were immutable on the platform. Not notebooks?
+
+If you know a little bit about the DNAnexus filesystem, you might be wondering about the notebook saving into project storage. If you know that file objects are immutable, you might be wondering what's going on.
+
+The secret is that old versions of notebooks (including autosaved ones) get archived into a folder callled `.Notebook_archive/` in your project. These are all time stamped. 
+:::
+
+## A Basic JupyterLabs Workflow
+
+Let's integrate this knowledge by showing a basic notebook workflow in the JupyterLab app.
+
+### Download files to worker storage
+
+```python
+import pandas as pd
+dx download data/penguins.csv # <1>
+```
+1. You can also use a file-id here (such as `project-YYYYYYY:file-XXXXXXXX`) instead of a file path here.
+
+Now the file should be available in our local worker storage. 
+
+### Load files from worker storage
+
+```python
+penguins = pd.read_csv("penguins.csv") #<2>
+```
+2. Now that the file is downloaded into our temporary storage, we can load it using `pd.read_csv`.
+
+### Do your Work
+
+```python
+penguins.describe() #<3>
+```
+3. We can do any work we need to now that our data is loaded as a Pandas DataFrame. Here we do a `.describe()` to get some descriptive statistics on our numeric columns.
+
+### Save any results into project storage
+
+```python
+dx upload penguins.csv --destination /users/tladeras/ #<4>
+```
+4. Say we made a modification to `penguins` in our work. We can get that result back into project storage using `dx upload`. Note that with the `--destination` parameter, directories will be created on the platform if they do not yet exist.
+
+## An alternate way of transferring files: dxFUSE
+
+```python
+import pandas as pd
+penguins2 = pd.read_csv("/mnt/project/data/penguins.csv") #<1>
+penguins2.describe()
+penguins2.to_csv("penguins2.csv") 
+dx upload penguins2.csv #<2>
+```
+1. We can skip two steps by prepending a `/mnt/project/` to our datafile's path and using this new path (`/mnt/project/data/penguins.csv`) directly in `pd.read_csv()`.
+2. Uploading modified file (`penguins2.csv`) using `dx upload` as usual.
+
+I talk much more about dxFUSE in @sec-dxfuse
+
+## Installing Software in JupyterLab
+
+Because we have sudo level access to our JupyterLab instance, we can install software on it with a number of methods:
+
+1. `apt install`. Make sure to run `apt update` before you try to install packages.
+2. Miniconda (`conda install`) - you'll have to install Miniconda from the script.
+3. `pip install` (Python)
+4. `install.packages()` (R)
+5. `docker load` - we can load Docker images into our JupyterLab instance. We can then run them 
+
+Where possible, use tags (Docker) and version numbers to install specific packages. For example, for R, we can use the following:
+
+```
+install.packages("ggplot2", version='0.9.1')
+```
+
+For Python, we can specify version number with `pip install` with a double equals (`==`):
+
+```
+pip install open-cravat==2.4.2
+```
+
+When possible, I try to install software with either a shell script or a Jupyter Notebook. I like having a script to do this because it is very clear what is being installed and the versions.
+
+## Snapshotting: Saving the Software Environment for Reuse {#sec-snapshot}
+
+Do we have to reinstall software every time we run JupyterLab?
+
+It's a relief that we don't have to. We can save a **JupyterLab Snapshot** to project storage.
+
+Once we've installed software via any of the above processes, we can use **DNAnexus >> Create Snapshot** to save our snapshot into project storage. This will be created in the `.Notebook_Snapshot` folder.  
+
+When we restart JupyterLab, we can specify this snapshot when we start it up.
+
+
+:::{.callout}
+## Snapshotting dos and don'ts
+
+It's preferable not to save data in a snapshot. This is because you get doubly charged for storing the same data.
+
+If you need data files to persist in an analysis, I recommend you get them back into project storage using `dx upload`. 
+
+Also, make sure to rename your snapshot so everyone in your group knows what is in it.
+:::
+
+## Working with Pheno Data in JupyterLab
+
+There are two main ways to access the phenotype data in JupyterLab:
+
+1. Use `dx extract_dataset` using the dx toolkit (available in JupyterLab in the terminal) and supply it with a record-id for our dataset/cohort, and a list of `entity.field_ids`. This will extract the dataset to a CSV file that is available in the temporary storage. You will need to do further decoding of the category data. 
+2. Use the `table-exporter` app, and supply it with the record id and a list of field titles. This will extract the dataset to the *permanent project storage*. If you have specified `-icoding_option` to be `REPLACE` (the default value), you will not have to decode the categorical values.
+
+@tbl-extract shows a table comparison of the two methods:
+
+
+|Step|`dx extract_dataset`|`table-exporter` app|
+|----|--------------------|--------------------|
+|Run | Run in JupyterLab Terminal | Run as application |
+|Output Location | Temporary JupyterLab storage |Permanent Project Storage |
+|Format|CSV or TSV|CSV (default) but can specify delimiter|
+|Decoding?|Yes, necessary| No, if `-icoding-option` is set|
+: Comparison of `dx extract_dataset` versus `table-exporter`. {#tbl-extract}
+
+## Extracting a case-control set
+
+When we do 
+

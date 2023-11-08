@@ -94,7 +94,6 @@ To open ttyd, open the **Tool Library** under **Tools** and select your project.
 
 ```{bash}
 #| eval: false
-
 docker pull quay.io/biocontainers/samtools:1.15.1--h1170115_0
 ```
 
@@ -114,7 +113,6 @@ Now that we have our docker image downloaded, we can test it out by running `sam
 
 ```{bash}
 #| eval: false
-
 docker run biocontainers/samtools samtools --help
 ```
 
@@ -158,7 +156,6 @@ So, let's run a `samtools` job using our Docker snapshot.
 
 ```{bash}
 #| eval: false
-
 dx run app-swiss-army-knife \
   -iimage_file="images/samtools.tar.gz" \
   -iin="data/NA12878.bam"
@@ -185,7 +182,6 @@ We'll start out with the official ubuntu 18.04 container in our ttyd session:
 
 ```{bash}
 #| eval: false
-
 docker pull ubuntu:18.04
 docker images
 ```
@@ -208,7 +204,6 @@ Now, let's install [EMBOSS](https://emboss.sourceforge.net/) (European Molecular
 
 ```{bash}
 #| eval: false
-
 apt update && apt upgrade
 apt install emboss gzip -y
 ```
@@ -219,7 +214,6 @@ Now exit from your container's interactive mode:
 
 ```{bash}
 #| eval: false
-
 exit
 ```
 
@@ -231,7 +225,6 @@ We created a new container when we installed everything. We'll need to find it i
 
 ```{bash}
 #| eval: false
-
 docker ps -a
 ```
 

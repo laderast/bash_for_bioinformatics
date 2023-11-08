@@ -53,7 +53,7 @@ Everything you'll learn in this section will also be applicable to building apps
 
 ## Running Jobs on the DNAnexus platform using `dx run`
 
-Our main command for running jobs is `dx run`. `dx run` lets us submit jobs to be run on the platform. These jobs can be to process files (such as aligning FASTQ files to a genome), or they can be for web apps, such as LocusZoom (for visualizing)
+Our main command for running jobs is `dx run`. `dx run` lets us submit jobs to be run on the platform. These jobs can be to process files (such as aligning FASTQ files to a genome), or they can be for web apps, such as LocusZoom (for visualizing).
 
 If you have used SLURM on an on-premise HPC system, the equivalent command would be `srun`, and if you have used PBS, the equivalent command would be `sbatch`.
 
@@ -64,6 +64,7 @@ In the sample project, you will see a `.bam` file in `data/` called `NA12878.bam
 ```{bash}
 #| eval: false
 #| filename: dx-run/run-sambamba.sh
+
 dx run app-swiss-army-knife \
   -iin="/data/NA12878.bam" \
   -icmd="sambamba index *"
@@ -178,7 +179,6 @@ Bash scripting to the rescue! Say we have a script called `run-on-worker.sh` tha
 ```{bash}
 #| eval: false
 #| filename: worker-scripts/run-on-worker.sh
-
 sambamba $1 > $1.bai
 samtools stats $1 > $1.stats.txt
 ```
@@ -188,7 +188,6 @@ When we set up a `dx run app-swiss-army-knife`, we'll use this script as one of 
 ```{bash}
 #| eval: false
 #| filename: dx-run/dx-run-script.sh
-
 dx run app-swiss-army-knife \
   -iin="worker_scripts/run-on-worker.sh" \
   -iin="data/NA12878.bam" \
@@ -279,7 +278,6 @@ The Swiss Army Knife Documentation notes that `-iin` is actually an *array* file
 ```{bash}
 #| eval: false
 #| filename: dx-run/dx-run-multiple-inputs.sh
-
 dx run app-swiss-army-knife \
   -iin="data/SRR100022_chrom20_mapped_to_b37.bam" \
   -iin="data/SRR100022_chrom21_mapped_to_b37.bam" \
@@ -302,7 +300,6 @@ If we're working with a PLINK trio of files (`.bed`, `.bim`, and `.fam` files), 
 ```{bash}
 #| eval: false
 #| filename: dx-run/run-plink.sh
-
 dx run app-swiss-army-knife \
   -iin="data/plink/chr1.bed" \
   -iin="data/plink/chr1.bim" \

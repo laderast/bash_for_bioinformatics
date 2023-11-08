@@ -41,9 +41,7 @@ Say we have [`samtools`](http://www.htslib.org/doc/samtools-stats.html) installe
 ```{bash}
 #| eval: false 
 #| filename: scripting-basics/sam_run.sh
-
 #!/bin/bash/
-
 samtools stats $1 > $2
 ```
 
@@ -80,7 +78,6 @@ How would we rewrite `sam_run.sh` if we wanted to specify the output file as the
 #| eval: false
 #| filename: scripting-basics/sam_run.sh 
 #!/bin/bash/
-
 samtools stats $1 > $2
 ```
 :::
@@ -92,9 +89,7 @@ For this script, we would switch the positions of `$1` and `$2`.
 
 ```{bash}
 #| eval: false
-
 #!/bin/bash/
-
 samtools stats $2 > $1
 ```
 

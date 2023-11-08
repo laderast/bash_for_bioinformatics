@@ -60,7 +60,6 @@ Here's the example we're going to use. We'll do most of our processing of JSON o
 ```{bash}
 #| eval: false
 #| filename: "json_data/example.json"
-
 {
   "report_html": {
     "dnanexus_link": "file-G4x7GX80VBzQy64k4jzgjqgY"
@@ -128,7 +127,6 @@ For example:
 ```{bash}
 #| eval: false
 #| filename: 05-JSON/dx-find-data-json.sh
-
 dx find data --path ted_demo:data/ --json
 ```
 
@@ -250,7 +248,6 @@ This is the JSON file we're going to be working with, in `json_data/example.json
 ```{bash}
 #| eval: false
 #| filename: "json_data/example.json"
-
 {
   "report_html": {
     "dnanexus_link": "file-G4x7GX80VBzQy64k4jzgjqgY"
