@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -377,52 +343,32 @@ Prep for Exercises
 <section id="find-all-.bam-files-in-a-project" class="level3" data-number="7.4.1">
 <h3 data-number="7.4.1" class="anchored" data-anchor-id="find-all-.bam-files-in-a-project"><span class="header-section-number">7.4.1</span> Find all *.bam files in a project</h3>
 <p>You can use wildcard characters with the <code>--name</code> flag. Here, we’re looking for anything with the suffix “*.bam”.</p>
-<div class="cell" data-execution_count="1">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>batch-processing/dx-find-data-name.sh</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> find data <span class="at">--name</span> <span class="st">"*.bam"</span> <span class="at">--brief</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
+<pre class="{bash}"><code>#| eval: false
+#| filename: batch-processing/dx-find-data-name.sh
+dx find data --name "*.bam" --brief</code></pre>
 </section>
 <section id="searching-within-a-folder" class="level3" data-number="7.4.2">
 <h3 data-number="7.4.2" class="anchored" data-anchor-id="searching-within-a-folder"><span class="header-section-number">7.4.2</span> Searching within a folder</h3>
 <p>You can add the <code>--path</code> command to search in a specific folder.</p>
-<div class="cell" data-execution_count="2">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>batch-processing/dx-find-path.sh</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> find data <span class="at">--name</span> <span class="st">"*.bam"</span> <span class="at">--path</span> <span class="st">"data/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
+<pre class="{bash}"><code>#| eval: false
+#| filename: batch-processing/dx-find-path.sh
+dx find data --name "*.bam" --path "data/"</code></pre>
 </section>
 <section id="find-all-files-with-a-field-id" class="level3" data-number="7.4.3">
 <h3 data-number="7.4.3" class="anchored" data-anchor-id="find-all-files-with-a-field-id"><span class="header-section-number">7.4.3</span> Find all files with a field id</h3>
 <p>Take advantage of metadata associated with files when you can. If you are on UKB RAP, one of the most helpful properties to search is <code>field_id</code>.</p>
 <p>Note: be careful with this one, especially if you are working on UK Biobank RAP. You don’t want to return 500,000 file ids. I would concentrate on the field ids that are aggregated on the population level, such as the pVCF files.</p>
-<div class="cell" data-execution_count="3">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>batch-processing/dx-find-data-field.sh</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> find data <span class="at">--property</span> field_id=<span class="st">"23148"</span> <span class="at">--brief</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
+<pre class="{bash}"><code>#| eval: false
+#| filename: batch-processing/dx-find-data-field.sh
+dx find data --property field_id="23148" --brief</code></pre>
 </section>
 <section id="find-all-files-that-are-of-class-file" class="level3" data-number="7.4.4">
 <h3 data-number="7.4.4" class="anchored" data-anchor-id="find-all-files-that-are-of-class-file"><span class="header-section-number">7.4.4</span> Find all files that are of class <code>file</code></h3>
 <p>There are a number of different object classes on the platform, such as <code>file</code> or <code>applet</code></p>
 <p>Search for all files in your project that have a <code>file</code> class.</p>
-<div class="cell" data-execution_count="4">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>batch-processing/dx-find-data-class.sh</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> find data <span class="at">--class</span> file <span class="at">--brief</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
+<pre class="{bash}"><code>#| eval: false
+#| filename: batch-processing/dx-find-data-class.sh
+dx find data --class file --brief</code></pre>
 </section>
 <section id="in-general-think-about-leveraging-metadata" class="level3" data-number="7.4.5">
 <h3 data-number="7.4.5" class="anchored" data-anchor-id="in-general-think-about-leveraging-metadata"><span class="header-section-number">7.4.5</span> In General: Think about leveraging metadata</h3>
@@ -435,23 +381,17 @@ Prep for Exercises
 <p>Ok, now we have a list of files from <code>dx find data</code> that meet our criteria. How can we process them one by one?</p>
 <p>Remember our discussion of <code>xargs</code>? (<a href="02-scripting-basics.html#sec-xargs"><span>Section&nbsp;3.5</span></a>) This is where <code>xargs</code> shines, when you provide it a list of files.</p>
 <p>Remember, a really useful pattern for <code>xargs</code> is using it for variable expansion and starting a subshell to process individual files.</p>
-<div class="cell" data-execution_count="5">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>batch-processing/dx-find-xargs.sh</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> find data <span class="at">--name</span> <span class="st">"*.bam"</span> <span class="at">--brief</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xargs</span> <span class="at">-I</span> % sh <span class="at">-c</span> <span class="st">"dx run app-swiss-army-knife -y -iin="</span>%<span class="st">" </span><span class="dt">\</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">  -icmd='samtools view -c </span><span class="dt">\$</span><span class="st">{in_name} &gt; </span><span class="dt">\$</span><span class="st">{in_prefix-counts.txt}' </span><span class="dt">\</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">  --tag samjob --destination results/' </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
+<pre class="{bash}"><code>#| eval: false
+#| filename: batch-processing/dx-find-xargs.sh
+dx find data --name "*.bam" --brief | \
+  xargs -I % sh -c "dx run app-swiss-army-knife -y -iin="%" \
+  -icmd='samtools view -c \${in_name} &gt; \${in_prefix-counts.txt}' \
+  --tag samjob --destination results/' </code></pre>
 <p>The key piece of code we’re doing the variable expansion in is here:</p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sh</span> <span class="at">-c</span> <span class="st">'dx run app-swiss-army-knife -iin="%" \ </span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="st">  -icmd="samtools view -c \${in_name} &gt; \${in_prefix}-counts.txt" \</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st">  --tag samjob --destination results/'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<pre class="{bash}"><code>#| eval: false
+sh -c 'dx run app-swiss-army-knife -iin="%" \ 
+  -icmd="samtools view -c \${in_name} &gt; \${in_prefix}-counts.txt" \
+  --tag samjob --destination results/'</code></pre>
 <p>We’re using <code>sh -c</code> to run a script as a <em>subshell</em> to execute the <code>dx run</code> statement.</p>
 <p>Note that we’re specifying the helper variables here with a <code>\</code>:</p>
 <p><code>\${in_name}</code></p>
@@ -491,41 +431,33 @@ Job ID: job-GJ2xVZ80yp62X5Z51qp191Y8
 <h3 data-number="7.5.1" class="anchored" data-anchor-id="when-batching-tag-your-jobs"><span class="header-section-number">7.5.1</span> When batching, tag your jobs</h3>
 <p>It is critical that you tag your jobs in your <code>dx run</code> code with the <code>--tag</code> argument.</p>
 <p>Why? You will at some point start up a bunch of batch jobs that might have some settings/parameters that were set wrong. That’s when you need the tag.</p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> find jobs <span class="at">--tag</span> <span class="st">"samjob"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<pre class="{bash}"><code>#| eval: false
+dx find jobs --tag "samjob"</code></pre>
 </section>
 <section id="sec-terminate" class="level3" data-number="7.5.2">
 <h3 data-number="7.5.2" class="anchored" data-anchor-id="sec-terminate"><span class="header-section-number">7.5.2</span> Using tags to <code>dx terminate</code> jobs</h3>
 <p><code>dx terminate &lt;jobid&gt;</code> will terminate a running job with that job id. It doesn’t take a tag as input.</p>
 <p>But again, <code>xargs</code> to the rescue. We can find our job ids with the tag <code>samjob</code> using <code>dx find jobs</code> and then pipe the <code>--brief</code> output into <code>xargs</code> to terminate each job id.</p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> find jobs <span class="at">--tag</span> samjob <span class="at">--brief</span> <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-I%</span> sh <span class="at">-c</span> <span class="st">"dx terminate %"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<pre class="{bash}"><code>#| eval: false
+dx find jobs --tag samjob --brief | xargs -I% sh -c "dx terminate %"</code></pre>
 </section>
 </section>
 <section id="sec-mult-worker" class="level2" data-number="7.6">
 <h2 data-number="7.6" class="anchored" data-anchor-id="sec-mult-worker"><span class="header-section-number">7.6</span> Submitting Multiple Files to a Single Worker</h2>
 <p>We talked about another method to batch process files on a worker (<a href="#fig-batch2">Figure&nbsp;<span>7.2</span></a>). We can submit an array of files to a worker, and then process them one at a time on the worker.</p>
 <p>The key is that we’re running <code>xargs</code> on the worker, not on our own machine to process each file.</p>
-<div class="cell" data-execution_count="9">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>batch-processing/batch-on-worker.sh</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="va">cmd_to_run</span><span class="op">=</span><span class="st">"ls *.vcf.gz | xargs -I% sh -c 'bcftools stats % &gt; </span><span class="dt">\$</span><span class="st">(basename %).stats.txt'"</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> run swiss-army-knife <span class="dt">\</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr1.vcf.gz"</span> <span class="dt">\</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr2.vcf.gz"</span> <span class="dt">\</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/chr3.vcf.gz"</span> <span class="dt">\</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">-icmd</span><span class="op">=</span><span class="va">${cmd_to_run}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
+<pre class="{bash}"><code>#| eval: false
+#| filename: batch-processing/batch-on-worker.sh
+cmd_to_run="ls *.vcf.gz | xargs -I% sh -c 'bcftools stats % &gt; \$(basename %).stats.txt'"
+
+dx run swiss-army-knife \
+  -iin="data/chr1.vcf.gz" \
+  -iin="data/chr2.vcf.gz" \
+  -iin="data/chr3.vcf.gz" \
+  -icmd=${cmd_to_run}</code></pre>
 <p>In the variable <code>$cmd_to_run</code>, we’re putting a command that we’ll run on the worker. That command is:</p>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="pp">*</span>.vcf.gz <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-I%</span> sh <span class="at">-c</span> <span class="st">"bcftools stats % &gt; </span><span class="dt">\$</span><span class="st">(basename %).stats.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<pre class="{bash}"><code>#| eval: false
+ls *.vcf.gz | xargs -I% sh -c "bcftools stats % &gt; \$(basename %).stats.txt</code></pre>
 <p>We submitted an array of files in our <code>dx run</code> statement. So now they are transferred into our working directory on the worker. So we can list the files using <code>ls *.vcf.gz</code> and pipe that list into <code>xargs</code>.</p>
 <p>Note that we lose the ability to use helper variables in our script when we process a list of files on the worker. So here we have to use <code>\$(basename %)</code>, because we use <code>()</code> to expand a variable in a subshell, and we escape the <code>$</code> here so that bash will execute the variable expansion on the worker.</p>
 <p>Again, this is possible, but it may be easier to have a separate script that contains our commands, transfer that as an input to Swiss Army Knife, and run that script by specifying <code>bash myscript.sh</code> in our command.</p>
@@ -534,24 +466,22 @@ Job ID: job-GJ2xVZ80yp62X5Z51qp191Y8
 <h2 data-number="7.7" class="anchored" data-anchor-id="batching-multiple-inputs-dx-generate_batch_inputs"><span class="header-section-number">7.7</span> Batching multiple inputs: <code>dx generate_batch_inputs</code></h2>
 <p>What if you have multiple inputs that you need to batch with? This is where the <a href="https://documentation.dnanexus.com/user/running-apps-and-workflows/running-batch-jobs"><code>dx generate_batch_inputs</code></a> comes in.</p>
 <p>For each input for an app, we can specify it using wildcard characters with regular expressions.</p>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> generate_batch_inputs <span class="dt">\</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--path</span> <span class="st">"data/"</span><span class="dt">\</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"(.*)\.bam$"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<pre class="{bash}"><code># | eval: false
+dx generate_batch_inputs \
+  --path "data/"\
+  -iin="(.*)\.bam$"</code></pre>
 <p>Here we’re specifying a single input <code>in</code>, and we’ve supplied a wildcard search. It’s going to look in <code>data/</code> for this particular pattern (we’re looking for bam files).</p>
 <p>If we do this, we’ll get the following response:</p>
 <pre><code>Found 4 valid batch IDs matching desired pattern.
 Created batch file dx_batch.0000.tsv</code></pre>
 <p>So, there is 1 <code>.tsv</code> file that was generated by <code>dx generate_batch_inputs</code> on our machine.</p>
 <p>If we have many more input files, say 3000 files, it would generate 3 <code>.tsv</code> files. Each of these <code>.tsv</code> files contains about 1000 files per line. We can run these individual jobs with:</p>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> run swiss-army-knife <span class="at">--batch-tsv</span> dx_batch.0000.tsv <span class="dt">\</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">-icmd</span><span class="op">=</span><span class="st">'samtools stats ${in_name} &gt; ${in_prefix}.stats.txt '</span> <span class="dt">\</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">--destination</span> <span class="st">"/Results/"</span> <span class="dt">\</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">--detach</span> <span class="at">--allow-ssh</span> <span class="dt">\</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">--tag</span> bigjob</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<pre class="{bash}"><code>#| eval: false
+dx run swiss-army-knife --batch-tsv dx_batch.0000.tsv \
+   -icmd='samtools stats ${in_name} &gt; ${in_prefix}.stats.txt ' \
+   --destination "/Results/" \
+   --detach --allow-ssh \
+   --tag bigjob</code></pre>
 <p>This will generate 4 jobs from the <code>dx_batch.0000</code> file to process the individual files. Each <code>tsv</code> file will generate up to 1000 jobs.</p>
 <section id="drawbacks-to-dx-generate_batch_inputsdx-run---batch-tsv" class="level3" data-number="7.7.1">
 <h3 data-number="7.7.1" class="anchored" data-anchor-id="drawbacks-to-dx-generate_batch_inputsdx-run---batch-tsv"><span class="header-section-number">7.7.1</span> Drawbacks to <code>dx generate_batch_inputs</code>/<code>dx run --batch-tsv</code></h3>

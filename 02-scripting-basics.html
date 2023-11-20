@@ -250,13 +250,24 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
   <li><a href="#the-basic-xargs-pattern" id="toc-the-basic-xargs-pattern" class="nav-link" data-scroll-target="#the-basic-xargs-pattern"><span class="header-section-number">3.5.1</span> The Basic <code>xargs</code> pattern</a></li>
   <li><a href="#for-more-information" id="toc-for-more-information" class="nav-link" data-scroll-target="#for-more-information"><span class="header-section-number">3.5.2</span> For more information</a></li>
   </ul></li>
-  <li><a href="#sec-bash-variables" id="toc-sec-bash-variables" class="nav-link" data-scroll-target="#sec-bash-variables"><span class="header-section-number">3.6</span> Variables in Bash Scripts</a></li>
-  <li><a href="#running-a-r-script-on-the-command-line" id="toc-running-a-r-script-on-the-command-line" class="nav-link" data-scroll-target="#running-a-r-script-on-the-command-line"><span class="header-section-number">3.7</span> Running a R script on the command line</a>
+  <li><a href="#sec-bash-variables" id="toc-sec-bash-variables" class="nav-link" data-scroll-target="#sec-bash-variables"><span class="header-section-number">3.6</span> Variables in Bash Scripts</a>
   <ul class="collapse">
-  <li><a href="#using-named-arguments-in-an-r-script" id="toc-using-named-arguments-in-an-r-script" class="nav-link" data-scroll-target="#using-named-arguments-in-an-r-script"><span class="header-section-number">3.7.1</span> Using Named Arguments in an R script</a></li>
-  <li><a href="#running-our-r-script" id="toc-running-our-r-script" class="nav-link" data-scroll-target="#running-our-r-script"><span class="header-section-number">3.7.2</span> Running our R Script</a></li>
+  <li><a href="#basename-can-be-very-handy-when-on-workers" id="toc-basename-can-be-very-handy-when-on-workers" class="nav-link" data-scroll-target="#basename-can-be-very-handy-when-on-workers"><span class="header-section-number">3.6.1</span> <code>basename</code> can be very handy when on workers</a></li>
   </ul></li>
-  <li><a href="#what-you-learned-in-this-chapter" id="toc-what-you-learned-in-this-chapter" class="nav-link" data-scroll-target="#what-you-learned-in-this-chapter"><span class="header-section-number">3.8</span> What you learned in this chapter</a></li>
+  <li><a href="#quoting-and-escaping-filenames-in-bash" id="toc-quoting-and-escaping-filenames-in-bash" class="nav-link" data-scroll-target="#quoting-and-escaping-filenames-in-bash"><span class="header-section-number">3.7</span> Quoting and Escaping Filenames in Bash</a>
+  <ul class="collapse">
+  <li><a href="#if-you-have-spaces-in-a-filename-use-double-quotes-most-common" id="toc-if-you-have-spaces-in-a-filename-use-double-quotes-most-common" class="nav-link" data-scroll-target="#if-you-have-spaces-in-a-filename-use-double-quotes-most-common"><span class="header-section-number">3.7.1</span> If you have spaces in a filename, use double quotes (Most common)</a></li>
+  <li><a href="#if-you-have-a-single-quote-in-the-name-use-double-quotes-to-wrap-it-less-common" id="toc-if-you-have-a-single-quote-in-the-name-use-double-quotes-to-wrap-it-less-common" class="nav-link" data-scroll-target="#if-you-have-a-single-quote-in-the-name-use-double-quotes-to-wrap-it-less-common"><span class="header-section-number">3.7.2</span> If you have a single quote in the name, use double quotes to wrap it (less common)</a></li>
+  <li><a href="#only-escape-characters-when-necessary-less-common" id="toc-only-escape-characters-when-necessary-less-common" class="nav-link" data-scroll-target="#only-escape-characters-when-necessary-less-common"><span class="header-section-number">3.7.3</span> Only escape characters when necessary (less common)</a></li>
+  <li><a href="#if-you-need-to-preserve-an-escaped-character-use-single-quotes-least-common" id="toc-if-you-need-to-preserve-an-escaped-character-use-single-quotes-least-common" class="nav-link" data-scroll-target="#if-you-need-to-preserve-an-escaped-character-use-single-quotes-least-common"><span class="header-section-number">3.7.4</span> If you need to preserve an escaped character, use single quotes (least common)</a></li>
+  <li><a href="#for-more-info" id="toc-for-more-info" class="nav-link" data-scroll-target="#for-more-info"><span class="header-section-number">3.7.5</span> For More Info</a></li>
+  </ul></li>
+  <li><a href="#running-a-r-script-on-the-command-line" id="toc-running-a-r-script-on-the-command-line" class="nav-link" data-scroll-target="#running-a-r-script-on-the-command-line"><span class="header-section-number">3.8</span> Running a R script on the command line</a>
+  <ul class="collapse">
+  <li><a href="#using-named-arguments-in-an-r-script" id="toc-using-named-arguments-in-an-r-script" class="nav-link" data-scroll-target="#using-named-arguments-in-an-r-script"><span class="header-section-number">3.8.1</span> Using Named Arguments in an R script</a></li>
+  <li><a href="#running-our-r-script" id="toc-running-our-r-script" class="nav-link" data-scroll-target="#running-our-r-script"><span class="header-section-number">3.8.2</span> Running our R Script</a></li>
+  </ul></li>
+  <li><a href="#what-you-learned-in-this-chapter" id="toc-what-you-learned-in-this-chapter" class="nav-link" data-scroll-target="#what-you-learned-in-this-chapter"><span class="header-section-number">3.9</span> What you learned in this chapter</a></li>
   </ul>
 </nav>
     </div>
@@ -280,6 +291,20 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 
 </header>
 
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Prep for Exercises
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In your shell (either on your machine or in binder), make sure you’re in the <code>bash_bioinfo_scripts/scripting-basics/</code> folder:</p>
+<pre><code>cd scripting-basics/</code></pre>
+</div>
+</div>
 <section id="learning-objectives" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">3.1</span> Learning Objectives</h2>
 <ol type="1">
@@ -309,20 +334,19 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>02-scripting-basics/sam_run.sh</strong></pre>
+<pre><strong>scripting-basics/sam_run.sh</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash/</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> stats <span class="va">$1</span> <span class="op">&gt;</span> <span class="va">$2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash/</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> stats <span class="va">$1</span> <span class="op">&gt;</span> <span class="va">$2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<p>Let’s take a look at the command that we’re running first. We’re going to run <code>samtools stat</code>, which will give us statistics on an incoming <code>bam</code> or <code>sam</code> file and save it in a file. We want to be able to run our script like this:</p>
+<p>Let’s take a look at the command that we’re running first. We’re going to run <code>samtools stats</code>, which will give us statistics on an incoming <code>bam</code> or <code>sam</code> file and save it in a file. We want to be able to run our script like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> sam_run my_file.bam out_stats.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> sam_run my_file.bam out_stats.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>When we run it like that, <code>sam_run.sh</code> will run <code>samtools stat</code> like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> stats my_file.bam <span class="op">&gt;</span> out_stats.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> stats my_file.bam <span class="op">&gt;</span> out_stats.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>So what’s going on here is that there is some substitution using common arguments. Let’s look at these.</p>
 <section id="positional-arguments-such-as-1" class="level3" data-number="3.3.1">
@@ -344,17 +368,16 @@ Test yourself
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>02-scripting-basics/sam_run.sh</strong></pre>
+<pre><strong>scripting-basics/sam_run.sh</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash/</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> stats <span class="va">$1</span> <span class="op">&gt;</span> <span class="va">$2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash/</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> stats <span class="va">$1</span> <span class="op">&gt;</span> <span class="va">$2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -363,17 +386,16 @@ Answer
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>For this script, we would switch the positions of <code>$1</code> and <code>$2</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash/</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> stats <span class="va">$2</span> <span class="op">&gt;</span> <span class="va">$1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash/</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> stats <span class="va">$2</span> <span class="op">&gt;</span> <span class="va">$1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And we would run <code>sam_run.sh</code> like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> sam_run.sh my_file.bam out_stats.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> sam_run.sh my_file.bam out_stats.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -381,7 +403,7 @@ Answer
 </section>
 <section id="what-about-named-arguments-in-my-script" class="level3" data-number="3.3.2">
 <h3 data-number="3.3.2" class="anchored" data-anchor-id="what-about-named-arguments-in-my-script"><span class="header-section-number">3.3.2</span> What about named arguments in my script?</h3>
-<p>See <a href="appendix.html#sec-named"><span>Section&nbsp;11.2</span></a> for more info.</p>
+<p>See <a href="appendix.html#sec-named"><span>Section&nbsp;11.3</span></a> for more info.</p>
 </section>
 </section>
 <section id="using-pipes-stdin-stdout-stderr" class="level2" data-number="3.4">
@@ -454,35 +476,63 @@ Why this is important on the platform
 <p>A really common pattern is taking a delimited list of files and doing something with them. We can do some useful things such as seeing the first few lines of a set of files, or doing some sort of processing with the set of jobs.</p>
 <p>Let’s start out with a list of files:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> data/<span class="pp">*</span>.qmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc <span class="co">#| hide_line</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> data/<span class="pp">*</span>.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<pre><code>data/batch-on-worker.sh
+data/dx-find-data-class.sh
+data/dx-find-data-field.sh
+data/dx-find-data-name.sh
+data/dx-find-path.sh
+data/dx-find-xargs.sh</code></pre>
 <p>Now we have a list of files, let’s look at the first few lines of each of them, and print a separator <code>---</code> for each.</p>
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>02-scripting-basics/xargs_example.sh</strong></pre>
+<pre><strong>scripting-basics/xargs_example.sh</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> data/<span class="pp">*</span>.qmd <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-I%</span> sh <span class="at">-c</span> <span class="st">'head %; echo "---\n"'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc <span class="co">#| hide_line</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> data/<span class="pp">*</span>.sh <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-I%</span> sh <span class="at">-c</span> <span class="st">'head %; echo "\n---\n"'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
+<pre><code>#!/bash/bin
+
+cmd_to_run="ls *.vcf.gz | xargs -I% sh -c "bcftools stats % &gt; %.stats.txt"
+
+dx run swiss-army-knife \
+  -iin="data/chr1.vcf.gz" \
+  -iin="data/chr2.vcf.gz" \
+  -iin="data/chr3.vcf.gz" \
+  -icmd=${cmd_to_run}
+---
+
+#!/bin/bash
+
+dx find data --class file --brief
+---
+
+dx find data --property field_id=23148 --brief
+---
+
+dx find data --name "*.bam" --brief
+---</code></pre>
 <p>Let’s take this apart piece by piece.</p>
 <p><code>xargs</code> takes an <code>-I</code> argument that specifies a placeholder. In our case, we are using <code>%</code> as our placeholder in this statement.</p>
 <p>We’re passing on each filename from <code>ls</code> into the following code:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sh</span> <span class="at">-c</span> <span class="st">'head %; echo "---\n"'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sh</span> <span class="at">-c</span> <span class="st">'head %; echo "---\n"'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>sh -c</code> opens a subshell so that we can execute our command for each of the files in our list. We’re using <code>sh -c</code> to run:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="st">'head %; echo "---\n"'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="st">'head %; echo "---\n"'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>So for our first file, <code>01-scripting-basics.qmd</code>, we are substituting that for <code>%</code> in our command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="st">'head 01-scripting-basics.qmd; echo "---\n"'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="st">'head 01-scripting-basics.qmd; echo "---\n"'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>For our second file, <code>02-cloud-computing-basics.qmd</code>, we would substitute that for the <code>%</code>:</p>
+<p>For our second file, <code>cloud-computing-basics.qmd</code>, we would substitute that for the <code>%</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="st">'head 02-cloud-computing-basics.qmd; echo "---\n"'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="st">'head cloud-computing-basics.qmd; echo "---\n"'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Until we cycle through all of the files in our list.</p>
 <section id="the-basic-xargs-pattern" class="level3" data-number="3.5.1">
@@ -507,7 +557,7 @@ Why this is important on the platform
 </div>
 <p>As you cycle through lists of files, keep in mind this basic pattern (<a href="#fig-xargs">Figure&nbsp;<span>3.3</span></a>):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="op">&lt;</span>wildcard<span class="op">&gt;</span> <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-I%</span> sh <span class="at">-c</span> <span class="st">"&lt;command to run&gt; %"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="op">&lt;</span>wildcard<span class="op">&gt;</span> <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-I%</span> sh <span class="at">-c</span> <span class="st">"&lt;command to run&gt; %"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We will leverage this pattern when we get to batch processing files (<a href="05-batch-processing.html"><span>Chapter&nbsp;7</span></a>).</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -521,17 +571,17 @@ Test Yourself
 </div>
 <div class="callout-body-container callout-body">
 <p>How would we modify the below code to do the following?</p>
-<ul>
+<ol type="1">
 <li>List only <code>.json</code> files in our <code>data/</code> folder using <code>ls</code></li>
 <li>Use <code>tail</code> instead of <code>head</code></li>
-</ul>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="pp">*</span>.txt <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-I%</span> sh <span class="at">-c</span> <span class="st">"head %; echo '---\n'"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="pp">*</span>.txt <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-I%</span> sh <span class="at">-c</span> <span class="st">"head %; echo '---\n'"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -540,10 +590,10 @@ Answer
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> data/<span class="pp">*</span>.json <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-I%</span> sh <span class="at">-c</span> <span class="st">"tail %; echo '---\n'"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> data/<span class="pp">*</span>.json <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-I%</span> sh <span class="at">-c</span> <span class="st">"tail %; echo '---\n'"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -570,11 +620,11 @@ Why this is important on the platform
 <section id="sec-bash-variables" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="sec-bash-variables"><span class="header-section-number">3.6</span> Variables in Bash Scripts</h2>
 <p>We’ve already encountered a placeholder variable, <code>%</code>, that we used in running <code>xargs</code>. Let’s talk about declaring variables in bash scripts and using them using variable expansion.</p>
-<p>In Bash, we can declare a variable by using <code>&lt;variable_name&gt;=&lt;value&gt;</code>. Note there are no spaces between the variable.</p>
+<p>In Bash, we can declare a variable by using <code>&lt;variable_name&gt;=&lt;value&gt;</code>. Note there are no spaces between the variable (<code>my_variable</code>), equals sign, and the value (<code>"ggplot2"</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="va">my_variable</span><span class="op">=</span><span class="st">"ggplot2"</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"My favorite R package is </span><span class="va">${my_variable}</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="va">my_variable</span><span class="op">=</span><span class="st">"ggplot2"</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"My favorite R package is </span><span class="va">${my_variable}</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>My favorite R package is ggplot2</code></pre>
 </div>
@@ -582,13 +632,16 @@ Why this is important on the platform
 <p>Take a look at line 3 above. We expand the variable (that is, we substitute the actual variable) by using <code>${my_variable}</code> in our <code>echo</code> statement.</p>
 <p>In general, when expanding a variable in a quoted string, it is better to use <code>${my_variable}</code> (the variable name in curly brackets). This is especially important when using the variable name as part of a string:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="va">my_var</span><span class="op">=</span><span class="st">"chr1"</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"</span><span class="va">${my_var}</span><span class="st">.vcf.gz"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="va">my_var</span><span class="op">=</span><span class="st">"chr1"</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"</span><span class="va">${my_var}</span><span class="st">_1.vcf.gz"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>chr1.vcf.gz</code></pre>
+<pre><code>chr1_1.vcf.gz</code></pre>
 </div>
 </div>
-<p>If we didn’t use the braces, bash would interpret the string as <code>$my_var.vcf.gz</code>, which isn’t what we want. So use the curly braces <code>{}</code> when you expand variables.</p>
+<p>If we didn’t use the braces here, like this:</p>
+<pre><code>echo "$my_var_1.vcf.gz"</code></pre>
+<p>Bash would look for the variable <code>$my_var_1</code>, which doesn’t exist. So use the curly braces <code>{}</code> when you expand variables. It’s safer overall.</p>
+<p>There is an alternate method for variable expansion which we will use when we call a <em>sub-shell</em> - a shell within a shell, much like in our <code>xargs</code> command above. We need to use parentheses <code>()</code> to expand them within the sub-shell, but not the top-shell. We’ll use this when we process multiple files within a single worker.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -602,54 +655,136 @@ Why this is important on the platform
 <p>On the DNAnexus platform, there are special helper variables that are available to us, such as <code>$in_prefix</code>, which will give us the prefix of a file name input. This is essential when running commands within an app, as it allows us to generalize inputs and outputs in our app.</p>
 <p>Here’s a practical example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="va">my_cmd</span><span class="op">=</span><span class="st">"papermill notebook.ipynb output_notebook.ipynb"</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> run dxjupyterlab <span class="at">-icmd</span><span class="op">=</span><span class="st">"</span><span class="va">${my_cmd}</span><span class="st">"</span> <span class="at">-iin</span><span class="op">=</span><span class="st">"notebook.ipynb"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="va">my_cmd</span><span class="op">=</span><span class="st">"papermill notebook.ipynb output_notebook.ipynb"</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> run dxjupyterlab <span class="at">-icmd</span><span class="op">=</span><span class="st">"</span><span class="va">${my_cmd}</span><span class="st">"</span> <span class="at">-iin</span><span class="op">=</span><span class="st">"notebook.ipynb"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We’re storing the command we want to run in the <code>${my_cmd}</code> variable. Here we’re mostly using it to break up the <code>dx run</code> statement on the next line.</p>
 </div>
 </div>
+<section id="basename-can-be-very-handy-when-on-workers" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="basename-can-be-very-handy-when-on-workers"><span class="header-section-number">3.6.1</span> <code>basename</code> can be very handy when on workers</h3>
+<p>If we are processing a bunch of files on a worker that we have specified using <code>dxFUSE</code> (<a href="04-doing-work-with-dx-run.html#sec-dxfuse"><span>Section&nbsp;6.8</span></a>), we need a way to get the bare filename from a <code>dxfuse</code> path. We will take advantage of this when we run process multiple files on the worker.</p>
+<p>For example</p>
+<pre><code>basename /mnt/project/worker_scripts/dx-run-script.sh</code></pre>
+<p>This will return:</p>
+<pre><code>dx-run-script.sh</code></pre>
+<p>Which can be really handy when we name our outputs.</p>
 </section>
-<section id="running-a-r-script-on-the-command-line" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="running-a-r-script-on-the-command-line"><span class="header-section-number">3.7</span> Running a R script on the command line</h2>
-<p>Let’s end this chapter with wrapping R scripts in a bash script. Say you have an R Script you need to run on the command line. In our bash script, we can do the following:</p>
+</section>
+<section id="quoting-and-escaping-filenames-in-bash" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="quoting-and-escaping-filenames-in-bash"><span class="header-section-number">3.7</span> Quoting and Escaping Filenames in Bash</h2>
+<p>One point of confusion is when do you quote things in Bash? When do you use single quotes (<code>'</code>) versus double-quotes (<code>"</code>)? When do you use <code>\</code> to escape characters?</p>
+<p>Let’s talk about some quoting rules in Bash. I’ve tried to make things as simplified and generalized as possible, rather than stating all of the rules for each quote.</p>
+<ol type="1">
+<li>If you have spaces in a filename, use double quotes (<code>"chr 1.bam"</code>)</li>
+<li>If you have a single quote in the filename, use double quotes to wrap it (<code>"ted's file.bam"</code>)</li>
+<li>Only escape characters when necessary - if you can solve a problem with quotes, use them</li>
+<li>If you need to preserve an escaped character, use single quotes</li>
+</ol>
+<p>Let’s go over each of these with an example.</p>
+<section id="if-you-have-spaces-in-a-filename-use-double-quotes-most-common" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="if-you-have-spaces-in-a-filename-use-double-quotes-most-common"><span class="header-section-number">3.7.1</span> If you have spaces in a filename, use double quotes (Most common)</h3>
+<p>For example, if your filename is <code>chr 1 file.bam</code>, then use double quotes in your argument</p>
+<pre><code>samtools view -c "chr 1 file.bam"</code></pre>
+</section>
+<section id="if-you-have-a-single-quote-in-the-name-use-double-quotes-to-wrap-it-less-common" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="if-you-have-a-single-quote-in-the-name-use-double-quotes-to-wrap-it-less-common"><span class="header-section-number">3.7.2</span> If you have a single quote in the name, use double quotes to wrap it (less common)</h3>
+<p>Say you have a file called <code>ted's new file.bam</code>. This can be a problem when you are calling it, especially because of the single quote.</p>
+<p>In this case, you can do this:</p>
+<pre><code>samtools view -c "ted's new file.bam"</code></pre>
+</section>
+<section id="only-escape-characters-when-necessary-less-common" class="level3" data-number="3.7.3">
+<h3 data-number="3.7.3" class="anchored" data-anchor-id="only-escape-characters-when-necessary-less-common"><span class="header-section-number">3.7.3</span> Only escape characters when necessary (less common)</h3>
+<p>There are a number of special characters (such as Tab, and Newline) that can be specified as escape characters. In double quotes, characters such as <code>$</code> are signals to Bash to expand or evaluate code.</p>
+<p>Say that someone had a <code>$</code> in their file name such as <code>Thi$file is money.bam</code></p>
+<p>How do we refer to it? We can escape the character with a backslash <code>\</code>:</p>
+<pre><code>samtools view -c "Thi\$file is money.bam"</code></pre>
+<p>The backslash is a clue to Bash that we don’t want variable expansion in this case. Without it, bash would look for a variable called <code>$file</code>.</p>
+</section>
+<section id="if-you-need-to-preserve-an-escaped-character-use-single-quotes-least-common" class="level3" data-number="3.7.4">
+<h3 data-number="3.7.4" class="anchored" data-anchor-id="if-you-need-to-preserve-an-escaped-character-use-single-quotes-least-common"><span class="header-section-number">3.7.4</span> If you need to preserve an escaped character, use single quotes (least common)</h3>
+<p>This is rarely used, but if you need to keep an escaped character in your filename, you can use single quotes. Say we have a filename called <code>Thi\$file.bam</code> and you need that backslash in the file name (btw, please don’t do this), you can use single quotes to preserve that backslash:</p>
+<pre><code>samtools view -c 'Thi\$file.bam'</code></pre>
+<p>Again, hopefully you won’t need this.</p>
+</section>
+<section id="for-more-info" class="level3" data-number="3.7.5">
+<h3 data-number="3.7.5" class="anchored" data-anchor-id="for-more-info"><span class="header-section-number">3.7.5</span> For More Info</h3>
+<p><a href="https://www.grymoire.com/Unix/Quote.html#uh-3" class="uri">https://www.grymoire.com/Unix/Quote.html#uh-3</a></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What about backticks?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Backticks (<code>`</code>) are an old way to do command evaluation in Bash. For example, if we run the following on the command-line:</p>
+<pre><code>echo "there are `ls -l | wc -l` files in this directory"</code></pre>
+<p>Will produce:</p>
+<pre><code>there are       36 files in this directory</code></pre>
+<p>Their use is deprecated, so you should be using <code>$()</code> in your command evaluations instead:</p>
+<pre><code>echo "there are $(ls -l | wc -l) files in this directory"</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What about X use case?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There are a lot of rules for Bash variable expansion and quoting that I don’t cover here. I try to show you a way to do things that work in multiple situations on the platform.</p>
+<p>That’s why I focus on double quotes for filenames and <code>${}</code> for variable expansion in general. They will work whether your Bash script is on the command line or in an App, or in WDL.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="running-a-r-script-on-the-command-line" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="running-a-r-script-on-the-command-line"><span class="header-section-number">3.8</span> Running a R script on the command line</h2>
+<p>Let’s end this chapter with wrapping R scripts in a Bash script. Say you have an R Script you need to run on the command line. In our bash script, we can do the following:</p>
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>02-scripting-basics/wrap_r_script.sh</strong></pre>
+<pre><strong>scripting-basics/wrap_r_script.sh</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> my_script.R CSVFILE=<span class="st">"</span><span class="va">${1}</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> my_script.R CSVFILE=<span class="st">"</span><span class="va">${1}</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<p>This calls <code>Rscript</code>, which is the command line executable to run our R script. Note that we have a named argument called <code>CSVFILE</code> and it is done differently than in Bash - how do we use this in our R Script?</p>
-<section id="using-named-arguments-in-an-r-script" class="level3" data-number="3.7.1">
-<h3 data-number="3.7.1" class="anchored" data-anchor-id="using-named-arguments-in-an-r-script"><span class="header-section-number">3.7.1</span> Using Named Arguments in an R script</h3>
+<p>This calls <code>Rscript</code>, which is the command line executable, to run our R script. Note that we have a named argument called <code>CSVFILE</code> and it is done differently than in Bash - how do we use this in our R Script?</p>
+<section id="using-named-arguments-in-an-r-script" class="level3" data-number="3.8.1">
+<h3 data-number="3.8.1" class="anchored" data-anchor-id="using-named-arguments-in-an-r-script"><span class="header-section-number">3.8.1</span> Using Named Arguments in an R script</h3>
 <p>We can pass arguments from our bash script to our R script by using <code>commandArgs()</code> - this will populate a list of named arguments (such as <code>CSVFILE</code>) that are passed into the R Script. We assign the output of <code>commandArgs()</code> into the <code>args</code> object.</p>
 <p>We refer to our <code>CSVFILE</code> argument as <code>args$CSVFILE</code> in our script.</p>
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>02-scripting-basics/r_script.R</strong></pre>
+<pre><strong>scripting-basics/r_script.R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>args <span class="ot">&lt;-</span> <span class="fu">commandArgs</span>()</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use arg$CSVFILE in read.csv</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>csv_file <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file=</span>args<span class="sc">$</span>CSVFILE)</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Do some work with csv_file</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>csv_filtered <span class="ot">&lt;-</span> csv_file <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>()</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Write output</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(csv_filtered, <span class="at">file =</span> <span class="fu">paste0</span>(args<span class="sc">$</span>CSVFILE, <span class="st">"_filtered.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>args <span class="ot">&lt;-</span> <span class="fu">commandArgs</span>()</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use arg$CSVFILE in read.csv</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>csv_file <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file=</span>args<span class="sc">$</span>CSVFILE)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Do some work with csv_file</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>csv_filtered <span class="ot">&lt;-</span> csv_file <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>()</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Write output</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(csv_filtered, <span class="at">file =</span> <span class="fu">paste0</span>(args<span class="sc">$</span>CSVFILE, <span class="st">"_filtered.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
-<section id="running-our-r-script" class="level3" data-number="3.7.2">
-<h3 data-number="3.7.2" class="anchored" data-anchor-id="running-our-r-script"><span class="header-section-number">3.7.2</span> Running our R Script</h3>
+<section id="running-our-r-script" class="level3" data-number="3.8.2">
+<h3 data-number="3.8.2" class="anchored" data-anchor-id="running-our-r-script"><span class="header-section-number">3.8.2</span> Running our R Script</h3>
 <p>Now that we’ve set it up, we can run the R script from the command line as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./my_bash_script.sh</span> my_csvfile.csv </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> my_bash_script.sh my_csvfile.csv </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In our bash script, <code>my_bash_script.sh</code>, we’re using positional argument (for simplicity) to specify our csvfile, and then passing the positional argument to named ones (<code>CSVFILE</code>) for <code>my_r_script.R</code>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -667,8 +802,8 @@ Why this is important on the platform
 </div>
 </section>
 </section>
-<section id="what-you-learned-in-this-chapter" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="what-you-learned-in-this-chapter"><span class="header-section-number">3.8</span> What you learned in this chapter</h2>
+<section id="what-you-learned-in-this-chapter" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="what-you-learned-in-this-chapter"><span class="header-section-number">3.9</span> What you learned in this chapter</h2>
 <p>Whew, this was a whirlwind tour. Keep this chapter in mind when you’re working with the platform - the bash programming patterns will serve you well. We’ll refer to these patterns a lot when we get to doing more bioinformatics tasks on the platform.</p>
 <ul>
 <li>Setting up bash scripts with positional arguments</li>

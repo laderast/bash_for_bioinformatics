@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -244,9 +210,10 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
   <li><a href="#the-basic-snapshot-building-process" id="toc-the-basic-snapshot-building-process" class="nav-link" data-scroll-target="#the-basic-snapshot-building-process"><span class="header-section-number">10.4.3</span> The Basic Snapshot Building Process</a></li>
   <li><a href="#sec-ttyd" id="toc-sec-ttyd" class="nav-link" data-scroll-target="#sec-ttyd"><span class="header-section-number">10.4.4</span> Building Snapshot Files in <code>ttyd</code></a></li>
   <li><a href="#pull-your-image-from-a-registry" id="toc-pull-your-image-from-a-registry" class="nav-link" data-scroll-target="#pull-your-image-from-a-registry"><span class="header-section-number">10.4.5</span> Pull your image from a registry</a></li>
-  <li><a href="#save-your-docker-image-as-a-snapshot" id="toc-save-your-docker-image-as-a-snapshot" class="nav-link" data-scroll-target="#save-your-docker-image-as-a-snapshot"><span class="header-section-number">10.4.6</span> Save your docker image as a snapshot</a></li>
-  <li><a href="#upload-your-snapshot" id="toc-upload-your-snapshot" class="nav-link" data-scroll-target="#upload-your-snapshot"><span class="header-section-number">10.4.7</span> Upload your snapshot</a></li>
-  <li><a href="#important-make-sure-to-terminate-your-ttyd-instance" id="toc-important-make-sure-to-terminate-your-ttyd-instance" class="nav-link" data-scroll-target="#important-make-sure-to-terminate-your-ttyd-instance"><span class="header-section-number">10.4.8</span> Important: make sure to terminate your ttyd instance!</a></li>
+  <li><a href="#try-your-docker-image-out" id="toc-try-your-docker-image-out" class="nav-link" data-scroll-target="#try-your-docker-image-out"><span class="header-section-number">10.4.6</span> Try your docker image out</a></li>
+  <li><a href="#save-your-docker-image-as-a-snapshot" id="toc-save-your-docker-image-as-a-snapshot" class="nav-link" data-scroll-target="#save-your-docker-image-as-a-snapshot"><span class="header-section-number">10.4.7</span> Save your docker image as a snapshot</a></li>
+  <li><a href="#upload-your-snapshot" id="toc-upload-your-snapshot" class="nav-link" data-scroll-target="#upload-your-snapshot"><span class="header-section-number">10.4.8</span> Upload your snapshot</a></li>
+  <li><a href="#important-make-sure-to-terminate-your-ttyd-instance" id="toc-important-make-sure-to-terminate-your-ttyd-instance" class="nav-link" data-scroll-target="#important-make-sure-to-terminate-your-ttyd-instance"><span class="header-section-number">10.4.9</span> Important: make sure to terminate your ttyd instance!</a></li>
   </ul></li>
   <li><a href="#sec-docker-sak" id="toc-sec-docker-sak" class="nav-link" data-scroll-target="#sec-docker-sak"><span class="header-section-number">10.5</span> Using Docker with Swiss Army Knife</a></li>
   <li><a href="#extending-a-docker-image" id="toc-extending-a-docker-image" class="nav-link" data-scroll-target="#extending-a-docker-image"><span class="header-section-number">10.6</span> Extending a Docker Image</a>
@@ -256,8 +223,9 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
   <li><a href="#install-software" id="toc-install-software" class="nav-link" data-scroll-target="#install-software"><span class="header-section-number">10.6.3</span> Install Software</a></li>
   <li><a href="#exit-container" id="toc-exit-container" class="nav-link" data-scroll-target="#exit-container"><span class="header-section-number">10.6.4</span> Exit Container</a></li>
   <li><a href="#docker-commitdocker-save-your-new-snapshot-file" id="toc-docker-commitdocker-save-your-new-snapshot-file" class="nav-link" data-scroll-target="#docker-commitdocker-save-your-new-snapshot-file"><span class="header-section-number">10.6.5</span> <code>docker commit</code>/<code>docker save</code> your new snapshot file</a></li>
+  <li><a href="#other-uses-of-interactive-mode" id="toc-other-uses-of-interactive-mode" class="nav-link" data-scroll-target="#other-uses-of-interactive-mode"><span class="header-section-number">10.6.6</span> Other uses of Interactive Mode</a></li>
   </ul></li>
-  <li><a href="#other-uses-of-interactive-mode" id="toc-other-uses-of-interactive-mode" class="nav-link" data-scroll-target="#other-uses-of-interactive-mode"><span class="header-section-number">10.7</span> Other uses of Interactive Mode</a></li>
+  <li><a href="#making-dockerfiles" id="toc-making-dockerfiles" class="nav-link" data-scroll-target="#making-dockerfiles"><span class="header-section-number">10.7</span> Making Dockerfiles</a></li>
   <li><a href="#going-further-with-docker" id="toc-going-further-with-docker" class="nav-link" data-scroll-target="#going-further-with-docker"><span class="header-section-number">10.8</span> Going Further with Docker</a></li>
   <li><a href="#what-you-learned-in-this-chapter" id="toc-what-you-learned-in-this-chapter" class="nav-link" data-scroll-target="#what-you-learned-in-this-chapter"><span class="header-section-number">10.9</span> What you learned in this chapter</a></li>
   </ul>
@@ -283,6 +251,21 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 
 </header>
 
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Prep for Exercises
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make sure you are logged into the platform using <code>dx login</code> and that your course project is selected with <code>dx select</code>.</p>
+<p>In your shell (either on your machine or in binder), make sure you’re in the <code>bash_bioinfo_scripts/containers/</code> folder:</p>
+<pre><code>cd containers/</code></pre>
+</div>
+</div>
 <section id="learning-objectives" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">10.1</span> Learning Objectives</h2>
 <ol type="1">
@@ -291,6 +274,7 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 <li><strong>Create</strong> snapshots on RAP using <code>docker pull</code> and <code>docker save</code> with the ttyd app</li>
 <li><strong>Utilize</strong> containers to batch process files on RAP</li>
 <li><strong>Extend</strong> a docker image by installing within interactive mode</li>
+<li><strong>Build</strong> a docker image using Dockerfiles</li>
 </ol>
 </section>
 <section id="why-containers" class="level2" data-number="10.2">
@@ -325,13 +309,13 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 </section>
 <section id="be-secure" class="level3" data-number="10.4.2">
 <h3 data-number="10.4.2" class="anchored" data-anchor-id="be-secure"><span class="header-section-number">10.4.2</span> Be Secure</h3>
-<p>Security is always a concern when running Docker images. The <code>docker</code> group has elevated status on a system, so we need to be careful that when we’re running them, they aren’t introducing any system vulnerabilities.</p>
+<p>Before we get started, security is always a concern when running Docker images. The <code>docker</code> group has elevated status on a system, so we need to be careful that when we’re running them, they aren’t introducing any system vulnerabilities.</p>
 <p>These are mostly important when running containers that are web-servers or part of a web stack, but it is also important to think about when running jobs on the cloud.</p>
 <p>Here are some guidelines to think about when you are working with a container.</p>
 <ul>
 <li><strong>Use vendor-specific Docker Images when possible</strong>.</li>
 <li><strong>Use container scanners to spot potential vulnerabilities</strong>. DockerHub has a vulnerability scanner that scans your Docker images for potential vulnerabilities.</li>
-<li><strong>Avoid kitchen-sink images</strong>. One issue is when an image is built on top of many other images. It makes it really difficult.</li>
+<li><strong>Avoid kitchen-sink images</strong>. One issue is when an image is built on top of many other images. It makes it really difficult to plug vulnerabilities. When in doubt, use images from trusted people and organizations.</li>
 </ul>
 </section>
 <section id="the-basic-snapshot-building-process" class="level3" data-number="10.4.3">
@@ -362,7 +346,7 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 <p>We’re going to pull up a web-enabled shell on a DNAnexus worker with the <code>ttyd</code> app. <code>ttyd</code> is useful because:</p>
 <ol type="1">
 <li><code>docker</code> is already installed, so we can <code>docker pull</code> our container and <code>docker save</code> our snapshot to the ttyd instance.</li>
-<li>It’s much faster to transfer our snapshot file back into project storage..</li>
+<li>It’s much faster to transfer our snapshot file back into project storage with <code>dx upload</code>.</li>
 </ol>
 <p>To open ttyd, open the <strong>Tool Library</strong> under <strong>Tools</strong> and select your project.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -374,33 +358,37 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 </section>
 <section id="pull-your-image-from-a-registry" class="level3" data-number="10.4.5">
 <h3 data-number="10.4.5" class="anchored" data-anchor-id="pull-your-image-from-a-registry"><span class="header-section-number">10.4.5</span> Pull your image from a registry</h3>
-<div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull quay.io/biocontainers/samtools:1.15.1--h1170115_0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<pre class="{bash}"><code>#| eval: false
+docker pull quay.io/biocontainers/samtools:1.15.1--h1170115_0</code></pre>
 <p>On your <code>ttyd</code> instance, do a <code>docker pull</code> to pull your image from the registry. Note that we’re pulling <code>samtools</code> from <code>quay.io</code> here, from the <code>biocontainers</code> user.</p>
 <p>We’re also specifying a <em>version tag</em> - the <code>1.15.1--h1170115_0</code> to tie our <code>samtools</code> to a specific version. This is important - most <code>docker pull</code> operations will pull from the <code>latest</code> tag, which is not tied to a specific version. So make sure to tie your image to a specific version.</p>
 <p>When you’re done pulling the docker image, try out the <code>docker images</code> command.</p>
 <pre><code>docker images</code></pre>
 </section>
-<section id="save-your-docker-image-as-a-snapshot" class="level3" data-number="10.4.6">
-<h3 data-number="10.4.6" class="anchored" data-anchor-id="save-your-docker-image-as-a-snapshot"><span class="header-section-number">10.4.6</span> Save your docker image as a snapshot</h3>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> save quay.io/biocontainers/samtools <span class="kw">|</span> <span class="fu">gzip</span> <span class="op">&gt;</span> samtools_image.tar.gz </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now that we’ve pulled the container, we are now going to save it as a snapshot file using <code>docker save</code>. We pipe the output of <code>docker save</code> into <code>gzip</code> to save it as <code>samtools_image.tar.gz</code></p>
+<section id="try-your-docker-image-out" class="level3" data-number="10.4.6">
+<h3 data-number="10.4.6" class="anchored" data-anchor-id="try-your-docker-image-out"><span class="header-section-number">10.4.6</span> Try your docker image out</h3>
+<p>Now that we have our docker image downloaded, we can test it out by running <code>samtools --help</code>. This should give us the help message.</p>
+<pre class="{bash}"><code>#| eval: false
+docker run biocontainers/samtools samtools --help</code></pre>
 </section>
-<section id="upload-your-snapshot" class="level3" data-number="10.4.7">
-<h3 data-number="10.4.7" class="anchored" data-anchor-id="upload-your-snapshot"><span class="header-section-number">10.4.7</span> Upload your snapshot</h3>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> mkdir images/</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> upload samtools_image.tar.gz <span class="at">--destination</span> images/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now we can get our image back into project storage. We’ll create a folder called <code>images/</code> and then use <code>dx upload</code> to get our snapshot file.</p>
+<section id="save-your-docker-image-as-a-snapshot" class="level3" data-number="10.4.7">
+<h3 data-number="10.4.7" class="anchored" data-anchor-id="save-your-docker-image-as-a-snapshot"><span class="header-section-number">10.4.7</span> Save your docker image as a snapshot</h3>
+<p>Now that we’ve pulled the container, we are now going to save it as a snapshot file using <code>docker save</code>. We pipe the output of <code>docker save</code> into <code>gzip</code> to save it as <code>samtools_image.tar.gz</code>.</p>
+<pre class="{bash}"><code>#| eval: false
+
+docker save quay.io/biocontainers/samtools | gzip &gt; samtools_image.tar.gz </code></pre>
 </section>
-<section id="important-make-sure-to-terminate-your-ttyd-instance" class="level3" data-number="10.4.8">
-<h3 data-number="10.4.8" class="anchored" data-anchor-id="important-make-sure-to-terminate-your-ttyd-instance"><span class="header-section-number">10.4.8</span> Important: make sure to terminate your ttyd instance!</h3>
+<section id="upload-your-snapshot" class="level3" data-number="10.4.8">
+<h3 data-number="10.4.8" class="anchored" data-anchor-id="upload-your-snapshot"><span class="header-section-number">10.4.8</span> Upload your snapshot</h3>
+<p>Now we can get our image back into project storage. We’ll create a folder called <code>images/</code> with <code>dx mkdir</code> and then use <code>dx upload</code> to get our snapshot file into the <code>images/</code> folder.</p>
+<pre class="{bash}"><code>#| eval: false
+dx mkdir images/
+dx upload samtools_image.tar.gz --destination images/</code></pre>
+</section>
+<section id="important-make-sure-to-terminate-your-ttyd-instance" class="level3" data-number="10.4.9">
+<h3 data-number="10.4.9" class="anchored" data-anchor-id="important-make-sure-to-terminate-your-ttyd-instance"><span class="header-section-number">10.4.9</span> Important: make sure to terminate your ttyd instance!</h3>
 <p>One thing to remember is that there is no timeout associated with <code>ttyd</code>. You will get a reminder email after it’s been open after 24 hours, but you will get no warning after that.</p>
-<p>So make sure to use <code>dx terminate</code> to terminate your ttyd job.</p>
+<p>So make sure to use <code>dx terminate</code> or terminate the ttyd job under the <code>Manage</code> tab.</p>
 </section>
 </section>
 <section id="sec-docker-sak" class="level2" data-number="10.5">
@@ -412,12 +400,11 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 <li><code>-iimage</code> - This is where you’d put the Docker URL (such as <code>quay.io/ucsc_cgl/samtools</code>)</li>
 </ul>
 <p>So, let’s run a <code>samtools</code> job using our Docker snapshot.</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> run app-swiss-army-knife <span class="dt">\</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iimage_file</span><span class="op">=</span><span class="st">"images/samtools.tar.gz"</span> <span class="dt">\</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-iin</span><span class="op">=</span><span class="st">"data/NA12878.bam"</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-icmd=</span><span class="st">"docker run samtools stats * &gt; </span><span class="va">${in_prefix}</span><span class="st">.stats.txt"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<pre class="{bash}"><code>#| eval: false
+dx run app-swiss-army-knife \
+  -iimage_file="images/samtools.tar.gz" \
+  -iin="data/NA12878.bam"
+  -icmd="docker run samtools stats * &gt; ${in_prefix}.stats.txt"</code></pre>
 <p>The main thing that has been changed here is that we’ve added an the <code>-iimage_file</code> input to our <code>dx run</code> statement.</p>
 </section>
 <section id="extending-a-docker-image" class="level2" data-number="10.6">
@@ -429,10 +416,9 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 <section id="pulling-a-base-image" class="level3" data-number="10.6.1">
 <h3 data-number="10.6.1" class="anchored" data-anchor-id="pulling-a-base-image"><span class="header-section-number">10.6.1</span> Pulling a Base Image</h3>
 <p>We’ll start out with the official ubuntu 18.04 container in our ttyd session:</p>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull ubuntu:18.04</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<pre class="{bash}"><code>#| eval: false
+docker pull ubuntu:18.04
+docker images</code></pre>
 </section>
 <section id="open-up-interactive-mode" class="level3" data-number="10.6.2">
 <h3 data-number="10.6.2" class="anchored" data-anchor-id="open-up-interactive-mode"><span class="header-section-number">10.6.2</span> Open up interactive mode</h3>
@@ -444,37 +430,60 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 <section id="install-software" class="level3" data-number="10.6.3">
 <h3 data-number="10.6.3" class="anchored" data-anchor-id="install-software"><span class="header-section-number">10.6.3</span> Install Software</h3>
 <p>Now, let’s install <a href="https://emboss.sourceforge.net/">EMBOSS</a> (European Molecular Biology Open Software Suite), which is a suite of string utilities for working with genomic data. If you look at the EMBOSS link, you will see that you can install it via <code>apt install</code>, which is available by default in the <code>ubuntu</code> container.</p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> update <span class="kw">&amp;&amp;</span> <span class="ex">apt</span> upgrade</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">apt</span> install emboss gzip <span class="at">-y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<pre class="{bash}"><code>#| eval: false
+apt update &amp;&amp; apt upgrade
+apt install emboss gzip -y</code></pre>
 </section>
 <section id="exit-container" class="level3" data-number="10.6.4">
 <h3 data-number="10.6.4" class="anchored" data-anchor-id="exit-container"><span class="header-section-number">10.6.4</span> Exit Container</h3>
 <p>Now exit from your container’s interactive mode:</p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<pre class="{bash}"><code>#| eval: false
+exit</code></pre>
 <p>You’ll be back at the normal ttyd prompt.</p>
 </section>
 <section id="docker-commitdocker-save-your-new-snapshot-file" class="level3" data-number="10.6.5">
 <h3 data-number="10.6.5" class="anchored" data-anchor-id="docker-commitdocker-save-your-new-snapshot-file"><span class="header-section-number">10.6.5</span> <code>docker commit</code>/<code>docker save</code> your new snapshot file</h3>
 <p>We created a new container when we installed everything. We’ll need to find it its ID in ttyd.</p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps <span class="at">-a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<pre class="{bash}"><code>#| eval: false
+docker ps -a</code></pre>
 <p>We can see that our new container has the following id. We can use this id to save a new container with <code>docker commit</code>. Now we can save the snapshot file by using <code>docker save</code>:</p>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> commit <span class="op">&lt;</span>container_id<span class="op">&gt;</span> emboss:6.6.0</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> save emboss:6.6.0 <span class="kw">|</span> <span class="fu">gzip</span> <span class="op">&gt;</span> emboss.tar.gz</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">dx</span> upload emboss.tar.gz <span class="at">--destination</span> images/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<pre class="{bash}"><code>#| eval: false
+docker commit &lt;container_id&gt; emboss:6.6.0
+docker save emboss:6.6.0 | gzip &gt; emboss.tar.gz
+dx upload emboss.tar.gz --destination images/</code></pre>
 </section>
-</section>
-<section id="other-uses-of-interactive-mode" class="level2" data-number="10.7">
-<h2 data-number="10.7" class="anchored" data-anchor-id="other-uses-of-interactive-mode"><span class="header-section-number">10.7</span> Other uses of Interactive Mode</h2>
+<section id="other-uses-of-interactive-mode" class="level3" data-number="10.6.6">
+<h3 data-number="10.6.6" class="anchored" data-anchor-id="other-uses-of-interactive-mode"><span class="header-section-number">10.6.6</span> Other uses of Interactive Mode</h3>
 <p>Docker’s interactive mode is really helpful for testing out scripts and making sure they are reproducible.</p>
 <p>If I have a one-off analysis, it may be faster for me to just open up <code>ttyd</code> and use <code>docker run</code> to open up interactive mode, and do work with a container.</p>
+</section>
+</section>
+<section id="making-dockerfiles" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="making-dockerfiles"><span class="header-section-number">10.7</span> Making Dockerfiles</h2>
+<p>The other way to build image files is to use a Dockerfile. A Dockerfile is a recipe for installing software and its dependencies.</p>
+<p>Let’s take a look at a Dockerfile. By default, it is contained within a folder and is called <code>Dockerfile</code>:</p>
+<pre><code>FROM ubuntu:18.04
+
+RUN apt-get update &amp;&amp; \
+    apt-get install -y build-essential  &amp;&amp; \
+    apt-get install -y wget &amp;&amp; \
+    apt-get clean &amp;&amp; \
+    rm -rf /var/lib/apt/lists/*
+
+ENV CONDA_DIR /opt/conda
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh &amp;&amp; \
+     /bin/bash ~/miniconda.sh -b -p /opt/conda
+
+ENV PATH=$CONDA_DIR/bin:$PATH
+
+#install plink with conda
+RUN conda install -c "bioconda/label/cf201901" plink
+RUN conda install -c "bioconda/label/cf201901" samtools</code></pre>
+<p>We can build the Docker image in our directory using:</p>
+<pre><code>docker build . -t gatk_sam_plink:0.0.1</code></pre>
+<p>When it’s done, we can then make sure it’s been built by using</p>
+<pre><code>docker images</code></pre>
+<p>And we can use it like any other image.</p>
 </section>
 <section id="going-further-with-docker" class="level2" data-number="10.8">
 <h2 data-number="10.8" class="anchored" data-anchor-id="going-further-with-docker"><span class="header-section-number">10.8</span> Going Further with Docker</h2>
@@ -486,7 +495,7 @@ gtag('config', 'G-QM3D3CT5J5', { 'anonymize_ip': true});
 <ul>
 <li>How containers enable reproducibility</li>
 <li>Defined specific container terminology</li>
-<li>Created snapshot files using ttyd</li>
+<li>Created snapshot files using <code>ttyd</code></li>
 <li>Use these snapshot files with Swiss Army Knife</li>
 <li>How to extend a docker image by installing new software</li>
 </ul>
