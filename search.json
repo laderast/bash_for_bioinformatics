@@ -42,25 +42,32 @@
     "text": "1.5 Prerequisites\nBefore you tackle this book, you should be able to accomplish the following:\n\nOpen and utilize a shell. This section from the Missing Semester of your CS Education is very helpful: https://missing.csail.mit.edu/2020/course-shell/\nUtilize and navigate File Paths (both absolute and relative) in a Unix system\n\nWe recommend reviewing a course such as the Software Carpentry course for Shell Scripting before getting started with this book. The Missing Semester of your CS Education is another great introduction/resource."
   },
   {
+    "objectID": "index.html#about-me",
+    "href": "index.html#about-me",
+    "title": "Bash for Bioinformatics",
+    "section": "1.6 About Me",
+    "text": "1.6 About Me\nMy name is Ted Laderas. I have been an instructor and trainer for over 10 years, making complex technologies understandable by my students.\nI am available for consulting for your training needs, whether it be for software you’ve developed or upskilling people at your organization. I specialize in the following topics:\n\nReproducible Bioinformatics Workflows\nData Science for Executives/Clinicians\nShiny and Interactive Dashboards\nR Data Science Programming\nData Visualization/Storytelling\nPython Data Science Programming\n\nFor more information, please see https://laderast.github.io/"
+  },
+  {
     "objectID": "index.html#contributors",
     "href": "index.html#contributors",
     "title": "Bash for Bioinformatics",
-    "section": "1.6 Contributors",
-    "text": "1.6 Contributors\nNo one writes a book alone. This book comes from a lot of conversations with everyone at DNAnexus, including:\n\nAllison Regier\nBen Busby\nAnastazie Sedlakova\nScott Funkhouser\nStanley Lan\nOndrej Klempir\nBranislav Slavik\nDavid Stanek\nChai Fungtammasan\n\nThanks to the following readers for their corrections:\n\nJoshua Shapiro (found errors in variable expansion text)\nAlexander Moersburg (found error in cloud computing section)"
+    "section": "1.7 Contributors",
+    "text": "1.7 Contributors\nNo one writes a book alone. This book comes from a lot of conversations with everyone at DNAnexus, including:\n\nAllison Regier\nBen Busby\nAnastazie Sedlakova\nScott Funkhouser\nStanley Lan\nOndrej Klempir\nBranislav Slavik\nDavid Stanek\nChai Fungtammasan\n\nThanks to the following readers for their corrections:\n\nJoshua Shapiro (found errors in variable expansion text)\nAlexander Moersburg (found error in cloud computing section)"
   },
   {
     "objectID": "index.html#want-to-be-a-contributor",
     "href": "index.html#want-to-be-a-contributor",
     "title": "Bash for Bioinformatics",
-    "section": "1.7 Want to be a Contributor?",
-    "text": "1.7 Want to be a Contributor?\nThis is the first draft of this book. It’s not going to be perfect, and we need help. Specifically, we need help with testing the setup and the exercises.\nIf you have an problem, you can file it as an issue using this link.\nIn your issue, please note the following:\n\nYour Name\nWhat your issue was\nWhich section, and line you found problematic or wouldn’t run\n\nIf you’re quarto/GitHub savvy, you can fork and file a pull request for typos/edits. If you’re not, you can file an issue.\nJust be aware that this is not my primary job - I’ll try to be as responsive as I can."
+    "section": "1.8 Want to be a Contributor?",
+    "text": "1.8 Want to be a Contributor?\nThis is the first draft of this book. It’s not going to be perfect, and we need help. Specifically, we need help with testing the setup and the exercises.\nIf you have an problem, you can file it as an issue using this link.\nIn your issue, please note the following:\n\nYour Name\nWhat your issue was\nWhich section, and line you found problematic or wouldn’t run\n\nIf you’re quarto/GitHub savvy, you can fork and file a pull request for typos/edits. If you’re not, you can file an issue.\nJust be aware that this is not my primary job - I’ll try to be as responsive as I can."
   },
   {
     "objectID": "index.html#license",
     "href": "index.html#license",
     "title": "Bash for Bioinformatics",
-    "section": "1.8 License",
-    "text": "1.8 License\nBash for Bioinformatics by Ted Laderas is licensed under a Creative Commons Attribution 4.0 International License.Based on a work at https://github.com/laderast/bash_for_bioinformatics."
+    "section": "1.9 License",
+    "text": "1.9 License\nBash for Bioinformatics by Ted Laderas is licensed under a Creative Commons Attribution 4.0 International License.Based on a work at https://github.com/laderast/bash_for_bioinformatics."
   },
   {
     "objectID": "01-setup-course.html#setup-your-dnanexus-account",
