@@ -418,7 +418,7 @@ Wait, I thought that files were immutable on the platform. Not notebooks?
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="2" data-code-annotation="1" data-code-cell="annotated-cell-3">You can also use a file-id here (such as <code>project-YYYYYYY:file-XXXXXXXX</code>) instead of a file path here.</span>
+<span data-code-annotation="1" data-code-cell="annotated-cell-3" data-code-lines="2">You can also use a file-id here (such as <code>project-YYYYYYY:file-XXXXXXXX</code>) instead of a file path here.</span>
 </dd>
 </dl>
 <p>Now the file should be available in our local worker storage.</p>
@@ -429,7 +429,7 @@ Wait, I thought that files were immutable on the platform. Not notebooks?
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-4" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="1" data-code-annotation="2" data-code-cell="annotated-cell-4">Now that the file is downloaded into our temporary storage, we can load it using <code>pd.read_csv</code>.</span>
+<span data-code-annotation="2" data-code-cell="annotated-cell-4" data-code-lines="1">Now that the file is downloaded into our temporary storage, we can load it using <code>pd.read_csv</code>.</span>
 </dd>
 </dl>
 </section>
@@ -439,7 +439,7 @@ Wait, I thought that files were immutable on the platform. Not notebooks?
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-lines="1" data-code-annotation="3" data-code-cell="annotated-cell-5">We can do any work we need to now that our data is loaded as a Pandas DataFrame. Here we do a <code>.describe()</code> to get some descriptive statistics on our numeric columns.</span>
+<span data-code-annotation="3" data-code-cell="annotated-cell-5" data-code-lines="1">We can do any work we need to now that our data is loaded as a Pandas DataFrame. Here we do a <code>.describe()</code> to get some descriptive statistics on our numeric columns.</span>
 </dd>
 </dl>
 </section>
@@ -449,7 +449,7 @@ Wait, I thought that files were immutable on the platform. Not notebooks?
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-6" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-lines="1" data-code-annotation="4" data-code-cell="annotated-cell-6">Say we made a modification to <code>penguins</code> in our work. We can get that result back into project storage using <code>dx upload</code>. Note that with the <code>--destination</code> parameter, directories will be created on the platform if they do not yet exist.</span>
+<span data-code-annotation="4" data-code-cell="annotated-cell-6" data-code-lines="1">Say we made a modification to <code>penguins</code> in our work. We can get that result back into project storage using <code>dx upload</code>. Note that with the <code>--destination</code> parameter, directories will be created on the platform if they do not yet exist.</span>
 </dd>
 </dl>
 </section>
@@ -464,11 +464,11 @@ Wait, I thought that files were immutable on the platform. Not notebooks?
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="2" data-code-annotation="1" data-code-cell="annotated-cell-7">We can skip two steps by prepending a <code>/mnt/project/</code> to our datafile’s path and using this new path (<code>/mnt/project/data/penguins.csv</code>) directly in <code>pd.read_csv()</code>.</span>
+<span data-code-annotation="1" data-code-cell="annotated-cell-7" data-code-lines="2">We can skip two steps by prepending a <code>/mnt/project/</code> to our datafile’s path and using this new path (<code>/mnt/project/data/penguins.csv</code>) directly in <code>pd.read_csv()</code>.</span>
 </dd>
 <dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="5" data-code-annotation="2" data-code-cell="annotated-cell-7">Uploading modified file (<code>penguins2.csv</code>) using <code>dx upload</code> as usual.</span>
+<span data-code-annotation="2" data-code-cell="annotated-cell-7" data-code-lines="5">Uploading modified file (<code>penguins2.csv</code>) using <code>dx upload</code> as usual.</span>
 </dd>
 </dl>
 <p>I talk much more about dxFUSE in <a href="04-doing-work-with-dx-run.html#sec-dxfuse"><span>Section&nbsp;6.8</span></a></p>
